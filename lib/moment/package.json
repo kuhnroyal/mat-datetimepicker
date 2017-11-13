@@ -1,0 +1,13 @@
+{
+  "name": "@mat-datetimepicker/moment",
+  "version": "5.0.0-rc0",
+  "repository": "https://github.com/kuhnroyal/mat-datetimepicker.git",
+  "author": "PL <kuhnroyal@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/material": "^5.0.0-rc0",
+    "@angular/material-moment-adapter": "^5.0.0-rc0",
+    "@mat-datetimepicker/core": "5.0.0-rc0",
+    "moment": "^2.18.1"
+  }
+}

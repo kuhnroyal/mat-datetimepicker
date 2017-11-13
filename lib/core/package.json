@@ -1,0 +1,11 @@
+{
+  "name": "@mat-datetimepicker/core",
+  "version": "5.0.0-rc0",
+  "repository": "https://github.com/kuhnroyal/mat-datetimepicker.git",
+  "author": "PL <kuhnroyal@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^5.0.0",
+    "@angular/material": "^5.0.0-rc0"
+  }
+}

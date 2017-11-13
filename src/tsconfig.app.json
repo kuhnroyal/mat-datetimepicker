@@ -1,0 +1,23 @@
+{
+  "extends": "../tsconfig.json",
+  "angularCompilerOptions": {
+    "paths": {
+      "@mat-datetimepicker/core": [
+        "../lib/core/src/public_api.ts"
+      ],
+      "@mat-datetimepicker/moment": [
+        "../lib/moment/src/public_api.ts"
+      ]
+    }
+  },
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "es2015",
+    "types": []
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}
