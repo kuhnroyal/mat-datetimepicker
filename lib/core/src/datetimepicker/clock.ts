@@ -21,7 +21,6 @@ export type ClockView = "hour" | "minute";
  * @docs-private
  */
 @Component({
-  moduleId: module.id,
   selector: "mat-datetimepicker-clock",
   templateUrl: "clock.html",
   styleUrls: ["clock.scss"],

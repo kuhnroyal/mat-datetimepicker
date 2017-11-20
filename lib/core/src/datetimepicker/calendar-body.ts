@@ -24,7 +24,6 @@ export class MatDatetimepickerCalendarCell {
  * @docs-private
  */
 @Component({
-  moduleId: module.id,
   selector: "[mat-datetimepicker-calendar-body]",
   templateUrl: "calendar-body.html",
   styleUrls: ["calendar-body.scss"],

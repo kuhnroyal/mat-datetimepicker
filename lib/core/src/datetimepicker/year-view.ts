@@ -26,7 +26,6 @@ import {
  * @docs-private
  */
 @Component({
-  moduleId: module.id,
   selector: "mat-datetimepicker-year-view",
   templateUrl: "year-view.html",
   animations: [slideCalendar],

@@ -19,7 +19,6 @@ import {Subscription} from 'rxjs/Subscription';
 import {MatDatetimepicker} from './datetimepicker';
 
 @Component({
-  moduleId: module.id,
   selector: 'mat-datetimepicker-toggle',
   templateUrl: 'datetimepicker-toggle.html',
   host: {

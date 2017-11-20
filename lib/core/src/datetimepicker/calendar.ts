@@ -45,7 +45,6 @@ import { slideCalendar } from "./datetimepicker-animations";
  * @docs-private
  */
 @Component({
-  moduleId: module.id,
   selector: "mat-datetimepicker-calendar",
   templateUrl: "calendar.html",
   styleUrls: ["calendar.scss"],

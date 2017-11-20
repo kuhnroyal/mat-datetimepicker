@@ -51,7 +51,6 @@ let datetimepickerUid = 0;
  * @docs-private
  */
 @Component({
-  moduleId: module.id,
   selector: "mat-datetimepicker-content",
   templateUrl: "datetimepicker-content.html",
   styleUrls: ["datetimepicker-content.scss"],
@@ -86,7 +85,6 @@ export class MatDatetimepickerContent<D> implements AfterContentInit {
 }
 
 @Component({
-  moduleId: module.id,
   selector: "mat-datetimepicker",
   exportAs: "matDatetimepicker",
   template: "",
