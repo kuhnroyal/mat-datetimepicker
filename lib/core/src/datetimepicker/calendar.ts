@@ -72,7 +72,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   set startAt(value: D | null) {
-    this._startAt = this._adapter.getValidDateOrNull(this._adapter.deserialize(value));
+    this._startAt = this._adapter.getValidDateOrNull(value);
   }
 
   private _startAt: D | null;
@@ -87,7 +87,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   set selected(value: D | null) {
-    this._selected = this._adapter.getValidDateOrNull(this._adapter.deserialize(value));
+    this._selected = this._adapter.getValidDateOrNull(value);
   }
 
   private _selected: D | null;
@@ -99,7 +99,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   set minDate(value: D | null) {
-    this._minDate = this._adapter.getValidDateOrNull(this._adapter.deserialize(value));
+    this._minDate = this._adapter.getValidDateOrNull(value);
   }
 
   private _minDate: D | null;
@@ -111,7 +111,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   set maxDate(value: D | null) {
-    this._maxDate = this._adapter.getValidDateOrNull(this._adapter.deserialize(value));
+    this._maxDate = this._adapter.getValidDateOrNull(value);
   }
 
   private _maxDate: D | null;

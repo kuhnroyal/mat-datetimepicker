@@ -102,7 +102,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
   }
 
   set startAt(date: D | null) {
-    this._startAt = this._dateAdapter.getValidDateOrNull(this._dateAdapter.toIso8601(date));
+    this._startAt = this._dateAdapter.getValidDateOrNull(date);
   }
 
   private _startAt: D | null;
@@ -130,7 +130,6 @@ export class MatDatetimepicker<D> implements OnDestroy {
 
   set type(value: "date" | "time" | "month" | "datetime") {
     this._type = value || "date";
-    // this._inputValue = this._formatDate(this._value);
   }
 
   private _type: "date" | "time" | "month" | "datetime" = "date";
