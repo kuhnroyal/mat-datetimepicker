@@ -1,11 +1,12 @@
 {
   "name": "@mat-datetimepicker/core",
-  "version": "5.0.0-rc0",
+  "version": "5.0.0-rc.3-1",
   "repository": "https://github.com/kuhnroyal/mat-datetimepicker.git",
   "author": "PL <kuhnroyal@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^5.0.0",
-    "@angular/material": "^5.0.0-rc0"
+    "@angular/material": "5.0.0-rc.3",
+    "@angular/cdk": "5.0.0-rc.3"
   }
 }
