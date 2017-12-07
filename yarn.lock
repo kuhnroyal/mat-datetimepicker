@@ -32,9 +32,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/cdk@5.0.0-rc.3":
-  version "5.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-5.0.0-rc.3.tgz#fde417a85b9453a3989a8c8a6ce6ff896f5783fd"
+"@angular/cdk@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-5.0.0.tgz#d7cb3294c9e3cc37d3d41c33e6beb044e84636c3"
   dependencies:
     tslib "^1.7.1"
 
@@ -144,15 +144,15 @@
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-5.0.1.tgz#869e09dbd6e3d95c117c062d21dd1fd920ad44d6"
 
-"@angular/material-moment-adapter@5.0.0-rc.3":
-  version "5.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-5.0.0-rc.3.tgz#ec2af244d5f9c0258d731d2f67c9886f5f9b1c44"
+"@angular/material-moment-adapter@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-5.0.0.tgz#08c2832f99be590397f43891347d35c6b035a4ae"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/material@5.0.0-rc.3":
-  version "5.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-5.0.0-rc.3.tgz#d27b8e5786d2ae0281fbc42806cc275b160627e7"
+"@angular/material@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-5.0.0.tgz#2ae8610f36cd6aa5bfe58155ffd96bf44d965162"
   dependencies:
     tslib "^1.7.1"
 
@@ -173,6 +173,12 @@
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-5.0.1.tgz#9ac08f29302ef60cdfd3c7810d96c265dec463d6"
   dependencies:
     tslib "^1.7.1"
+
+"@angular/tsc-wrapped@^4.4.5":
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.4.6.tgz#16787cbbf50bdc7e738123b19c32527f244e178d"
+  dependencies:
+    tsickle "^0.21.0"
 
 "@ngtools/json-schema@1.1.0", "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
@@ -3955,10 +3961,11 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ng-packagr@1.6.0-rc.0:
-  version "1.6.0-rc.0"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-1.6.0-rc.0.tgz#97bf5a1d29f92c805630102ea7af9d1b36c2c011"
+ng-packagr@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-1.6.0.tgz#935ff56b070925376df840bb87d4e64e0aeb1cf5"
   dependencies:
+    "@angular/tsc-wrapped" "^4.4.5"
     "@ngtools/json-schema" "^1.1.0"
     autoprefixer "^7.1.1"
     browserslist "^2.1.5"
@@ -6069,6 +6076,15 @@ tsconfig@^6.0.0:
   dependencies:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
+
+tsickle@^0.21.0:
+  version "0.21.6"
+  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.21.6.tgz#53b01b979c5c13fdb13afb3fb958177e5991588d"
+  dependencies:
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    source-map "^0.5.6"
+    source-map-support "^0.4.2"
 
 tsickle@^0.24.0:
   version "0.24.1"
