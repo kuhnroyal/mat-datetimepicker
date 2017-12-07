@@ -1,6 +1,6 @@
 {
   "name": "mat-datetimepicker",
-  "version": "5.0.0-rc.3-1",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -8,13 +8,12 @@
     "build": "yarn build:lib && ng build",
     "build:lib": "yarn build:lib/core && yarn build:lib/moment",
     "build:lib/core": "yarn build:lib/core:pre && yarn build:lib/core:build && yarn build:lib/core:post",
-    "build:lib/moment": "yarn build:lib/moment:pre && yarn build:lib/moment:build && yarn build:lib/moment:post",
+    "build:lib/moment": "yarn build:lib/moment:pre && yarn build:lib/moment:build",
     "build:lib/core:pre": "rimraf dist/lib/core",
     "build:lib/core:build": "copyfiles -u 2 lib/core/tsconfig.ngc.json node_modules/ng-packagr/lib/conf && ng-packagr -p lib/core/ng-package.json && copyfiles -u 3 lib/core/src/**/*-theme.scss dist/lib/core",
     "build:lib/core:post": "cd dist/lib/core && yarn link && cd ../../../ && yarn link '@mat-datetimepicker/core'",
     "build:lib/moment:pre": "rimraf dist/lib/moment",
     "build:lib/moment:build": "copyfiles -u 2 lib/moment/tsconfig.ngc.json node_modules/ng-packagr/lib/conf && ng-packagr -p lib/moment/ng-package.json",
-    "build:lib/moment:post": "",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
