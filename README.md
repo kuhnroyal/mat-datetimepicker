@@ -1,10 +1,10 @@
-# Material Datetimepicker for @angular/material 5.0.0
+# Material Datetimepicker for @angular/material 5.x
 
 The datetimepicker is taken from [Promact/md2](https://github.com/Promact/md2) and modified to use @angular/material as base and added theming support.
 
 Like the @angular/material datepicker it contains a native-datetime-adapter as well as a moment-datetime-adapter.
 
-### Installation  - Not published on the npm registry (yet)!
+### Installation
 Install:
 ```
 yarn install @mat-datetimepicker/core
@@ -27,8 +27,8 @@ cd my-project
 Add the dependencies to your `package.json`:
 ```
 "dependencies": {
-    "@mat-datetimepicker/core": "1.0.0",
-    "@mat-datetimepicker/moment": "1.0.0",
+    "@mat-datetimepicker/core": "1.0.1",
+    "@mat-datetimepicker/moment": "1.0.1",
 }
 ```
 Link the local built modules:
