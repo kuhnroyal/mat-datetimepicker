@@ -78,6 +78,8 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
 
   private _minDate: D | null;
 
+  private _timeChanged = false;
+
   /** The maximum selectable date. */
   @Input()
   get maxDate(): D | null {
@@ -160,6 +162,7 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
 
   /** Handles mousedown events on the clock body. */
   _handleMousedown(event: any) {
+    this._timeChanged = false;
     this.setTime(event);
     document.addEventListener("mousemove", this.mouseMoveListener);
     document.addEventListener("touchmove", this.mouseMoveListener);
@@ -177,9 +180,11 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
     document.removeEventListener("touchmove", this.mouseMoveListener);
     document.removeEventListener("mouseup", this.mouseUpListener);
     document.removeEventListener("touchend", this.mouseUpListener);
-    this.selectedChange.emit(this.activeDate);
-    if (!this._hourView) {
-      this._userSelection.emit();
+    if (this._timeChanged) {
+      this.selectedChange.emit(this.activeDate);
+      if (!this._hourView) {
+        this._userSelection.emit();
+      }
     }
   }
 
@@ -302,8 +307,12 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
         this._adapter.getMonth(this.activeDate),
         this._adapter.getDate(this.activeDate), this._adapter.getHour(this.activeDate), value);
     }
-    this.activeDate = this._adapter.clampDate(date, this.minDate, this.maxDate);
-    this.activeDateChange.emit(this.activeDate);
-  }
 
+    const clamped = this._adapter.clampDate(date, this.minDate, this.maxDate);
+    if (date === clamped) {
+      this._timeChanged = true;
+      this.activeDate = clamped;
+      this.activeDateChange.emit(this.activeDate);
+    }
+  }
 }

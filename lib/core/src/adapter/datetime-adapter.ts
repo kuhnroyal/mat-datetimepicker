@@ -163,4 +163,14 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
   invalid(): D {
     return this._delegate.invalid();
   }
+
+  clampDate(date: D, min?: D | null, max?: D | null): D {
+    if (min && this.compareDatetime(date, min) < 0) {
+      return min;
+    }
+    if (max && this.compareDatetime(date, max) > 0) {
+      return max;
+    }
+    return date;
+  }
 }
