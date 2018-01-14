@@ -122,11 +122,14 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     let oldDate = this.value;
     this._value = value;
 
-    this._renderer.setProperty(this._elementRef.nativeElement, "value",
-      value ? this._dateAdapter.format(value, this.getFormat()) : "");
-    if (!this._dateAdapter.sameDatetime(oldDate, value)) {
-      this._valueChange.emit(value);
-    }
+    // use timeout to ensure the datetimepicker is instantiated and we get the correct format
+    setTimeout(() => {
+      this._renderer.setProperty(this._elementRef.nativeElement, "value",
+        value ? this._dateAdapter.format(value, this.getFormat()) : "");
+      if (!this._dateAdapter.sameDatetime(oldDate, value)) {
+        this._valueChange.emit(value);
+      }
+    });
   }
 
   private getFormat() {
