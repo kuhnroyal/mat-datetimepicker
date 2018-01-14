@@ -10,8 +10,8 @@
   <mat-form-field>
     <mat-placeholder>Start DateTime</mat-placeholder>
     <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
-    <mat-datetimepicker #datetimePicker type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
-    <input matInput formControlName="start" [matDatetimepicker]="datetimePicker" required autocomplete="false">
+    <mat-datetimepicker #datetimePicker type="datetime" [startAt]="start" startView="month" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+    <input matInput formControlName="start" [min]="today" [max]="tomorrow" [matDatetimepicker]="datetimePicker" required autocomplete="false">
   </mat-form-field>
   <mat-form-field>
     <mat-placeholder>Start Time</mat-placeholder>
@@ -30,6 +30,12 @@
     <mat-datetimepicker-toggle [for]="monthPicker" matSuffix></mat-datetimepicker-toggle>
     <mat-datetimepicker #monthPicker type="month" openOnFocus="true" mode="portrait" timeInterval="5"></mat-datetimepicker>
     <input matInput formControlName="start" [matDatetimepicker]="monthPicker" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-placeholder>Min Test</mat-placeholder>
+    <input matInput formControlName="mintest" [min]="min" [matDatetimepicker]="minTestPicker" required>
+    <mat-datetimepicker-toggle [for]="minTestPicker" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #minTestPicker type="datetime" openOnFocus="true" mode="landscape" timeInterval="5"></mat-datetimepicker>
   </mat-form-field>
 </form>
 <ul>
