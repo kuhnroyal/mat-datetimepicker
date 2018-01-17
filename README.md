@@ -14,6 +14,7 @@ yarn install @mat-datetimepicker/core
 ```
 And for the moment adapter:
 ```
+yarn install @angular/material-moment-adapter
 yarn install @mat-datetimepicker/moment
 ``` 
 
