@@ -149,14 +149,17 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     let parseFormat;
 
     switch (this._datepicker.type) {
-      case "time":
-        parseFormat = this._dateFormats.parse.timeInput;
-        break;
       case "date":
         parseFormat = this._dateFormats.parse.dateInput;
         break;
-      default:
-        parseFormat = this._dateFormats.parse.dateInput;
+      case "datetime":
+        parseFormat = this._dateFormats.parse.datetimeInput;
+        break;
+      case "time":
+        parseFormat = this._dateFormats.parse.timeInput;
+        break;
+      case "month":
+        parseFormat = this._dateFormats.parse.monthInput;
         break;
     }
     if (!parseFormat) {

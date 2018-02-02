@@ -1,9 +1,7 @@
 import { MatDatetimeFormats } from "./datetime-formats";
 
 export const MAT_NATIVE_DATETIME_FORMATS: MatDatetimeFormats = {
-  parse: {
-    dateInput: null
-  },
+  parse: {},
   display: {
     dateInput: {year: "numeric", month: "numeric", day: "numeric"},
     monthInput: {month: "long"},

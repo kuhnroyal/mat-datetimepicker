@@ -3,8 +3,10 @@ import { InjectionToken } from "@angular/core";
 // noinspection TsLint
 export type MatDatetimeFormats = {
   parse: {
-    dateInput: any,
-    timeInput?: any
+    dateInput?: any,
+    monthInput?: any,
+    timeInput?: any,
+    datetimeInput?: any
   },
   display: {
     dateInput: any,
