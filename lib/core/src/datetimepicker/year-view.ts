@@ -120,9 +120,8 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
       this._adapter.getDate(this.activeDate),
       this._adapter.getHour(this.activeDate),
       this._adapter.getMinute(this.activeDate)));
-    if (this.type === "month") {
-      this._userSelection.emit();
-    }
+
+    this._selectedMonth = month;
   }
 
   /** Initializes this month view. */

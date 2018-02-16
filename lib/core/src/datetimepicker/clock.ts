@@ -182,9 +182,6 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
     document.removeEventListener("touchend", this.mouseUpListener);
     if (this._timeChanged) {
       this.selectedChange.emit(this.activeDate);
-      if (!this._hourView) {
-        this._userSelection.emit();
-      }
     }
   }
 

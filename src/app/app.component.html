@@ -37,6 +37,12 @@
     <mat-datetimepicker-toggle [for]="minTestPicker" matSuffix></mat-datetimepicker-toggle>
     <mat-datetimepicker #minTestPicker type="datetime" openOnFocus="true" mode="landscape" timeInterval="5"></mat-datetimepicker>
   </mat-form-field>
+  <mat-form-field>
+    <mat-placeholder>Min Test</mat-placeholder>
+    <input matInput formControlName="mintestPortrait" [min]="min" [matDatetimepicker]="minTestPickerPortrait" required>
+    <mat-datetimepicker-toggle [for]="minTestPickerPortrait" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #minTestPickerPortrait type="datetime" openOnFocus="true" mode="portrait" timeInterval="5" confirmButtonLabel="Hey" cancelButtonLabel="Yo"></mat-datetimepicker>
+  </mat-form-field>
 </form>
 <ul>
   <li>
@@ -49,4 +55,3 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
-

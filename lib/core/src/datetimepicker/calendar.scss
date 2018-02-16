@@ -91,6 +91,11 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
   [mode='landscape'] & {
     padding-top: $mat-calendar-padding;
   }
+
+  > .mat-datetimepicker-calendar-footer {
+    padding: 12px;
+    text-align: right;
+  }
 }
 
 .mat-datetimepicker-calendar-controls {

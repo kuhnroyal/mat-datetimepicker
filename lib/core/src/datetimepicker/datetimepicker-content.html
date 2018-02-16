@@ -9,6 +9,8 @@
               [dateFilter]="datetimepicker._dateFilter"
               [selected]="datetimepicker._selected"
               [startAt]="datetimepicker.startAt"
+              [confirmButtonLabel]="datetimepicker.confirmButtonLabel"
+              [cancelButtonLabel]="datetimepicker.cancelButtonLabel"
               (selectedChange)="datetimepicker._select($event)"
               (_userSelection)="datetimepicker.close()">
 </mat-datetimepicker-calendar>

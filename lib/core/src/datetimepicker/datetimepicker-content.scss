@@ -4,8 +4,8 @@ $mat-datetimepicker-calendar-padding: 8px;
 $mat-datetimepicker-calendar-cell-size: 40px;
 $mat-datetimepicker-calendar-portrait-width: $mat-datetimepicker-calendar-cell-size * 7 + $mat-datetimepicker-calendar-padding * 2;
 $mat-datetimepicker-calendar-landscape-width: 446px;
-$mat-datetimepicker-calendar-portrait-height: 405px;
-$mat-datetimepicker-calendar-landscape-height: 328px;
+$mat-datetimepicker-calendar-portrait-height: auto;
+$mat-datetimepicker-calendar-landscape-height: auto;
 
 .mat-datetimepicker-content {
   @include mat-elevation(8);

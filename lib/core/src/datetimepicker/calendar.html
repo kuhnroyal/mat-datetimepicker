@@ -68,4 +68,8 @@
              (selectedChange)="_timeSelected($event)"
              (_userSelection)="_userSelected()">
   </mat-datetimepicker-clock>
+  <div class="mat-datetimepicker-calendar-footer">
+    <button mat-button color="primary" (click)="_handleCancelButton($event)">{{ cancelButtonLabel }}</button>
+    <button mat-raised-button color="primary" (click)="_handlConfirmkButton($event)">{{ confirmButtonLabel }}</button>
+  </div>
 </div>

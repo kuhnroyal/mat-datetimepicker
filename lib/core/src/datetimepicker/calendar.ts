@@ -240,26 +240,28 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Handles month selection in the year view. */
   _monthSelected(month: D): void {
-    if (this.type == "month") {
-      if (!this._adapter.sameMonthAndYear(month, this.selected)) {
-        this.selectedChange.emit(this._adapter.getFirstDateOfMonth(month));
-      }
-    } else {
-      this._activeDate = month;
+    this._activeDate = month;
+    if (this.type !== 'month') {
       this._currentView = "month";
       this._clockView = "hour";
     }
   }
 
   _timeSelected(date: D): void {
-    if (this._clockView !== "minute") {
-      this._activeDate = date;
-      this._clockView = "minute";
-    } else {
-      if (!this._adapter.sameDatetime(date, this.selected)) {
-        this.selectedChange.emit(date);
-      }
-    }
+    this._activeDate = date;
+    this._clockView = "minute";
+  }
+
+  @Input() confirmButtonLabel: string;
+  _handleConfirmButton(): void {
+    this.selectedChange.emit(this._activeDate);
+    this._userSelected();
+  }
+
+  @Input() cancelButtonLabel: string;
+  _handleCancelButton(): void {
+    // Close dialog (datetimepicker.close())
+    this._userSelection.emit();
   }
 
   _onActiveDateChange(date: D) {
