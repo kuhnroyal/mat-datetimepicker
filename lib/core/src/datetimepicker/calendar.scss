@@ -57,6 +57,9 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
     cursor: pointer;
     opacity: 0.6;
   }
+  &.not-clickable {
+    cursor: initial;
+  }
 }
 
 .mat-datetimepicker-calendar-header-time {
