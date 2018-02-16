@@ -271,7 +271,9 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   _dateClicked(): void {
-    this._currentView = "month";
+    if (this.type !== 'month') {
+      this._currentView = "month";
+    }
   }
 
   _hoursClicked(): void {
