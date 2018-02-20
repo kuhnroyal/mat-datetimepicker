@@ -329,7 +329,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
       panelClass: "mat-datetimepicker-dialog"
     });
     this._dialogRef.afterClosed().subscribe(() => this.close());
-    this._dialogRef.componentInstance.datepicker = this;
+    this._dialogRef.componentInstance.datetimepicker = this;
   }
 
   /** Open the calendar as a popup. */

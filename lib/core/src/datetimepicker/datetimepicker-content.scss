@@ -83,3 +83,7 @@ $mat-datetimepicker-calendar-landscape-height: 328px;
 .cdk-overlay-dark-backdrop {
   background: rgba(black, 0.6);
 }
+
+.mat-datetimepicker-dialog .mat-dialog-container {
+  padding: 0;
+}
