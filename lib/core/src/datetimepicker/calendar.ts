@@ -228,12 +228,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Handles date selection in the month view. */
   _dateSelected(date: D): void {
-    if (this.type == "date") {
-      if (!this._adapter.sameDate(date, this.selected)) {
-        this.selectedChange.emit(date);
-      }
-    } else {
-      this._activeDate = date;
+    this._activeDate = date;
+    if (this.type !== "date") {
       this._currentView = "clock";
     }
   }
