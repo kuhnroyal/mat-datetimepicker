@@ -132,10 +132,13 @@ export class MatDatetimepickerMonthView<D> implements AfterContentInit {
 
   /** Handles when a new date is selected. */
   _dateSelected(date: number) {
-    this.selectedChange.emit(this._adapter.createDatetime(
+    const userSelected = this._adapter.createDatetime(
       this._adapter.getYear(this.activeDate), this._adapter.getMonth(this.activeDate),
       date, this._adapter.getHour(this.activeDate),
-      this._adapter.getMinute(this.activeDate)));
+      this._adapter.getMinute(this.activeDate));
+
+    this.selected = userSelected;
+    this.selectedChange.emit(userSelected);
   }
 
   /** Initializes this month view. */
