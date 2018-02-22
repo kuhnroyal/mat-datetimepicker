@@ -249,13 +249,13 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   @Input() confirmButtonLabel: string;
-  _handleConfirmButton(): void {
+  _handleConfirmButton(event): void {
     this.selectedChange.emit(this._activeDate);
     this._userSelected();
   }
 
   @Input() cancelButtonLabel: string;
-  _handleCancelButton(): void {
+  _handleCancelButton(event): void {
     // Close dialog (datetimepicker.close())
     this._userSelection.emit();
   }
