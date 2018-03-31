@@ -313,8 +313,8 @@ export class MatDatetimepicker<D> implements OnDestroy {
     if (this._focusedElementBeforeOpen &&
       typeof this._focusedElementBeforeOpen.focus === "function") {
 
-      this._focusedElementBeforeOpen.focus();
-      this._focusedElementBeforeOpen = null;
+      // this._focusedElementBeforeOpen.focus();
+      // this._focusedElementBeforeOpen = null;
     }
 
     this.opened = false;
