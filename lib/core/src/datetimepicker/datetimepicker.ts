@@ -31,7 +31,7 @@ import {
   MatDialog,
   MatDialogRef
 } from "@angular/material/dialog";
-import { DOCUMENT } from "@angular/platform-browser";
+import { DOCUMENT } from "@angular/common";
 import { first } from "rxjs/operators/first";
 import { Subject } from "rxjs/Subject";
 import { Subscription } from "rxjs/Subscription";
