@@ -38,4 +38,10 @@
     <mat-error *ngIf="group.get('mintest').errors?.required">required</mat-error>
     <mat-error *ngIf="group.get('mintest').errors?.matDatepickerMin">min</mat-error>
   </mat-form-field>
+  <mat-form-field>
+    <mat-placeholder>TouchUi</mat-placeholder>
+    <input matInput formControlName="touch" [min]="min" [matDatetimepicker]="touch" required>
+    <mat-datetimepicker-toggle [for]="touch" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #touch type="datetime" openOnFocus="true" mode="portrait" timeInterval="5" touchUi="true"></mat-datetimepicker>
+  </mat-form-field>
 </form>
