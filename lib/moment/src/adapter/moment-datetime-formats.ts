@@ -2,7 +2,10 @@ import { MatDatetimeFormats } from "@mat-datetimepicker/core";
 
 export const MAT_MOMENT_DATETIME_FORMATS: MatDatetimeFormats = {
   parse: {
-    dateInput: "l"
+    dateInput: "l",
+    monthInput: "MMMM",
+    timeInput: "LT",
+    datetimeInput: "L LT"
   },
   display: {
     dateInput: "l",

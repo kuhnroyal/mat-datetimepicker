@@ -125,14 +125,14 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     // use timeout to ensure the datetimepicker is instantiated and we get the correct format
     setTimeout(() => {
       this._renderer.setProperty(this._elementRef.nativeElement, "value",
-        value ? this._dateAdapter.format(value, this.getFormat()) : "");
+        value ? this._dateAdapter.format(value, this.getDisplayFormat()) : "");
       if (!this._dateAdapter.sameDatetime(oldDate, value)) {
         this._valueChange.emit(value);
       }
     });
   }
 
-  private getFormat() {
+  private getDisplayFormat() {
     switch(this._datepicker.type) {
       case "date":
         return this._dateFormats.display.dateInput;
@@ -143,6 +143,30 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
       case "month":
         return this._dateFormats.display.monthInput;
     }
+  }
+
+  private getParseFormat() {
+    let parseFormat;
+
+    switch (this._datepicker.type) {
+      case "date":
+        parseFormat = this._dateFormats.parse.dateInput;
+        break;
+      case "datetime":
+        parseFormat = this._dateFormats.parse.datetimeInput;
+        break;
+      case "time":
+        parseFormat = this._dateFormats.parse.timeInput;
+        break;
+      case "month":
+        parseFormat = this._dateFormats.parse.monthInput;
+        break;
+    }
+    if (!parseFormat) {
+      parseFormat = this._dateFormats.parse.dateInput;
+    }
+
+    return parseFormat;
   }
 
   private _value: D | null;
@@ -334,7 +358,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   }
 
   _onInput(value: string) {
-    let date = this._dateAdapter.parse(value, this._dateFormats.parse.dateInput);
+    let date = this._dateAdapter.parse(value, this.getParseFormat());
     this._lastValueValid = !date || this._dateAdapter.isValid(date);
     date = this._dateAdapter.getValidDateOrNull(date);
     this._value = date;
