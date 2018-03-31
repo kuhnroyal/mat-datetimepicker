@@ -5,8 +5,8 @@
   "author": "PL <kuhnroyal@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/core": "^5.0.0",
-    "@angular/material": "^5.0.0",
-    "@angular/cdk": "^5.0.0"
+    "@angular/core": "^5.2.3",
+    "@angular/material": "^5.2.4",
+    "@angular/cdk": "^5.2.4"
   }
 }
