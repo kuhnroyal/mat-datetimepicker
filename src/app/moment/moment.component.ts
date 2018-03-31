@@ -50,7 +50,8 @@ export class MomentDatetimeComponent {
       date: [null, Validators.required],
       time: [null, Validators.required],
       month: [null, Validators.required],
-      mintest: [this.today, Validators.required]
+      mintest: [this.today, Validators.required],
+      touch: [null, Validators.required]
     });
   }
 }
