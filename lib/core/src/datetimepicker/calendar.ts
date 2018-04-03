@@ -205,7 +205,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     }
 
     if (!this._dateFormats) {
-      throw createMissingDateImplError("MAT_DATE_FORMATS");
+      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
     }
 
     this._intlChanges = _intl.changes.subscribe(() => changeDetectorRef.markForCheck());
