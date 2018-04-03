@@ -35,6 +35,7 @@ import {
 import { Subscription } from "rxjs/Subscription";
 import { MatDatetimepicker } from "./datetimepicker";
 import { createMissingDateImplError } from "./datetimepicker-errors";
+import {MatDatetimepickerFilterType} from "./datetimepicker-filtertype";
 
 export const MAT_DATETIMEPICKER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -47,7 +48,6 @@ export const MAT_DATETIMEPICKER_VALIDATORS: any = {
   useExisting: forwardRef(() => MatDatetimepickerInput),
   multi: true
 };
-
 
 /**
  * An event used for datepicker input and change events. We don't always have access to a native
@@ -102,12 +102,12 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     }
   }
 
-  @Input() set matDatepickerFilter(filter: (date: D | null) => boolean) {
+  @Input() set matDatepickerFilter(filter: (date: D | null, type: MatDatetimepickerFilterType) => boolean) {
     this._dateFilter = filter;
     this._validatorOnChange();
   }
 
-  _dateFilter: (date: D | null) => boolean;
+  _dateFilter: (date: D | null, type: MatDatetimepickerFilterType) => boolean;
 
   /** The value of the input. */
   @Input()
@@ -264,7 +264,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   /** The form control validator for the date filter. */
   private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
-    return !this._dateFilter || !controlValue || this._dateFilter(controlValue) ?
+    return !this._dateFilter || !controlValue || this._dateFilter(controlValue, MatDatetimepickerFilterType.DATE) ?
       null : {"matDatepickerFilter": true};
   };
 

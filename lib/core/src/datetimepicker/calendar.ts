@@ -39,6 +39,7 @@ import { first } from "rxjs/operators/first";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { Subscription } from "rxjs/Subscription";
 import { slideCalendar } from "./datetimepicker-animations";
+import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
 
 /**
  * A calendar that is used as part of the datepicker.
@@ -119,7 +120,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   @Input() timeInterval: number = 1;
 
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
 
   /** Emits when the currently selected date changes. */
   @Output() selectedChange = new EventEmitter<D>();
@@ -127,7 +128,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   /** Date filter for the month and year views. */
   _dateFilterForViews = (date: D) => {
     return !!date &&
-      (!this.dateFilter || this.dateFilter(date)) &&
+      (!this.dateFilter || this.dateFilter(date, MatDatetimepickerFilterType.DATE)) &&
       (!this.minDate || this._adapter.compareDate(date, this.minDate) >= 0) &&
       (!this.maxDate || this._adapter.compareDate(date, this.maxDate) <= 0);
   };

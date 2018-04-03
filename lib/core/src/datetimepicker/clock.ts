@@ -8,6 +8,7 @@ import {
   Output
 } from "@angular/core";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
+import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
 
 export const CLOCK_RADIUS = 50;
 export const CLOCK_INNER_RADIUS = 27.5;
@@ -99,7 +100,7 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
   }
 
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
 
   @Input() interval: number = 1;
 
@@ -226,7 +227,8 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
           this._adapter.getDate(this.activeDate), i, 0);
         let enabled =
           (!this.minDate || this._adapter.compareDatetime(date, this.minDate) >= 0) &&
-          (!this.maxDate || this._adapter.compareDatetime(date, this.maxDate) <= 0);
+          (!this.maxDate || this._adapter.compareDatetime(date, this.maxDate) <= 0) &&
+          (!this.dateFilter || this.dateFilter(date, MatDatetimepickerFilterType.HOUR));
         this._hours.push({
           value: i,
           displayValue: i === 0 ? "00" : hourNames[i],
@@ -246,7 +248,8 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
         this._adapter.getDate(this.activeDate), this._adapter.getHour(this.activeDate), i);
       let enabled =
         (!this.minDate || this._adapter.compareDatetime(date, this.minDate) >= 0) &&
-        (!this.maxDate || this._adapter.compareDatetime(date, this.maxDate) <= 0);
+        (!this.maxDate || this._adapter.compareDatetime(date, this.maxDate) <= 0) &&
+        (!this.dateFilter || this.dateFilter(date, MatDatetimepickerFilterType.MINUTE));
       this._minutes.push({
         value: i,
         displayValue: i === 0 ? "00" : minuteNames[i],

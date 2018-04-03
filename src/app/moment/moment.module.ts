@@ -4,10 +4,6 @@ import {
 import {
   MatDatetimepickerModule
 } from "@mat-datetimepicker/core";
-import {
-  MatMomentDatetimeModule,
-  MAT_MOMENT_DATETIME_FORMATS
-} from "@mat-datetimepicker/moment";
 import { MomentDatetimeComponent } from "./moment.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule, MatFormFieldModule, MatInputModule} from "@angular/material";

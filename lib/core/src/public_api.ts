@@ -10,6 +10,7 @@ export * from "./datetimepicker/datetimepicker.module";
 export * from "./datetimepicker/calendar";
 export * from "./datetimepicker/calendar-body";
 export * from "./datetimepicker/datetimepicker";
+export * from "./datetimepicker/datetimepicker-filtertype";
 export * from "./datetimepicker/datetimepicker-input";
 export * from "./datetimepicker/datetimepicker-toggle";
 export * from "./datetimepicker/month-view";

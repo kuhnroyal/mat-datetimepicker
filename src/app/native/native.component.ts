@@ -4,7 +4,7 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import {DatetimeAdapter, NativeDatetimeAdapter, MAT_DATETIME_FORMATS, MAT_NATIVE_DATETIME_FORMATS} from "@mat-datetimepicker/core";
+import {DatetimeAdapter, NativeDatetimeAdapter, MatDatetimepickerFilterType, MAT_DATETIME_FORMATS, MAT_NATIVE_DATETIME_FORMATS} from "@mat-datetimepicker/core";
 import {DateAdapter, NativeDateAdapter} from "@angular/material";
 
 @Component({
@@ -32,7 +32,9 @@ export class NativeDatetimeComponent {
   today = new Date();
   tomorrow = new Date();
   min = new Date();
+  max = new Date();
   start = new Date();
+  filter: (date: Date, type: MatDatetimepickerFilterType) => boolean;
 
   constructor(fb: FormBuilder) {
     this.today.setFullYear(1929);
@@ -40,8 +42,23 @@ export class NativeDatetimeComponent {
     this.min.setFullYear(2018, 10, 3);
     this.min.setHours(11);
     this.min.setMinutes(10);
+    this.max.setFullYear(2018, 10, 4);
+    this.max.setHours(11);
+    this.max.setMinutes(45);
     this.start.setFullYear(1930, 9, 28);
-    console.log(this.tomorrow);
+
+    this.filter = (date: Date, type: MatDatetimepickerFilterType) => {
+      switch (type) {
+        case MatDatetimepickerFilterType.DATE:
+          return date.getUTCFullYear() % 2 === 0 &&
+            date.getMonth() % 2 === 0 &&
+            date.getDate() % 2 === 0;
+        case MatDatetimepickerFilterType.HOUR:
+          return date.getHours() % 2 === 0;
+        case MatDatetimepickerFilterType.MINUTE:
+          return date.getMinutes() % 2 === 0;
+      }
+    };
 
     this.group = fb.group({
       dateTime: ["2017-11-09T12:10:00.000Z", Validators.required],
@@ -49,6 +66,7 @@ export class NativeDatetimeComponent {
       time: [null, Validators.required],
       month: [null, Validators.required],
       mintest: [this.today, Validators.required],
+      filtertest: [this.today, Validators.required],
       touch: [null, Validators.required]
     });
   }

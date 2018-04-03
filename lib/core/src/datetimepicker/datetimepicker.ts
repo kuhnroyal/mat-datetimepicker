@@ -39,6 +39,7 @@ import { DatetimeAdapter } from "../adapter/datetime-adapter";
 import { MatDatetimepickerCalendar } from "./calendar";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerInput } from "./datetimepicker-input";
+import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
 
 /** Used to generate a unique ID for each datepicker instance. */
 let datetimepickerUid = 0;
@@ -209,7 +210,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
     return this._datepickerInput && this._datepickerInput.max;
   }
 
-  get _dateFilter(): (date: D | null) => boolean {
+  get _dateFilter(): (date: D | null, type: MatDatetimepickerFilterType) => boolean {
     return this._datepickerInput && this._datepickerInput._dateFilter;
   }
 

@@ -31,12 +31,21 @@
     <mat-error *ngIf="group.get('month').errors?.required">required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-placeholder>Min Test</mat-placeholder>
-    <input matInput formControlName="mintest" [min]="min" [matDatetimepicker]="minTestPicker" required>
+    <mat-placeholder>Min/Max Test</mat-placeholder>
+    <input matInput formControlName="mintest" [min]="min" [max]="max" [matDatetimepicker]="minTestPicker" required>
     <mat-datetimepicker-toggle [for]="minTestPicker" matSuffix></mat-datetimepicker-toggle>
     <mat-datetimepicker #minTestPicker type="datetime" openOnFocus="true" mode="landscape" timeInterval="5"></mat-datetimepicker>
     <mat-error *ngIf="group.get('mintest').errors?.required">required</mat-error>
     <mat-error *ngIf="group.get('mintest').errors?.matDatepickerMin">min</mat-error>
+    <mat-error *ngIf="group.get('mintest').errors?.matDatepickerMax">max</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-placeholder>Filter Test</mat-placeholder>
+    <input matInput formControlName="filtertest" [matDatepickerFilter]="filter" [matDatetimepicker]="filterTestPicker" required>
+    <mat-datetimepicker-toggle [for]="filterTestPicker" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #filterTestPicker type="datetime" openOnFocus="true" mode="landscape" timeInterval="5"></mat-datetimepicker>
+    <mat-error *ngIf="group.get('filtertest').errors?.required">required</mat-error>
+    <mat-error *ngIf="group.get('filtertest').errors?.matDatepickerFilter">filter</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-placeholder>TouchUi</mat-placeholder>
