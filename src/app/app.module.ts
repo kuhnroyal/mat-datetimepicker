@@ -1,17 +1,17 @@
 import { registerLocaleData } from "@angular/common";
 import localeDe from "@angular/common/locales/de";
 import {
-  NgModule,
-  LOCALE_ID
+  LOCALE_ID,
+  NgModule
 } from "@angular/core";
 
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+import { MAT_DATE_LOCALE } from "@angular/material";
 import { AppComponent } from "./app.component";
-import {AppMomentModule} from "./moment/moment.module";
-import {AppNativeModule} from "./native/native.module";
-import {MAT_DATE_LOCALE} from "@angular/material";
+import { AppMomentModule } from "./moment/moment.module";
+import { AppNativeModule } from "./native/native.module";
 
 registerLocaleData(localeDe);
 

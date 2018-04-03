@@ -1,10 +1,24 @@
-import {Component} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Moment, utc} from "moment/moment";
-import {MAT_MOMENT_DATETIME_FORMATS, MomentDatetimeAdapter} from "@mat-datetimepicker/moment";
-import {DatetimeAdapter, MatDatetimepickerFilterType, MAT_DATETIME_FORMATS} from "@mat-datetimepicker/core";
-import {DateAdapter} from "@angular/material";
-import {MomentDateAdapter} from "@angular/material-moment-adapter";
+import { Component } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from "@angular/forms";
+import { DateAdapter } from "@angular/material";
+import { MomentDateAdapter } from "@angular/material-moment-adapter";
+import {
+  DatetimeAdapter,
+  MAT_DATETIME_FORMATS,
+  MatDatetimepickerFilterType
+} from "@mat-datetimepicker/core";
+import {
+  MAT_MOMENT_DATETIME_FORMATS,
+  MomentDatetimeAdapter
+} from "@mat-datetimepicker/moment";
+import {
+  Moment,
+  utc
+} from "moment/moment";
 
 @Component({
   selector: "app-moment-datetime",
