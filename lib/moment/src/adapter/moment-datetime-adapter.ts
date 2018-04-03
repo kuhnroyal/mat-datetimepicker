@@ -13,10 +13,12 @@ import { DatetimeAdapter } from "@mat-datetimepicker/core";
 // import { Moment } from "moment";
 // can't get this to build... ><
 import * as _moment from "moment";
+// tslint:disable no-duplicate-imports
 import {
   default as _rollupMoment,
   Moment
 } from "moment";
+// tslint:enable no-duplicate-imports
 
 const moment = _rollupMoment || _moment;
 
@@ -65,20 +67,20 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     };
   }
 
-  public getHour(date: Moment): number {
+  getHour(date: Moment): number {
     return super.clone(date).hour();
   }
 
-  public getMinute(date: Moment): number {
+  getMinute(date: Moment): number {
     return super.clone(date).minute();
   }
 
-  public isInNextMonth(startDate: Moment, endDate: Moment): boolean {
+  isInNextMonth(startDate: Moment, endDate: Moment): boolean {
     const nextMonth = this.getDateInNextMonth(startDate);
     return super.sameMonthAndYear(nextMonth, endDate);
   }
 
-  public createDatetime(year: number, month: number, date: number, hour: number, minute: number): Moment {
+  createDatetime(year: number, month: number, date: number, hour: number, minute: number): Moment {
     // Check for invalid month and date (except upper bound on date which we have to check after
     // creating the Date).
     if (month < 0 || month > 11) {
@@ -112,27 +114,27 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     return super.clone(date).date(1).add({month: 1});
   }
 
-  public getFirstDateOfMonth(date: Moment): Moment {
+  getFirstDateOfMonth(date: Moment): Moment {
     return super.clone(date).startOf("month");
   }
 
-  public getHourNames(): string[] {
+  getHourNames(): string[] {
     return this._localeData.hours;
   }
 
-  public getMinuteNames(): string[] {
+  getMinuteNames(): string[] {
     return this._localeData.minutes;
   }
 
-  public addCalendarHours(date: Moment, hours: number): Moment {
+  addCalendarHours(date: Moment, hours: number): Moment {
     return super.clone(date).add({hours});
   }
 
-  public addCalendarMinutes(date: Moment, minutes: number): Moment {
+  addCalendarMinutes(date: Moment, minutes: number): Moment {
     return super.clone(date).add({minutes});
   }
 
-  public deserialize(value: any): Moment | null {
+  deserialize(value: any): Moment | null {
      return this._delegate.deserialize(value);
    }
 }

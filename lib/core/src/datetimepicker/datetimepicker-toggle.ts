@@ -1,6 +1,4 @@
-/* tslint:disable */
-
-import {coerceBooleanProperty} from '@angular/cdk/coercion';
+import { coerceBooleanProperty } from "@angular/cdk/coercion";
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -10,30 +8,30 @@ import {
   OnChanges,
   OnDestroy,
   SimpleChanges,
-  ViewEncapsulation,
-} from '@angular/core';
+  ViewEncapsulation
+} from "@angular/core";
 import { MatDatepickerIntl } from "@angular/material";
-import {merge} from 'rxjs/observable/merge';
-import {of as observableOf} from 'rxjs/observable/of';
-import {Subscription} from 'rxjs/Subscription';
-import {MatDatetimepicker} from './datetimepicker';
+import { merge } from "rxjs/observable/merge";
+import { of as observableOf } from "rxjs/observable/of";
+import { Subscription } from "rxjs/Subscription";
+import { MatDatetimepicker } from "./datetimepicker";
 
 @Component({
-  selector: 'mat-datetimepicker-toggle',
-  templateUrl: 'datetimepicker-toggle.html',
+  selector: "mat-datetimepicker-toggle",
+  templateUrl: "datetimepicker-toggle.html",
   host: {
-    'class': 'mat-datetimepicker-toggle',
+    "class": "mat-datetimepicker-toggle"
   },
-  exportAs: 'matDatetimepickerToggle',
+  exportAs: "matDatetimepickerToggle",
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatDatetimepickerToggle<D> implements AfterContentInit, OnChanges, OnDestroy {
   private _stateChanges = Subscription.EMPTY;
 
   /** Datepicker instance that the button will toggle. */
-  @Input('for') datetimepicker: MatDatetimepicker<D>;
+  @Input("for") datetimepicker: MatDatetimepicker<D>;
 
   /** Whether the toggle button is disabled. */
   @Input()

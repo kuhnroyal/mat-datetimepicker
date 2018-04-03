@@ -14,8 +14,8 @@ import {
   MatDatetimepicker,
   MatDatetimepickerContent
 } from "./datetimepicker";
-import { MatDatetimepickerToggle } from "./datetimepicker-toggle";
 import { MatDatetimepickerInput } from "./datetimepicker-input";
+import { MatDatetimepickerToggle } from "./datetimepicker-toggle";
 import { MatDatetimepickerMonthView } from "./month-view";
 import { MatDatetimepickerYearView } from "./year-view";
 

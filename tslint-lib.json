@@ -29,6 +29,7 @@
       true,
       "no-public"
     ],
+    "member-ordering": false,
     "no-unused-variable": [
       true,
       "check-parameters",
@@ -38,10 +39,10 @@
     ],
     "no-duplicate-imports": true,
     "templates-no-negated-async": true,
-    "trackBy-function": true,
+    "trackBy-function": false,
     "use-pipe-transform-interface": true,
-    "no-forward-ref": true,
-    "use-view-encapsulation": true,
+    "no-forward-ref": false,
+    "use-view-encapsulation": false,
     "no-attribute-parameter-decorator": true,
     "use-life-cycle-interface": true,
     "ordered-imports": [
@@ -51,6 +52,14 @@
         "named-imports-order": "case-insensitive"
       }
     ],
-    "import-destructuring-spacing": true
+    "import-destructuring-spacing": true,
+    "use-host-property-decorator": false,
+    "max-classes-per-file": false,
+    "component-class-suffix": false,
+    "directive-class-suffix": false,
+    "triple-equals": false,
+    "no-input-rename": false,
+    "no-output-rename": false,
+    "no-inferrable-types": false
   }
 }

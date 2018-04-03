@@ -3,7 +3,7 @@
   aria-hidden because we don't want it to be read out as one of the weeks in the month.
 -->
 <tr *ngIf="_firstRowOffset < labelMinRequiredCells" aria-hidden="true">
-  <td class="mat-datetimepicker-calendar-body-label" [attr.colspan]="numCols" >{{label}}</td>
+  <td class="mat-datetimepicker-calendar-body-label" [attr.colspan]="numCols" >{{ label }}</td>
 </tr>
 
 <!-- Create the first row separately so we can include a special spacer cell. -->
@@ -15,7 +15,7 @@
       aria-hidden="true"
       class="mat-datetimepicker-calendar-body-label"
       [attr.colspan]="_firstRowOffset">
-    {{_firstRowOffset >= labelMinRequiredCells ? label : ''}}
+    {{ _firstRowOffset >= labelMinRequiredCells ? label : '' }}
   </td>
   <td *ngFor="let item of row; let colIndex = index"
       role="gridcell"
@@ -28,7 +28,7 @@
     <div class="mat-datetimepicker-calendar-body-cell-content"
          [class.mat-datetimepicker-calendar-body-selected]="selectedValue === item.value"
          [class.mat-datetimepicker-calendar-body-today]="todayValue === item.value">
-      {{item.displayValue}}
+      {{ item.displayValue }}
     </div>
   </td>
 </tr>

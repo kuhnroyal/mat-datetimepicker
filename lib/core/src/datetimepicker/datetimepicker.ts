@@ -1,5 +1,3 @@
-/* tslint:disable */
-
 import { Directionality } from "@angular/cdk/bidi";
 import { coerceBooleanProperty } from "@angular/cdk/coercion";
 import { ESCAPE } from "@angular/cdk/keycodes";
@@ -10,6 +8,7 @@ import {
   PositionStrategy
 } from "@angular/cdk/overlay";
 import { ComponentPortal } from "@angular/cdk/portal";
+import { DOCUMENT } from "@angular/common";
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -31,15 +30,14 @@ import {
   MatDialog,
   MatDialogRef
 } from "@angular/material/dialog";
-import { DOCUMENT } from "@angular/common";
 import { first } from "rxjs/operators/first";
 import { Subject } from "rxjs/Subject";
 import { Subscription } from "rxjs/Subscription";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
 import { MatDatetimepickerCalendar } from "./calendar";
 import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerInput } from "./datetimepicker-input";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
+import { MatDatetimepickerInput } from "./datetimepicker-input";
 
 /** Used to generate a unique ID for each datepicker instance. */
 let datetimepickerUid = 0;
@@ -109,8 +107,8 @@ export class MatDatetimepicker<D> implements OnDestroy {
   private _startAt: D | null;
 
   /** The view that the calendar should start in. */
-  @Input() startView: 'clock' | 'month' | 'year' = 'month';
-  @Input() mode: 'auto' | 'portrait' | 'landscape' = 'auto';
+  @Input() startView: "clock" | "month" | "year" = "month";
+  @Input() mode: "auto" | "portrait" | "landscape" = "auto";
   @Input() timeInterval: number = 1;
 
   @Input()
@@ -259,9 +257,10 @@ export class MatDatetimepicker<D> implements OnDestroy {
 
   /** Selects the given date */
   _select(date: D): void {
-    let oldValue = this._selected;
+    const oldValue = this._selected;
     this._selected = date;
     if (!this._dateAdapter.sameDatetime(oldValue, this._selected)) {
+      // tslint:disable-next-line deprecation
       this.selectedChanged.emit(date);
     }
   }
@@ -323,7 +322,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
     };
 
     if (this._focusedElementBeforeOpen &&
-      typeof this._focusedElementBeforeOpen.focus === 'function') {
+      typeof this._focusedElementBeforeOpen.focus === "function") {
       // Because IE moves focus asynchronously, we can't count on it being restored before we've
       // marked the datepicker as closed. If the event fires out of sequence and the element that
       // we're refocusing opens the datepicker on focus, the user could be stuck with not being
@@ -358,7 +357,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
     }
 
     if (!this._popupRef.hasAttached()) {
-      let componentRef: ComponentRef<MatDatetimepickerContent<D>> =
+      const componentRef: ComponentRef<MatDatetimepickerContent<D>> =
         this._popupRef.attach(this._calendarPortal);
       componentRef.instance.datetimepicker = this;
 

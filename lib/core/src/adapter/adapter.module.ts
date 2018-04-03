@@ -8,6 +8,7 @@ import { MAT_DATETIME_FORMATS } from "./datetime-formats";
 import { NativeDatetimeAdapter } from "./native-datetime-adapter";
 import { MAT_NATIVE_DATETIME_FORMATS } from "./native-datetime-formats";
 
+// tslint:disable max-classes-per-file
 @NgModule({
   imports: [NativeDateModule],
   providers: [

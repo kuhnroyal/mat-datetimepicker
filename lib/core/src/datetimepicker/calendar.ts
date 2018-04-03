@@ -1,4 +1,14 @@
-/* tslint:disable */
+import {
+  DOWN_ARROW,
+  END,
+  ENTER,
+  HOME,
+  LEFT_ARROW,
+  PAGE_DOWN,
+  PAGE_UP,
+  RIGHT_ARROW,
+  UP_ARROW
+} from "@angular/cdk/keycodes";
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -14,31 +24,16 @@ import {
   Output,
   ViewEncapsulation
 } from "@angular/core";
-import {
-  DOWN_ARROW,
-  END,
-  ENTER,
-  HOME,
-  LEFT_ARROW,
-  PAGE_DOWN,
-  PAGE_UP,
-  RIGHT_ARROW,
-  UP_ARROW
-} from "@angular/cdk/keycodes";
-import {
-  MatDatepickerIntl
-} from "@angular/material";
+import { MatDatepickerIntl } from "@angular/material";
+import { first } from "rxjs/operators/first";
+import { Subscription } from "rxjs/Subscription";
+import { DatetimeAdapter } from "../adapter/datetime-adapter";
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats
 } from "../adapter/datetime-formats";
-import {
-  DatetimeAdapter
-} from "../adapter/datetime-adapter";
-import { first } from "rxjs/operators/first";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { Subscription } from "rxjs/Subscription";
 import { slideCalendar } from "./datetimepicker-animations";
+import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
 
 /**
@@ -131,7 +126,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
       (!this.dateFilter || this.dateFilter(date, MatDatetimepickerFilterType.DATE)) &&
       (!this.minDate || this._adapter.compareDate(date, this.minDate) >= 0) &&
       (!this.maxDate || this._adapter.compareDate(date, this.maxDate) <= 0);
-  };
+  }
 
   /**
    * The current active date. This determines which time period is shown and which date is
@@ -142,7 +137,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   set _activeDate(value: D) {
-    let oldActiveDate = this._clampedActiveDate;
+    const oldActiveDate = this._clampedActiveDate;
     this._clampedActiveDate = this._adapter.clampDate(value, this.minDate, this.maxDate);
     if (oldActiveDate && this._clampedActiveDate && this._currentView === "month" &&
       !this._adapter.sameMonthAndYear(oldActiveDate, this._clampedActiveDate)) {
@@ -272,7 +267,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   _dateClicked(): void {
-    if (this.type !== 'month') {
+    if (this.type !== "month") {
       this._currentView = "month";
     }
   }
@@ -469,7 +464,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   private _prevMonthInSameCol(date: D): D {
     // Determine how many months to jump forward given that there are 2 empty slots at the beginning
     // of each year.
-    let increment = this._adapter.getMonth(date) <= 4 ? -5 :
+    const increment = this._adapter.getMonth(date) <= 4 ? -5 :
       (this._adapter.getMonth(date) >= 7 ? -7 : -12);
     return this._adapter.addCalendarMonths(date, increment);
   }
@@ -481,7 +476,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   private _nextMonthInSameCol(date: D): D {
     // Determine how many months to jump forward given that there are 2 empty slots at the beginning
     // of each year.
-    let increment = this._adapter.getMonth(date) <= 4 ? 7 :
+    const increment = this._adapter.getMonth(date) <= 4 ? 7 :
       (this._adapter.getMonth(date) >= 7 ? 5 : 12);
     return this._adapter.addCalendarMonths(date, increment);
   }

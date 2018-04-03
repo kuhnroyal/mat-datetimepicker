@@ -1,4 +1,3 @@
-/* tslint:disable */
 import { coerceBooleanProperty } from "@angular/cdk/coercion";
 import { DOWN_ARROW } from "@angular/cdk/keycodes";
 import {
@@ -25,17 +24,17 @@ import {
   Validators
 } from "@angular/forms";
 import { MatFormField } from "@angular/material/form-field";
+import { Subscription } from "rxjs/Subscription";
+import { DatetimeAdapter } from "../adapter/datetime-adapter";
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats
 } from "../adapter/datetime-formats";
-import {
-  DatetimeAdapter
-} from "../adapter/datetime-adapter";
-import { Subscription } from "rxjs/Subscription";
 import { MatDatetimepicker } from "./datetimepicker";
 import { createMissingDateImplError } from "./datetimepicker-errors";
-import {MatDatetimepickerFilterType} from "./datetimepicker-filtertype";
+import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
+
+// tslint:disable no-use-before-declare
 
 export const MAT_DATETIMEPICKER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -62,7 +61,6 @@ export class MatDatetimepickerInputEvent<D> {
     this.value = this.target.value;
   }
 }
-
 
 /** Directive used to connect an input to a MatDatepicker. */
 @Directive({
@@ -119,7 +117,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     value = this._dateAdapter.deserialize(value);
     this._lastValueValid = !value || this._dateAdapter.isValid(value);
     value = this._dateAdapter.getValidDateOrNull(value);
-    let oldDate = this.value;
+    const oldDate = this.value;
     this._value = value;
 
     // use timeout to ensure the datetimepicker is instantiated and we get the correct format
@@ -133,7 +131,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   }
 
   private getDisplayFormat() {
-    switch(this._datepicker.type) {
+    switch (this._datepicker.type) {
       case "date":
         return this._dateFormats.display.dateInput;
       case "datetime":
@@ -227,13 +225,13 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   _disabledChange = new EventEmitter<boolean>();
 
   _onTouched = () => {
-  };
+  }
 
   private _cvaOnChange: (value: any) => void = () => {
-  };
+  }
 
   private _validatorOnChange = () => {
-  };
+  }
 
   private _datepickerSubscription = Subscription.EMPTY;
 
@@ -243,7 +241,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   private _parseValidator: ValidatorFn = (): ValidationErrors | null => {
     return this._lastValueValid ?
       null : {"matDatepickerParse": {"text": this._elementRef.nativeElement.value}};
-  };
+  }
 
   /** The form control validator for the min date. */
   private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -251,7 +249,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     return (!this.min || !controlValue ||
       this._dateAdapter.compareDate(this.min, controlValue) <= 0) ?
       null : {"matDatepickerMin": {"min": this.min, "actual": controlValue}};
-  };
+  }
 
   /** The form control validator for the max date. */
   private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -259,14 +257,14 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     return (!this.max || !controlValue ||
       this._dateAdapter.compareDate(this.max, controlValue) >= 0) ?
       null : {"matDatepickerMax": {"max": this.max, "actual": controlValue}};
-  };
+  }
 
   /** The form control validator for the date filter. */
   private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
     return !this._dateFilter || !controlValue || this._dateFilter(controlValue, MatDatetimepickerFilterType.DATE) ?
       null : {"matDatepickerFilter": true};
-  };
+  }
 
   /** The combined form control validator for this input. */
   private _validator: ValidatorFn | null =
@@ -296,8 +294,8 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
 
   ngAfterContentInit() {
     if (this._datepicker) {
-      this._datepickerSubscription =
-        this._datepicker.selectedChanged.subscribe((selected: D) => {
+      // tslint:disable-next-line deprecation
+      this._datepickerSubscription = this._datepicker.selectedChanged.subscribe((selected: D) => {
           this.value = selected;
           this._cvaOnChange(selected);
           this._onTouched();

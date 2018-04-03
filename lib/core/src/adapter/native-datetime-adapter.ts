@@ -35,20 +35,20 @@ export class NativeDatetimeAdapter extends DatetimeAdapter<Date> {
     return this.createDatetime(this.getYear(date), this.getMonth(date), this.getDate(date), this.getHour(date), this.getMinute(date));
   }
 
-  public getHour(date: Date): number {
+  getHour(date: Date): number {
     return date.getHours();
   }
 
-  public getMinute(date: Date): number {
+  getMinute(date: Date): number {
     return date.getMinutes();
   }
 
-  public isInNextMonth(startDate: Date, endDate: Date): boolean {
+  isInNextMonth(startDate: Date, endDate: Date): boolean {
     const nextMonth = this.getDateInNextMonth(startDate);
     return this.sameMonthAndYear(nextMonth, endDate);
   }
 
-  public createDatetime(year: number, month: number, date: number, hour: number, minute: number): Date {
+  createDatetime(year: number, month: number, date: number, hour: number, minute: number): Date {
     // Check for invalid month and date (except upper bound on date which we have to check after
     // creating the Date).
     if (month < 0 || month > 11) {
@@ -82,25 +82,25 @@ export class NativeDatetimeAdapter extends DatetimeAdapter<Date> {
       date.getHours(), date.getMinutes());
   }
 
-  public getFirstDateOfMonth(date: Date): Date {
+  getFirstDateOfMonth(date: Date): Date {
     const result = new Date();
     result.setFullYear(date.getFullYear(), date.getMonth(), 1);
     return result;
   }
 
-  public getHourNames(): string[] {
+  getHourNames(): string[] {
     return DEFAULT_HOUR_NAMES;
   }
 
-  public getMinuteNames(): string[] {
+  getMinuteNames(): string[] {
     return DEFAULT_MINUTE_NAMES;
   }
 
-  public addCalendarYears(date: Date, years: number): Date {
+  addCalendarYears(date: Date, years: number): Date {
     return this.addCalendarMonths(date, years * 12);
   }
 
-  public addCalendarMonths(date: Date, months: number): Date {
+  addCalendarMonths(date: Date, months: number): Date {
     let newDate = this._createDateWithOverflow(
         this.getYear(date), this.getMonth(date) + months, this.getDate(date), this.getHour(date), this.getMinute(date));
 
@@ -115,24 +115,24 @@ export class NativeDatetimeAdapter extends DatetimeAdapter<Date> {
     return newDate;
   }
 
-  public addCalendarDays(date: Date, days: number): Date {
+  addCalendarDays(date: Date, days: number): Date {
     return this._createDateWithOverflow(
         this.getYear(date), this.getMonth(date), this.getDate(date) + days, this.getHour(date), this.getMinute(date));
   }
 
-  public addCalendarHours(date: Date, hours: number): Date {
+  addCalendarHours(date: Date, hours: number): Date {
     return this._createDateWithOverflow(
       this.getYear(date), this.getMonth(date), this.getDate(date),
       this.getHour(date) + hours, this.getMinute(date));
   }
 
-  public addCalendarMinutes(date: Date, minutes: number): Date {
+  addCalendarMinutes(date: Date, minutes: number): Date {
     return this._createDateWithOverflow(
       this.getYear(date), this.getMonth(date), this.getDate(date),
       this.getHour(date), this.getMinute(date) + minutes);
   }
 
-  public toIso8601(date: Date): string {
+  toIso8601(date: Date): string {
     return super.toIso8601(date) + "T" + [
       this._2digit(date.getUTCHours()),
       this._2digit(date.getUTCMinutes())

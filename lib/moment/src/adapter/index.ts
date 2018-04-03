@@ -4,8 +4,8 @@ import {
   MomentDateModule
 } from "@angular/material-moment-adapter";
 import {
-  MAT_DATETIME_FORMATS,
-  DatetimeAdapter
+  DatetimeAdapter,
+  MAT_DATETIME_FORMATS
 } from "@mat-datetimepicker/core";
 import { MomentDatetimeAdapter } from "./moment-datetime-adapter";
 import { MAT_MOMENT_DATETIME_FORMATS } from "./moment-datetime-formats";
