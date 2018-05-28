@@ -11,9 +11,7 @@ import {
   ViewEncapsulation
 } from "@angular/core";
 import { MatDatepickerIntl } from "@angular/material";
-import { merge } from "rxjs/observable/merge";
-import { of as observableOf } from "rxjs/observable/of";
-import { Subscription } from "rxjs/Subscription";
+import { merge, of as observableOf, Subscription } from "rxjs";
 import { MatDatetimepicker } from "./datetimepicker";
 
 @Component({
