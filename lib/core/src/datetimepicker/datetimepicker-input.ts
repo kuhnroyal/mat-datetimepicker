@@ -247,7 +247,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
     return (!this.min || !controlValue ||
-      this._dateAdapter.compareDate(this.min, controlValue) <= 0) ?
+      this._dateAdapter.compareDatetime(this.min, controlValue) <= 0) ?
       null : {"matDatepickerMin": {"min": this.min, "actual": controlValue}};
   }
 
@@ -255,7 +255,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
     return (!this.max || !controlValue ||
-      this._dateAdapter.compareDate(this.max, controlValue) >= 0) ?
+      this._dateAdapter.compareDatetime(this.max, controlValue) >= 0) ?
       null : {"matDatepickerMax": {"max": this.max, "actual": controlValue}};
   }
 
