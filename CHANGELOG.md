@@ -1,3 +1,12 @@
+# 2.0.0 (02/07/2018)
+Initial Angular/material 6 version
+* chore: update to angular 6.0.7
+* chore: update to angular-material 6.3.1
+* chore: update to rxjs 6.2.1
+* fix: [#25](https://github.com/kuhnroyal/mat-datetimepicker/issues/25)
+
+Thanks [johankvint](https://github.com/johankvint) for the initial work in [#26](https://github.com/kuhnroyal/mat-datetimepicker/pull/26)
+
 # 1.0.5 (02/07/2018)
 * fix: [#30](https://github.com/kuhnroyal/mat-datetimepicker/pull/30)
 Reformat value on blur - thanks [dzurikmiroslav](https://github.com/dzurikmiroslav)

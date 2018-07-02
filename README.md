@@ -1,8 +1,8 @@
-# Material Datetimepicker for @angular/material 5.x
+# Material Datetimepicker for @angular/material 6.x
 
-This is the Angular 5 support branch `1.x`.
+This is the main branch for @angular/material 6.x.
 
-You can find the Angular 6 version on `master`.
+You can find the Angular 5 version on the `1.x` branch.
 
 ### Description
 
