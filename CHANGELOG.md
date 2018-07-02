@@ -1,16 +1,19 @@
+# 1.0.5 (02/07/2018)
+* fix: [#30](https://github.com/kuhnroyal/mat-datetimepicker/pull/30)
+Reformat value on blur - thanks [dzurikmiroslav](https://github.com/dzurikmiroslav)
+* fix: [#31](https://github.com/kuhnroyal/mat-datetimepicker/issues/31)
+([PR-#32](https://github.com/kuhnroyal/mat-datetimepicker/pull/32))
+Min/Max validation not taking time into account - thanks [dzurikmiroslav](https://github.com/dzurikmiroslav)
+
 # 1.0.4 (03/04/2018)
 * chore: update to material 5.2.4 and required angular 5.2.3
-* fix:
-[#11](https://github.com/kuhnroyal/mat-datetimepicker/issues/11)
+* fix: [#11](https://github.com/kuhnroyal/mat-datetimepicker/issues/11)
 add separate parsing formats for moment adapter
-([PR-#12](https://github.com/kuhnroyal/mat-datetimepicker/pull/12))
-thanks [@benoitbzl](https://github.com/benoitbzl)
+([PR-#12](https://github.com/kuhnroyal/mat-datetimepicker/pull/12)) - thanks [@benoitbzl](https://github.com/benoitbzl)
 * fix: [#14](https://github.com/kuhnroyal/mat-datetimepicker/pull/14)
-"touchUi" parameter throws error
-thanks [@guschnwg](https://github.com/guschnwg)
+"touchUi" parameter throws error - thanks [@guschnwg](https://github.com/guschnwg)
 * fix: disable click on month label when type = "month"
-([053d5a1](https://github.com/kuhnroyal/mat-datetimepicker/commit/053d5a111e0546cfa33b79117694f4905f1777b0))
-thanks [@guschnwg](https://github.com/guschnwg)
+([053d5a1](https://github.com/kuhnroyal/mat-datetimepicker/commit/053d5a111e0546cfa33b79117694f4905f1777b0)) - thanks [@guschnwg](https://github.com/guschnwg)
 * fix: [#10](https://github.com/kuhnroyal/mat-datetimepicker/issues/10) [#21](https://github.com/kuhnroyal/mat-datetimepicker/issues/21)
 apply IE11 focus code from upstream material
 ([0e67e30](https://github.com/kuhnroyal/mat-datetimepicker/commit/0e67e30b2734985b8dddaa72b03bf1dff70c6b84))

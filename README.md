@@ -1,5 +1,11 @@
 # Material Datetimepicker for @angular/material 5.x
 
+This is the Angular 5 support branch `1.x`.
+
+You can find the Angular 6 version on `master`.
+
+### Description
+
 The datetimepicker is taken from [Promact/md2](https://github.com/Promact/md2) and modified to use @angular/material as base and added theming support.
 
 Like the @angular/material datepicker it contains a native-datetime-adapter as well as a moment-datetime-adapter.
@@ -7,6 +13,7 @@ Like the @angular/material datepicker it contains a native-datetime-adapter as w
 [![Latest Stable Version](https://img.shields.io/npm/v/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
 [![License](https://img.shields.io/npm/l/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
 [![NPM Downloads](https://img.shields.io/npm/dm/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
+
 ### Installation
 Install:
 ```
