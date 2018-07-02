@@ -78,7 +78,7 @@ export class MatDatetimepickerInputEvent<D> {
     "(focus)": "_datepicker._handleFocus()",
     "(input)": "_onInput($event.target.value)",
     "(change)": "_onChange()",
-    "(blur)": "_onTouched()",
+    "(blur)": "_onBlur()",
     "(keydown)": "_onKeydown($event)"
   },
   exportAs: "matDatepickerInput"
@@ -247,7 +247,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
     return (!this.min || !controlValue ||
-      this._dateAdapter.compareDate(this.min, controlValue) <= 0) ?
+      this._dateAdapter.compareDatetime(this.min, controlValue) <= 0) ?
       null : {"matDatepickerMin": {"min": this.min, "actual": controlValue}};
   }
 
@@ -255,7 +255,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
     return (!this.max || !controlValue ||
-      this._dateAdapter.compareDate(this.max, controlValue) >= 0) ?
+      this._dateAdapter.compareDatetime(this.max, controlValue) >= 0) ?
       null : {"matDatepickerMax": {"max": this.max, "actual": controlValue}};
   }
 
@@ -368,4 +368,20 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   _onChange() {
     this.dateChange.emit(new MatDatetimepickerInputEvent(this, this._elementRef.nativeElement));
   }
+
+  /** Handles blur events on the input. */
+  _onBlur() {
+    // Reformat the input only if we have a valid value.
+    if (this.value) {
+      this._formatValue(this.value);
+    }
+
+    this._onTouched();
+  }
+
+   /** Formats a value and sets it on the input element. */
+   private _formatValue(value: D | null) {
+     this._elementRef.nativeElement.value =
+       value ? this._dateAdapter.format(value, this.getDisplayFormat()) : '';
+   }
 }
