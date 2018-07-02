@@ -30,9 +30,8 @@ import {
   MatDialog,
   MatDialogRef
 } from "@angular/material/dialog";
-import { first } from "rxjs/operators/first";
-import { Subject } from "rxjs/Subject";
-import { Subscription } from "rxjs/Subscription";
+import { Subject, Subscription } from "rxjs";
+import { first } from "rxjs/operators";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
 import { MatDatetimepickerCalendar } from "./calendar";
 import { createMissingDateImplError } from "./datetimepicker-errors";
@@ -349,7 +348,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
   /** Open the calendar as a popup. */
   private _openAsPopup(): void {
     if (!this._calendarPortal) {
-      this._calendarPortal = new ComponentPortal(MatDatetimepickerContent, this._viewContainerRef);
+      this._calendarPortal = new ComponentPortal<MatDatetimepickerContent<D>>(MatDatetimepickerContent, this._viewContainerRef);
     }
 
     if (!this._popupRef) {

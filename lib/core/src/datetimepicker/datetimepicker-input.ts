@@ -24,7 +24,7 @@ import {
   Validators
 } from "@angular/forms";
 import { MatFormField } from "@angular/material/form-field";
-import { Subscription } from "rxjs/Subscription";
+import { Subscription } from "rxjs";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
 import {
   MAT_DATETIME_FORMATS,
