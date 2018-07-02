@@ -2,7 +2,14 @@
   "extends": [
     "tslint-angular"
   ],
+  "rulesDirectory": [
+    "node_modules/rxjs-tslint"
+  ],
   "rules": {
+    "rxjs-collapse-imports": true,
+    "rxjs-pipeable-operators-only": true,
+    "rxjs-no-static-observable-methods": true,
+    "rxjs-proper-imports": true,
     "one-line": [
       true,
       "check-open-brace",

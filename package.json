@@ -43,7 +43,7 @@
     "@angular/platform-browser": "^6.0.7",
     "@angular/platform-browser-dynamic": "^6.0.7",
     "@angular/router": "^6.0.7",
-    "core-js": "^2.5.4",
+    "core-js": "^2.5.7",
     "moment": "^2.18.1",
     "rxjs": "^6.2.1",
     "zone.js": "^0.8.26"
@@ -67,6 +67,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "1.6.0",
     "protractor": "~5.1.2",
+    "rxjs-tslint": "0.1.5",
     "ts-node": "~3.2.0",
     "tslint": "~5.9.1",
     "tslint-angular": "1.1.2",
