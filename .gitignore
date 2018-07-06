@@ -1,9 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-.dist
-dist
-tmp
+/dist
+/tmp
 /out-tsc
 
 # dependencies
@@ -11,7 +10,6 @@ tmp
 
 # IDEs and editors
 /.idea
-*.iml
 .project
 .classpath
 .c9/
@@ -35,10 +33,6 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-
-# e2e
-/e2e/*.js
-/e2e/*.map
 
 # System Files
 .DS_Store

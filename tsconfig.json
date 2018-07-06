@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -15,6 +15,20 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@mat-datetimepicker/core": [
+        "dist/core"
+      ],
+      "@mat-datetimepicker/core/*": [
+        "dist/core/*"
+      ],
+      "@mat-datetimepicker/moment": [
+        "dist/moment"
+      ],
+      "@mat-datetimepicker/moment/*": [
+        "dist/moment/*"
+      ]
+    }
   }
 }

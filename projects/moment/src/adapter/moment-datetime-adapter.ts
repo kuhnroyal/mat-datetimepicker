@@ -9,18 +9,9 @@ import {
 } from "@angular/material";
 import { DatetimeAdapter } from "@mat-datetimepicker/core";
 
-// import * as moment from "moment";
-// import { Moment } from "moment";
-// can't get this to build... ><
-import * as _moment from "moment";
-// tslint:disable no-duplicate-imports
-import {
-  default as _rollupMoment,
-  Moment
-} from "moment";
-// tslint:enable no-duplicate-imports
-
-const moment = _rollupMoment || _moment;
+import * as moment_ from 'moment';
+import { Moment } from 'moment';
+const moment = moment_;
 
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
   const valuesArray = Array(length);
