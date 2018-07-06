@@ -8,16 +8,13 @@
     "start:prod": "ng serve --prod",
     "build": "yarn build:lib && ng build",
     "build:lib": "yarn build:lib/core && yarn build:lib/moment",
-    "build:lib/core": "rimraf dist/core && ng build core && copyfiles -u 3 projects/core/src/**/*-theme.scss dist/core",
-    "build:lib/moment": "rimraf dist/moment && ng build moment",
+    "build:lib/core": "rimraf dist/core && ng build core && copyfiles -u 3 projects/core/src/**/*-theme.scss dist/core && copyfiles README.md dist/core",
+    "build:lib/moment": "rimraf dist/moment && ng build moment && copyfiles README.md dist/moment",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@angular/animations": "^6.0.7",
     "@angular/cdk": "^6.3.2",
