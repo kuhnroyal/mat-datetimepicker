@@ -1,3 +1,6 @@
+# 2.0.1-beta.0 (06/07/2018)
+* refactored to new angular CLI and ngPackagr
+
 # 2.0.0 (02/07/2018)
 Initial Angular/material 6 version
 * chore: update to angular 6.0.7
