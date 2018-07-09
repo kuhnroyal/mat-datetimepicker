@@ -9,8 +9,8 @@ import {
 } from "@angular/material";
 import { DatetimeAdapter } from "@mat-datetimepicker/core";
 
-import * as moment_ from 'moment';
-import { Moment } from 'moment';
+import * as moment_ from "moment";
+import { Moment } from "moment";
 const moment = moment_;
 
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
