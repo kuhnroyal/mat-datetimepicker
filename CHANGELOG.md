@@ -1,3 +1,6 @@
+# 2.0.1-beta.1 (09/07/2018)
+* attempted fix: [#33](https://github.com/kuhnroyal/mat-datetimepicker/issues/33) Component fails to package with ng-packagr
+
 # 2.0.1-beta.0 (06/07/2018)
 * refactored to new angular CLI and ngPackagr
 

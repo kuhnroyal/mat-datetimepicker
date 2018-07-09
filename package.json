@@ -1,6 +1,6 @@
 {
   "name": "mat-datetimepicker",
-  "version": "2.0.1-beta.0",
+  "version": "2.0.1-beta.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
