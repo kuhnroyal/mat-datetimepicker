@@ -10,8 +10,7 @@ import {
   Input,
   OnDestroy,
   Optional,
-  Output,
-  Renderer2
+  Output
 } from "@angular/core";
 import {
   AbstractControl,
@@ -23,6 +22,7 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
+import { MAT_INPUT_VALUE_ACCESSOR } from "@angular/material";
 import { MatFormField } from "@angular/material/form-field";
 import { Subscription } from "rxjs";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
@@ -67,7 +67,8 @@ export class MatDatetimepickerInputEvent<D> {
   selector: "input[matDatetimepicker]",
   providers: [
     MAT_DATETIMEPICKER_VALUE_ACCESSOR,
-    MAT_DATETIMEPICKER_VALIDATORS
+    MAT_DATETIMEPICKER_VALIDATORS,
+    {provide: MAT_INPUT_VALUE_ACCESSOR, useExisting: MatDatetimepickerInput},
   ],
   host: {
     "[attr.aria-haspopup]": "true",
@@ -119,11 +120,10 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     value = this._dateAdapter.getValidDateOrNull(value);
     const oldDate = this.value;
     this._value = value;
+    this._formatValue(value);
 
     // use timeout to ensure the datetimepicker is instantiated and we get the correct format
     setTimeout(() => {
-      this._renderer.setProperty(this._elementRef.nativeElement, "value",
-        value ? this._dateAdapter.format(value, this.getDisplayFormat()) : "");
       if (!this._dateAdapter.sameDatetime(oldDate, value)) {
         this._valueChange.emit(value);
       }
@@ -275,7 +275,6 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   private _lastValueValid = false;
 
   constructor(private _elementRef: ElementRef,
-              private _renderer: Renderer2,
               @Optional() public _dateAdapter: DatetimeAdapter<D>,
               @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats,
               @Optional() private _formField: MatFormField) {
