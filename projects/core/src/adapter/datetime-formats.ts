@@ -15,6 +15,7 @@ export interface MatDatetimeFormats {
     monthYearLabel: any;
     dateA11yLabel: any;
     monthYearA11yLabel: any;
+    popupHeaderDateLabel: any;
   };
 }
 

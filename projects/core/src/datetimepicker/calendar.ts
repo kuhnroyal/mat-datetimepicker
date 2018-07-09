@@ -170,13 +170,12 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   get _dateLabel(): string {
-    if (this.type === "month") {
-      return this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)];
+    switch (this.type) {
+      case "month":
+        return this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)];
+      default:
+        return this._adapter.format(this._activeDate, this._dateFormats.display.popupHeaderDateLabel);
     }
-    const day = this._adapter.getDayOfWeekNames("short")[this._adapter.getDayOfWeek(this._activeDate)];
-    const month = this._adapter.getMonthNames("short")[this._adapter.getMonth(this._activeDate)];
-    const date = this._adapter.getDateNames()[this._adapter.getDate(this._activeDate) - 1];
-    return `${day}, ${month} ${date}`;
   }
 
   get _hoursLabel(): string {
