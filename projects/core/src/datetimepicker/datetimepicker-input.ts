@@ -276,7 +276,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
 
   constructor(private _elementRef: ElementRef,
               private _renderer: Renderer2,
-              @Optional() private _dateAdapter: DatetimeAdapter<D>,
+              @Optional() public _dateAdapter: DatetimeAdapter<D>,
               @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats,
               @Optional() private _formField: MatFormField) {
     if (!this._dateAdapter) {
