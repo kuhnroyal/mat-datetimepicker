@@ -1,5 +1,6 @@
 # 2.0.1 (10/07/2018)
 * feat: [#15](https://github.com/kuhnroyal/mat-datetimepicker/issues/15) No way to change date label in popup-header
+* fix: [#23](https://github.com/kuhnroyal/mat-datetimepicker/issues/23) Placeholder broken when ChangeDetection.OnPush is used
 * fix: [#33](https://github.com/kuhnroyal/mat-datetimepicker/issues/33) Component fails to package with ng-packagr
 
 # 2.0.1-beta.1 (09/07/2018)
