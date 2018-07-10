@@ -14,6 +14,7 @@ export const MAT_MOMENT_DATETIME_FORMATS: MatDatetimeFormats = {
     timeInput: "LT",
     monthYearLabel: "MMM YYYY",
     dateA11yLabel: "LL",
-    monthYearA11yLabel: "MMMM YYYY"
+    monthYearA11yLabel: "MMMM YYYY",
+    popupHeaderDateLabel: "ddd, DD MMM"
   }
 };

@@ -9,6 +9,7 @@ export const MAT_NATIVE_DATETIME_FORMATS: MatDatetimeFormats = {
     timeInput: {hour: "2-digit", minute: "2-digit"},
     monthYearLabel: {year: "numeric", month: "short"},
     dateA11yLabel: {year: "numeric", month: "long", day: "numeric"},
-    monthYearA11yLabel: {year: "numeric", month: "long"}
+    monthYearA11yLabel: {year: "numeric", month: "long"},
+    popupHeaderDateLabel: {weekday: "short", month: "short", day: "2-digit"}
   }
 };
