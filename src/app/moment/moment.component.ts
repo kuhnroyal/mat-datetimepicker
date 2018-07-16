@@ -11,10 +11,7 @@ import {
   MAT_DATETIME_FORMATS,
   MatDatetimepickerFilterType
 } from "@mat-datetimepicker/core";
-import {
-  MAT_MOMENT_DATETIME_FORMATS,
-  MomentDatetimeAdapter
-} from "@mat-datetimepicker/moment";
+import { MomentDatetimeAdapter } from "@mat-datetimepicker/moment";
 import {
   Moment,
   utc
@@ -34,7 +31,24 @@ import {
     },
     {
       provide: MAT_DATETIME_FORMATS,
-      useValue: MAT_MOMENT_DATETIME_FORMATS
+      useValue: {
+        parse: {
+          dateInput: "L",
+          monthInput: "MMMM",
+          timeInput: "LT",
+          datetimeInput: "L LT"
+        },
+        display: {
+          dateInput: "L",
+          monthInput: "MMMM",
+          datetimeInput: "L LT",
+          timeInput: "LT",
+          monthYearLabel: "MMM YYYY",
+          dateA11yLabel: "LL",
+          monthYearA11yLabel: "MMMM YYYY",
+          popupHeaderDateLabel: "ddd, DD MMM"
+        }
+      }
     }
   ]
 })
