@@ -170,10 +170,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   get _monthYearLabel(): string {
-    this._currentView === "month" ? this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)] :
+    return this._currentView === "month" ? this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)] :
       this._adapter.getYearName(this._activeDate);
-    this.currentView.next(this._currentView);
-    return this._currentView;
   }
 
   get _dateLabel(): string {
