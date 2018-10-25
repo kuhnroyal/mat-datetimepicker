@@ -10,5 +10,6 @@
               [selected]="datetimepicker._selected"
               [startAt]="datetimepicker.startAt"
               (selectedChange)="datetimepicker._select($event)"
+              (viewChanged)="datetimepicker._viewChanged($event)"
               (_userSelection)="datetimepicker.close()">
 </mat-datetimepicker-calendar>

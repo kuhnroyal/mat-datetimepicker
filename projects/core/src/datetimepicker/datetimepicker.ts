@@ -180,6 +180,9 @@ export class MatDatetimepicker<D> implements OnDestroy {
   /** Emits when the datepicker has been closed. */
   @Output("closed") closedStream: EventEmitter<void> = new EventEmitter<void>();
 
+  /** Emits when the view has been changed. **/
+  @Output() viewChanged: EventEmitter<string> = new EventEmitter<string>();
+
   /** Whether the calendar is open. */
   opened = false;
 
@@ -292,6 +295,11 @@ export class MatDatetimepicker<D> implements OnDestroy {
     this.touchUi ? this._openAsDialog() : this._openAsPopup();
     this.opened = true;
     this.openedStream.emit();
+    this._viewChanged(this.type);
+  }
+
+  _viewChanged(type: string): void {
+    this.viewChanged.emit(type);
   }
 
   /** Close the calendar. */

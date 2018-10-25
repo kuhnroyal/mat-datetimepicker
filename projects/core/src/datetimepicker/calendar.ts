@@ -26,6 +26,7 @@ import {
 } from "@angular/core";
 import { MatDatepickerIntl } from "@angular/material";
 import { Subscription } from "rxjs";
+import { Subject } from "rxjs";
 import { first } from "rxjs/operators";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
 import {
@@ -58,6 +59,9 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   private _intlChanges: Subscription;
 
   @Output() _userSelection = new EventEmitter<void>();
+
+  @Output() viewChanged: EventEmitter<string> = new EventEmitter<string>();
+
 
   @Input() type: "date" | "time" | "month" | "datetime" = "date";
 
@@ -157,6 +161,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Whether the calendar is in month view. */
   _currentView: "clock" | "month" | "year" = "month";
+  private currentView: Subject<string> = new Subject<string>();
   _clockView: "hour" | "minute" = "hour";
 
   /** The label for the current calendar view. */
@@ -165,8 +170,10 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   get _monthYearLabel(): string {
-    return this._currentView === "month" ? this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)] :
+    this._currentView === "month" ? this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)] :
       this._adapter.getYearName(this._activeDate);
+    this.currentView.next(this._currentView);
+    return this._currentView;
   }
 
   get _dateLabel(): string {
@@ -203,6 +210,10 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     }
 
     this._intlChanges = _intl.changes.subscribe(() => changeDetectorRef.markForCheck());
+
+    this.currentView.subscribe((view: string) => {
+      this.viewChanged.emit(view);
+    });
   }
 
   ngAfterContentInit() {
@@ -210,10 +221,13 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     this._focusActiveCell();
     if (this.type === "month") {
       this._currentView = "year";
+      this.currentView.next(this._currentView);
     } else if (this.type === "time") {
       this._currentView = "clock";
+      this.currentView.next(this._currentView);
     } else {
       this._currentView = this.startView || "month";
+      this.currentView.next(this._currentView);
     }
   }
 
@@ -223,19 +237,20 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Handles date selection in the month view. */
   _dateSelected(date: D): void {
-    if (this.type == "date") {
+    if (this.type === "date") {
       if (!this._adapter.sameDate(date, this.selected)) {
         this.selectedChange.emit(date);
       }
     } else {
       this._activeDate = date;
       this._currentView = "clock";
+      this.currentView.next(this._currentView);
     }
   }
 
   /** Handles month selection in the year view. */
   _monthSelected(month: D): void {
-    if (this.type == "month") {
+    if (this.type === "month") {
       if (!this._adapter.sameMonthAndYear(month, this.selected)) {
         this.selectedChange.emit(this._adapter.getFirstDateOfMonth(month));
       }
@@ -243,6 +258,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
       this._activeDate = month;
       this._currentView = "month";
       this._clockView = "hour";
+      this.currentView.next(this._currentView);
     }
   }
 
@@ -263,22 +279,26 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   _yearClicked(): void {
     this._currentView = "year";
+    this.currentView.next(this._currentView);
   }
 
   _dateClicked(): void {
     if (this.type !== "month") {
       this._currentView = "month";
+      this.currentView.next(this._currentView);
     }
   }
 
   _hoursClicked(): void {
     this._currentView = "clock";
     this._clockView = "hour";
+    this.currentView.next(this._currentView);
   }
 
   _minutesClicked(): void {
     this._currentView = "clock";
     this._clockView = "minute";
+    this.currentView.next(this._currentView);
   }
 
   /** Handles user clicks on the previous button. */
@@ -315,7 +335,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     // navigation should skip over disabled dates, and if so, how to implement that efficiently.
     if (this._currentView === "month") {
       this._handleCalendarBodyKeydownInMonthView(event);
-    } else if (this._currentView === "year") {
+    } else if ( this._currentView === "year" ) {
       this._handleCalendarBodyKeydownInYearView(event);
     } else {
       this._handleCalendarBodyKeydownInClockView(event);
@@ -333,9 +353,9 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   /** Whether the two dates represent the same view in the current view mode (month or year). */
   private _isSameView(date1: D, date2: D): boolean {
     return this._currentView === "month" ?
-      this._adapter.getYear(date1) == this._adapter.getYear(date2) &&
-      this._adapter.getMonth(date1) == this._adapter.getMonth(date2) :
-      this._adapter.getYear(date1) == this._adapter.getYear(date2);
+      this._adapter.getYear(date1) === this._adapter.getYear(date2) &&
+      this._adapter.getMonth(date1) === this._adapter.getMonth(date2) :
+      this._adapter.getYear(date1) === this._adapter.getYear(date2);
   }
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
@@ -435,12 +455,12 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   private _handleCalendarBodyKeydownInClockView(event: KeyboardEvent): void {
     switch (event.keyCode) {
       case UP_ARROW:
-        this._activeDate = this._clockView == "hour" ?
+        this._activeDate = this._clockView === "hour" ?
           this._adapter.addCalendarHours(this._activeDate, 1) :
           this._adapter.addCalendarMinutes(this._activeDate, 1);
         break;
       case DOWN_ARROW:
-        this._activeDate = this._clockView == "hour" ?
+        this._activeDate = this._clockView === "hour" ?
           this._adapter.addCalendarHours(this._activeDate, -1) :
           this._adapter.addCalendarMinutes(this._activeDate, -1);
         break;
