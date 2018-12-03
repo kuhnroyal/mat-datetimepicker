@@ -1,11 +1,11 @@
-export * from "./adapter";
+export * from "./adapter/public_api";
 export * from "./adapter/adapter.module";
 export * from "./adapter/datetime-adapter";
 export * from "./adapter/datetime-formats";
 export * from "./adapter/native-datetime-adapter";
 export * from "./adapter/native-datetime-formats";
 
-export * from "./datetimepicker";
+export * from "./datetimepicker/public_api";
 export * from "./datetimepicker/datetimepicker.module";
 export * from "./datetimepicker/calendar";
 export * from "./datetimepicker/calendar-body";
