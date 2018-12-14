@@ -1,3 +1,7 @@
+# 3.0.0 - WiP
+Initial Angular/material 7.1.x version
+* feat: [#54](https://github.com/kuhnroyal/mat-datetimepicker/issues/54) Angular 7 support
+
 # 2.0.1 (10/07/2018)
 * feat: [#15](https://github.com/kuhnroyal/mat-datetimepicker/issues/15) No way to change date label in popup-header
 * fix: [#23](https://github.com/kuhnroyal/mat-datetimepicker/issues/23) Placeholder broken when ChangeDetection.OnPush is used
