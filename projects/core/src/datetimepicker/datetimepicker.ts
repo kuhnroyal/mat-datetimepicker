@@ -25,7 +25,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation
 } from "@angular/core";
-import { MAT_DATEPICKER_SCROLL_STRATEGY } from "@angular/material";
+import { MAT_DATEPICKER_SCROLL_STRATEGY } from "@angular/material/datepicker";
 import {
   MatDialog,
   MatDialogRef

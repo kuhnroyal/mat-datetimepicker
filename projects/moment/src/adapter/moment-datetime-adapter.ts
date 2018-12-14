@@ -6,7 +6,7 @@ import {
 import {
   DateAdapter,
   MAT_DATE_LOCALE
-} from "@angular/material";
+} from "@angular/material/core";
 import { DatetimeAdapter } from "@mat-datetimepicker/core";
 
 import * as moment_ from "moment";

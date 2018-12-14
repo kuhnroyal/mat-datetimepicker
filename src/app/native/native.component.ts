@@ -7,7 +7,7 @@ import {
 import {
   DateAdapter,
   NativeDateAdapter
-} from "@angular/material";
+} from "@angular/material/core";
 import {
   DatetimeAdapter,
   MAT_DATETIME_FORMATS,

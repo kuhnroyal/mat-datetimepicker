@@ -10,7 +10,7 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from "@angular/core";
-import { MatDatepickerIntl } from "@angular/material";
+import { MatDatepickerIntl } from "@angular/material/datepicker";
 import { merge, of as observableOf, Subscription } from "rxjs";
 import { MatDatetimepicker } from "./datetimepicker";
 

@@ -6,7 +6,7 @@ import {
 import {
   DateAdapter,
   MAT_DATE_LOCALE
-} from "@angular/material";
+} from "@angular/material/core";
 import { DatetimeAdapter } from "./datetime-adapter";
 
 /** The default hour names to use if Intl API is not available. */
