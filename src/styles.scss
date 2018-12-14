@@ -21,3 +21,6 @@ $theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
 // Using the $theme variable from the pre-built theme you can call the theming function
 @include mat-datetimepicker-theme($theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
