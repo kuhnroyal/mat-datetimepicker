@@ -386,21 +386,36 @@ export class MatDatetimepicker<D> implements OnDestroy {
   /** Create the popup PositionStrategy. */
   private _createPopupPositionStrategy(): PositionStrategy {
     return this._overlay.position()
-      .connectedTo(this._datepickerInput.getPopupConnectionElementRef(),
-        {originX: "start", originY: "bottom"},
-        {overlayX: "start", overlayY: "top"}
-      )
-      .withFallbackPosition(
-        {originX: "start", originY: "top"},
-        {overlayX: "start", overlayY: "bottom"}
-      )
-      .withFallbackPosition(
-        {originX: "end", originY: "bottom"},
-        {overlayX: "end", overlayY: "top"}
-      )
-      .withFallbackPosition(
-        {originX: "end", originY: "top"},
-        {overlayX: "end", overlayY: "bottom"}
-      );
+      .flexibleConnectedTo(this._datepickerInput.getConnectedOverlayOrigin())
+      .withTransformOriginOn(".mat-datetimepicker-content")
+      .withFlexibleDimensions(false)
+      .withViewportMargin(8)
+      .withLockedPosition()
+      .withPositions([
+        {
+          originX: "start",
+          originY: "bottom",
+          overlayX: "start",
+          overlayY: "top"
+        },
+        {
+          originX: "start",
+          originY: "top",
+          overlayX: "start",
+          overlayY: "bottom"
+        },
+        {
+          originX: "end",
+          originY: "bottom",
+          overlayX: "end",
+          overlayY: "top"
+        },
+        {
+          originX: "end",
+          originY: "top",
+          overlayX: "end",
+          overlayY: "bottom"
+        }
+      ]);
   }
 }
