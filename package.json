@@ -7,9 +7,11 @@
     "start": "ng serve",
     "start:prod": "ng serve --prod",
     "build": "yarn build:lib && ng build",
+    "build:prod": "yarn build:lib && ng build --prod --stats-json",
     "build:lib": "yarn build:lib/core && yarn build:lib/moment",
     "build:lib/core": "ng build core && copy-files-from-to projects/core/copy-files.json",
     "build:lib/moment": "ng build moment && copy-files-from-to projects/moment/copy-files.json",
+    "bundle-report": "webpack-bundle-analyzer dist/app/stats.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -58,6 +60,7 @@
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.1.6"
+    "typescript": "~3.1.6",
+    "webpack-bundle-analyzer": "3.0.3"
   }
 }
