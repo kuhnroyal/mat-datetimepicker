@@ -64,7 +64,7 @@ export class MomentDatetimeComponent {
   filter: (date: Moment, type: MatDatetimepickerFilterType) => boolean;
 
   constructor(fb: FormBuilder) {
-    this.today = utc().year(1929);
+    this.today = utc();
     this.tomorrow = utc().date(utc().date() + 1);
     this.min = this.today.clone().year(2018).month(10).date(3).hour(11).minute(10);
     this.max = this.min.clone().date(4).minute(45);
@@ -83,7 +83,7 @@ export class MomentDatetimeComponent {
     };
 
     this.group = fb.group({
-      dateTime: ["2017-11-09T12:10:00.000Z", Validators.required],
+      dateTime: [new Date("2017-11-09T12:10:00.000Z"), Validators.required],
       date: [null, Validators.required],
       time: [null, Validators.required],
       month: [null, Validators.required],

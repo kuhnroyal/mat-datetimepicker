@@ -46,7 +46,6 @@ export class NativeDatetimeComponent {
   filter: (date: Date, type: MatDatetimepickerFilterType) => boolean;
 
   constructor(fb: FormBuilder) {
-    this.today.setFullYear(1929);
     this.tomorrow.setDate(this.tomorrow.getDate() + 1);
     this.min.setFullYear(2018, 10, 3);
     this.min.setHours(11);
@@ -70,7 +69,7 @@ export class NativeDatetimeComponent {
     };
 
     this.group = fb.group({
-      dateTime: ["2017-11-09T12:10:00.000Z", Validators.required],
+      dateTime: [new Date("2017-11-09T12:10:00.000Z"), Validators.required],
       date: [null, Validators.required],
       time: [null, Validators.required],
       month: [null, Validators.required],
