@@ -1,4 +1,4 @@
-# 3.0.0 - WiP
+# 3.0.0-beta.0 (14/12/2018)
 Initial Angular/material 7.1.x version
 * feat: [#54](https://github.com/kuhnroyal/mat-datetimepicker/issues/54) Angular 7 support
 
