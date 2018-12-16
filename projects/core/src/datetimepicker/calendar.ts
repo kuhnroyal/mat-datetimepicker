@@ -32,9 +32,13 @@ import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats
 } from "../adapter/datetime-formats";
+import { MatClockView } from "./clock";
+import { MatDatetimepickerType } from "./datetimepicker";
 import { slideCalendar } from "./datetimepicker-animations";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
+
+export type MatCalendarView = "clock" | "month" | "year";
 
 /**
  * A calendar that is used as part of the datepicker.
@@ -59,7 +63,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   @Output() _userSelection = new EventEmitter<void>();
 
-  @Input() type: "date" | "time" | "month" | "datetime" = "date";
+  @Input() type: MatDatetimepickerType = "date";
 
   /** A date representing the period (month or year) to start the calendar in. */
   @Input()
@@ -74,7 +78,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   private _startAt: D | null;
 
   /** Whether the calendar should be started in month or year view. */
-  @Input() startView: "clock" | "month" | "year" = "month";
+  @Input() startView: MatCalendarView = "month";
 
   /** The currently selected date. */
   @Input()
@@ -156,8 +160,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   /** Whether the calendar is in month view. */
-  _currentView: "clock" | "month" | "year" = "month";
-  _clockView: "hour" | "minute" = "hour";
+  _currentView: MatCalendarView = this.startView;
+  _clockView: MatClockView = "hour";
 
   /** The label for the current calendar view. */
   get _yearLabel(): string {

@@ -15,7 +15,7 @@ export const CLOCK_INNER_RADIUS = 27.5;
 export const CLOCK_OUTER_RADIUS = 41.25;
 export const CLOCK_TICK_RADIUS = 7.0833;
 
-export type ClockView = "hour" | "minute";
+export type MatClockView = "hour" | "minute";
 
 /**
  * A clock that is used as part of the datepicker.
@@ -95,7 +95,7 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
 
   /** Whether the clock should be started in hour or minute view. */
   @Input()
-  set startView(value: ClockView) {
+  set startView(value: MatClockView) {
     this._hourView = value != "minute";
   }
 

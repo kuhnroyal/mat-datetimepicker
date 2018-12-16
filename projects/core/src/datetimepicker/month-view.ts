@@ -18,6 +18,7 @@ import {
   DatetimeAdapter
 } from "../adapter/datetime-adapter";
 import { MatDatetimepickerCalendarCell } from "./calendar-body";
+import { MatDatetimepickerType } from "./datetimepicker";
 import { slideCalendar } from "./datetimepicker-animations";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 
@@ -36,7 +37,7 @@ const DAYS_PER_WEEK = 7;
 })
 export class MatDatetimepickerMonthView<D> implements AfterContentInit {
 
-  @Input() type: "date" | "time" | "month" | "datetime" = "date";
+  @Input() type: MatDatetimepickerType = "date";
 
   @Output() _userSelection = new EventEmitter<void>();
 

@@ -10,6 +10,7 @@ import {
   Output,
   ViewEncapsulation
 } from "@angular/core";
+import { MatDatetimepickerType } from "./datetimepicker";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerCalendarCell } from "./calendar-body";
 import { slideCalendar } from "./datetimepicker-animations";
@@ -36,7 +37,7 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
 
   @Output() _userSelection = new EventEmitter<void>();
 
-  @Input() type: "date" | "time" | "month" | "datetime" = "date";
+  @Input() type: MatDatetimepickerType = "date";
 
   /** The date to display in this year view (everything other than the year is ignored). */
   @Input()
