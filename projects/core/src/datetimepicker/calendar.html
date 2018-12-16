@@ -1,27 +1,27 @@
 <div class="mat-datetimepicker-calendar-header">
   <div *ngIf="type !== 'time'"
        class="mat-datetimepicker-calendar-header-year"
-       [class.active]="_currentView == 'year'"
+       [class.active]="currentView === 'year'"
        (click)="_yearClicked()">{{ _yearLabel }}</div>
   <div class="mat-datetimepicker-calendar-header-date-time">
     <span *ngIf="type !== 'time'"
           class="mat-datetimepicker-calendar-header-date"
-          [class.active]="_currentView == 'month'"
+          [class.active]="currentView === 'month'"
           [class.not-clickable]="type === 'month'"
           (click)="_dateClicked()">{{ _dateLabel }}</span>
     <span *ngIf="type.endsWith('time')"
           class="mat-datetimepicker-calendar-header-time"
-          [class.active]="_currentView == 'clock'">
+          [class.active]="currentView === 'clock'">
       <span class="mat-datetimepicker-calendar-header-hours"
-            [class.active]="_clockView == 'hour'"
+            [class.active]="_clockView === 'hour'"
             (click)="_hoursClicked()">{{ _hoursLabel }}</span>:<span class="mat-datetimepicker-calendar-header-minutes"
-                                                                     [class.active]="_clockView == 'minute'"
+                                                                     [class.active]="_clockView === 'minute'"
                                                                      (click)="_minutesClicked()">{{ _minutesLabel }}</span>
     </span>
   </div>
 </div>
-<div class="mat-datetimepicker-calendar-content" [ngSwitch]="_currentView">
-  <div class="mat-month-content" *ngIf="_currentView === 'month' || _currentView === 'year'">
+<div class="mat-datetimepicker-calendar-content" [ngSwitch]="currentView">
+  <div class="mat-month-content" *ngIf="currentView === 'month' || currentView === 'year'">
     <div class="mat-datetimepicker-calendar-controls">
       <div class="mat-datetimepicker-calendar-previous-button"
            [class.disabled]="!_previousEnabled()" (click)="_previousClicked()"

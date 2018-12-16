@@ -189,11 +189,18 @@ export class MatDatetimepicker<D> implements OnDestroy {
   // tslint:disable-next-line:no-output-rename
   @Output("closed") closedStream: EventEmitter<void> = new EventEmitter<void>();
 
+  /** Emits when the view has been changed. **/
+  @Output() viewChanged: EventEmitter<MatCalendarView> = new EventEmitter<MatCalendarView>();
+
   /** Whether the calendar is open. */
   opened = false;
 
   /** The id for the datepicker calendar. */
   id = `mat-datetimepicker-${datetimepickerUid++}`;
+
+  _viewChanged(type: MatCalendarView): void {
+    this.viewChanged.emit(type);
+  }
 
   /** The currently selected date. */
   get _selected(): D | null {
