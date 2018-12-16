@@ -24,6 +24,7 @@ export class MatDatetimepickerCalendarCell {
  * @docs-private
  */
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: "[mat-datetimepicker-calendar-body]",
   templateUrl: "calendar-body.html",
   styleUrls: ["calendar-body.scss"],

@@ -223,7 +223,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Handles date selection in the month view. */
   _dateSelected(date: D): void {
-    if (this.type == "date") {
+    if (this.type === "date") {
       if (!this._adapter.sameDate(date, this.selected)) {
         this.selectedChange.emit(date);
       }
@@ -235,7 +235,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Handles month selection in the year view. */
   _monthSelected(month: D): void {
-    if (this.type == "month") {
+    if (this.type === "month") {
       if (!this._adapter.sameMonthAndYear(month, this.selected)) {
         this.selectedChange.emit(this._adapter.getFirstDateOfMonth(month));
       }
@@ -333,13 +333,14 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   /** Whether the two dates represent the same view in the current view mode (month or year). */
   private _isSameView(date1: D, date2: D): boolean {
     return this._currentView === "month" ?
-      this._adapter.getYear(date1) == this._adapter.getYear(date2) &&
-      this._adapter.getMonth(date1) == this._adapter.getMonth(date2) :
-      this._adapter.getYear(date1) == this._adapter.getYear(date2);
+      this._adapter.getYear(date1) === this._adapter.getYear(date2) &&
+      this._adapter.getMonth(date1) === this._adapter.getMonth(date2) :
+      this._adapter.getYear(date1) === this._adapter.getYear(date2);
   }
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
   private _handleCalendarBodyKeydownInMonthView(event: KeyboardEvent): void {
+    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       case LEFT_ARROW:
         this._activeDate = this._adapter.addCalendarDays(this._activeDate, -1);
@@ -390,6 +391,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Handles keydown events on the calendar body when calendar is in year view. */
   private _handleCalendarBodyKeydownInYearView(event: KeyboardEvent): void {
+    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       case LEFT_ARROW:
         this._activeDate = this._adapter.addCalendarMonths(this._activeDate, -1);
@@ -433,14 +435,15 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
   private _handleCalendarBodyKeydownInClockView(event: KeyboardEvent): void {
+    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       case UP_ARROW:
-        this._activeDate = this._clockView == "hour" ?
+        this._activeDate = this._clockView === "hour" ?
           this._adapter.addCalendarHours(this._activeDate, 1) :
           this._adapter.addCalendarMinutes(this._activeDate, 1);
         break;
       case DOWN_ARROW:
-        this._activeDate = this._clockView == "hour" ?
+        this._activeDate = this._clockView === "hour" ?
           this._adapter.addCalendarHours(this._activeDate, -1) :
           this._adapter.addCalendarMinutes(this._activeDate, -1);
         break;

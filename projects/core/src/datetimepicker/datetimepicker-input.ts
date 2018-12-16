@@ -348,6 +348,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   }
 
   _onKeydown(event: KeyboardEvent) {
+    // tslint:disable-next-line:deprecation
     if (event.altKey && event.keyCode === DOWN_ARROW) {
       this._datepicker.open();
       event.preventDefault();
