@@ -4,6 +4,10 @@ import {
   Optional
 } from "@angular/core";
 import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material/core";
+import {
+  MatMomentDateAdapterOptions,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS
+} from "@angular/material-moment-adapter";
 import { DatetimeAdapter } from "@mat-datetimepicker/core";
 
 import * as moment_ from "moment";
@@ -33,9 +37,14 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     narrowDaysOfWeek: string[]
   };
 
-  constructor(@Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: string, _delegate: DateAdapter<Moment>) {
+  private _useUtc = false;
+
+  constructor(@Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: string,
+    @Optional() @Inject(MAT_MOMENT_DATE_ADAPTER_OPTIONS) matMomentAdapterOptions: MatMomentDateAdapterOptions,
+    _delegate: DateAdapter<Moment>) {
     super(_delegate);
     this.setLocale(matDateLocale || moment.locale());
+    this._useUtc = matMomentAdapterOptions.useUtc;
   }
 
   setLocale(locale: string) {
@@ -88,7 +97,10 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     }
 
     // const result = moment({year, month, date, hour, minute}).locale(this.locale);
-    const result = moment({year, month, date, hour, minute});
+    let result = moment({ year, month, date, hour, minute });
+    if (this._useUtc) {
+      result = result.utc();
+    }
 
     // If the result isn't valid, the date must have been out of bounds for this month.
     if (!result.isValid()) {
@@ -99,7 +111,7 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
   }
 
   private getDateInNextMonth(date: Moment) {
-    return super.clone(date).date(1).add({month: 1});
+    return super.clone(date).date(1).add({ month: 1 });
   }
 
   getFirstDateOfMonth(date: Moment): Moment {
@@ -115,14 +127,14 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
   }
 
   addCalendarHours(date: Moment, hours: number): Moment {
-    return super.clone(date).add({hours});
+    return super.clone(date).add({ hours });
   }
 
   addCalendarMinutes(date: Moment, minutes: number): Moment {
-    return super.clone(date).add({minutes});
+    return super.clone(date).add({ minutes });
   }
 
   deserialize(value: any): Moment | null {
-     return this._delegate.deserialize(value);
-   }
+    return this._delegate.deserialize(value);
+  }
 }
