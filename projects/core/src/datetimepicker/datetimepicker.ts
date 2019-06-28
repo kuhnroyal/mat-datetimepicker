@@ -63,7 +63,7 @@ let datetimepickerUid = 0;
 export class MatDatetimepickerContent<D> implements AfterContentInit {
   datetimepicker: MatDatetimepicker<D>;
 
-  @ViewChild(MatDatetimepickerCalendar) _calendar: MatDatetimepickerCalendar<D>;
+  @ViewChild(MatDatetimepickerCalendar, { static: true }) _calendar: MatDatetimepickerCalendar<D>;
 
   ngAfterContentInit() {
     this._calendar._focusActiveCell();
