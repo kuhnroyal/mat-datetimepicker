@@ -2,11 +2,9 @@ import { A11yModule } from "@angular/cdk/a11y";
 import { OverlayModule } from "@angular/cdk/overlay";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import {
-  MatButtonModule,
-  MatDialogModule,
-  MatIconModule
-} from "@angular/material";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
 import { MatDatetimepickerCalendar } from "./calendar";
 import { MatDatetimepickerCalendarBody } from "./calendar-body";
 import { MatDatetimepickerClock } from "./clock";

@@ -3,10 +3,7 @@ import {
   Injectable,
   Optional
 } from "@angular/core";
-import {
-  DateAdapter,
-  MAT_DATE_LOCALE
-} from "@angular/material";
+import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material/core";
 import { DatetimeAdapter } from "./datetime-adapter";
 
 /** The default hour names to use if Intl API is not available. */

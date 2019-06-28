@@ -24,7 +24,7 @@ import {
   Output,
   ViewEncapsulation
 } from "@angular/core";
-import { MatDatepickerIntl } from "@angular/material";
+import { MatDatepickerIntl } from "@angular/material/datepicker";
 import { Subscription } from "rxjs";
 import { first } from "rxjs/operators";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";

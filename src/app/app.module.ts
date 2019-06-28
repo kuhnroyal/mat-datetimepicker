@@ -8,7 +8,7 @@ import {
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { MAT_DATE_LOCALE } from "@angular/material";
+import { MAT_DATE_LOCALE } from "@angular/material/core";
 import { AppComponent } from "./app.component";
 import { AppMomentModule } from "./moment/moment.module";
 import { AppNativeModule } from "./native/native.module";
