@@ -22,7 +22,7 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import { MAT_INPUT_VALUE_ACCESSOR } from "@angular/material";
+import { MAT_INPUT_VALUE_ACCESSOR } from "@angular/material/input";
 import { MatFormField } from "@angular/material/form-field";
 import { Subscription } from "rxjs";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
