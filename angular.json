@@ -207,5 +207,8 @@
       }
     }
   },
-  "defaultProject": "mat-datetimepicker"
+  "defaultProject": "mat-datetimepicker",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }
