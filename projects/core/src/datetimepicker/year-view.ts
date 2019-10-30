@@ -115,9 +115,11 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
 
   /** Handles when a new month is selected. */
   _monthSelected(month: number) {
+    const normalizedDate = this._adapter.createDatetime(this._adapter.getYear(this.activeDate), month, 1, 0, 0);
+
     this.selectedChange.emit(this._adapter.createDatetime(
       this._adapter.getYear(this.activeDate), month,
-      this._adapter.getDate(this.activeDate),
+      Math.min(this._adapter.getDate(this.activeDate), this._adapter.getNumDaysInMonth(normalizedDate)),
       this._adapter.getHour(this.activeDate),
       this._adapter.getMinute(this.activeDate)));
     if (this.type === "month") {

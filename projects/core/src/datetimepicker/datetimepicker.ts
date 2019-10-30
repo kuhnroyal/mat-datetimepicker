@@ -63,7 +63,7 @@ let datetimepickerUid = 0;
 export class MatDatetimepickerContent<D> implements AfterContentInit {
   datetimepicker: MatDatetimepicker<D>;
 
-  @ViewChild(MatDatetimepickerCalendar) _calendar: MatDatetimepickerCalendar<D>;
+  @ViewChild(MatDatetimepickerCalendar, { static: true }) _calendar: MatDatetimepickerCalendar<D>;
 
   ngAfterContentInit() {
     this._calendar._focusActiveCell();
@@ -74,6 +74,7 @@ export class MatDatetimepickerContent<D> implements AfterContentInit {
    * @param event The event.
    */
   _handleKeydown(event: KeyboardEvent): void {
+    // tslint:disable-next-line:deprecation
     if (event.keyCode === ESCAPE) {
       this.datetimepicker.close();
       event.preventDefault();
@@ -175,9 +176,11 @@ export class MatDatetimepicker<D> implements OnDestroy {
   @Input() panelClass: string | string[];
 
   /** Emits when the datepicker has been opened. */
+  // tslint:disable-next-line:no-output-rename
   @Output("opened") openedStream: EventEmitter<void> = new EventEmitter<void>();
 
   /** Emits when the datepicker has been closed. */
+  // tslint:disable-next-line:no-output-rename
   @Output("closed") closedStream: EventEmitter<void> = new EventEmitter<void>();
 
   /** Whether the calendar is open. */

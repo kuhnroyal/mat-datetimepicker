@@ -13,7 +13,7 @@
           "styleext": "scss"
         }
       },
-      "architect": {
+      "targets": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -112,7 +112,7 @@
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
-      "architect": {
+      "targets": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -141,7 +141,7 @@
       "sourceRoot": "projects/core/src",
       "projectType": "library",
       "prefix": "lib",
-      "architect": {
+      "targets": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
@@ -176,7 +176,7 @@
       "sourceRoot": "projects/moment/src",
       "projectType": "library",
       "prefix": "lib",
-      "architect": {
+      "targets": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
@@ -207,5 +207,8 @@
       }
     }
   },
-  "defaultProject": "app"
+  "defaultProject": "app",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }
