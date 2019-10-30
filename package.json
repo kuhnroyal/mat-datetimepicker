@@ -7,9 +7,11 @@
     "start": "ng serve",
     "start:prod": "ng serve --prod",
     "build": "yarn build:lib && ng build",
+    "build:prod": "yarn build:lib && ng build --prod --stats-json",
     "build:lib": "yarn build:lib/core && yarn build:lib/moment",
     "build:lib/core": "ng build core && copy-files-from-to projects/core/copy-files.json",
     "build:lib/moment": "ng build moment && copy-files-from-to projects/moment/copy-files.json",
+    "bundle-report": "webpack-bundle-analyzer dist/app/stats.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -30,12 +32,11 @@
     "copy-files-from-to": "2.1.0",
     "moment": "2.24.0",
     "rxjs": "~6.5.2",
-    "typescript": "~3.4.3",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.801.1",
-    "@angular-devkit/build-ng-packagr": "~0.801.1",
+    "@angular-devkit/build-angular": "~0.803.15",
+    "@angular-devkit/build-ng-packagr": "~0.803.15",
     "@angular/cli": "^8.3.1",
     "@angular/compiler-cli": "^8.2.4",
     "@angular/language-service": "^8.2.4",
@@ -53,7 +54,10 @@
     "ng-packagr": "^5.5.0",
     "protractor": "^5.4.2",
     "ts-node": "~8.3.0",
+    "tsickle": "^0.37.0",
     "tslib": "^1.9.0",
-    "tslint": "~5.18.0"
+    "tslint": "~5.18.0",
+    "typescript": "~3.5.3",
+    "webpack-bundle-analyzer": "3.6.0"
   }
 }

@@ -3,7 +3,10 @@ import {
   Injectable,
   Optional
 } from "@angular/core";
-import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material/core";
+import {
+  DateAdapter,
+  MAT_DATE_LOCALE
+} from "@angular/material/core";
 import {
   MatMomentDateAdapterOptions,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS
