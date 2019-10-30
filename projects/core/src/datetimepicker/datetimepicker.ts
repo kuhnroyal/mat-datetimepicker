@@ -25,7 +25,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation
 } from "@angular/core";
-import { MAT_DATEPICKER_SCROLL_STRATEGY } from "@angular/material";
+import { MAT_DATEPICKER_SCROLL_STRATEGY } from "@angular/material/datepicker";
 import {
   MatDialog,
   MatDialogRef
@@ -63,7 +63,7 @@ let datetimepickerUid = 0;
 export class MatDatetimepickerContent<D> implements AfterContentInit {
   datetimepicker: MatDatetimepicker<D>;
 
-  @ViewChild(MatDatetimepickerCalendar) _calendar: MatDatetimepickerCalendar<D>;
+  @ViewChild(MatDatetimepickerCalendar, { static: true }) _calendar: MatDatetimepickerCalendar<D>;
 
   ngAfterContentInit() {
     this._calendar._focusActiveCell();

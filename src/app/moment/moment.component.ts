@@ -4,7 +4,7 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { DateAdapter } from "@angular/material";
+import { DateAdapter } from "@angular/material/core";
 import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import {
   DatetimeAdapter,
