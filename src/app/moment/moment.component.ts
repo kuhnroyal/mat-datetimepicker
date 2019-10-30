@@ -5,7 +5,7 @@ import {
   Validators
 } from "@angular/forms";
 import { DateAdapter } from "@angular/material/core";
-import { MomentDateAdapter } from "@angular/material-moment-adapter";
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from "@angular/material-moment-adapter";
 import {
   DatetimeAdapter,
   MAT_DATETIME_FORMATS,
@@ -30,6 +30,12 @@ import {
       useClass: MomentDatetimeAdapter
     },
     {
+      provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+      useValue: {
+        useUtc: true
+      }
+    },
+    {
       provide: MAT_DATETIME_FORMATS,
       useValue: {
         parse: {
@@ -41,7 +47,7 @@ import {
         display: {
           dateInput: "L",
           monthInput: "MMMM",
-          datetimeInput: "L LT",
+          datetimeInput: "L LT ZZ",
           timeInput: "LT",
           monthYearLabel: "MMM YYYY",
           dateA11yLabel: "LL",
