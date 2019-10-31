@@ -11,6 +11,7 @@ The datetimepicker is taken from [Promact/md2](https://github.com/Promact/md2) a
 
 Like the @angular/material datepicker it contains a native-datetime-adapter as well as a moment-datetime-adapter.
 
+[![Travis CI](https://travis-ci.org/kuhnroyal/mat-datetimepicker.svg?branch=master)](https://travis-ci.org/kuhnroyal/mat-datetimepicker)
 [![Latest Stable Version](https://img.shields.io/npm/v/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
 [![License](https://img.shields.io/npm/l/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
 [![NPM Downloads](https://img.shields.io/npm/dm/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
