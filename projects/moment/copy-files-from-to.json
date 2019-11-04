@@ -1,10 +1,9 @@
 {
-  "filesToCopy": [
+  "copyFiles": [
     {
       "from": "../../README.md",
       "to": "../../dist/moment/README.md"
     }
-  ],
-  "settings": {}
+  ]
 }
 

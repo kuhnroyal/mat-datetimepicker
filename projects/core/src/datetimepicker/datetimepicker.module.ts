@@ -27,7 +27,7 @@ import { MatDatetimepickerYearView } from "./year-view";
     A11yModule
   ],
   entryComponents: [
-    MatDatetimepickerContent
+    MatDatetimepickerContent,
   ],
   declarations: [
     MatDatetimepickerCalendar,
