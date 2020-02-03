@@ -25,11 +25,8 @@ import {
 import { MAT_INPUT_VALUE_ACCESSOR } from "@angular/material/input";
 import { MatFormField } from "@angular/material/form-field";
 import { Subscription } from "rxjs";
-import {
-  DatetimeAdapter,
-  MAT_DATETIME_FORMATS,
-  MatDatetimeFormats
-} from "../adapter";
+import { DatetimeAdapter} from "../adapter/datetime-adapter"
+import { MAT_DATETIME_FORMATS, MatDatetimeFormats} from "../adapter/datetime-formats"
 import { MatDatetimepicker } from "./datetimepicker";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
