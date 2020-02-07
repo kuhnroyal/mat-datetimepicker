@@ -1,9 +1,10 @@
-# Material Datetimepicker for @angular/material 8.x
+# Material Datetimepicker for @angular/material 9.x
 
-This is the main branch for @angular/material 8.x
+This is the main branch for @angular/material 9.x
 
 You can find the Angular 5 version on the `1.x` branch. \
-You can find the Angular 6 version on the `2.x` branch.
+You can find the Angular 6 version on the `2.x` branch. \
+You can find the Angular 8 version on the `3.x` branch.
 
 ## Description
 
