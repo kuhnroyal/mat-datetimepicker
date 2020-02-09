@@ -34,12 +34,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -49,13 +47,11 @@
               "extractLicenses": true,
               "vendorChunk": true,
               "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
             }
           }
         },
@@ -147,6 +143,11 @@
           "options": {
             "tsConfig": "projects/core/tsconfig.lib.json",
             "project": "projects/core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/core/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -182,6 +183,11 @@
           "options": {
             "tsConfig": "projects/moment/tsconfig.lib.json",
             "project": "projects/moment/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/moment/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
