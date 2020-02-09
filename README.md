@@ -146,8 +146,8 @@ cd my-project
 Add the dependencies to your `package.json`:
 ```
 "dependencies": {
-    "@mat-datetimepicker/core": "3.0.0-beta.0",
-    "@mat-datetimepicker/moment": "3.0.0-beta.0",
+    "@mat-datetimepicker/core": "4.0.0",
+    "@mat-datetimepicker/moment": "4.0.0",
 }
 ```
 Link the local built modules:

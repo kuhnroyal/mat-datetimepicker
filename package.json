@@ -1,6 +1,6 @@
 {
   "name": "mat-datetimepicker",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -9,8 +9,8 @@
     "build": "yarn build:lib && ng build",
     "build:prod": "yarn build:lib && ng build --prod --stats-json",
     "build:lib": "yarn build:lib/core && yarn build:lib/moment",
-    "build:lib/core": "ng build core && copy-files-from-to --config projects/core/copy-files.json",
-    "build:lib/moment": "ng build moment && copy-files-from-to --config projects/moment/copy-files.json",
+    "build:lib/core": "ng build core --prod && copy-files-from-to --config projects/core/copy-files.json",
+    "build:lib/moment": "ng build moment --prod && copy-files-from-to --config projects/moment/copy-files.json",
     "bundle-report": "webpack-bundle-analyzer dist/app/stats.json",
     "test": "ng test",
     "lint": "ng lint",
@@ -32,6 +32,7 @@
     "copy-files-from-to": "2.1.0",
     "moment": "2.24.0",
     "rxjs": "~6.5.2",
+    "tsickle": "^0.38.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
