@@ -18,7 +18,7 @@
     {{ _firstRowOffset >= labelMinRequiredCells ? label : '' }}
   </td>
   <td *ngFor="let item of row; let colIndex = index"
-      role="gridcell"
+      role="button"
       class="mat-datetimepicker-calendar-body-cell"
       [class.mat-datetimepicker-calendar-body-disabled]="!item.enabled"
       [class.mat-datetimepicker-calendar-body-active]="_isActiveCell(rowIndex, colIndex)"
