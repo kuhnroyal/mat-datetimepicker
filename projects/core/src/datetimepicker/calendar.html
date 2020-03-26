@@ -2,9 +2,10 @@
   <div *ngIf="type !== 'time'"
        class="mat-datetimepicker-calendar-header-year"
        [class.active]="currentView === 'year'"
+       role="button"
        (click)="_yearClicked()">{{ _yearLabel }}</div>
   <div class="mat-datetimepicker-calendar-header-date-time">
-    <span *ngIf="type !== 'time'"
+    <span *ngIf="type !== 'time'" role="button"
           class="mat-datetimepicker-calendar-header-date"
           [class.active]="currentView === 'month'"
           [class.not-clickable]="type === 'month'"
@@ -13,9 +14,17 @@
           class="mat-datetimepicker-calendar-header-time"
           [class.active]="currentView === 'clock'">
       <span class="mat-datetimepicker-calendar-header-hours"
+<<<<<<< HEAD
             [class.active]="_clockView === 'hour'"
             (click)="_hoursClicked()">{{ _hoursLabel }}</span>:<span class="mat-datetimepicker-calendar-header-minutes"
                                                                      [class.active]="_clockView === 'minute'"
+=======
+            [class.active]="_clockView == 'hour'"
+            role="button"
+            (click)="_hoursClicked()">{{ _hoursLabel }}</span>:<span class="mat-datetimepicker-calendar-header-minutes"
+                                                                     [class.active]="_clockView == 'minute'"
+                                                                     role="button"
+>>>>>>> 412ff74... add missing button roles
                                                                      (click)="_minutesClicked()">{{ _minutesLabel }}</span>
     </span>
   </div>
