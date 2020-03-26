@@ -133,6 +133,11 @@ export class MatDatetimepicker<D> implements OnDestroy {
 
   private _type: "date" | "time" | "month" | "datetime" = "date";
 
+  @Input() ariaNextMonthLabel = "Next month";
+  @Input() ariaPrevMonthLabel = "Previous month";
+  @Input() ariaNextYearLabel = "Next year";
+  @Input() ariaPrevYearLabel = "Previous year";
+
   /**
    * Whether the calendar UI is in touch mode. In touch mode the calendar opens in a dialog rather
    * than a popup and elements have more padding to allow for bigger touch targets.
