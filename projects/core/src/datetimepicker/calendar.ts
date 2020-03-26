@@ -46,6 +46,8 @@ import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
   styleUrls: ["calendar.scss"],
   host: {
     "[class.mat-datetimepicker-calendar]": "true",
+    "[attr.aria-label]": "ariaLabel",
+    "role": "dialog",
     "tabindex": "0",
     "(keydown)": "_handleCalendarBodyKeydown($event)"
   },
@@ -117,6 +119,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
 
+  @Input() ariaLabel = "Use arrow keys to navigate";
   @Input() ariaNextMonthLabel = "Next month";
   @Input() ariaPrevMonthLabel = "Previous month";
   @Input() ariaNextYearLabel = "Next year";
