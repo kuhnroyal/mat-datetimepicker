@@ -24,7 +24,9 @@
   <div class="mat-month-content" *ngIf="currentView === 'month' || currentView === 'year'">
     <div class="mat-datetimepicker-calendar-controls">
       <div class="mat-datetimepicker-calendar-previous-button"
-           [class.disabled]="!_previousEnabled()" (click)="_previousClicked()"
+           [class.disabled]="!_previousEnabled()"
+           [attr.aria-disabled]="!_previousEnabled()"
+           (click)="_previousClicked()"
            [attr.aria-label]="_ariaLabelPrev"
            role="button">
         <svg width="24" height="24" viewBox="0 0 24 24">
@@ -35,7 +37,9 @@
         <strong>{{ _monthYearLabel }}</strong>
       </div>
       <div class="mat-datetimepicker-calendar-next-button"
-           [class.disabled]="!_nextEnabled()" (click)="_nextClicked()"
+           [class.disabled]="!_nextEnabled()"
+           [attr.aria-disabled]="!_nextEnabled()"
+           (click)="_nextClicked()"
            [attr.aria-label]="_ariaLabelNext"
            role="button">
         <svg width="24" height="24" viewBox="0 0 24 24">
