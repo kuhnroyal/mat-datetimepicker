@@ -63,7 +63,7 @@ $mat-calendar-body-cell-content-size: 100% - $mat-calendar-body-cell-content-mar
 }
 
 :not(.mat-datetimepicker-calendar-body-disabled):hover,
-.mat-calendar:focus .mat-datetimepicker-calendar-body-active {
+.mat-datetimepicker-calendar-body-active {
   & > .mat-datetimepicker-calendar-body-cell-content:not(.mat-datetimepicker-calendar-body-selected) {
     background-color: rgba(black, 0.12);
   }
