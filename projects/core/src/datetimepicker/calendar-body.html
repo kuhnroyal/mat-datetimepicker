@@ -27,7 +27,8 @@
       (click)="_cellClicked(item)">
     <div class="mat-datetimepicker-calendar-body-cell-content"
          [class.mat-datetimepicker-calendar-body-selected]="selectedValue === item.value"
-         [class.mat-datetimepicker-calendar-body-today]="todayValue === item.value">
+         [class.mat-datetimepicker-calendar-body-today]="todayValue === item.value"
+         [attr.aria-selected]="selectedValue === item.value">
       {{ item.displayValue }}
     </div>
   </td>
