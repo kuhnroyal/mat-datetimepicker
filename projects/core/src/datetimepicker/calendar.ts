@@ -32,9 +32,13 @@ import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats
 } from "../adapter/datetime-formats";
+import { MatClockView } from "./clock";
+import { MatDatetimepickerType } from "./datetimepicker";
 import { slideCalendar } from "./datetimepicker-animations";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
+
+export type MatCalendarView = "clock" | "month" | "year";
 
 /**
  * A calendar that is used as part of the datepicker.
@@ -59,7 +63,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   @Output() _userSelection = new EventEmitter<void>();
 
-  @Input() type: "date" | "time" | "month" | "datetime" = "date";
+  @Input() type: MatDatetimepickerType = "date";
 
   /** A date representing the period (month or year) to start the calendar in. */
   @Input()
@@ -74,7 +78,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   private _startAt: D | null;
 
   /** Whether the calendar should be started in month or year view. */
-  @Input() startView: "clock" | "month" | "year" = "month";
+  @Input() startView: MatCalendarView = "month";
 
   /** The currently selected date. */
   @Input()
@@ -118,7 +122,10 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
 
   /** Emits when the currently selected date changes. */
-  @Output() selectedChange = new EventEmitter<D>();
+  @Output() selectedChange: EventEmitter<D> = new EventEmitter<D>();
+
+  /** Emits when the view has been changed. **/
+  @Output() viewChanged: EventEmitter<MatCalendarView> = new EventEmitter<MatCalendarView>();
 
   /** Date filter for the month and year views. */
   _dateFilterForViews = (date: D) => {
@@ -139,7 +146,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   set _activeDate(value: D) {
     const oldActiveDate = this._clampedActiveDate;
     this._clampedActiveDate = this._adapter.clampDate(value, this.minDate, this.maxDate);
-    if (oldActiveDate && this._clampedActiveDate && this._currentView === "month" &&
+    if (oldActiveDate && this._clampedActiveDate && this.currentView === "month" &&
       !this._adapter.sameMonthAndYear(oldActiveDate, this._clampedActiveDate)) {
       if (this._adapter.isInNextMonth(oldActiveDate, this._clampedActiveDate)) {
         this.calendarState("right");
@@ -156,8 +163,16 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   /** Whether the calendar is in month view. */
-  _currentView: "clock" | "month" | "year" = "month";
-  _clockView: "hour" | "minute" = "hour";
+  _currentView: MatCalendarView;
+  set currentView(view: MatCalendarView) {
+    this._currentView = view;
+    this.viewChanged.emit(view);
+  }
+  get currentView(): MatCalendarView {
+    return this._currentView;
+  }
+
+  _clockView: MatClockView = "hour";
 
   /** The label for the current calendar view. */
   get _yearLabel(): string {
@@ -165,7 +180,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   get _monthYearLabel(): string {
-    return this._currentView === "month" ? this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)] :
+    return this.currentView === "month" ? this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)] :
       this._adapter.getYearName(this._activeDate);
   }
 
@@ -209,11 +224,11 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     this._activeDate = this.startAt || this._adapter.today();
     this._focusActiveCell();
     if (this.type === "month") {
-      this._currentView = "year";
+      this.currentView = "year";
     } else if (this.type === "time") {
-      this._currentView = "clock";
+      this.currentView = "clock";
     } else {
-      this._currentView = this.startView || "month";
+      this.currentView = this.startView || "month";
     }
   }
 
@@ -229,7 +244,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
       }
     } else {
       this._activeDate = date;
-      this._currentView = "clock";
+      this.currentView = "clock";
     }
   }
 
@@ -241,7 +256,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
       }
     } else {
       this._activeDate = month;
-      this._currentView = "month";
+      this.currentView = "month";
       this._clockView = "hour";
     }
   }
@@ -262,35 +277,35 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   _yearClicked(): void {
-    this._currentView = "year";
+    this.currentView = "year";
   }
 
   _dateClicked(): void {
     if (this.type !== "month") {
-      this._currentView = "month";
+      this.currentView = "month";
     }
   }
 
   _hoursClicked(): void {
-    this._currentView = "clock";
+    this.currentView = "clock";
     this._clockView = "hour";
   }
 
   _minutesClicked(): void {
-    this._currentView = "clock";
+    this.currentView = "clock";
     this._clockView = "minute";
   }
 
   /** Handles user clicks on the previous button. */
   _previousClicked(): void {
-    this._activeDate = this._currentView === "month" ?
+    this._activeDate = this.currentView === "month" ?
       this._adapter.addCalendarMonths(this._activeDate, -1) :
       this._adapter.addCalendarYears(this._activeDate, -1);
   }
 
   /** Handles user clicks on the next button. */
   _nextClicked(): void {
-    this._activeDate = this._currentView === "month" ?
+    this._activeDate = this.currentView === "month" ?
       this._adapter.addCalendarMonths(this._activeDate, 1) :
       this._adapter.addCalendarYears(this._activeDate, 1);
   }
@@ -313,9 +328,9 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     // TODO(mmalerba): We currently allow keyboard navigation to disabled dates, but just prevent
     // disabled ones from being selected. This may not be ideal, we should look into whether
     // navigation should skip over disabled dates, and if so, how to implement that efficiently.
-    if (this._currentView === "month") {
+    if (this.currentView === "month") {
       this._handleCalendarBodyKeydownInMonthView(event);
-    } else if (this._currentView === "year") {
+    } else if (this.currentView === "year") {
       this._handleCalendarBodyKeydownInYearView(event);
     } else {
       this._handleCalendarBodyKeydownInClockView(event);
@@ -332,7 +347,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Whether the two dates represent the same view in the current view mode (month or year). */
   private _isSameView(date1: D, date2: D): boolean {
-    return this._currentView === "month" ?
+    return this.currentView === "month" ?
       this._adapter.getYear(date1) === this._adapter.getYear(date2) &&
       this._adapter.getMonth(date1) === this._adapter.getMonth(date2) :
       this._adapter.getYear(date1) === this._adapter.getYear(date2);

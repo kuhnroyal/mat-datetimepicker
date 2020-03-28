@@ -33,10 +33,16 @@ import {
 import { Subject, Subscription } from "rxjs";
 import { first } from "rxjs/operators";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
-import { MatDatetimepickerCalendar } from "./calendar";
+import {
+  MatCalendarView,
+  MatDatetimepickerCalendar
+} from "./calendar";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
 import { MatDatetimepickerInput } from "./datetimepicker-input";
+
+export type MatDatetimepickerType = "date" | "time" | "month" | "datetime";
+export type MatDatetimepickerMode = "auto" | "portrait" | "landscape";
 
 /** Used to generate a unique ID for each datepicker instance. */
 let datetimepickerUid = 0;
@@ -107,8 +113,8 @@ export class MatDatetimepicker<D> implements OnDestroy {
   private _startAt: D | null;
 
   /** The view that the calendar should start in. */
-  @Input() startView: "clock" | "month" | "year" = "month";
-  @Input() mode: "auto" | "portrait" | "landscape" = "auto";
+  @Input() startView: MatCalendarView = "month";
+  @Input() mode: MatDatetimepickerMode = "auto";
   @Input() timeInterval: number = 1;
 
   @Input()
@@ -127,11 +133,11 @@ export class MatDatetimepicker<D> implements OnDestroy {
     return this._type;
   }
 
-  set type(value: "date" | "time" | "month" | "datetime") {
+  set type(value: MatDatetimepickerType) {
     this._type = value || "date";
   }
 
-  private _type: "date" | "time" | "month" | "datetime" = "date";
+  private _type: MatDatetimepickerType = "date";
 
   /**
    * Whether the calendar UI is in touch mode. In touch mode the calendar opens in a dialog rather
@@ -183,11 +189,18 @@ export class MatDatetimepicker<D> implements OnDestroy {
   // tslint:disable-next-line:no-output-rename
   @Output("closed") closedStream: EventEmitter<void> = new EventEmitter<void>();
 
+  /** Emits when the view has been changed. **/
+  @Output() viewChanged: EventEmitter<MatCalendarView> = new EventEmitter<MatCalendarView>();
+
   /** Whether the calendar is open. */
   opened = false;
 
   /** The id for the datepicker calendar. */
   id = `mat-datetimepicker-${datetimepickerUid++}`;
+
+  _viewChanged(type: MatCalendarView): void {
+    this.viewChanged.emit(type);
+  }
 
   /** The currently selected date. */
   get _selected(): D | null {
