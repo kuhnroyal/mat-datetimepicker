@@ -1,15 +1,4 @@
-<mat-datetimepicker-calendar class="mat-typography" cdkTrapFocus
-              [id]="datetimepicker.id"
-              [attr.mode]="datetimepicker.mode"
-              [startView]="datetimepicker.startView"
-              [type]="datetimepicker.type"
-              [timeInterval]="datetimepicker.timeInterval"
-              [minDate]="datetimepicker._minDate"
-              [maxDate]="datetimepicker._maxDate"
-              [dateFilter]="datetimepicker._dateFilter"
-              [selected]="datetimepicker._selected"
-              [startAt]="datetimepicker.startAt"
-              (selectedChange)="datetimepicker._select($event)"
-              (viewChanged)="datetimepicker._viewChanged($event)"
-              (_userSelection)="datetimepicker.close()">
+<mat-datetimepicker-calendar class="mat-typography" cdkTrapFocus [id]="datetimepicker.id" [attr.mode]="datetimepicker.mode" [startView]="datetimepicker.startView" [type]="datetimepicker.type" [twelvehour]="datetimepicker.twelvehour" [timeInterval]="datetimepicker.timeInterval"
+    [minDate]="datetimepicker._minDate" [maxDate]="datetimepicker._maxDate" [dateFilter]="datetimepicker._dateFilter" [selected]="datetimepicker._selected" [startAt]="datetimepicker.startAt" (selectedChange)="datetimepicker._select($event)" (viewChanged)="datetimepicker._viewChanged($event)"
+    (_userSelection)="datetimepicker.close()">
 </mat-datetimepicker-calendar>
