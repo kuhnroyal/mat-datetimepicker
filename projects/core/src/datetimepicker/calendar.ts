@@ -310,6 +310,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     }
   }
 
+  /** Handles user clicks on the AM/PM button. */
   _ampmClicked(source: string): void {
     if (source === this._AMPM) {
       return;
@@ -320,7 +321,6 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     } else {
       this._activeDate = this._adapter.addCalendarHours(this._activeDate, 12);
     }
-
   }
 
   _yearClicked(): void {
