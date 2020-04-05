@@ -123,7 +123,7 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
 
   get _hand(): any {
     let hour = this._adapter.getHour(this.activeDate);
-    if (this.twelvehour) {
+    if (!!this.twelvehour) {
       if (hour === 0) {
         hour = 24;
       }

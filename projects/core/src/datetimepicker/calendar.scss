@@ -1,16 +1,20 @@
 @import '~@angular/material/theming';
+
 $mat-calendar-padding: 8px !default;
 $mat-calendar-weekday-table-font-size: 11px !default;
+
 // Values chosen to approximate https://material.io/icons/#ic_navigate_before and
 // https://material.io/icons/#ic_navigate_next as closely as possible.
 $mat-calendar-prev-next-icon-border-width: 2px;
 $mat-calendar-prev-next-icon-margin: 15.5px;
 $mat-calendar-prev-icon-transform: translateX(2px) rotate(-45deg);
 $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
+
 .mat-datetimepicker-calendar {
   @include user-select(none);
   display: block;
   outline: none;
+
   &[mode='landscape'] {
     display: flex;
   }
@@ -21,6 +25,7 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
   font-size: 14px;
   color: white;
   box-sizing: border-box;
+
   [mode='landscape'] & {
     width: 150px;
     min-width: 150px;
@@ -37,6 +42,7 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
 .mat-datetimepicker-calendar-header-date-time {
   font-size: 30px;
   line-height: 34px;
+
   [mode='landscape'] & {
     white-space: normal;
     word-wrap: break-word;
@@ -44,7 +50,7 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
 }
 
 .mat-datetimepicker-calendar-header-ampm-container {
-  font-size: 23px;
+  font-size: 0.77em;
 }
 
 .mat-datetimepicker-calendar-header-year,
@@ -63,8 +69,10 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
 
 .mat-datetimepicker-calendar-header-time {
   padding-left: 8px;
+
   &:not(.active) {
     opacity: 0.6;
+
     .mat-datetimepicker-calendar-header-hours,
     .mat-datetimepicker-calendar-header-minutes,
     .mat-datetimepicker-calendar-header-ampm {
@@ -72,6 +80,7 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
       opacity: 1;
     }
   }
+
   [mode='landscape'] & {
     display: block;
     padding-left: 0;
@@ -84,6 +93,7 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
   outline: none;
   box-sizing: border-box;
   overflow: hidden;
+
   [mode='landscape'] & {
     padding-top: $mat-calendar-padding;
   }
@@ -115,10 +125,12 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
   cursor: pointer;
   background: transparent;
   box-sizing: border-box;
+
   &.disabled {
     color: rgba(black, 0.38);
     pointer-events: none;
   }
+
   svg {
     fill: currentColor;
     vertical-align: top;
@@ -133,6 +145,7 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
 
 .mat-datetimepicker-calendar-table-header {
   color: rgba(black, 0.38);
+
   th {
     text-align: center;
     font-size: $mat-calendar-weekday-table-font-size;
@@ -143,18 +156,22 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
 @media (min-width: 480px) {
   .mat-datetimepicker-calendar[mode='auto'] {
     display: flex;
+
     .mat-datetimepicker-calendar-header {
       width: 150px;
       min-width: 150px;
     }
+
     .mat-datetimepicker-calendar-header-date-time {
       white-space: normal;
       word-wrap: break-word;
     }
+
     .mat-datetimepicker-calendar-header-time {
       display: block;
       padding-left: 0;
     }
+
     .mat-datetimepicker-calendar-content {
       padding-top: $mat-calendar-padding;
     }

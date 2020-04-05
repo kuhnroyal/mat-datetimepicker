@@ -199,7 +199,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   get _hoursLabel(): string {
     let hour = this._adapter.getHour(this._activeDate);
-    if (this.twelvehour) {
+    if (!!this.twelvehour) {
       if (hour === 0) {
         hour = 24;
       }
