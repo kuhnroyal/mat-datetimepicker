@@ -289,7 +289,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   _updateDate(date: D): D {
-    if (this.twelvehour) {
+    if (!!this.twelvehour) {
       const HOUR = this._adapter.getHour(date);
       if (HOUR === 12) {
         if (this._AMPM === "AM") {
