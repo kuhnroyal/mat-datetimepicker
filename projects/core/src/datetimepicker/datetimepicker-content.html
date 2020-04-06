@@ -10,6 +10,10 @@
               [dateFilter]="datetimepicker._dateFilter"
               [selected]="datetimepicker._selected"
               [startAt]="datetimepicker.startAt"
+              [ariaNextMonthLabel]="datetimepicker.ariaNextMonthLabel"
+              [ariaPrevMonthLabel]="datetimepicker.ariaPrevMonthLabel"
+              [ariaNextYearLabel]="datetimepicker.ariaNextYearLabel"
+              [ariaPrevYearLabel]="datetimepicker.ariaPrevYearLabel"
               (selectedChange)="datetimepicker._select($event)"
               (viewChanged)="datetimepicker._viewChanged($event)"
               (_userSelection)="datetimepicker.close()">

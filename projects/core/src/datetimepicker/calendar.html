@@ -2,9 +2,10 @@
   <div *ngIf="type !== 'time'"
        class="mat-datetimepicker-calendar-header-year"
        [class.active]="currentView === 'year'"
+       role="button"
        (click)="_yearClicked()">{{ _yearLabel }}</div>
   <div class="mat-datetimepicker-calendar-header-date-time">
-    <span *ngIf="type !== 'time'"
+    <span *ngIf="type !== 'time'" role="button"
           class="mat-datetimepicker-calendar-header-date"
           [class.active]="currentView === 'month'"
           [class.not-clickable]="type === 'month'"
@@ -13,9 +14,11 @@
           class="mat-datetimepicker-calendar-header-time"
           [class.active]="currentView === 'clock'">
       <span class="mat-datetimepicker-calendar-header-hours"
-            [class.active]="_clockView === 'hour'"
+            [class.active]="_clockView == 'hour'"
+            role="button"
             (click)="_hoursClicked()">{{ _hoursLabel }}</span>:<span class="mat-datetimepicker-calendar-header-minutes"
-                                                                     [class.active]="_clockView === 'minute'"
+                                                                     [class.active]="_clockView == 'minute'"
+                                                                     role="button"
                                                                      (click)="_minutesClicked()">{{ _minutesLabel }}</span>
       <br/>
       <span *ngIf="twelvehour" 
@@ -33,8 +36,11 @@
   <div class="mat-month-content" *ngIf="currentView === 'month' || currentView === 'year'">
     <div class="mat-datetimepicker-calendar-controls">
       <div class="mat-datetimepicker-calendar-previous-button"
-           [class.disabled]="!_previousEnabled()" (click)="_previousClicked()"
-           aria-label="Previous month">
+           [class.disabled]="!_previousEnabled()"
+           [attr.aria-disabled]="!_previousEnabled()"
+           (click)="_previousClicked()"
+           [attr.aria-label]="_ariaLabelPrev"
+           role="button">
         <svg width="24" height="24" viewBox="0 0 24 24">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
         </svg>
@@ -43,8 +49,11 @@
         <strong>{{ _monthYearLabel }}</strong>
       </div>
       <div class="mat-datetimepicker-calendar-next-button"
-           [class.disabled]="!_nextEnabled()" (click)="_nextClicked()"
-           aria-label="Next month">
+           [class.disabled]="!_nextEnabled()"
+           [attr.aria-disabled]="!_nextEnabled()"
+           (click)="_nextClicked()"
+           [attr.aria-label]="_ariaLabelNext"
+           role="button">
         <svg width="24" height="24" viewBox="0 0 24 24">
           <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
         </svg>
