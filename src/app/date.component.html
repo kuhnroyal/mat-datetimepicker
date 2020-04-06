@@ -17,6 +17,13 @@
     <mat-error *ngIf="group.get('time').errors?.required">required</mat-error>
   </mat-form-field>
   <mat-form-field>
+    <mat-placeholder>Time AM/PM</mat-placeholder>
+    <mat-datetimepicker-toggle [for]="timeAMPMPicker" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #timeAMPMPicker twelvehour="true" type="time" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+    <input matInput formControlName="timeAMPM" [matDatetimepicker]="timeAMPMPicker" required>
+    <mat-error *ngIf="group.get('timeAMPM').errors?.required">required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
     <mat-placeholder>Date</mat-placeholder>
     <mat-datetimepicker-toggle [for]="datePicker" matSuffix></mat-datetimepicker-toggle>
     <mat-datetimepicker #datePicker type="date" openOnFocus="true"></mat-datetimepicker>

@@ -17,6 +17,15 @@
             (click)="_hoursClicked()">{{ _hoursLabel }}</span>:<span class="mat-datetimepicker-calendar-header-minutes"
                                                                      [class.active]="_clockView === 'minute'"
                                                                      (click)="_minutesClicked()">{{ _minutesLabel }}</span>
+      <br/>
+      <span *ngIf="twelvehour" 
+            class="mat-datetimepicker-calendar-header-ampm-container">
+        <span class="mat-datetimepicker-calendar-header-ampm" 
+              [class.active]="_AMPM === 'AM'" 
+              (click)="_ampmClicked('AM')">AM</span>/<span class="mat-datetimepicker-calendar-header-ampm" 
+                                                            [class.active]="_AMPM === 'PM'" 
+                                                            (click)="_ampmClicked('PM')">PM</span>
+      </span>
     </span>
   </div>
 </div>
@@ -59,6 +68,7 @@
                  (_userSelection)="_userSelected()">
   </mat-datetimepicker-year-view>
   <mat-datetimepicker-clock *ngSwitchDefault
+             [twelvehour]="twelvehour"
              [startView]="_clockView"
              [interval]="timeInterval"
              [minDate]="minDate"

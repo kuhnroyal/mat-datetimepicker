@@ -98,6 +98,8 @@ export class MatDatetimepickerContent<D> implements AfterContentInit {
   preserveWhitespaces: false
 })
 export class MatDatetimepicker<D> implements OnDestroy {
+  /** if true change the clock to 12 hour format. */
+  @Input() twelvehour: boolean = false;
   /** The date to open the calendar to initially. */
   @Input()
   get startAt(): D | null {

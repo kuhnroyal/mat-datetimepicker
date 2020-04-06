@@ -116,6 +116,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   private _maxDate: D | null;
 
+  @Input() twelvehour: boolean = false;
+
   @Input() timeInterval: number = 1;
 
   /** A function used to filter which dates are selectable. */
@@ -158,6 +160,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   private _clampedActiveDate: D;
 
+  _AMPM: string;
+
   _userSelected(): void {
     this._userSelection.emit();
   }
@@ -194,7 +198,14 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   get _hoursLabel(): string {
-    return this._2digit(this._adapter.getHour(this._activeDate));
+    let hour = this._adapter.getHour(this._activeDate);
+    if (!!this.twelvehour) {
+      if (hour === 0) {
+        hour = 24;
+      }
+      hour = hour > 12 ? (hour - 12) : hour;
+    }
+    return this._2digit(hour);
   }
 
   get _minutesLabel(): string {
@@ -222,6 +233,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   ngAfterContentInit() {
     this._activeDate = this.startAt || this._adapter.today();
+    this._selectAMPM(this._activeDate);
     this._focusActiveCell();
     if (this.type === "month") {
       this.currentView = "year";
@@ -263,7 +275,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   _timeSelected(date: D): void {
     if (this._clockView !== "minute") {
-      this._activeDate = date;
+      this._activeDate = this._updateDate(date);
       this._clockView = "minute";
     } else {
       if (!this._adapter.sameDatetime(date, this.selected)) {
@@ -274,6 +286,41 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   _onActiveDateChange(date: D) {
     this._activeDate = date;
+  }
+
+  _updateDate(date: D): D {
+    if (this.twelvehour) {
+      const HOUR = this._adapter.getHour(date);
+      if (HOUR === 12) {
+        if (this._AMPM === "AM") {
+          return this._adapter.addCalendarHours(date, -12);
+        }
+      } else if (this._AMPM === "PM") {
+        return this._adapter.addCalendarHours(date, 12);
+      }
+    }
+    return date;
+  }
+
+  _selectAMPM(date: D) {
+    if (this._adapter.getHour(date) > 11) {
+      this._AMPM = "PM";
+    } else {
+      this._AMPM = "AM";
+    }
+  }
+
+  _ampmClicked(source: string): void {
+    if (source === this._AMPM) {
+      return;
+    }
+    this._AMPM = source;
+    if (this._AMPM === "AM") {
+      this._activeDate = this._adapter.addCalendarHours(this._activeDate, -12);
+    } else {
+      this._activeDate = this._adapter.addCalendarHours(this._activeDate, 12);
+    }
+
   }
 
   _yearClicked(): void {
