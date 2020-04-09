@@ -24,14 +24,14 @@ Like the @angular/material datepicker it contains a native-datetime-adapter as w
 Install:
 
 ```sh
-yarn install @mat-datetimepicker/core
+yarn add @mat-datetimepicker/core
 ```
 
 And for the moment adapter:
 
 ```sh
-yarn install @angular/material-moment-adapter
-yarn install @mat-datetimepicker/moment
+yarn add @angular/material-moment-adapter
+yarn add @mat-datetimepicker/moment
 ```
 
 ## Setup
