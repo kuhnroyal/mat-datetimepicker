@@ -90,10 +90,12 @@ export class MomentDatetimeComponent {
 
     this.group = fb.group({
       dateTime: [new Date("2017-11-09T12:10:00.000Z"), Validators.required],
+      dateTimeYear: [new Date("2017-11-09T12:10:00.000Z"), Validators.required],
       date: [null, Validators.required],
       time: [null, Validators.required],
       timeAMPM: [null, Validators.required],
       month: [null, Validators.required],
+      year: [null, Validators.required],
       mintest: [this.today, Validators.required],
       filtertest: [this.today, Validators.required],
       touch: [null, Validators.required]

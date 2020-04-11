@@ -10,6 +10,15 @@
     <mat-error *ngIf="group.get('dateTime').errors?.matDatepickerMax">max</mat-error>
   </mat-form-field>
   <mat-form-field>
+    <mat-placeholder>DateTime Year selector</mat-placeholder>
+    <mat-datetimepicker-toggle [for]="datetimeYearPicker" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #datetimeYearPicker type="datetime" multiYearSelector="true" startView="month" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+    <input matInput formControlName="dateTimeYear" [min]="today" [max]="tomorrow" [matDatetimepicker]="datetimeYearPicker" required autocomplete="false">
+    <mat-error *ngIf="group.get('dateTimeYear').errors?.required">required</mat-error>
+    <mat-error *ngIf="group.get('dateTimeYear').errors?.matDatepickerMin">min</mat-error>
+    <mat-error *ngIf="group.get('dateTimeYear').errors?.matDatepickerMax">max</mat-error>
+  </mat-form-field>
+  <mat-form-field>
     <mat-placeholder>Time</mat-placeholder>
     <mat-datetimepicker-toggle [for]="timePicker" matSuffix></mat-datetimepicker-toggle>
     <mat-datetimepicker #timePicker type="time" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
@@ -36,6 +45,13 @@
     <mat-datetimepicker #monthPicker type="month" openOnFocus="true" mode="portrait"></mat-datetimepicker>
     <input matInput formControlName="month" [matDatetimepicker]="monthPicker" required>
     <mat-error *ngIf="group.get('month').errors?.required">required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+      <mat-placeholder>Year</mat-placeholder>
+      <mat-datetimepicker-toggle [for]="yearPicker" matSuffix></mat-datetimepicker-toggle>
+      <mat-datetimepicker #yearPicker type="year" openOnFocus="true"></mat-datetimepicker>
+      <input matInput formControlName="year" [matDatetimepicker]="yearPicker" required>
+      <mat-error *ngIf="group.get('year').errors?.required">required</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-placeholder>Min/Max Test</mat-placeholder>

@@ -37,8 +37,14 @@ import { MatDatetimepickerType } from "./datetimepicker";
 import { slideCalendar } from "./datetimepicker-animations";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
+import {
+  yearsPerPage,
+  yearsPerRow,
+  getActiveOffset,
+  isSameMultiYearView
+ } from "./multi-year-view";
 
-export type MatCalendarView = "clock" | "month" | "year";
+export type MatCalendarView = "clock" | "month" | "year" | "multi-year";
 
 /**
  * A calendar that is used as part of the datepicker.
@@ -65,7 +71,22 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   @Output() _userSelection = new EventEmitter<void>();
 
-  @Input() type: MatDatetimepickerType = "date";
+  @Input()
+  get type(): MatDatetimepickerType {
+    return this._type;
+  }
+
+  set type(value: MatDatetimepickerType) {
+    this._type = value || "date";
+    if (this.type === "year") {
+      this.multiYearSelector = true;
+    }
+  }
+
+  private _type: MatDatetimepickerType = "date";
+
+  /** Active multi year view when click on year. */
+  @Input() multiYearSelector: boolean = false;
 
   /** A date representing the period (month or year) to start the calendar in. */
   @Input()
@@ -130,6 +151,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   @Input() ariaPrevMonthLabel = "Previous month";
   @Input() ariaNextYearLabel = "Next year";
   @Input() ariaPrevYearLabel = "Previous year";
+  @Input() ariaNextMultiYearLabel = "Next year range";
+  @Input() ariaPrevMultiYearLabel = "Previous year range";
 
   /** Emits when the currently selected date changes. */
   @Output() selectedChange: EventEmitter<D> = new EventEmitter<D>();
@@ -192,6 +215,22 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   get _monthYearLabel(): string {
+
+    if (this.currentView === "multi-year") {
+      // The offset from the active year to the "slot" for the starting year is the
+      // *actual* first rendered year in the multi-year view, and the last year is
+      // just yearsPerPage - 1 away.
+      const activeYear = this._adapter.getYear(this._activeDate);
+      const minYearOfPage = activeYear - getActiveOffset(
+        this._adapter, this._activeDate, this.minDate, this.maxDate);
+      const maxYearOfPage = minYearOfPage + yearsPerPage - 1;
+      const minYearName =
+        this._adapter.getYearName(this._adapter.createDate(minYearOfPage, 0, 1));
+      const maxYearName =
+        this._adapter.getYearName(this._adapter.createDate(maxYearOfPage, 0, 1));
+      return this._intl.formatYearRange(minYearName, maxYearName);
+    }
+
     return this.currentView === "month" ? this._adapter.getMonthNames("long")[this._adapter.getMonth(this._activeDate)] :
       this._adapter.getYearName(this._activeDate);
   }
@@ -226,6 +265,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
         return this.ariaNextMonthLabel;
       case "year":
         return this.ariaNextYearLabel;
+      case "multi-year":
+        return this.ariaNextMultiYearLabel;
       default:
         return "";
     }
@@ -237,6 +278,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
         return this.ariaPrevMonthLabel;
       case "year":
         return this.ariaPrevYearLabel;
+      case "multi-year":
+        return this.ariaPrevMultiYearLabel;
       default:
         return "";
     }
@@ -265,7 +308,9 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
     this._activeDate = this.startAt || this._adapter.today();
     this._selectAMPM(this._activeDate);
     this._focusActiveCell();
-    if (this.type === "month") {
+    if (this.type === "year") {
+      this.currentView = "multi-year";
+    } else if (this.type === "month") {
       this.currentView = "year";
     } else if (this.type === "time") {
       this.currentView = "clock";
@@ -302,6 +347,19 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
       this._clockView = "hour";
     }
   }
+
+    /** Handles year selection in the multi year view. */
+    _yearSelected(year: D): void {
+      if (this.type === "year") {
+        if (!this._adapter.sameYear(year, this.selected)) {
+          const normalizedDate = this._adapter.createDatetime(this._adapter.getYear(year), 0, 1, 0, 0);
+          this.selectedChange.emit(normalizedDate);
+        }
+      } else {
+        this._activeDate = year;
+        this.currentView = "year";
+      }
+    }
 
   _timeSelected(date: D): void {
     if (this._clockView !== "minute") {
@@ -354,6 +412,10 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   }
 
   _yearClicked(): void {
+    if (this.type === "year" || this.multiYearSelector) {
+      this.currentView = "multi-year";
+      return;
+    }
     this.currentView = "year";
   }
 
@@ -377,14 +439,18 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   _previousClicked(): void {
     this._activeDate = this.currentView === "month" ?
       this._adapter.addCalendarMonths(this._activeDate, -1) :
-      this._adapter.addCalendarYears(this._activeDate, -1);
+      this._adapter.addCalendarYears(
+        this._activeDate, this.currentView === "year" ? -1 : -yearsPerPage
+      );
   }
 
   /** Handles user clicks on the next button. */
   _nextClicked(): void {
     this._activeDate = this.currentView === "month" ?
       this._adapter.addCalendarMonths(this._activeDate, 1) :
-      this._adapter.addCalendarYears(this._activeDate, 1);
+      this._adapter.addCalendarYears(
+        this._activeDate, this.currentView === "year" ? 1 : yearsPerPage
+      );
   }
 
   /** Whether the previous period button is enabled. */
@@ -409,6 +475,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
       this._handleCalendarBodyKeydownInMonthView(event);
     } else if (this.currentView === "year") {
       this._handleCalendarBodyKeydownInYearView(event);
+    } else if (this.currentView === "multi-year") {
+      this._handleCalendarBodyKeydownInMultiYearView(event);
     } else {
       this._handleCalendarBodyKeydownInClockView(event);
     }
@@ -424,10 +492,16 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
   /** Whether the two dates represent the same view in the current view mode (month or year). */
   private _isSameView(date1: D, date2: D): boolean {
-    return this.currentView === "month" ?
-      this._adapter.getYear(date1) === this._adapter.getYear(date2) &&
-      this._adapter.getMonth(date1) === this._adapter.getMonth(date2) :
-      this._adapter.getYear(date1) === this._adapter.getYear(date2);
+    if (this.currentView === "month") {
+      return this._adapter.getYear(date1) === this._adapter.getYear(date2) &&
+          this._adapter.getMonth(date1) === this._adapter.getMonth(date2);
+    }
+    if (this.currentView === "year") {
+      return this._adapter.getYear(date1) === this._adapter.getYear(date2);
+    }
+    // Otherwise we are in 'multi-year' view.
+    return isSameMultiYearView(
+      this._adapter, date1, date2, this.minDate, this.maxDate);
   }
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
@@ -523,6 +597,50 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
 
     // Prevent unexpected default actions such as form submission.
     event.preventDefault();
+  }
+
+  /** Handles keydown events on the calendar body when calendar is in multi-year view. */
+  private _handleCalendarBodyKeydownInMultiYearView(event: KeyboardEvent): void {
+    // tslint:disable-next-line:deprecation
+    switch (event.keyCode) {
+      case LEFT_ARROW:
+        this._activeDate = this._adapter.addCalendarYears(this._activeDate, -1);
+        break;
+      case RIGHT_ARROW:
+        this._activeDate = this._adapter.addCalendarYears(this._activeDate, 1);
+        break;
+      case UP_ARROW:
+        this._activeDate = this._adapter.addCalendarYears(this._activeDate, -yearsPerRow);
+        break;
+      case DOWN_ARROW:
+        this._activeDate = this._adapter.addCalendarYears(this._activeDate, yearsPerRow);
+        break;
+      case HOME:
+        this._activeDate = this._adapter.addCalendarYears(this._activeDate,
+          -getActiveOffset(this._adapter, this._activeDate, this.minDate, this.maxDate));
+        break;
+      case END:
+        this._activeDate = this._adapter.addCalendarYears(this._activeDate,
+          yearsPerPage - getActiveOffset(
+            this._adapter, this._activeDate, this.minDate, this.maxDate) - 1);
+        break;
+      case PAGE_UP:
+        this._activeDate =
+            this._adapter.addCalendarYears(
+                this._activeDate, event.altKey ? -yearsPerPage * 10 : -yearsPerPage);
+        break;
+      case PAGE_DOWN:
+        this._activeDate =
+            this._adapter.addCalendarYears(
+                this._activeDate, event.altKey ? yearsPerPage * 10 : yearsPerPage);
+        break;
+      case ENTER:
+        this._yearSelected(this._activeDate);
+        break;
+      default:
+        // Don't prevent default or focus active cell on keys that we don't explicitly handle.
+        return;
+    }
   }
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
