@@ -10,17 +10,12 @@ import {
   Output,
   ViewEncapsulation
 } from "@angular/core";
-import {
-  MAT_DATETIME_FORMATS,
-  MatDatetimeFormats
-} from "../adapter/datetime-formats";
-import {
-  DatetimeAdapter
-} from "../adapter/datetime-adapter";
-import { MatDatetimepickerCalendarCell } from "./calendar-body";
-import { MatDatetimepickerType } from "./datetimepicker";
-import { slideCalendar } from "./datetimepicker-animations";
-import { createMissingDateImplError } from "./datetimepicker-errors";
+import {MAT_DATETIME_FORMATS, MatDatetimeFormats} from "../adapter/datetime-formats";
+import {DatetimeAdapter} from "../adapter/datetime-adapter";
+import {MatDatetimepickerCalendarCell} from "./calendar-body";
+import {MatDatetimepickerType} from "./datetimepicker";
+import {slideCalendar} from "./datetimepicker-animations";
+import {createMissingDateImplError} from "./datetimepicker-errors";
 
 const DAYS_PER_WEEK = 7;
 
@@ -40,68 +35,23 @@ export class MatDatetimepickerMonthView<D> implements AfterContentInit {
   @Input() type: MatDatetimepickerType = "date";
 
   @Output() _userSelection = new EventEmitter<void>();
-
-  /**
-   * The date to display in this month view (everything other than the month and year is ignored).
-   */
-  @Input()
-  get activeDate(): D {
-    return this._activeDate;
-  }
-
-  set activeDate(value: D) {
-    let oldActiveDate = this._activeDate;
-    this._activeDate = value || this._adapter.today();
-    if (oldActiveDate && this._activeDate &&
-      !this._adapter.sameMonthAndYear(oldActiveDate, this._activeDate)) {
-      this._init();
-      if (this._adapter.isInNextMonth(oldActiveDate, this._activeDate)) {
-        this.calendarState("right");
-      } else {
-        this.calendarState("left");
-      }
-    }
-  }
-
-  private _activeDate: D;
-
-  /** The currently selected date. */
-  @Input()
-  get selected(): D {
-    return this._selected;
-  }
-
-  set selected(value: D) {
-    this._selected = value;
-    this._selectedDate = this._getDateInCurrentMonth(this.selected);
-  }
-
-  private _selected: D;
-
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
-
   /** Emits when a new date is selected. */
   @Output() selectedChange = new EventEmitter<D>();
-
   /** Grid of calendar cells representing the dates of the month. */
   _weeks: MatDatetimepickerCalendarCell[][];
-
   /** The number of blank cells in the first row before the 1st of the month. */
   _firstWeekOffset: number;
-
   /**
    * The date of the month that the currently selected Date falls on.
    * Null if the currently selected Date is in another month.
    */
   _selectedDate: number;
-
   /** The date of the month that today falls on. Null if today is in another month. */
   _todayDate: number;
-
   /** The names of the weekdays. */
   _weekdays: { long: string, narrow: string }[];
-
   _calendarState: string;
 
   constructor(@Optional() public _adapter: DatetimeAdapter<D>,
@@ -127,6 +77,43 @@ export class MatDatetimepickerMonthView<D> implements AfterContentInit {
     this._activeDate = this._adapter.today();
   }
 
+  private _activeDate: D;
+
+  /**
+   * The date to display in this month view (everything other than the month and year is ignored).
+   */
+  @Input()
+  get activeDate(): D {
+    return this._activeDate;
+  }
+
+  set activeDate(value: D) {
+    let oldActiveDate = this._activeDate;
+    this._activeDate = value || this._adapter.today();
+    if (oldActiveDate && this._activeDate &&
+      !this._adapter.sameMonthAndYear(oldActiveDate, this._activeDate)) {
+      this._init();
+      if (this._adapter.isInNextMonth(oldActiveDate, this._activeDate)) {
+        this.calendarState("right");
+      } else {
+        this.calendarState("left");
+      }
+    }
+  }
+
+  private _selected: D;
+
+  /** The currently selected date. */
+  @Input()
+  get selected(): D {
+    return this._selected;
+  }
+
+  set selected(value: D) {
+    this._selected = value;
+    this._selectedDate = this._getDateInCurrentMonth(this.selected);
+  }
+
   ngAfterContentInit(): void {
     this._init();
   }
@@ -140,6 +127,10 @@ export class MatDatetimepickerMonthView<D> implements AfterContentInit {
     if (this.type === "date") {
       this._userSelection.emit();
     }
+  }
+
+  _calendarStateDone() {
+    this._calendarState = "";
   }
 
   /** Initializes this month view. */
@@ -192,10 +183,6 @@ export class MatDatetimepickerMonthView<D> implements AfterContentInit {
 
   private calendarState(direction: string): void {
     this._calendarState = direction;
-  }
-
-  _calendarStateDone() {
-    this._calendarState = "";
   }
 
 }

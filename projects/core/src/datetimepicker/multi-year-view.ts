@@ -8,21 +8,14 @@ import {
   Input,
   Optional,
   Output,
-  ViewChild,
   ViewEncapsulation
 } from "@angular/core";
-import { MatDatetimepickerType } from "./datetimepicker";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerCalendarCell } from "./calendar-body";
-import { MatDatetimepickerCalendar } from "./calendar";
-import { slideCalendar } from "./datetimepicker-animations";
-import {
-  MAT_DATETIME_FORMATS,
-  MatDatetimeFormats
-} from "../adapter/datetime-formats";
-import {
-  DatetimeAdapter
-} from "../adapter/datetime-adapter";
+import {MatDatetimepickerType} from "./datetimepicker";
+import {createMissingDateImplError} from "./datetimepicker-errors";
+import {MatDatetimepickerCalendarCell} from "./calendar-body";
+import {slideCalendar} from "./datetimepicker-animations";
+import {MAT_DATETIME_FORMATS, MatDatetimeFormats} from "../adapter/datetime-formats";
+import {DatetimeAdapter} from "../adapter/datetime-adapter";
 
 
 export const yearsPerPage = 24;
@@ -45,6 +38,37 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
   @Output() _userSelection = new EventEmitter<void>();
 
   @Input() type: MatDatetimepickerType = "date";
+  /** A function used to filter which dates are selectable. */
+  @Input() dateFilter: (date: D) => boolean;
+  /** Emits when a new month is selected. */
+  @Output() selectedChange = new EventEmitter<D>();
+  /** Grid of calendar cells representing the years in the range. */
+  _years: MatDatetimepickerCalendarCell[][];
+  /** The label for this year range (e.g. "2000-2020"). */
+  _yearLabel: string;
+  /** The year in this range that today falls on. Null if today is in a different range. */
+  _todayYear: number;
+  /**
+   * The year in this range that the selected Date falls on.
+   * Null if the selected Date is in a different range.
+   */
+  _selectedYear: number | null;
+  _calendarState: string;
+
+  constructor(@Optional() public _adapter: DatetimeAdapter<D>,
+              @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats) {
+    if (!this._adapter) {
+      throw createMissingDateImplError("DatetimeAdapter");
+    }
+
+    if (!this._dateFormats) {
+      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
+    }
+
+    this._activeDate = this._adapter.today();
+  }
+
+  private _activeDate: D;
 
   /** The date to display in this multi year view*/
   @Input()
@@ -61,7 +85,7 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
     }
   }
 
-  private _activeDate: D;
+  private _selected: D;
 
   /** The currently selected date. */
   @Input()
@@ -74,58 +98,28 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
     this._selectedYear = this._selected && this._adapter.getYear(this._selected);
   }
 
-  private _selected: D;
+  private _minDate: D | null;
 
   /** The minimum selectable date. */
   @Input()
-  get minDate(): D | null { return this._minDate; }
+  get minDate(): D | null {
+    return this._minDate;
+  }
+
   set minDate(value: D | null) {
     this._minDate = this._getValidDateOrNull(this._adapter.deserialize(value));
   }
-  private _minDate: D | null;
+
+  private _maxDate: D | null;
 
   /** The maximum selectable date. */
   @Input()
-  get maxDate(): D | null { return this._maxDate; }
+  get maxDate(): D | null {
+    return this._maxDate;
+  }
+
   set maxDate(value: D | null) {
     this._maxDate = this._getValidDateOrNull(this._adapter.deserialize(value));
-  }
-  private _maxDate: D | null;
-
-  /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
-
-  /** Emits when a new month is selected. */
-  @Output() selectedChange = new EventEmitter<D>();
-
-  /** Grid of calendar cells representing the years in the range. */
-  _years: MatDatetimepickerCalendarCell[][];
-
-  /** The label for this year range (e.g. "2000-2020"). */
-  _yearLabel: string;
-
-  /** The year in this range that today falls on. Null if today is in a different range. */
-  _todayYear: number;
-
-  /**
-   * The year in this range that the selected Date falls on.
-   * Null if the selected Date is in a different range.
-   */
-  _selectedYear: number | null;
-
-  _calendarState: string;
-
-  constructor(@Optional() public _adapter: DatetimeAdapter<D>,
-              @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats) {
-    if (!this._adapter) {
-      throw createMissingDateImplError("DatetimeAdapter");
-    }
-
-    if (!this._dateFormats) {
-      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
-    }
-
-    this._activeDate = this._adapter.today();
   }
 
   ngAfterContentInit() {
@@ -141,13 +135,21 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
       year,
       month,
       Math.min(this._adapter.getDate(this.activeDate),
-      this._adapter.getNumDaysInMonth(normalizedDate)),
+        this._adapter.getNumDaysInMonth(normalizedDate)),
       this._adapter.getHour(this.activeDate),
       this._adapter.getMinute(this.activeDate)));
 
     if (this.type === "year") {
       this._userSelection.emit();
     }
+  }
+
+  _getActiveCell(): number {
+    return getActiveOffset(this._adapter, this.activeDate, this.minDate, this.maxDate);
+  }
+
+  _calendarStateDone() {
+    this._calendarState = "";
   }
 
   /** Initializes this year view. */
@@ -172,23 +174,18 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
     }
   }
 
-  _getActiveCell(): number {
-    return getActiveOffset(this._adapter, this.activeDate, this.minDate, this.maxDate);
-  }
-
   /** Creates an MatDatetimepickerCalendarCell for the given year. */
   private _createCellForYear(year: number) {
     let yearName = this._adapter.getYearName(this._adapter.createDate(year, 0, 1));
     return new MatDatetimepickerCalendarCell(year, yearName, yearName, this._shouldEnableYear(year));
   }
 
-
   /** Whether the given year is enabled. */
   private _shouldEnableYear(year: number) {
     // disable if the year is greater than maxDate lower than minDate
     if (year === undefined || year === null ||
-        (this.maxDate && year > this._adapter.getYear(this.maxDate)) ||
-        (this.minDate && year < this._adapter.getYear(this.minDate))) {
+      (this.maxDate && year > this._adapter.getYear(this.maxDate)) ||
+      (this.minDate && year < this._adapter.getYear(this.minDate))) {
       return false;
     }
 
@@ -201,7 +198,7 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
 
     // If any date in the year is enabled count the year as enabled.
     for (let date = firstOfYear; this._adapter.getYear(date) == year;
-      date = this._adapter.addCalendarDays(date, 1)) {
+         date = this._adapter.addCalendarDays(date, 1)) {
       if (this.dateFilter(date)) {
         return true;
       }
@@ -215,7 +212,7 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
    * Returns null if the given Date is not in this range.
    */
   private _getYearInCurrentRange(date: D) {
-    const year = this._adapter.getYear(date)
+    const year = this._adapter.getYear(date);
     return this._isInRange(year) ?
       year : null;
   }
@@ -229,17 +226,12 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
     return true;
   }
 
-
   /**
    * @param obj The object to check.
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
   private _getValidDateOrNull(obj: any): D | null {
     return (this._adapter.isDateInstance(obj) && this._adapter.isValid(obj)) ? obj : null;
-  }
-
-  _calendarStateDone() {
-    this._calendarState = "";
   }
 }
 
@@ -249,7 +241,7 @@ export function isSameMultiYearView<D>(
   const year2 = dateAdapter.getYear(date2);
   const startingYear = getStartingYear(dateAdapter, minDate, maxDate);
   return Math.floor((year1 - startingYear) / yearsPerPage) ===
-          Math.floor((year2 - startingYear) / yearsPerPage);
+    Math.floor((year2 - startingYear) / yearsPerPage);
 }
 
 /**
@@ -281,6 +273,6 @@ function getStartingYear<D>(
 }
 
 /** Gets remainder that is non-negative, even if first number is negative */
-function euclideanModulo (a: number, b: number): number {
+function euclideanModulo(a: number, b: number): number {
   return (a % b + b) % b;
 }

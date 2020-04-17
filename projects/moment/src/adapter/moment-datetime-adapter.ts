@@ -1,20 +1,11 @@
-import {
-  Inject,
-  Injectable,
-  Optional
-} from "@angular/core";
-import {
-  DateAdapter,
-  MAT_DATE_LOCALE
-} from "@angular/material/core";
-import {
-  MatMomentDateAdapterOptions,
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS
-} from "@angular/material-moment-adapter";
-import { DatetimeAdapter } from "@mat-datetimepicker/core";
+import {Inject, Injectable, Optional} from "@angular/core";
+import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateAdapterOptions} from "@angular/material-moment-adapter";
+import {DatetimeAdapter} from "@mat-datetimepicker/core";
 
 import * as moment_ from "moment";
-import { Moment } from "moment";
+import {Moment} from "moment";
+
 const moment = moment_;
 
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
@@ -43,8 +34,8 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
   private _useUtc = false;
 
   constructor(@Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: string,
-    @Optional() @Inject(MAT_MOMENT_DATE_ADAPTER_OPTIONS) matMomentAdapterOptions: MatMomentDateAdapterOptions,
-    _delegate: DateAdapter<Moment>) {
+              @Optional() @Inject(MAT_MOMENT_DATE_ADAPTER_OPTIONS) matMomentAdapterOptions: MatMomentDateAdapterOptions,
+              _delegate: DateAdapter<Moment>) {
     super(_delegate);
     this.setLocale(matDateLocale || moment.locale());
     this._useUtc = matMomentAdapterOptions.useUtc;
@@ -100,7 +91,7 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     }
 
     // const result = moment({year, month, date, hour, minute}).locale(this.locale);
-    let result = moment({ year, month, date, hour, minute });
+    let result = moment({year, month, date, hour, minute});
     if (this._useUtc) {
       result = result.utc();
     }
@@ -111,10 +102,6 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     }
 
     return result;
-  }
-
-  private getDateInNextMonth(date: Moment) {
-    return super.clone(date).date(1).add({ month: 1 });
   }
 
   getFirstDateOfMonth(date: Moment): Moment {
@@ -130,14 +117,18 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
   }
 
   addCalendarHours(date: Moment, hours: number): Moment {
-    return super.clone(date).add({ hours });
+    return super.clone(date).add({hours});
   }
 
   addCalendarMinutes(date: Moment, minutes: number): Moment {
-    return super.clone(date).add({ minutes });
+    return super.clone(date).add({minutes});
   }
 
   deserialize(value: any): Moment | null {
     return this._delegate.deserialize(value);
+  }
+
+  private getDateInNextMonth(date: Moment) {
+    return super.clone(date).date(1).add({month: 1});
   }
 }

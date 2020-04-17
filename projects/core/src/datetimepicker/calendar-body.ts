@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewEncapsulation
-} from "@angular/core";
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from "@angular/core";
 
 /**
  * An internal class that represents the data corresponding to a single calendar cell.
@@ -62,17 +55,17 @@ export class MatDatetimepickerCalendarBody {
   /** Emits when a new value is selected. */
   @Output() selectedValueChange = new EventEmitter<number>();
 
+  /** The number of blank cells to put at the beginning for the first row. */
+  get _firstRowOffset(): number {
+    return this.rows && this.rows.length && this.rows[0].length ?
+      this.numCols - this.rows[0].length : 0;
+  }
+
   _cellClicked(cell: MatDatetimepickerCalendarCell): void {
     if (!this.allowDisabledSelection && !cell.enabled) {
       return;
     }
     this.selectedValueChange.emit(cell.value);
-  }
-
-  /** The number of blank cells to put at the beginning for the first row. */
-  get _firstRowOffset(): number {
-    return this.rows && this.rows.length && this.rows[0].length ?
-      this.numCols - this.rows[0].length : 0;
   }
 
   _isActiveCell(rowIndex: number, colIndex: number): boolean {

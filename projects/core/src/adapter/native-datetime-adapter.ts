@@ -1,13 +1,6 @@
-import {
-  Inject,
-  Injectable,
-  Optional
-} from "@angular/core";
-import {
-  DateAdapter,
-  MAT_DATE_LOCALE
-} from "@angular/material/core";
-import { DatetimeAdapter } from "./datetime-adapter";
+import {Inject, Injectable, Optional} from "@angular/core";
+import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
+import {DatetimeAdapter} from "./datetime-adapter";
 
 /** The default hour names to use if Intl API is not available. */
 const DEFAULT_HOUR_NAMES = range(24, i => String(i));
@@ -77,11 +70,6 @@ export class NativeDatetimeAdapter extends DatetimeAdapter<Date> {
     return result;
   }
 
-  private getDateInNextMonth(date: Date) {
-    return new Date(date.getFullYear(), date.getMonth() + 1, 1,
-      date.getHours(), date.getMinutes());
-  }
-
   getFirstDateOfMonth(date: Date): Date {
     const result = new Date();
     result.setFullYear(date.getFullYear(), date.getMonth(), 1);
@@ -102,7 +90,7 @@ export class NativeDatetimeAdapter extends DatetimeAdapter<Date> {
 
   addCalendarMonths(date: Date, months: number): Date {
     let newDate = this._createDateWithOverflow(
-        this.getYear(date), this.getMonth(date) + months, this.getDate(date), this.getHour(date), this.getMinute(date));
+      this.getYear(date), this.getMonth(date) + months, this.getDate(date), this.getHour(date), this.getMinute(date));
 
     // It's possible to wind up in the wrong month if the original month has more days than the new
     // month. In this case we want to go to the last day of the desired month.
@@ -117,7 +105,7 @@ export class NativeDatetimeAdapter extends DatetimeAdapter<Date> {
 
   addCalendarDays(date: Date, days: number): Date {
     return this._createDateWithOverflow(
-        this.getYear(date), this.getMonth(date), this.getDate(date) + days, this.getHour(date), this.getMinute(date));
+      this.getYear(date), this.getMonth(date), this.getDate(date) + days, this.getHour(date), this.getMinute(date));
   }
 
   addCalendarHours(date: Date, hours: number): Date {
@@ -137,6 +125,11 @@ export class NativeDatetimeAdapter extends DatetimeAdapter<Date> {
       this._2digit(date.getUTCHours()),
       this._2digit(date.getUTCMinutes())
     ].join(":");
+  }
+
+  private getDateInNextMonth(date: Date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 1,
+      date.getHours(), date.getMinutes());
   }
 
   /**
