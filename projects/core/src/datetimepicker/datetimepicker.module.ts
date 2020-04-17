@@ -16,6 +16,7 @@ import { MatDatetimepickerInput } from "./datetimepicker-input";
 import { MatDatetimepickerToggle } from "./datetimepicker-toggle";
 import { MatDatetimepickerMonthView } from "./month-view";
 import { MatDatetimepickerYearView } from "./year-view";
+import { MatDatetimepickerMultiYearView } from "./multi-year-view";
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { MatDatetimepickerYearView } from "./year-view";
     MatDatetimepickerInput,
     MatDatetimepickerContent,
     MatDatetimepickerMonthView,
-    MatDatetimepickerYearView
+    MatDatetimepickerYearView,
+    MatDatetimepickerMultiYearView
   ],
   exports: [
     MatDatetimepickerCalendar,
@@ -49,7 +51,8 @@ import { MatDatetimepickerYearView } from "./year-view";
     MatDatetimepickerInput,
     MatDatetimepickerContent,
     MatDatetimepickerMonthView,
-    MatDatetimepickerYearView
+    MatDatetimepickerYearView,
+    MatDatetimepickerMultiYearView
   ]
 })
 export class MatDatetimepickerModule {

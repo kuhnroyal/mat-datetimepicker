@@ -41,7 +41,7 @@ import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
 import { MatDatetimepickerInput } from "./datetimepicker-input";
 
-export type MatDatetimepickerType = "date" | "time" | "month" | "datetime";
+export type MatDatetimepickerType = "date" | "time" | "month" | "year" | "datetime";
 export type MatDatetimepickerMode = "auto" | "portrait" | "landscape";
 
 /** Used to generate a unique ID for each datepicker instance. */
@@ -98,6 +98,8 @@ export class MatDatetimepickerContent<D> implements AfterContentInit {
   preserveWhitespaces: false
 })
 export class MatDatetimepicker<D> implements OnDestroy {
+  /** Active multi year view when click on year. */
+  @Input() multiYearSelector: boolean = false;
   /** if true change the clock to 12 hour format. */
   @Input() twelvehour: boolean = false;
   /** The date to open the calendar to initially. */

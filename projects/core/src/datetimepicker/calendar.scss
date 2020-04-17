@@ -39,6 +39,13 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
   white-space: nowrap;
 }
 
+.mat-datetimepicker-calendar-header-year {
+  font-size: 16px;
+  mat-icon {
+    transform: translateY(5px);
+  }
+}
+
 .mat-datetimepicker-calendar-header-date-time {
   font-size: 30px;
   line-height: 34px;
