@@ -41,6 +41,7 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
 
 .mat-datetimepicker-calendar-header-year {
   font-size: 16px;
+
   mat-icon {
     transform: translateY(5px);
   }
@@ -69,6 +70,7 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
     cursor: pointer;
     opacity: 0.6;
   }
+
   &.not-clickable {
     cursor: initial;
   }

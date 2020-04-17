@@ -1,4 +1,4 @@
-import { MatDatetimeFormats } from "./datetime-formats";
+import {MatDatetimeFormats} from "./datetime-formats";
 
 export const MAT_NATIVE_DATETIME_FORMATS: MatDatetimeFormats = {
   parse: {},

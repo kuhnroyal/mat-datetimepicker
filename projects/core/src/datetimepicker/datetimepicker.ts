@@ -1,14 +1,9 @@
-import { Directionality } from "@angular/cdk/bidi";
-import { coerceBooleanProperty } from "@angular/cdk/coercion";
-import { ESCAPE } from "@angular/cdk/keycodes";
-import {
-  Overlay,
-  OverlayConfig,
-  OverlayRef,
-  PositionStrategy
-} from "@angular/cdk/overlay";
-import { ComponentPortal } from "@angular/cdk/portal";
-import { DOCUMENT } from "@angular/common";
+import {Directionality} from "@angular/cdk/bidi";
+import {coerceBooleanProperty} from "@angular/cdk/coercion";
+import {ESCAPE} from "@angular/cdk/keycodes";
+import {Overlay, OverlayConfig, OverlayRef, PositionStrategy} from "@angular/cdk/overlay";
+import {ComponentPortal} from "@angular/cdk/portal";
+import {DOCUMENT} from "@angular/common";
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -25,21 +20,15 @@ import {
   ViewContainerRef,
   ViewEncapsulation
 } from "@angular/core";
-import { MAT_DATEPICKER_SCROLL_STRATEGY } from "@angular/material/datepicker";
-import {
-  MatDialog,
-  MatDialogRef
-} from "@angular/material/dialog";
-import { Subject, Subscription } from "rxjs";
-import { first } from "rxjs/operators";
-import { DatetimeAdapter } from "../adapter/datetime-adapter";
-import {
-  MatCalendarView,
-  MatDatetimepickerCalendar
-} from "./calendar";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
-import { MatDatetimepickerInput } from "./datetimepicker-input";
+import {MAT_DATEPICKER_SCROLL_STRATEGY} from "@angular/material/datepicker";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {Subject, Subscription} from "rxjs";
+import {first} from "rxjs/operators";
+import {DatetimeAdapter} from "../adapter/datetime-adapter";
+import {MatCalendarView, MatDatetimepickerCalendar} from "./calendar";
+import {createMissingDateImplError} from "./datetimepicker-errors";
+import {MatDatetimepickerFilterType} from "./datetimepicker-filtertype";
+import {MatDatetimepickerInput} from "./datetimepicker-input";
 
 export type MatDatetimepickerType = "date" | "time" | "month" | "year" | "datetime";
 export type MatDatetimepickerMode = "auto" | "portrait" | "landscape";
@@ -69,7 +58,7 @@ let datetimepickerUid = 0;
 export class MatDatetimepickerContent<D> implements AfterContentInit {
   datetimepicker: MatDatetimepicker<D>;
 
-  @ViewChild(MatDatetimepickerCalendar, { static: true }) _calendar: MatDatetimepickerCalendar<D>;
+  @ViewChild(MatDatetimepickerCalendar, {static: true}) _calendar: MatDatetimepickerCalendar<D>;
 
   ngAfterContentInit() {
     this._calendar._focusActiveCell();
@@ -102,6 +91,63 @@ export class MatDatetimepicker<D> implements OnDestroy {
   @Input() multiYearSelector: boolean = false;
   /** if true change the clock to 12 hour format. */
   @Input() twelvehour: boolean = false;
+  /** The view that the calendar should start in. */
+  @Input() startView: MatCalendarView = "month";
+  @Input() mode: MatDatetimepickerMode = "auto";
+  @Input() timeInterval: number = 1;
+  @Input() ariaNextMonthLabel = "Next month";
+  @Input() ariaPrevMonthLabel = "Previous month";
+  @Input() ariaNextYearLabel = "Next year";
+  @Input() ariaPrevYearLabel = "Previous year";
+  /**
+   * Emits new selected date when selected date changes.
+   * @deprecated Switch to the `dateChange` and `dateInput` binding on the input element.
+   */
+  @Output() selectedChanged = new EventEmitter<D>();
+  /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
+  @Input() panelClass: string | string[];
+  /** Emits when the datepicker has been opened. */
+    // tslint:disable-next-line:no-output-rename
+  @Output("opened") openedStream: EventEmitter<void> = new EventEmitter<void>();
+  /** Emits when the datepicker has been closed. */
+    // tslint:disable-next-line:no-output-rename
+  @Output("closed") closedStream: EventEmitter<void> = new EventEmitter<void>();
+  /** Emits when the view has been changed. **/
+  @Output() viewChanged: EventEmitter<MatCalendarView> = new EventEmitter<MatCalendarView>();
+  /** Whether the calendar is open. */
+  opened = false;
+  /** The id for the datepicker calendar. */
+  id = `mat-datetimepicker-${datetimepickerUid++}`;
+  /** The input element this datepicker is associated with. */
+  _datepickerInput: MatDatetimepickerInput<D>;
+  /** Emits when the datepicker is disabled. */
+  _disabledChange = new Subject<boolean>();
+  private _validSelected: D | null = null;
+  /** A reference to the overlay when the calendar is opened as a popup. */
+  private _popupRef: OverlayRef;
+  /** A reference to the dialog when the calendar is opened as a dialog. */
+  private _dialogRef: MatDialogRef<any> | null;
+  /** A portal containing the calendar for this datepicker. */
+  private _calendarPortal: ComponentPortal<MatDatetimepickerContent<D>>;
+  /** The element that was focused before the datepicker was opened. */
+  private _focusedElementBeforeOpen: HTMLElement | null = null;
+  private _inputSubscription = Subscription.EMPTY;
+
+  constructor(private _dialog: MatDialog,
+              private _overlay: Overlay,
+              private _ngZone: NgZone,
+              private _viewContainerRef: ViewContainerRef,
+              @Inject(MAT_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy,
+              @Optional() private _dateAdapter: DatetimeAdapter<D>,
+              @Optional() private _dir: Directionality,
+              @Optional() @Inject(DOCUMENT) private _document: any) {
+    if (!this._dateAdapter) {
+      throw createMissingDateImplError("DateAdapter");
+    }
+  }
+
+  private _startAt: D | null;
+
   /** The date to open the calendar to initially. */
   @Input()
   get startAt(): D | null {
@@ -114,23 +160,18 @@ export class MatDatetimepicker<D> implements OnDestroy {
     this._startAt = this._dateAdapter.getValidDateOrNull(date);
   }
 
-  private _startAt: D | null;
-
-  /** The view that the calendar should start in. */
-  @Input() startView: MatCalendarView = "month";
-  @Input() mode: MatDatetimepickerMode = "auto";
-  @Input() timeInterval: number = 1;
-
-  @Input()
-  get openOnFocus(): boolean { return this._openOnFocus; }
-  set openOnFocus(value: boolean) { this._openOnFocus = coerceBooleanProperty(value); }
   private _openOnFocus: boolean;
 
-  _handleFocus() {
-    if (!this.opened && this.openOnFocus) {
-      this.open();
-    }
+  @Input()
+  get openOnFocus(): boolean {
+    return this._openOnFocus;
   }
+
+  set openOnFocus(value: boolean) {
+    this._openOnFocus = coerceBooleanProperty(value);
+  }
+
+  private _type: MatDatetimepickerType = "date";
 
   @Input()
   get type() {
@@ -141,12 +182,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
     this._type = value || "date";
   }
 
-  private _type: MatDatetimepickerType = "date";
-
-  @Input() ariaNextMonthLabel = "Next month";
-  @Input() ariaPrevMonthLabel = "Previous month";
-  @Input() ariaNextYearLabel = "Next year";
-  @Input() ariaPrevYearLabel = "Previous year";
+  private _touchUi = false;
 
   /**
    * Whether the calendar UI is in touch mode. In touch mode the calendar opens in a dialog rather
@@ -161,7 +197,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
     this._touchUi = coerceBooleanProperty(value);
   }
 
-  private _touchUi = false;
+  private _disabled: boolean;
 
   /** Whether the datepicker pop-up should be disabled. */
   @Input()
@@ -179,38 +215,6 @@ export class MatDatetimepicker<D> implements OnDestroy {
     }
   }
 
-  private _disabled: boolean;
-
-  /**
-   * Emits new selected date when selected date changes.
-   * @deprecated Switch to the `dateChange` and `dateInput` binding on the input element.
-   */
-  @Output() selectedChanged = new EventEmitter<D>();
-
-  /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
-  @Input() panelClass: string | string[];
-
-  /** Emits when the datepicker has been opened. */
-  // tslint:disable-next-line:no-output-rename
-  @Output("opened") openedStream: EventEmitter<void> = new EventEmitter<void>();
-
-  /** Emits when the datepicker has been closed. */
-  // tslint:disable-next-line:no-output-rename
-  @Output("closed") closedStream: EventEmitter<void> = new EventEmitter<void>();
-
-  /** Emits when the view has been changed. **/
-  @Output() viewChanged: EventEmitter<MatCalendarView> = new EventEmitter<MatCalendarView>();
-
-  /** Whether the calendar is open. */
-  opened = false;
-
-  /** The id for the datepicker calendar. */
-  id = `mat-datetimepicker-${datetimepickerUid++}`;
-
-  _viewChanged(type: MatCalendarView): void {
-    this.viewChanged.emit(type);
-  }
-
   /** The currently selected date. */
   get _selected(): D | null {
     return this._validSelected;
@@ -219,8 +223,6 @@ export class MatDatetimepicker<D> implements OnDestroy {
   set _selected(value: D | null) {
     this._validSelected = value;
   }
-
-  private _validSelected: D | null = null;
 
   /** The minimum selectable date. */
   get _minDate(): D | null {
@@ -236,37 +238,14 @@ export class MatDatetimepicker<D> implements OnDestroy {
     return this._datepickerInput && this._datepickerInput._dateFilter;
   }
 
-  /** A reference to the overlay when the calendar is opened as a popup. */
-  private _popupRef: OverlayRef;
-
-  /** A reference to the dialog when the calendar is opened as a dialog. */
-  private _dialogRef: MatDialogRef<any> | null;
-
-  /** A portal containing the calendar for this datepicker. */
-  private _calendarPortal: ComponentPortal<MatDatetimepickerContent<D>>;
-
-  /** The element that was focused before the datepicker was opened. */
-  private _focusedElementBeforeOpen: HTMLElement | null = null;
-
-  private _inputSubscription = Subscription.EMPTY;
-
-  /** The input element this datepicker is associated with. */
-  _datepickerInput: MatDatetimepickerInput<D>;
-
-  /** Emits when the datepicker is disabled. */
-  _disabledChange = new Subject<boolean>();
-
-  constructor(private _dialog: MatDialog,
-              private _overlay: Overlay,
-              private _ngZone: NgZone,
-              private _viewContainerRef: ViewContainerRef,
-              @Inject(MAT_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy,
-              @Optional() private _dateAdapter: DatetimeAdapter<D>,
-              @Optional() private _dir: Directionality,
-              @Optional() @Inject(DOCUMENT) private _document: any) {
-    if (!this._dateAdapter) {
-      throw createMissingDateImplError("DateAdapter");
+  _handleFocus() {
+    if (!this.opened && this.openOnFocus) {
+      this.open();
     }
+  }
+
+  _viewChanged(type: MatCalendarView): void {
+    this.viewChanged.emit(type);
   }
 
   ngOnDestroy() {
