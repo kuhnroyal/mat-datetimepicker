@@ -11,5 +11,8 @@
     "@angular/material": "~9.2.1",
     "@angular/material-moment-adapter": "~9.2.1",
     "@mat-datetimepicker/core": "4.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }

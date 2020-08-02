@@ -8,7 +8,9 @@
     "@angular/cdk": "~9.2.1",
     "@angular/common": "^9.1.2",
     "@angular/core": "^9.1.2",
-    "@angular/material": "~9.2.1",
-    "tslib": "^1.11.1"
+    "@angular/material": "~9.2.1"
+},
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
