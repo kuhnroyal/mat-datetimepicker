@@ -9,7 +9,7 @@
     "@angular/common": "^10.0.7",
     "@angular/core": "^10.0.7",
     "@angular/material": "~10.1.1",
-    "@angular/material-moment-adapter": "~9.2.1",
+    "@angular/material-moment-adapter": "~10.1.1",
     "@mat-datetimepicker/core": "4.1.0"
   },
   "dependencies": {
