@@ -5,10 +5,12 @@
   "author": "PL <kuhnroyal@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/cdk": "~9.2.1",
-    "@angular/common": "^9.1.2",
-    "@angular/core": "^9.1.2",
-    "@angular/material": "~9.2.1",
-    "tslib": "^1.11.1"
+    "@angular/cdk": "~10.1.1",
+    "@angular/common": "^10.0.7",
+    "@angular/core": "^10.0.7",
+    "@angular/material": "~10.1.1"
+},
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
