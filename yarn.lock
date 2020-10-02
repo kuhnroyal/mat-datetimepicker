@@ -136,10 +136,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/cdk@~10.1.1":
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-10.1.1.tgz#aec95fb4d1143d0b82a41c34622453ffbae42872"
-  integrity sha512-Gt9TmqSVxPTmuNkApEuvva25U60WW152r9+vL7ViFgG+297RE7tzUU8ffBwMXZMdtXnrhLKqLv6ZaBhihMM2Kw==
+"@angular/cdk@~10.2.3":
+  version "10.2.3"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-10.2.3.tgz#49eb09ae68f91f1ecec388592091a0f8f1dd5dce"
+  integrity sha512-ne3uSnWLQyUfYQ32zTvDauudyPONRPPBSbdOzFSsvFQuPxUcMQ3mFHJuq2OXei47TfSatmmyuKSuw9EtmTRbQw==
   dependencies:
     tslib "^2.0.0"
   optionalDependencies:
@@ -233,17 +233,17 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-10.1.4.tgz#3d428a6bbf0a8ced58c7d3de226fd74123a05389"
   integrity sha512-+CsL/HWlja9mxqyvTTqP/rpxjVeuICmTHyfAKxqpq0488N7KTRRLvWXDoL5uwc+lzqhMsaXDasReMO+ATUAUrg==
 
-"@angular/material-moment-adapter@~10.1.1":
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-10.1.1.tgz#662ee15f42b949aaffd1b909e0d5e3efb5e3c395"
-  integrity sha512-9UfRiI29mLjApdBvyrcRsMpFxhoHPQAVbxLEpwIVKREjzqCzixQ8KvrTC0qeXdlD4kc3OvwkMW6sDzoAgGGGEg==
+"@angular/material-moment-adapter@~10.2.3":
+  version "10.2.3"
+  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-10.2.3.tgz#fb4830ce67bf5b481191e80706e60ff7f0a9b175"
+  integrity sha512-AgTGG0MhXuPUhwX2DBFZXPvDYDUqKsYQr7IeBwXol1c5BMTDxkorBs5o8LtXYTLj9MwaosFxZwem0Q7qnT7daw==
   dependencies:
     tslib "^2.0.0"
 
-"@angular/material@~10.1.1":
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-10.1.1.tgz#5c98bb727bccb8b8656b08ca0259d8d1115062ce"
-  integrity sha512-D9VXwW2ieDUvkQD1VVEX6bxIdCaK6uA6jHpMU2ZLTIQ/EzNRDRwmJbr4rqPhxtHmLMXF+66EBXEjgyV7l91h5g==
+"@angular/material@~10.2.3":
+  version "10.2.3"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-10.2.3.tgz#d0f249d839a46522538ce98d542a8f210128890c"
+  integrity sha512-xqMC1A/CVX7RESnVm5EcK46MVXe1ROSMOf1RBuUeS6K+fnvx8kUxwmUcSY3LNREvW5hncFup7+MxSPfeFxv71A==
   dependencies:
     tslib "^2.0.0"
 
