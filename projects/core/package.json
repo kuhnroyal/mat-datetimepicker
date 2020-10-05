@@ -1,6 +1,6 @@
 {
   "name": "@mat-datetimepicker/core",
-  "version": "5.1.0-0",
+  "version": "5.1.0",
   "repository": "https://github.com/kuhnroyal/mat-datetimepicker.git",
   "author": "PL <kuhnroyal@gmail.com>",
   "license": "MIT",
