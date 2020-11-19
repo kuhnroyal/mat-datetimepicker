@@ -64,6 +64,11 @@ export class MatDatetimepickerContent<D> implements AfterContentInit {
     this._calendar._focusActiveCell();
   }
 
+  onSelectionChange(date: D) {
+    this.datetimepicker._select(date);
+    this.datetimepicker.close();
+  }
+
   /**
    * Handles keydown event on datepicker content.
    * @param event The event.

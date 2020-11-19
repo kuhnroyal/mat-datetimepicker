@@ -1,4 +1,5 @@
-<mat-datetimepicker-calendar (_userSelection)="datetimepicker.close()" (selectedChange)="datetimepicker._select($event)"
+<mat-datetimepicker-calendar (_userSelection)="datetimepicker.close()"
+                             (selectedChange)="onSelectionChange($event)"
                              (viewChanged)="datetimepicker._viewChanged($event)"
                              [ariaNextMonthLabel]="datetimepicker.ariaNextMonthLabel"
                              [ariaNextYearLabel]="datetimepicker.ariaNextYearLabel"
