@@ -85,4 +85,11 @@
     <mat-datetimepicker #touch mode="portrait" openOnFocus="true" timeInterval="5" touchUi="true"
                         type="datetime"></mat-datetimepicker>
   </mat-form-field>
+  <mat-form-field>
+    <mat-placeholder>Prevent same date time</mat-placeholder>
+    <input [matDatetimepicker]="preventSame" formControlName="preventsame" matInput required>
+    <mat-datetimepicker-toggle [for]="preventSame" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #preventSame openOnFocus="true" timeInterval="5"
+                        preventSameDateTimeSelection="true" type="datetime"></mat-datetimepicker>
+  </mat-form-field>
 </form>
