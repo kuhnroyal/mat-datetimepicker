@@ -65,6 +65,8 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   @Input() ariaPrevYearLabel = "Previous year";
   @Input() ariaNextMultiYearLabel = "Next year range";
   @Input() ariaPrevMultiYearLabel = "Previous year range";
+  /** Prevent user to select same date time */
+  @Input() preventSameDateTimeSelection = false;
   /** Emits when the currently selected date changes. */
   @Output() selectedChange: EventEmitter<D> = new EventEmitter<D>();
   /** Emits when the view has been changed. **/
@@ -297,7 +299,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   /** Handles date selection in the month view. */
   _dateSelected(date: D): void {
     if (this.type === "date") {
-      if (!this._adapter.sameDate(date, this.selected)) {
+      if (!this._adapter.sameDate(date, this.selected) || !this.preventSameDateTimeSelection) {
         this.selectedChange.emit(date);
       }
     } else {
@@ -309,7 +311,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   /** Handles month selection in the year view. */
   _monthSelected(month: D): void {
     if (this.type === "month") {
-      if (!this._adapter.sameMonthAndYear(month, this.selected)) {
+      if (!this._adapter.sameMonthAndYear(month, this.selected) || !this.preventSameDateTimeSelection) {
         this.selectedChange.emit(this._adapter.getFirstDateOfMonth(month));
       }
     } else {
@@ -322,7 +324,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
   /** Handles year selection in the multi year view. */
   _yearSelected(year: D): void {
     if (this.type === "year") {
-      if (!this._adapter.sameYear(year, this.selected)) {
+      if (!this._adapter.sameYear(year, this.selected)  || !this.preventSameDateTimeSelection) {
         const normalizedDate = this._adapter.createDatetime(this._adapter.getYear(year), 0, 1, 0, 0);
         this.selectedChange.emit(normalizedDate);
       }
@@ -337,7 +339,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
       this._activeDate = this._updateDate(date);
       this._clockView = "minute";
     } else {
-      if (!this._adapter.sameDatetime(date, this.selected)) {
+      if (!this._adapter.sameDatetime(date, this.selected) || !this.preventSameDateTimeSelection) {
         this.selectedChange.emit(date);
       }
     }

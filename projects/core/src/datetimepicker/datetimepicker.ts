@@ -64,6 +64,11 @@ export class MatDatetimepickerContent<D> implements AfterContentInit {
     this._calendar._focusActiveCell();
   }
 
+  onSelectionChange(date: D) {
+    this.datetimepicker._select(date);
+    this.datetimepicker.close();
+  }
+
   /**
    * Handles keydown event on datepicker content.
    * @param event The event.
@@ -99,6 +104,8 @@ export class MatDatetimepicker<D> implements OnDestroy {
   @Input() ariaPrevMonthLabel = "Previous month";
   @Input() ariaNextYearLabel = "Next year";
   @Input() ariaPrevYearLabel = "Previous year";
+  /** Prevent user to select same date time */
+  @Input() preventSameDateTimeSelection = false;
   /**
    * Emits new selected date when selected date changes.
    * @deprecated Switch to the `dateChange` and `dateInput` binding on the input element.

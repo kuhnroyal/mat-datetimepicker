@@ -87,7 +87,8 @@ export class MomentDatetimeComponent {
       year: [null, Validators.required],
       mintest: [this.today, Validators.required],
       filtertest: [this.today, Validators.required],
-      touch: [null, Validators.required]
+      touch: [null, Validators.required],
+      preventsame: [new Date("2020-11-19T17:00:00.000Z"), Validators.required]
     });
   }
 }
