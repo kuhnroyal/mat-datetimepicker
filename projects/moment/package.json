@@ -1,6 +1,6 @@
 {
   "name": "@mat-datetimepicker/moment",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "repository": "https://github.com/kuhnroyal/mat-datetimepicker.git",
   "author": "PL <kuhnroyal@gmail.com>",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "@angular/core": "^10.0.7",
     "@angular/material": "~10.2.3",
     "@angular/material-moment-adapter": "~10.2.3",
-    "@mat-datetimepicker/core": "5.1.1"
+    "@mat-datetimepicker/core": "5.1.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"
