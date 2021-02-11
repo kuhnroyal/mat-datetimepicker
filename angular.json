@@ -218,7 +218,6 @@
   },
   "defaultProject": "app",
   "cli": {
-    "analytics": "2103a9ef-0556-42fe-ba20-95467c2416b0",
     "packageManager": "yarn"
   }
 }
