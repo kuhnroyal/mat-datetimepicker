@@ -5,7 +5,9 @@ This is the main branch for @angular/material 10.x
 You can find the Angular 5 version on the `1.x` branch. \
 You can find the Angular 6 version on the `2.x` branch. \
 You can find the Angular 8 version on the `3.x` branch. \
-You can find the Angular 9 version on the `4.x` branch.
+You can find the Angular 9 version on the `4.x` branch. \
+You can find the Angular 10 version on the `5.x` branch. \
+You can find the Angular 11 version on the `6.x` branch. \
 
 ## Description
 
