@@ -10,17 +10,12 @@ import {
   Output,
   ViewEncapsulation
 } from "@angular/core";
-import { MatDatetimepickerType } from "./datetimepicker";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerCalendarCell } from "./calendar-body";
-import { slideCalendar } from "./datetimepicker-animations";
-import {
-  MAT_DATETIME_FORMATS,
-  MatDatetimeFormats
-} from "../adapter/datetime-formats";
-import {
-  DatetimeAdapter
-} from "../adapter/datetime-adapter";
+import {MatDatetimepickerType} from "./datetimepicker";
+import {createMissingDateImplError} from "./datetimepicker-errors";
+import {MatDatetimepickerCalendarCell} from "./calendar-body";
+import {slideCalendar} from "./datetimepicker-animations";
+import {MAT_DATETIME_FORMATS, MatDatetimeFormats} from "../adapter/datetime-formats";
+import {DatetimeAdapter} from "../adapter/datetime-adapter";
 
 /**
  * An internal component used to display a single year in the datepicker.
@@ -38,6 +33,37 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
   @Output() _userSelection = new EventEmitter<void>();
 
   @Input() type: MatDatetimepickerType = "date";
+  /** A function used to filter which dates are selectable. */
+  @Input() dateFilter: (date: D) => boolean;
+  /** Emits when a new month is selected. */
+  @Output() selectedChange = new EventEmitter<D>();
+  /** Grid of calendar cells representing the months of the year. */
+  _months: MatDatetimepickerCalendarCell[][];
+  /** The label for this year (e.g. "2017"). */
+  _yearLabel: string;
+  /** The month in this year that today falls on. Null if today is in a different year. */
+  _todayMonth: number;
+  /**
+   * The month in this year that the selected Date falls on.
+   * Null if the selected Date is in a different year.
+   */
+  _selectedMonth: number;
+  _calendarState: string;
+
+  constructor(@Optional() public _adapter: DatetimeAdapter<D>,
+              @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats) {
+    if (!this._adapter) {
+      throw createMissingDateImplError("DatetimeAdapter");
+    }
+
+    if (!this._dateFormats) {
+      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
+    }
+
+    this._activeDate = this._adapter.today();
+  }
+
+  private _activeDate: D;
 
   /** The date to display in this year view (everything other than the year is ignored). */
   @Input()
@@ -59,7 +85,7 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
     }
   }
 
-  private _activeDate: D;
+  private _selected: D;
 
   /** The currently selected date. */
   @Input()
@@ -70,44 +96,6 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
   set selected(value: D) {
     this._selected = value;
     this._selectedMonth = this._getMonthInCurrentYear(this.selected);
-  }
-
-  private _selected: D;
-
-  /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
-
-  /** Emits when a new month is selected. */
-  @Output() selectedChange = new EventEmitter<D>();
-
-  /** Grid of calendar cells representing the months of the year. */
-  _months: MatDatetimepickerCalendarCell[][];
-
-  /** The label for this year (e.g. "2017"). */
-  _yearLabel: string;
-
-  /** The month in this year that today falls on. Null if today is in a different year. */
-  _todayMonth: number;
-
-  /**
-   * The month in this year that the selected Date falls on.
-   * Null if the selected Date is in a different year.
-   */
-  _selectedMonth: number;
-
-  _calendarState: string;
-
-  constructor(@Optional() public _adapter: DatetimeAdapter<D>,
-              @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats) {
-    if (!this._adapter) {
-      throw createMissingDateImplError("DatetimeAdapter");
-    }
-
-    if (!this._dateFormats) {
-      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
-    }
-
-    this._activeDate = this._adapter.today();
   }
 
   ngAfterContentInit() {
@@ -126,6 +114,10 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
     if (this.type === "month") {
       this._userSelection.emit();
     }
+  }
+
+  _calendarStateDone() {
+    this._calendarState = "";
   }
 
   /** Initializes this month view. */
@@ -160,6 +152,10 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
       month, monthName.toLocaleUpperCase(), ariaLabel, this._isMonthEnabled(month));
   }
 
+  // private calendarState(direction: string): void {
+  //   this._calendarState = direction;
+  // }
+
   /** Whether the given month is enabled. */
   private _isMonthEnabled(month: number) {
     if (!this.dateFilter) {
@@ -180,13 +176,5 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
     }
 
     return false;
-  }
-
-  // private calendarState(direction: string): void {
-  //   this._calendarState = direction;
-  // }
-
-  _calendarStateDone() {
-    this._calendarState = "";
   }
 }

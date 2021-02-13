@@ -55,7 +55,7 @@ $mat-calendar-body-cell-content-size: 100% - $mat-calendar-body-cell-content-mar
   height: $mat-calendar-body-cell-content-size;
   color: rgba(black, 0.87);
   border: $mat-calendar-body-cell-content-border-width solid transparent;
-  border-radius: 50%;
+  border-radius: 50px;
 
   .mat-datetimepicker-calendar-body-disabled > &:not(.mat-datetimepicker-calendar-body-selected) {
     color: rgba(black, 0.38);
@@ -63,7 +63,7 @@ $mat-calendar-body-cell-content-size: 100% - $mat-calendar-body-cell-content-mar
 }
 
 :not(.mat-datetimepicker-calendar-body-disabled):hover,
-.mat-calendar:focus .mat-datetimepicker-calendar-body-active {
+.mat-datetimepicker-calendar-body-active {
   & > .mat-datetimepicker-calendar-body-cell-content:not(.mat-datetimepicker-calendar-body-selected) {
     background-color: rgba(black, 0.12);
   }

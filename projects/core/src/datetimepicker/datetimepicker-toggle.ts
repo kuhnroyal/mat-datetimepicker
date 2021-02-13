@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from "@angular/cdk/coercion";
+import {coerceBooleanProperty} from "@angular/cdk/coercion";
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -10,9 +10,9 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from "@angular/core";
-import { MatDatepickerIntl } from "@angular/material/datepicker";
-import { merge, of as observableOf, Subscription } from "rxjs";
-import { MatDatetimepicker } from "./datetimepicker";
+import {MatDatepickerIntl} from "@angular/material/datepicker";
+import {merge, of as observableOf, Subscription} from "rxjs";
+import {MatDatetimepicker} from "./datetimepicker";
 
 @Component({
   selector: "mat-datetimepicker-toggle",
@@ -26,23 +26,25 @@ import { MatDatetimepicker } from "./datetimepicker";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatDatetimepickerToggle<D> implements AfterContentInit, OnChanges, OnDestroy {
+  /** Datepicker instance that the button will toggle. */
+    // tslint:disable-next-line:no-input-rename
+  @Input("for") datetimepicker: MatDatetimepicker<D>;
   private _stateChanges = Subscription.EMPTY;
 
-  /** Datepicker instance that the button will toggle. */
-  // tslint:disable-next-line:no-input-rename
-  @Input("for") datetimepicker: MatDatetimepicker<D>;
+  constructor(public _intl: MatDatepickerIntl, private _changeDetectorRef: ChangeDetectorRef) {
+  }
+
+  private _disabled: boolean;
 
   /** Whether the toggle button is disabled. */
   @Input()
   get disabled(): boolean {
     return this._disabled === undefined ? this.datetimepicker.disabled : !!this._disabled;
   }
+
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
   }
-  private _disabled: boolean;
-
-  constructor(public _intl: MatDatepickerIntl, private _changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.datepicker) {
@@ -68,10 +70,10 @@ export class MatDatetimepickerToggle<D> implements AfterContentInit, OnChanges, 
   private _watchStateChanges() {
     const datepickerDisabled = this.datetimepicker ? this.datetimepicker._disabledChange : observableOf();
     const inputDisabled = this.datetimepicker && this.datetimepicker._datepickerInput ?
-        this.datetimepicker._datepickerInput._disabledChange : observableOf();
+      this.datetimepicker._datepickerInput._disabledChange : observableOf();
 
     this._stateChanges.unsubscribe();
     this._stateChanges = merge(this._intl.changes, datepickerDisabled, inputDisabled)
-        .subscribe(() => this._changeDetectorRef.markForCheck());
+      .subscribe(() => this._changeDetectorRef.markForCheck());
   }
 }

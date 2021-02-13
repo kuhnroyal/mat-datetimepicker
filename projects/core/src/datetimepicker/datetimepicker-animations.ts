@@ -1,12 +1,4 @@
-import {
-  animate,
-  AnimationTriggerMetadata,
-  keyframes,
-  state,
-  style,
-  transition,
-  trigger
-} from "@angular/animations";
+import {animate, AnimationTriggerMetadata, keyframes, state, style, transition, trigger} from "@angular/animations";
 
 /**
  * This animation fades in the background color and text content of the

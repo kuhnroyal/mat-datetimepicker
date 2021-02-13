@@ -39,6 +39,14 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
   white-space: nowrap;
 }
 
+.mat-datetimepicker-calendar-header-year {
+  font-size: 16px;
+
+  mat-icon {
+    transform: translateY(5px);
+  }
+}
+
 .mat-datetimepicker-calendar-header-date-time {
   font-size: 30px;
   line-height: 34px;
@@ -49,14 +57,20 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
   }
 }
 
+.mat-datetimepicker-calendar-header-ampm-container {
+  font-size: 0.77em;
+}
+
 .mat-datetimepicker-calendar-header-year,
 .mat-datetimepicker-calendar-header-date,
 .mat-datetimepicker-calendar-header-hours,
-.mat-datetimepicker-calendar-header-minutes {
+.mat-datetimepicker-calendar-header-minutes,
+.mat-datetimepicker-calendar-header-ampm {
   &:not(.active) {
     cursor: pointer;
     opacity: 0.6;
   }
+
   &.not-clickable {
     cursor: initial;
   }
@@ -69,7 +83,8 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
     opacity: 0.6;
 
     .mat-datetimepicker-calendar-header-hours,
-    .mat-datetimepicker-calendar-header-minutes {
+    .mat-datetimepicker-calendar-header-minutes,
+    .mat-datetimepicker-calendar-header-ampm {
       cursor: pointer;
       opacity: 1;
     }

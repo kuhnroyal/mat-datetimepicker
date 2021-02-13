@@ -1,14 +1,7 @@
 /* tslint:disable */
-import {
-  AfterContentInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output
-} from "@angular/core";
-import { DatetimeAdapter } from "../adapter/datetime-adapter";
-import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
+import {AfterContentInit, Component, ElementRef, EventEmitter, Input, Output} from "@angular/core";
+import {DatetimeAdapter} from "../adapter/datetime-adapter";
+import {MatDatetimepickerFilterType} from "./datetimepicker-filtertype";
 
 export const CLOCK_RADIUS = 50;
 export const CLOCK_INNER_RADIUS = 27.5;
@@ -33,6 +26,35 @@ export type MatClockView = "hour" | "minute";
 export class MatDatetimepickerClock<D> implements AfterContentInit {
 
   @Output() _userSelection = new EventEmitter<void>();
+  /** A function used to filter which dates are selectable. */
+  @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
+  @Input() interval: number = 1;
+  @Input() twelvehour: boolean = false;
+  /** Emits when the currently selected date changes. */
+  @Output() selectedChange = new EventEmitter<D>();
+  @Output() activeDateChange = new EventEmitter<D>();
+  /** Hours and Minutes representing the clock view. */
+  _hours: Array<Object> = [];
+  _minutes: Array<Object> = [];
+  /** Whether the clock is in hour view. */
+  _hourView: boolean = true;
+  _selectedHour: number;
+  _selectedMinute: number;
+  private _timeChanged = false;
+  private mouseMoveListener: any;
+  private mouseUpListener: any;
+
+  constructor(private _element: ElementRef,
+              private _adapter: DatetimeAdapter<D>) {
+    this.mouseMoveListener = (event: any) => {
+      this._handleMousemove(event);
+    };
+    this.mouseUpListener = () => {
+      this._handleMouseup();
+    };
+  }
+
+  private _activeDate: D;
 
   /**
    * The date to display in this clock view.
@@ -50,7 +72,7 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
     }
   }
 
-  private _activeDate: D;
+  private _selected: D | null;
 
   /** The currently selected date. */
   @Input()
@@ -65,7 +87,7 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
     }
   }
 
-  private _selected: D | null;
+  private _minDate: D | null;
 
   /** The minimum selectable date. */
   @Input()
@@ -77,9 +99,7 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
     this._minDate = this._adapter.getValidDateOrNull(this._adapter.deserialize(value));
   }
 
-  private _minDate: D | null;
-
-  private _timeChanged = false;
+  private _maxDate: D | null;
 
   /** The maximum selectable date. */
   @Input()
@@ -91,38 +111,22 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
     this._maxDate = this._adapter.getValidDateOrNull(this._adapter.deserialize(value));
   }
 
-  private _maxDate: D | null;
-
   /** Whether the clock should be started in hour or minute view. */
   @Input()
   set startView(value: MatClockView) {
     this._hourView = value != "minute";
   }
 
-  /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
-
-  @Input() interval: number = 1;
-
-  @Input() twelvehour: boolean = false;
-
-  /** Emits when the currently selected date changes. */
-  @Output() selectedChange = new EventEmitter<D>();
-
-  @Output() activeDateChange = new EventEmitter<D>();
-
-  /** Hours and Minutes representing the clock view. */
-  _hours: Array<Object> = [];
-  _minutes: Array<Object> = [];
-
-  /** Whether the clock is in hour view. */
-  _hourView: boolean = true;
-
-  _selectedHour: number;
-  _selectedMinute: number;
-
   get _hand(): any {
-    this._selectedHour = this._adapter.getHour(this.activeDate);
+    let hour = this._adapter.getHour(this.activeDate);
+    if (!!this.twelvehour) {
+      if (hour === 0) {
+        hour = 24;
+      }
+      this._selectedHour = hour > 12 ? (hour - 12) : hour;
+    } else {
+      this._selectedHour = hour;
+    }
     this._selectedMinute = this._adapter.getMinute(this.activeDate);
     let deg = 0;
     let radius = CLOCK_OUTER_RADIUS;
@@ -140,19 +144,6 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
       "transform": `rotate(${deg}deg)`,
       "height": `${radius}%`,
       "margin-top": `${50 - radius}%`
-    };
-  }
-
-  private mouseMoveListener: any;
-  private mouseUpListener: any;
-
-  constructor(private _element: ElementRef,
-              private _adapter: DatetimeAdapter<D>) {
-    this.mouseMoveListener = (event: any) => {
-      this._handleMousemove(event);
-    };
-    this.mouseUpListener = () => {
-      this._handleMouseup();
     };
   }
 

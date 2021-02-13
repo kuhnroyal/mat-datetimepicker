@@ -1,21 +1,10 @@
-import { Component } from "@angular/core";
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from "@angular/forms";
-import { DateAdapter } from "@angular/material/core";
-import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from "@angular/material-moment-adapter";
-import {
-  DatetimeAdapter,
-  MAT_DATETIME_FORMATS,
-  MatDatetimepickerFilterType
-} from "@mat-datetimepicker/core";
-import { MomentDatetimeAdapter } from "@mat-datetimepicker/moment";
-import {
-  Moment,
-  utc
-} from "moment/moment";
+import {Component} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {DateAdapter} from "@angular/material/core";
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter} from "@angular/material-moment-adapter";
+import {DatetimeAdapter, MAT_DATETIME_FORMATS, MatDatetimepickerFilterType} from "@mat-datetimepicker/core";
+import {MomentDatetimeAdapter} from "@mat-datetimepicker/moment";
+import {Moment, utc} from "moment/moment";
 
 @Component({
   selector: "app-moment-datetime",
@@ -90,12 +79,16 @@ export class MomentDatetimeComponent {
 
     this.group = fb.group({
       dateTime: [new Date("2017-11-09T12:10:00.000Z"), Validators.required],
+      dateTimeYear: [new Date("2017-11-09T12:10:00.000Z"), Validators.required],
       date: [null, Validators.required],
       time: [null, Validators.required],
+      timeAMPM: [null, Validators.required],
       month: [null, Validators.required],
+      year: [null, Validators.required],
       mintest: [this.today, Validators.required],
       filtertest: [this.today, Validators.required],
-      touch: [null, Validators.required]
+      touch: [null, Validators.required],
+      preventsame: [new Date("2020-11-19T17:00:00.000Z"), Validators.required]
     });
   }
 }

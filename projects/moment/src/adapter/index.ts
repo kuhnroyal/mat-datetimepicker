@@ -1,14 +1,8 @@
-import { NgModule } from "@angular/core";
-import {
-  MatMomentDateModule,
-  MomentDateModule
-} from "@angular/material-moment-adapter";
-import {
-  DatetimeAdapter,
-  MAT_DATETIME_FORMATS
-} from "@mat-datetimepicker/core";
-import { MomentDatetimeAdapter } from "./moment-datetime-adapter";
-import { MAT_MOMENT_DATETIME_FORMATS } from "./moment-datetime-formats";
+import {NgModule} from "@angular/core";
+import {MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
+import {DatetimeAdapter, MAT_DATETIME_FORMATS} from "@mat-datetimepicker/core";
+import {MomentDatetimeAdapter} from "./moment-datetime-adapter";
+import {MAT_MOMENT_DATETIME_FORMATS} from "./moment-datetime-formats";
 
 export * from "./moment-datetime-adapter";
 export * from "./moment-datetime-formats";
