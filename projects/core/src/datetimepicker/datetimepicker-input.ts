@@ -183,7 +183,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   }
 
   _onTouched = () => {
-  };
+  }
 
   ngAfterContentInit() {
     if (this._datepicker) {
@@ -318,16 +318,16 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   }
 
   private _cvaOnChange: (value: any) => void = () => {
-  };
+  }
 
   private _validatorOnChange = () => {
-  };
+  }
 
   /** The form control validator for whether the input parses. */
   private _parseValidator: ValidatorFn = (): ValidationErrors | null => {
     return this._lastValueValid ?
       null : {"matDatepickerParse": {"text": this._elementRef.nativeElement.value}};
-  };
+  }
 
   /** The form control validator for the min date. */
   private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -335,7 +335,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     return (!this.min || !controlValue ||
       this._dateAdapter.compareDatetime(this.min, controlValue) <= 0) ?
       null : {"matDatepickerMin": {"min": this.min, "actual": controlValue}};
-  };
+  }
 
   /** The form control validator for the max date. */
   private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -343,14 +343,14 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     return (!this.max || !controlValue ||
       this._dateAdapter.compareDatetime(this.max, controlValue) >= 0) ?
       null : {"matDatepickerMax": {"max": this.max, "actual": controlValue}};
-  };
+  }
 
   /** The form control validator for the date filter. */
   private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
     return !this._dateFilter || !controlValue || this._dateFilter(controlValue, MatDatetimepickerFilterType.DATE) ?
       null : {"matDatepickerFilter": true};
-  };
+  }
 
   /** The combined form control validator for this input. */
   private _validator: ValidatorFn | null =

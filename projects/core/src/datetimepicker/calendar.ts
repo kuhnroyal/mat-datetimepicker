@@ -271,7 +271,7 @@ export class MatDatetimepickerCalendar<D> implements AfterContentInit, OnDestroy
       (!this.dateFilter || this.dateFilter(date, MatDatetimepickerFilterType.DATE)) &&
       (!this.minDate || this._adapter.compareDate(date, this.minDate) >= 0) &&
       (!this.maxDate || this._adapter.compareDate(date, this.maxDate) <= 0);
-  };
+  }
 
   _userSelected(): void {
     this._userSelection.emit();
