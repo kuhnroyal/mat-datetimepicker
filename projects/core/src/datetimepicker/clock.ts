@@ -217,8 +217,8 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
           this._adapter.getMonth(this.activeDate),
           this._adapter.getDate(this.activeDate), i, 0);
         let enabled =
-          (!this.minDate || this._adapter.compareDatetime(date, this.minDate) >= 0) &&
-          (!this.maxDate || this._adapter.compareDatetime(date, this.maxDate) <= 0) &&
+          (!this.minDate || this._adapter.compareDatetime(date, this.minDate, false) >= 0) &&
+          (!this.maxDate || this._adapter.compareDatetime(date, this.maxDate, false) <= 0) &&
           (!this.dateFilter || this.dateFilter(date, MatDatetimepickerFilterType.HOUR));
         this._hours.push({
           value: i,
@@ -302,11 +302,9 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
         this._adapter.getDate(this.activeDate), this._adapter.getHour(this.activeDate), value);
     }
 
-    const clamped = this._adapter.clampDate(date, this.minDate, this.maxDate);
-    if (date === clamped) {
-      this._timeChanged = true;
-      this.activeDate = clamped;
-      this.activeDateChange.emit(this.activeDate);
-    }
+    this._timeChanged = true;
+    this.activeDate = date;
+    this.activeDateChange.emit(this.activeDate);
   }
 }
+
