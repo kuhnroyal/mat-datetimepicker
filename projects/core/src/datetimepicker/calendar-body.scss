@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~@angular/material/theming';
 
 $mat-calendar-body-font-size: 13px !default;
@@ -10,7 +11,7 @@ $mat-calendar-body-cell-content-margin: 5% !default;
 $mat-calendar-body-cell-content-border-width: 1px !default;
 
 $mat-calendar-body-min-size: 7 * $mat-calendar-body-cell-min-size !default;
-$mat-calendar-body-cell-padding: $mat-calendar-body-cell-size / 2 !default;
+$mat-calendar-body-cell-padding: math.div($mat-calendar-body-cell-size, 2) !default;
 $mat-calendar-body-cell-content-size: 100% - $mat-calendar-body-cell-content-margin * 2 !default;
 
 .mat-datetimepicker-calendar-body {
