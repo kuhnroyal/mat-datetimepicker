@@ -73,7 +73,7 @@ export class MatDatetimepickerToggle<D> implements AfterContentInit, OnChanges, 
       this.datetimepicker._datepickerInput._disabledChange : observableOf();
 
     this._stateChanges.unsubscribe();
-    this._stateChanges = merge(this._intl.changes, datepickerDisabled, inputDisabled)
+    this._stateChanges = merge([this._intl.changes, datepickerDisabled, inputDisabled])
       .subscribe(() => this._changeDetectorRef.markForCheck());
   }
 }
