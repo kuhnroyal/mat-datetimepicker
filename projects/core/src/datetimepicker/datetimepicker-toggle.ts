@@ -1,38 +1,39 @@
-import {coerceBooleanProperty} from "@angular/cdk/coercion";
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  HostBinding,
   Input,
   OnChanges,
   OnDestroy,
   SimpleChanges,
-  ViewEncapsulation
-} from "@angular/core";
-import {MatDatepickerIntl} from "@angular/material/datepicker";
-import {merge, of as observableOf, Subscription} from "rxjs";
-import {MatDatetimepicker} from "./datetimepicker";
+  ViewEncapsulation,
+} from '@angular/core';
+import { MatDatepickerIntl } from '@angular/material/datepicker';
+import { merge, of as observableOf, Subscription } from 'rxjs';
+import { MatDatetimepickerComponent } from './datetimepicker';
 
 @Component({
-  selector: "mat-datetimepicker-toggle",
-  templateUrl: "datetimepicker-toggle.html",
-  host: {
-    "class": "mat-datetimepicker-toggle"
-  },
-  exportAs: "matDatetimepickerToggle",
+  selector: 'mat-datetimepicker-toggle',
+  templateUrl: 'datetimepicker-toggle.html',
+  exportAs: 'matDatetimepickerToggle',
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatDatetimepickerToggle<D> implements AfterContentInit, OnChanges, OnDestroy {
+export class MatDatetimepickerToggleComponent<D> implements AfterContentInit, OnChanges, OnDestroy {
+  @HostBinding('class')
+  classes = 'mat-datetimepicker-toggle';
+
   /** Datepicker instance that the button will toggle. */
-    // tslint:disable-next-line:no-input-rename
-  @Input("for") datetimepicker: MatDatetimepicker<D>;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('for') datetimepicker: MatDatetimepickerComponent<D>;
+
   private _stateChanges = Subscription.EMPTY;
 
-  constructor(public _intl: MatDatepickerIntl, private _changeDetectorRef: ChangeDetectorRef) {
-  }
+  constructor(public _intl: MatDatepickerIntl, private _changeDetectorRef: ChangeDetectorRef) {}
 
   private _disabled: boolean;
 
@@ -68,12 +69,17 @@ export class MatDatetimepickerToggle<D> implements AfterContentInit, OnChanges, 
   }
 
   private _watchStateChanges() {
-    const datepickerDisabled = this.datetimepicker ? this.datetimepicker._disabledChange : observableOf();
-    const inputDisabled = this.datetimepicker && this.datetimepicker._datepickerInput ?
-      this.datetimepicker._datepickerInput._disabledChange : observableOf();
+    const datepickerDisabled = this.datetimepicker
+      ? this.datetimepicker._disabledChange
+      : observableOf();
+    const inputDisabled =
+      this.datetimepicker && this.datetimepicker._datepickerInput
+        ? this.datetimepicker._datepickerInput._disabledChange
+        : observableOf();
 
     this._stateChanges.unsubscribe();
-    this._stateChanges = merge([this._intl.changes, datepickerDisabled, inputDisabled])
-      .subscribe(() => this._changeDetectorRef.markForCheck());
+    this._stateChanges = merge([this._intl.changes, datepickerDisabled, inputDisabled]).subscribe(
+      () => this._changeDetectorRef.markForCheck(),
+    );
   }
 }

@@ -1,9 +1,8 @@
-@import '~@angular/material/theming';
+@import '../../../../node_modules/@angular/material/theming';
 
 $mat-datetimepicker-selected-today-box-shadow-width: 1px;
 
 @mixin mat-datetimepicker-theme($theme) {
-
   $primary: map-get($theme, primary);
 
   .mat-datetimepicker-calendar-header {
@@ -26,7 +25,8 @@ $mat-datetimepicker-selected-today-box-shadow-width: 1px;
       }
 
       &.mat-datetimepicker-calendar-body-selected {
-        box-shadow: inset 0 0 0 $mat-datetimepicker-selected-today-box-shadow-width mat-color($primary, default-contrast);
+        box-shadow: inset 0 0 0 $mat-datetimepicker-selected-today-box-shadow-width
+          mat-color($primary, default-contrast);
       }
     }
   }

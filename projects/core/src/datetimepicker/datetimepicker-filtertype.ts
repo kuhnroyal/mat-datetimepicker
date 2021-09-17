@@ -1,3 +1,5 @@
 export enum MatDatetimepickerFilterType {
-  DATE, HOUR, MINUTE
+  DATE,
+  HOUR,
+  MINUTE,
 }

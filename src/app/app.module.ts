@@ -1,14 +1,16 @@
-import {registerLocaleData} from "@angular/common";
-import localeDe from "@angular/common/locales/de";
-import {LOCALE_ID, NgModule} from "@angular/core";
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
-import {BrowserModule} from "@angular/platform-browser";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MAT_DATE_LOCALE} from "@angular/material/core";
-import {AppComponent} from "./app.component";
-import {AppMomentModule} from "./moment/moment.module";
-import {AppNativeModule} from "./native/native.module";
+import { AppComponent } from './app.component';
+
+import { AppMomentModule } from './moment/moment.module';
+import { AppNativeModule } from './native/native.module';
+
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 registerLocaleData(localeDe);
 
@@ -16,23 +18,15 @@ registerLocaleData(localeDe);
   providers: [
     {
       provide: LOCALE_ID,
-      useValue: "de-DE"
+      useValue: 'de-DE',
     },
     {
       provide: MAT_DATE_LOCALE,
-      useExisting: LOCALE_ID
-    }
+      useExisting: LOCALE_ID,
+    },
   ],
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    AppMomentModule,
-    AppNativeModule
-  ],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [BrowserAnimationsModule, BrowserModule, AppMomentModule, AppNativeModule],
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

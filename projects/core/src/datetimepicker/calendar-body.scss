@@ -1,12 +1,12 @@
 @use 'sass:math';
-@import '~@angular/material/theming';
+@import '../../../../node_modules/@angular/material/theming';
 
 $mat-calendar-body-font-size: 13px !default;
 $mat-calendar-body-header-font-size: 14px !default;
 $mat-calendar-body-label-padding-start: 5% !default;
 $mat-calendar-body-label-translation: -6px !default;
 $mat-calendar-body-cell-min-size: 32px !default;
-$mat-calendar-body-cell-size: 100% / 7 !default;
+$mat-calendar-body-cell-size: math.div(100%, 7) !default;
 $mat-calendar-body-cell-content-margin: 5% !default;
 $mat-calendar-body-cell-content-border-width: 1px !default;
 
@@ -20,7 +20,8 @@ $mat-calendar-body-cell-content-size: 100% - $mat-calendar-body-cell-content-mar
 }
 
 .mat-datetimepicker-calendar-body-label {
-  padding: $mat-calendar-body-cell-padding 0 $mat-calendar-body-cell-padding $mat-calendar-body-cell-padding;
+  padding: $mat-calendar-body-cell-padding 0 $mat-calendar-body-cell-padding
+    $mat-calendar-body-cell-padding;
   height: 0;
   line-height: 0;
   color: rgba(black, 0.54);
@@ -65,12 +66,14 @@ $mat-calendar-body-cell-content-size: 100% - $mat-calendar-body-cell-content-mar
 
 :not(.mat-datetimepicker-calendar-body-disabled):hover,
 .mat-datetimepicker-calendar-body-active {
-  & > .mat-datetimepicker-calendar-body-cell-content:not(.mat-datetimepicker-calendar-body-selected) {
+  &
+    > .mat-datetimepicker-calendar-body-cell-content:not(.mat-datetimepicker-calendar-body-selected) {
     background-color: rgba(black, 0.12);
   }
 }
 
-.mat-datetimepicker-calendar-body-disabled > .mat-datetimepicker-calendar-body-today:not(.mat-datetimepicker-calendar-body-selected) {
+.mat-datetimepicker-calendar-body-disabled
+  > .mat-datetimepicker-calendar-body-today:not(.mat-datetimepicker-calendar-body-selected) {
   border-color: rgba(black, 0.18);
 }
 

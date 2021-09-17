@@ -1,12 +1,30 @@
+version: ~> 1.0
+
 language: node_js
 node_js:
-  - 10
-  - 12
+  - 14
 
 sudo: false
-
 notifications:
   email: false
 
-script:
-  - yarn build
+addons:
+  chrome: stable
+
+jobs:
+  include:
+    - stage: Test
+      script:
+        - npm run lint
+        - npm run test:headless
+    - stage: Version
+      script: ./travis/version.sh
+      if: branch = canary || branch = release
+    - stage: Build
+      script: npm run build:full
+    - stage: Deploy
+      script: ./travis/deploy.sh
+      if: branch = canary || branch = release
+    - stage: Publish
+      script: ./travis/publish.sh
+      if: branch = release

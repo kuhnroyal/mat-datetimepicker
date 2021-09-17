@@ -1,16 +1,20 @@
-import {Inject, Injectable, Optional} from "@angular/core";
-import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateAdapterOptions} from "@angular/material-moment-adapter";
-import {DatetimeAdapter} from "@mat-datetimepicker/core";
+import { Inject, Injectable, Optional } from '@angular/core';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MatMomentDateAdapterOptions,
+} from '@angular/material-moment-adapter';
+import { DatetimeAdapter } from '@mat-datetimepicker/core';
 
-import * as moment_ from "moment";
-import {Moment} from "moment";
+import * as moment_ from 'moment';
+import { Moment } from 'moment';
 
-const moment = 'default' in moment_ ? moment_['default'] : moment_;
+// @ts-ignore
+const moment = moment_.hasOwnProperty('default') ? moment_['default'] : moment_;
 
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
   const valuesArray = Array(length);
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < length; i += 1) {
     valuesArray[i] = valueFunction(i);
   }
   return valuesArray;
@@ -18,27 +22,30 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 
 @Injectable()
 export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
-
-  private _localeData: {
-    firstDayOfWeek: number,
-    longMonths: string[],
-    shortMonths: string[],
-    dates: string[],
-    hours: string[],
-    minutes: string[],
-    longDaysOfWeek: string[],
-    shortDaysOfWeek: string[],
-    narrowDaysOfWeek: string[]
+  private _localeData?: {
+    firstDayOfWeek: number;
+    longMonths: string[];
+    shortMonths: string[];
+    dates: string[];
+    hours: string[];
+    minutes: string[];
+    longDaysOfWeek: string[];
+    shortDaysOfWeek: string[];
+    narrowDaysOfWeek: string[];
   };
 
   private _useUtc = false;
 
-  constructor(@Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: string,
-              @Optional() @Inject(MAT_MOMENT_DATE_ADAPTER_OPTIONS) matMomentAdapterOptions: MatMomentDateAdapterOptions,
-              _delegate: DateAdapter<Moment>) {
+  constructor(
+    @Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: string,
+    @Optional()
+    @Inject(MAT_MOMENT_DATE_ADAPTER_OPTIONS)
+    matMomentAdapterOptions: MatMomentDateAdapterOptions,
+    _delegate: DateAdapter<Moment>,
+  ) {
     super(_delegate);
     this.setLocale(matDateLocale || moment.locale());
-    this._useUtc = matMomentAdapterOptions.useUtc;
+    this._useUtc = matMomentAdapterOptions.useUtc || this._useUtc;
   }
 
   setLocale(locale: string) {
@@ -49,12 +56,12 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
       firstDayOfWeek: momentLocaleData.firstDayOfWeek(),
       longMonths: momentLocaleData.months(),
       shortMonths: momentLocaleData.monthsShort(),
-      dates: range(31, (i) => super.createDate(2017, 0, i + 1).format("D")),
-      hours: range(24, (i) => this.createDatetime(2017, 0, 1, i, 0).format("H")),
-      minutes: range(60, (i) => this.createDatetime(2017, 0, 1, 1, i).format("m")),
+      dates: range(31, (i) => super.createDate(2017, 0, i + 1).format('D')),
+      hours: range(24, (i) => this.createDatetime(2017, 0, 1, i, 0).format('H')),
+      minutes: range(60, (i) => this.createDatetime(2017, 0, 1, 1, i).format('m')),
       longDaysOfWeek: momentLocaleData.weekdays(),
       shortDaysOfWeek: momentLocaleData.weekdaysShort(),
-      narrowDaysOfWeek: momentLocaleData.weekdaysMin()
+      narrowDaysOfWeek: momentLocaleData.weekdaysMin(),
     };
   }
 
@@ -91,7 +98,7 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     }
 
     // const result = moment({year, month, date, hour, minute}).locale(this.locale);
-    let result = moment({year, month, date, hour, minute});
+    let result = moment({ year, month, date, hour, minute });
     if (this._useUtc) {
       result = result.utc();
     }
@@ -105,23 +112,23 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
   }
 
   getFirstDateOfMonth(date: Moment): Moment {
-    return super.clone(date).startOf("month");
+    return super.clone(date).startOf('month');
   }
 
   getHourNames(): string[] {
-    return this._localeData.hours;
+    return this._localeData!.hours;
   }
 
   getMinuteNames(): string[] {
-    return this._localeData.minutes;
+    return this._localeData!.minutes;
   }
 
   addCalendarHours(date: Moment, hours: number): Moment {
-    return super.clone(date).add({hours});
+    return super.clone(date).add({ hours });
   }
 
   addCalendarMinutes(date: Moment, minutes: number): Moment {
-    return super.clone(date).add({minutes});
+    return super.clone(date).add({ minutes });
   }
 
   deserialize(value: any): Moment | null {
@@ -129,6 +136,6 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
   }
 
   private getDateInNextMonth(date: Moment) {
-    return super.clone(date).date(1).add({month: 1});
+    return super.clone(date).date(1).add({ month: 1 });
   }
 }

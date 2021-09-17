@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+IFS=',' read -r -a array <<< $(node $(dirname "$0")/owl.js commit-msg $IFS)
+for i in "${array[@]}"; do
+  $i
+done

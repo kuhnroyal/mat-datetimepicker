@@ -1,16 +1,12 @@
 {
   "name": "@mat-datetimepicker/moment",
   "version": "7.0.1",
-  "repository": "https://github.com/kuhnroyal/mat-datetimepicker.git",
-  "author": "PL <kuhnroyal@gmail.com>",
-  "license": "MIT",
   "peerDependencies": {
-    "@angular/cdk": "^12.1.0",
-    "@angular/common": "^12.1.0",
-    "@angular/core": "^12.1.0",
-    "@angular/material": "~12.1.0",
-    "@angular/material-moment-adapter": "~12.1.0",
-    "@mat-datetimepicker/core": "7.0.1"
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0",
+    "@angular/material-moment-adapter": "^12.2.6",
+    "@mat-datetimepicker/core": "7.0.1",
+    "moment": "^2.29.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
