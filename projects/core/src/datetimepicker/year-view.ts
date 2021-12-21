@@ -8,14 +8,17 @@ import {
   Input,
   Optional,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from "@angular/core";
-import {MatDatetimepickerType} from "./datetimepicker";
-import {createMissingDateImplError} from "./datetimepicker-errors";
-import {MatDatetimepickerCalendarCell} from "./calendar-body";
-import {slideCalendar} from "./datetimepicker-animations";
-import {MAT_DATETIME_FORMATS, MatDatetimeFormats} from "../adapter/datetime-formats";
-import {DatetimeAdapter} from "../adapter/datetime-adapter";
+import { createMissingDateImplError } from "./datetimepicker-errors";
+import { MatDatetimepickerCalendarCell } from "./calendar-body";
+import { slideCalendar } from "./datetimepicker-animations";
+import {
+  MAT_DATETIME_FORMATS,
+  MatDatetimeFormats,
+} from "../adapter/datetime-formats";
+import { DatetimeAdapter } from "../adapter/datetime-adapter";
+import { MatDatetimepickerType } from "./datetimepicker-type";
 
 /**
  * An internal component used to display a single year in the datepicker.
@@ -26,10 +29,9 @@ import {DatetimeAdapter} from "../adapter/datetime-adapter";
   templateUrl: "year-view.html",
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatDatetimepickerYearView<D> implements AfterContentInit {
-
   @Output() _userSelection = new EventEmitter<void>();
 
   @Input() type: MatDatetimepickerType = "date";
@@ -50,8 +52,12 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
   _selectedMonth: number;
   _calendarState: string;
 
-  constructor(@Optional() public _adapter: DatetimeAdapter<D>,
-              @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats) {
+  constructor(
+    @Optional() public _adapter: DatetimeAdapter<D>,
+    @Optional()
+    @Inject(MAT_DATETIME_FORMATS)
+    private _dateFormats: MatDatetimeFormats
+  ) {
     if (!this._adapter) {
       throw createMissingDateImplError("DatetimeAdapter");
     }
@@ -74,8 +80,11 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
   set activeDate(value: D) {
     let oldActiveDate = this._activeDate;
     this._activeDate = value || this._adapter.today();
-    if (oldActiveDate && this._activeDate &&
-      !this._adapter.sameYear(oldActiveDate, this._activeDate)) {
+    if (
+      oldActiveDate &&
+      this._activeDate &&
+      !this._adapter.sameYear(oldActiveDate, this._activeDate)
+    ) {
       this._init();
       // if (oldActiveDate < this._activeDate) {
       //  this.calendarState('right');
@@ -104,13 +113,26 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
 
   /** Handles when a new month is selected. */
   _monthSelected(month: number) {
-    const normalizedDate = this._adapter.createDatetime(this._adapter.getYear(this.activeDate), month, 1, 0, 0);
+    const normalizedDate = this._adapter.createDatetime(
+      this._adapter.getYear(this.activeDate),
+      month,
+      1,
+      0,
+      0
+    );
 
-    this.selectedChange.emit(this._adapter.createDatetime(
-      this._adapter.getYear(this.activeDate), month,
-      Math.min(this._adapter.getDate(this.activeDate), this._adapter.getNumDaysInMonth(normalizedDate)),
-      this._adapter.getHour(this.activeDate),
-      this._adapter.getMinute(this.activeDate)));
+    this.selectedChange.emit(
+      this._adapter.createDatetime(
+        this._adapter.getYear(this.activeDate),
+        month,
+        Math.min(
+          this._adapter.getDate(this.activeDate),
+          this._adapter.getNumDaysInMonth(normalizedDate)
+        ),
+        this._adapter.getHour(this.activeDate),
+        this._adapter.getMinute(this.activeDate)
+      )
+    );
     if (this.type === "month") {
       this._userSelection.emit();
     }
@@ -128,8 +150,12 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
 
     let monthNames = this._adapter.getMonthNames("short");
     // First row of months only contains 5 elements so we can fit the year label on the same row.
-    this._months = [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9, 10, 11]].map(row => row.map(
-      month => this._createCellForMonth(month, monthNames[month])));
+    this._months = [
+      [0, 1, 2, 3, 4],
+      [5, 6, 7, 8, 9, 10, 11],
+    ].map((row) =>
+      row.map((month) => this._createCellForMonth(month, monthNames[month]))
+    );
   }
 
   /**
@@ -137,19 +163,29 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
    * Returns null if the given Date is in another year.
    */
   private _getMonthInCurrentYear(date: D) {
-    return this._adapter.sameYear(date, this.activeDate) ?
-      this._adapter.getMonth(date) : null;
+    return this._adapter.sameYear(date, this.activeDate)
+      ? this._adapter.getMonth(date)
+      : null;
   }
 
   /** Creates an MdCalendarCell for the given month. */
   private _createCellForMonth(month: number, monthName: string) {
     let ariaLabel = this._adapter.format(
-      this._adapter.createDatetime(this._adapter.getYear(this.activeDate), month, 1,
+      this._adapter.createDatetime(
+        this._adapter.getYear(this.activeDate),
+        month,
+        1,
         this._adapter.getHour(this.activeDate),
-        this._adapter.getMinute(this.activeDate)),
-      this._dateFormats.display.monthYearA11yLabel);
+        this._adapter.getMinute(this.activeDate)
+      ),
+      this._dateFormats.display.monthYearA11yLabel
+    );
     return new MatDatetimepickerCalendarCell(
-      month, monthName.toLocaleUpperCase(), ariaLabel, this._isMonthEnabled(month));
+      month,
+      monthName.toLocaleUpperCase(),
+      ariaLabel,
+      this._isMonthEnabled(month)
+    );
   }
 
   // private calendarState(direction: string): void {
@@ -163,13 +199,19 @@ export class MatDatetimepickerYearView<D> implements AfterContentInit {
     }
 
     let firstOfMonth = this._adapter.createDatetime(
-      this._adapter.getYear(this.activeDate), month, 1,
+      this._adapter.getYear(this.activeDate),
+      month,
+      1,
       this._adapter.getHour(this.activeDate),
-      this._adapter.getMinute(this.activeDate));
+      this._adapter.getMinute(this.activeDate)
+    );
 
     // If any date in the month is enabled count the month as enabled.
-    for (let date = firstOfMonth; this._adapter.getMonth(date) == month;
-         date = this._adapter.addCalendarDays(date, 1)) {
+    for (
+      let date = firstOfMonth;
+      this._adapter.getMonth(date) == month;
+      date = this._adapter.addCalendarDays(date, 1)
+    ) {
       if (this.dateFilter(date)) {
         return true;
       }
