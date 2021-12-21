@@ -8,15 +8,17 @@ import {
   Input,
   Optional,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from "@angular/core";
-import {MatDatetimepickerType} from "./datetimepicker";
-import {createMissingDateImplError} from "./datetimepicker-errors";
-import {MatDatetimepickerCalendarCell} from "./calendar-body";
-import {slideCalendar} from "./datetimepicker-animations";
-import {MAT_DATETIME_FORMATS, MatDatetimeFormats} from "../adapter/datetime-formats";
-import {DatetimeAdapter} from "../adapter/datetime-adapter";
-
+import { createMissingDateImplError } from "./datetimepicker-errors";
+import { MatDatetimepickerCalendarCell } from "./calendar-body";
+import { slideCalendar } from "./datetimepicker-animations";
+import {
+  MAT_DATETIME_FORMATS,
+  MatDatetimeFormats,
+} from "../adapter/datetime-formats";
+import { DatetimeAdapter } from "../adapter/datetime-adapter";
+import { MatDatetimepickerType } from "./datetimepicker-type";
 
 export const yearsPerPage = 24;
 
@@ -31,10 +33,9 @@ export const yearsPerRow = 4;
   templateUrl: "multi-year-view.html",
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
-
   @Output() _userSelection = new EventEmitter<void>();
 
   @Input() type: MatDatetimepickerType = "date";
@@ -55,8 +56,12 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
   _selectedYear: number | null;
   _calendarState: string;
 
-  constructor(@Optional() public _adapter: DatetimeAdapter<D>,
-              @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats) {
+  constructor(
+    @Optional() public _adapter: DatetimeAdapter<D>,
+    @Optional()
+    @Inject(MAT_DATETIME_FORMATS)
+    private _dateFormats: MatDatetimeFormats
+  ) {
     if (!this._adapter) {
       throw createMissingDateImplError("DatetimeAdapter");
     }
@@ -79,8 +84,17 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
   set activeDate(value: D) {
     let oldActiveDate = this._activeDate;
     this._activeDate = value || this._adapter.today();
-    if (oldActiveDate && this._activeDate &&
-      !isSameMultiYearView(this._adapter, oldActiveDate, this._activeDate, this.minDate, this.maxDate)) {
+    if (
+      oldActiveDate &&
+      this._activeDate &&
+      !isSameMultiYearView(
+        this._adapter,
+        oldActiveDate,
+        this._activeDate,
+        this.minDate,
+        this.maxDate
+      )
+    ) {
       this._init();
     }
   }
@@ -95,7 +109,8 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
 
   set selected(value: D) {
     this._selected = value;
-    this._selectedYear = this._selected && this._adapter.getYear(this._selected);
+    this._selectedYear =
+      this._selected && this._adapter.getYear(this._selected);
   }
 
   private _minDate: D | null;
@@ -131,13 +146,18 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
     const month = this._adapter.getMonth(this.activeDate);
     const normalizedDate = this._adapter.createDatetime(year, month, 1, 0, 0);
 
-    this.selectedChange.emit(this._adapter.createDatetime(
-      year,
-      month,
-      Math.min(this._adapter.getDate(this.activeDate),
-        this._adapter.getNumDaysInMonth(normalizedDate)),
-      this._adapter.getHour(this.activeDate),
-      this._adapter.getMinute(this.activeDate)));
+    this.selectedChange.emit(
+      this._adapter.createDatetime(
+        year,
+        month,
+        Math.min(
+          this._adapter.getDate(this.activeDate),
+          this._adapter.getNumDaysInMonth(normalizedDate)
+        ),
+        this._adapter.getHour(this.activeDate),
+        this._adapter.getMinute(this.activeDate)
+      )
+    );
 
     if (this.type === "year") {
       this._userSelection.emit();
@@ -145,7 +165,12 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
   }
 
   _getActiveCell(): number {
-    return getActiveOffset(this._adapter, this.activeDate, this.minDate, this.maxDate);
+    return getActiveOffset(
+      this._adapter,
+      this.activeDate,
+      this.minDate,
+      this.maxDate
+    );
   }
 
   _calendarStateDone() {
@@ -154,21 +179,25 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
 
   /** Initializes this year view. */
   private _init() {
-
     this._todayYear = this._adapter.getYear(this._adapter.today());
     this._yearLabel = this._adapter.getYearName(this.activeDate);
 
-
     const activeYear = this._adapter.getYear(this.activeDate);
 
-    const minYearOfPage = activeYear - getActiveOffset(
-      this._adapter, this.activeDate, this.minDate, this.maxDate);
+    const minYearOfPage =
+      activeYear -
+      getActiveOffset(
+        this._adapter,
+        this.activeDate,
+        this.minDate,
+        this.maxDate
+      );
 
     this._years = [];
     for (let i = 0, row: number[] = []; i < yearsPerPage; i++) {
       row.push(minYearOfPage + i);
       if (row.length == yearsPerRow) {
-        this._years.push(row.map(year => this._createCellForYear(year)));
+        this._years.push(row.map((year) => this._createCellForYear(year)));
         row = [];
       }
     }
@@ -176,16 +205,26 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
 
   /** Creates an MatDatetimepickerCalendarCell for the given year. */
   private _createCellForYear(year: number) {
-    let yearName = this._adapter.getYearName(this._adapter.createDate(year, 0, 1));
-    return new MatDatetimepickerCalendarCell(year, yearName, yearName, this._shouldEnableYear(year));
+    let yearName = this._adapter.getYearName(
+      this._adapter.createDate(year, 0, 1)
+    );
+    return new MatDatetimepickerCalendarCell(
+      year,
+      yearName,
+      yearName,
+      this._shouldEnableYear(year)
+    );
   }
 
   /** Whether the given year is enabled. */
   private _shouldEnableYear(year: number) {
     // disable if the year is greater than maxDate lower than minDate
-    if (year === undefined || year === null ||
+    if (
+      year === undefined ||
+      year === null ||
       (this.maxDate && year > this._adapter.getYear(this.maxDate)) ||
-      (this.minDate && year < this._adapter.getYear(this.minDate))) {
+      (this.minDate && year < this._adapter.getYear(this.minDate))
+    ) {
       return false;
     }
 
@@ -197,8 +236,11 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
     const firstOfYear = this._adapter.createDate(year, 0, 1);
 
     // If any date in the year is enabled count the year as enabled.
-    for (let date = firstOfYear; this._adapter.getYear(date) == year;
-         date = this._adapter.addCalendarDays(date, 1)) {
+    for (
+      let date = firstOfYear;
+      this._adapter.getYear(date) == year;
+      date = this._adapter.addCalendarDays(date, 1)
+    ) {
       if (this.dateFilter(date)) {
         return true;
       }
@@ -213,8 +255,7 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
    */
   private _getYearInCurrentRange(date: D) {
     const year = this._adapter.getYear(date);
-    return this._isInRange(year) ?
-      year : null;
+    return this._isInRange(year) ? year : null;
   }
 
   /**
@@ -222,7 +263,6 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
    * Returns true if is in range else returns false
    */
   private _isInRange(year: number): boolean {
-
     return true;
   }
 
@@ -231,17 +271,26 @@ export class MatDatetimepickerMultiYearView<D> implements AfterContentInit {
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
   private _getValidDateOrNull(obj: any): D | null {
-    return (this._adapter.isDateInstance(obj) && this._adapter.isValid(obj)) ? obj : null;
+    return this._adapter.isDateInstance(obj) && this._adapter.isValid(obj)
+      ? obj
+      : null;
   }
 }
 
 export function isSameMultiYearView<D>(
-  dateAdapter: DatetimeAdapter<D>, date1: D, date2: D, minDate: D | null, maxDate: D | null): boolean {
+  dateAdapter: DatetimeAdapter<D>,
+  date1: D,
+  date2: D,
+  minDate: D | null,
+  maxDate: D | null
+): boolean {
   const year1 = dateAdapter.getYear(date1);
   const year2 = dateAdapter.getYear(date2);
   const startingYear = getStartingYear(dateAdapter, minDate, maxDate);
-  return Math.floor((year1 - startingYear) / yearsPerPage) ===
-    Math.floor((year2 - startingYear) / yearsPerPage);
+  return (
+    Math.floor((year1 - startingYear) / yearsPerPage) ===
+    Math.floor((year2 - startingYear) / yearsPerPage)
+  );
 }
 
 /**
@@ -250,10 +299,16 @@ export function isSameMultiYearView<D>(
  * "startingYear" will render when paged into view.
  */
 export function getActiveOffset<D>(
-  dateAdapter: DatetimeAdapter<D>, activeDate: D, minDate: D | null, maxDate: D | null): number {
+  dateAdapter: DatetimeAdapter<D>,
+  activeDate: D,
+  minDate: D | null,
+  maxDate: D | null
+): number {
   const activeYear = dateAdapter.getYear(activeDate);
-  return euclideanModulo((activeYear - getStartingYear(dateAdapter, minDate, maxDate)),
-    yearsPerPage);
+  return euclideanModulo(
+    activeYear - getStartingYear(dateAdapter, minDate, maxDate),
+    yearsPerPage
+  );
 }
 
 /**
@@ -261,7 +316,10 @@ export function getActiveOffset<D>(
  * or the minimum year would be at the beginning of a page.
  */
 function getStartingYear<D>(
-  dateAdapter: DatetimeAdapter<D>, minDate: D | null, maxDate: D | null): number {
+  dateAdapter: DatetimeAdapter<D>,
+  minDate: D | null,
+  maxDate: D | null
+): number {
   let startingYear = 0;
   if (maxDate) {
     const maxYear = dateAdapter.getYear(maxDate);
@@ -274,5 +332,5 @@ function getStartingYear<D>(
 
 /** Gets remainder that is non-negative, even if first number is negative */
 function euclideanModulo(a: number, b: number): number {
-  return (a % b + b) % b;
+  return ((a % b) + b) % b;
 }
