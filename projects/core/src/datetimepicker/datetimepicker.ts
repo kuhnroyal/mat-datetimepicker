@@ -30,10 +30,10 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Subject, Subscription } from "rxjs";
 import { first } from "rxjs/operators";
 import { DatetimeAdapter } from "../adapter/datetime-adapter";
-import { MatCalendarView, MatDatetimepickerCalendar } from "./calendar";
+import { MatCalendarView, MatDatetimepickerCalendarComponent } from "./calendar";
 import { createMissingDateImplError } from "./datetimepicker-errors";
 import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
-import { MatDatetimepickerInput } from "./datetimepicker-input";
+import { MatDatetimepickerInputDirective } from "./datetimepicker-input";
 import { MatDatetimepickerType } from "./datetimepicker-type";
 
 export type MatDatetimepickerMode = "auto" | "portrait" | "landscape";
@@ -60,11 +60,11 @@ let datetimepickerUid = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatDatetimepickerContent<D> implements AfterContentInit {
-  datetimepicker: MatDatetimepicker<D>;
+export class MatDatetimepickerContentComponent<D> implements AfterContentInit {
+  datetimepicker: MatDatetimepickerComponent<D>;
 
-  @ViewChild(MatDatetimepickerCalendar, { static: true })
-  _calendar: MatDatetimepickerCalendar<D>;
+  @ViewChild(MatDatetimepickerCalendarComponent, { static: true })
+  _calendar: MatDatetimepickerCalendarComponent<D>;
 
   ngAfterContentInit() {
     this._calendar._focusActiveCell();
@@ -80,7 +80,6 @@ export class MatDatetimepickerContent<D> implements AfterContentInit {
    * @param event The event.
    */
   _handleKeydown(event: KeyboardEvent): void {
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === ESCAPE) {
       this.datetimepicker.close();
       event.preventDefault();
@@ -97,7 +96,7 @@ export class MatDatetimepickerContent<D> implements AfterContentInit {
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
-export class MatDatetimepicker<D> implements OnDestroy {
+export class MatDatetimepickerComponent<D> implements OnDestroy {
   /** Active multi year view when click on year. */
   @Input() multiYearSelector: boolean = false;
   /** if true change the clock to 12 hour format. */
@@ -120,10 +119,10 @@ export class MatDatetimepicker<D> implements OnDestroy {
   /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[];
   /** Emits when the datepicker has been opened. */
-  // tslint:disable-next-line:no-output-rename
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output("opened") openedStream: EventEmitter<void> = new EventEmitter<void>();
   /** Emits when the datepicker has been closed. */
-  // tslint:disable-next-line:no-output-rename
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output("closed") closedStream: EventEmitter<void> = new EventEmitter<void>();
   /** Emits when the view has been changed. **/
   @Output() viewChanged: EventEmitter<MatCalendarView> =
@@ -133,7 +132,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
   /** The id for the datepicker calendar. */
   id = `mat-datetimepicker-${datetimepickerUid++}`;
   /** The input element this datepicker is associated with. */
-  _datepickerInput: MatDatetimepickerInput<D>;
+  _datepickerInput: MatDatetimepickerInputDirective<D>;
   /** Emits when the datepicker is disabled. */
   _disabledChange = new Subject<boolean>();
   private _validSelected: D | null = null;
@@ -142,7 +141,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
   /** A reference to the dialog when the calendar is opened as a dialog. */
   private _dialogRef: MatDialogRef<any> | null;
   /** A portal containing the calendar for this datepicker. */
-  private _calendarPortal: ComponentPortal<MatDatetimepickerContent<D>>;
+  private _calendarPortal: ComponentPortal<MatDatetimepickerContentComponent<D>>;
   /** The element that was focused before the datepicker was opened. */
   private _focusedElementBeforeOpen: HTMLElement | null = null;
   private _inputSubscription = Subscription.EMPTY;
@@ -286,7 +285,6 @@ export class MatDatetimepicker<D> implements OnDestroy {
     const oldValue = this._selected;
     this._selected = date;
     if (!this._dateAdapter.sameDatetime(oldValue, this._selected)) {
-      // tslint:disable-next-line deprecation
       this.selectedChanged.emit(date);
     }
   }
@@ -295,7 +293,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
    * Register an input with this datepicker.
    * @param input The datepicker input to register with this datepicker.
    */
-  _registerInput(input: MatDatetimepickerInput<D>): void {
+  _registerInput(input: MatDatetimepickerInputDirective<D>): void {
     if (this._datepickerInput) {
       throw Error(
         "A MatDatepicker can only be associated with a single input."
@@ -370,7 +368,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
 
   /** Open the calendar as a dialog. */
   private _openAsDialog(): void {
-    this._dialogRef = this._dialog.open(MatDatetimepickerContent, {
+    this._dialogRef = this._dialog.open(MatDatetimepickerContentComponent, {
       direction: this._dir ? this._dir.value : "ltr",
       viewContainerRef: this._viewContainerRef,
       panelClass: "mat-datetimepicker-dialog",
@@ -382,8 +380,8 @@ export class MatDatetimepicker<D> implements OnDestroy {
   /** Open the calendar as a popup. */
   private _openAsPopup(): void {
     if (!this._calendarPortal) {
-      this._calendarPortal = new ComponentPortal<MatDatetimepickerContent<D>>(
-        MatDatetimepickerContent,
+      this._calendarPortal = new ComponentPortal<MatDatetimepickerContentComponent<D>>(
+        MatDatetimepickerContentComponent,
         this._viewContainerRef
       );
     }
@@ -393,7 +391,7 @@ export class MatDatetimepicker<D> implements OnDestroy {
     }
 
     if (!this._popupRef.hasAttached()) {
-      const componentRef: ComponentRef<MatDatetimepickerContent<D>> =
+      const componentRef: ComponentRef<MatDatetimepickerContentComponent<D>> =
         this._popupRef.attach(this._calendarPortal);
       componentRef.instance.datetimepicker = this;
 

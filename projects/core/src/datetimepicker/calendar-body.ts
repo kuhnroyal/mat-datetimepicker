@@ -17,8 +17,8 @@ export class MatDatetimepickerCalendarCell {
  * @docs-private
  */
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: "[mat-datetimepicker-calendar-body]",
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: "tbody[matDatetimepickerCalendarBody]",
   templateUrl: "calendar-body.html",
   styleUrls: ["calendar-body.scss"],
   host: {
@@ -27,7 +27,7 @@ export class MatDatetimepickerCalendarCell {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MatDatetimepickerCalendarBody {
+export class MatDatetimepickerCalendarBodyComponent {
   /** The label for the table. (e.g. "Jan 2017"). */
   @Input() label: string;
 

@@ -16,21 +16,21 @@ import {MatFormField} from "@angular/material/form-field";
 import {Subscription} from "rxjs";
 import {DatetimeAdapter} from "../adapter/datetime-adapter";
 import {MAT_DATETIME_FORMATS, MatDatetimeFormats} from "../adapter/datetime-formats";
-import {MatDatetimepicker} from "./datetimepicker";
+import {MatDatetimepickerComponent} from "./datetimepicker";
 import {createMissingDateImplError} from "./datetimepicker-errors";
 import {MatDatetimepickerFilterType} from "./datetimepicker-filtertype";
 
-// tslint:disable no-use-before-declare
+// eslint-disable  @typescript-eslint/no-use-before-define
 
 export const MAT_DATETIMEPICKER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => MatDatetimepickerInput),
+  useExisting: forwardRef(() => MatDatetimepickerInputDirective),
   multi: true
 };
 
 export const MAT_DATETIMEPICKER_VALIDATORS: any = {
   provide: NG_VALIDATORS,
-  useExisting: forwardRef(() => MatDatetimepickerInput),
+  useExisting: forwardRef(() => MatDatetimepickerInputDirective),
   multi: true
 };
 
@@ -43,7 +43,7 @@ export class MatDatetimepickerInputEvent<D> {
   /** The new value for the target datepicker input. */
   value: D | null;
 
-  constructor(public target: MatDatetimepickerInput<D>, public targetElement: HTMLElement) {
+  constructor(public target: MatDatetimepickerInputDirective<D>, public targetElement: HTMLElement) {
     this.value = this.target.value;
   }
 }
@@ -54,7 +54,7 @@ export class MatDatetimepickerInputEvent<D> {
   providers: [
     MAT_DATETIMEPICKER_VALUE_ACCESSOR,
     MAT_DATETIMEPICKER_VALIDATORS,
-    {provide: MAT_INPUT_VALUE_ACCESSOR, useExisting: MatDatetimepickerInput},
+    {provide: MAT_INPUT_VALUE_ACCESSOR, useExisting: MatDatetimepickerInputDirective},
   ],
   host: {
     "[attr.aria-haspopup]": "true",
@@ -70,9 +70,9 @@ export class MatDatetimepickerInputEvent<D> {
   },
   exportAs: "matDatepickerInput"
 })
-export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValueAccessor, OnDestroy,
+export class MatDatetimepickerInputDirective<D> implements AfterContentInit, ControlValueAccessor, OnDestroy,
   Validator {
-  _datepicker: MatDatetimepicker<D>;
+  _datepicker: MatDatetimepickerComponent<D>;
   _dateFilter: (date: D | null, type: MatDatetimepickerFilterType) => boolean;
   /** Emits when a `change` event is fired on this `<input>`. */
   @Output() dateChange = new EventEmitter<MatDatetimepickerInputEvent<D>>();
@@ -106,7 +106,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
 
   /** The datepicker that this input is associated with. */
   @Input()
-  set matDatetimepicker(value: MatDatetimepicker<D>) {
+  set matDatetimepicker(value: MatDatetimepickerComponent<D>) {
     this.registerDatepicker(value);
   }
 
@@ -187,7 +187,6 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
 
   ngAfterContentInit() {
     if (this._datepicker) {
-      // tslint:disable-next-line deprecation
       this._datepickerSubscription = this._datepicker.selectedChanged.subscribe((selected: D) => {
         this.value = selected;
         this._cvaOnChange(selected);
@@ -242,7 +241,6 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
   }
 
   _onKeydown(event: KeyboardEvent) {
-    // tslint:disable-next-line:deprecation
     if (event.altKey && event.keyCode === DOWN_ARROW) {
       this._datepicker.open();
       event.preventDefault();
@@ -273,7 +271,7 @@ export class MatDatetimepickerInput<D> implements AfterContentInit, ControlValue
     this._onTouched();
   }
 
-  private registerDatepicker(value: MatDatetimepicker<D>) {
+  private registerDatepicker(value: MatDatetimepickerComponent<D>) {
     if (value) {
       this._datepicker = value;
       this._datepicker._registerInput(this);
