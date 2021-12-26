@@ -9,8 +9,8 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {AppComponent} from "./app.component";
 import {AppMomentModule} from "./moment/moment.module";
 import {AppNativeModule} from "./native/native.module";
-import { FooterComponent } from './layout/footer/footer.component';
-import { HeaderComponent } from './layout/header/header.component';
+import {FooterComponent} from "./layout/footer/footer.component";
+import {HeaderComponent} from "./layout/header/header.component";
 
 registerLocaleData(localeDe);
 
