@@ -15,6 +15,7 @@
     "lint": "ng lint",
     "prepare": "husky install",
     "test": "ng test",
+    "test:watch": "ng test --auto-watch --no-single-run",
     "start": "ng serve",
     "start:prod": "ng serve --configuration production"
   },
