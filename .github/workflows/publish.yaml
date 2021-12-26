@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - release
-    tags:
-      - v*
+    tags-ignore:
+      - '*'
     paths:
       - package.json
       - projects/core/package.json
