@@ -3,17 +3,18 @@ Material Datetimepicker for @angular/material
 
 > **The example application is on [GitHub Pages](https://kuhnroyal.github.io/mat-datetimepicker/)!**
 
-[![Travis CI](https://travis-ci.org/kuhnroyal/mat-datetimepicker.svg?branch=master)](https://travis-ci.org/kuhnroyal/mat-datetimepicker)
-[![Latest Stable Version](https://img.shields.io/npm/v/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
-[![License](https://img.shields.io/npm/l/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
-[![NPM Downloads](https://img.shields.io/npm/dm/@mat-datetimepicker/core.svg)](https://www.npmjs.com/package/@mat-datetimepicker/core)
+[![Build](https://img.shields.io/github/workflow/status/kuhnroyal/mat-datetimepicker/Test?style=flat-square)](https://github.com/kuhnroyal/mat-datetimepicker/actions/workflows/test.yaml)
+[![Latest Stable Version](https://img.shields.io/npm/v/@mat-datetimepicker/core?style=flat-square)](https://www.npmjs.com/package/@mat-datetimepicker/core)
+[![License](https://img.shields.io/npm/l/@mat-datetimepicker/core.svg?style=flat-square)](https://www.npmjs.com/package/@mat-datetimepicker/core)
+[![NPM Downloads](https://img.shields.io/npm/dm/@mat-datetimepicker/core.svg?style=flat-square)](https://www.npmjs.com/package/@mat-datetimepicker/core)
 
 ---
 
 The datetimepicker was initially taken from [`Promact/md2`](https://github.com/Promact/md2) and modified to
 use `@angular/material`. We have also added theming support.
 
-Like the `@angular/material` `datepicker` it contains a native-datetime-adapter as well as a moment-datetime-adapter.
+Like the `@angular/material` `datepicker` it contains a `native-datetime-adapter` as well as a `moment-datetime-adapter`
+.
 
 # Contents
 
@@ -200,41 +201,9 @@ API [documentation](https://developer.mozilla.org/de/docs/Web/JavaScript/Referen
 
 # Development
 
-## Performing a local build
+Run `npm install` in order to install all required dependencies and initialize the Git hooks. Further instructions are
+available in the [`DEVELOPMENT.md`](https://github.com/kuhnroyal/mat-datetimepicker/blob/canary/DEVELOPMENT.md).
 
-```sh
-npm install
-npm run build
-```
-
-## Running the sample app locally
-
-```sh
-npm install
-npm run build
-npm run start
-```
-
-## Using the local build in some project
-
-```sh
-cd my-project
-```
-
-Add the dependencies to your `package.json`:
-
-```json
-{
-  "dependencies": {
-    "@mat-datetimepicker/core": "8.0.0",
-    "@mat-datetimepicker/moment": "8.0.0"
-  }
-}
-```
-
-Link the local built modules:
-
-```sh
-npm link "@mat-datetimepicker/core"
-npm link "@mat-datetimepicker/moment"
-```
+**Make sure you read at
+least [the "Committing" section](https://github.com/kuhnroyal/mat-datetimepicker/blob/canary/DEVELOPMENT.md#committing)
+before committing anything.**

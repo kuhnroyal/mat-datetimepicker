@@ -12,6 +12,7 @@ import {
 @Component({
   selector: "app-native-datetime",
   templateUrl: "../date.component.html",
+  styleUrls: ["../date.component.scss"],
   providers: [
     {
       provide: DateAdapter,
@@ -28,7 +29,9 @@ import {
   ]
 })
 export class NativeDatetimeComponent {
-  type = "native";
+
+  name = "@mat-datetimepicker/core";
+  link = "https://www.npmjs.com/package/@mat-datetimepicker/core";
 
   group: FormGroup;
   today = new Date();
