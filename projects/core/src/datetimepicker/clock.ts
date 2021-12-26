@@ -1,4 +1,3 @@
-/* tslint:disable */
 import {AfterContentInit, Component, ElementRef, EventEmitter, Input, Output} from "@angular/core";
 import {DatetimeAdapter} from "../adapter/datetime-adapter";
 import {MatDatetimepickerFilterType} from "./datetimepicker-filtertype";
@@ -23,7 +22,7 @@ export type MatClockView = "hour" | "minute";
     "(mousedown)": "_handleMousedown($event)"
   }
 })
-export class MatDatetimepickerClock<D> implements AfterContentInit {
+export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
 
   @Output() _userSelection = new EventEmitter<void>();
   /** A function used to filter which dates are selectable. */
@@ -307,4 +306,3 @@ export class MatDatetimepickerClock<D> implements AfterContentInit {
     this.activeDateChange.emit(this.activeDate);
   }
 }
-
