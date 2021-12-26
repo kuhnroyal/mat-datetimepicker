@@ -1,20 +1,16 @@
-import {NgModule} from "@angular/core";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {BrowserModule} from "@angular/platform-browser";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatDatetimepickerModule} from "@mat-datetimepicker/core";
-import {MomentDatetimeComponent} from "./moment.component";
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
+import { MomentDatetimeComponent } from './moment.component';
 
 @NgModule({
-  declarations: [
-    MomentDatetimeComponent
-  ],
-  exports: [
-    MomentDatetimeComponent
-  ],
+  declarations: [MomentDatetimeComponent],
+  exports: [MomentDatetimeComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -22,8 +18,7 @@ import {MomentDatetimeComponent} from "./moment.component";
     MatDatepickerModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatDatetimepickerModule
-  ]
+    MatDatetimepickerModule,
+  ],
 })
-export class AppMomentModule {
-}
+export class AppMomentModule {}

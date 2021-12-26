@@ -1,4 +1,4 @@
-import {InjectionToken} from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
 export interface MatDatetimeFormats {
   parse: {
@@ -19,4 +19,6 @@ export interface MatDatetimeFormats {
   };
 }
 
-export const MAT_DATETIME_FORMATS = new InjectionToken<MatDatetimeFormats>("mat-datetime-formats");
+export const MAT_DATETIME_FORMATS = new InjectionToken<MatDatetimeFormats>(
+  'mat-datetime-formats'
+);

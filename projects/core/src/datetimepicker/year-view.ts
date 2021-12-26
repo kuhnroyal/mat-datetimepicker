@@ -8,24 +8,24 @@ import {
   Optional,
   Output,
   ViewEncapsulation,
-} from "@angular/core";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerCalendarCell } from "./calendar-body";
-import { slideCalendar } from "./datetimepicker-animations";
+} from '@angular/core';
+import { createMissingDateImplError } from './datetimepicker-errors';
+import { MatDatetimepickerCalendarCell } from './calendar-body';
+import { slideCalendar } from './datetimepicker-animations';
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats,
-} from "../adapter/datetime-formats";
-import { DatetimeAdapter } from "../adapter/datetime-adapter";
-import { MatDatetimepickerType } from "./datetimepicker-type";
+} from '../adapter/datetime-formats';
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
+import { MatDatetimepickerType } from './datetimepicker-type';
 
 /**
  * An internal component used to display a single year in the datepicker.
  * @docs-private
  */
 @Component({
-  selector: "mat-datetimepicker-year-view",
-  templateUrl: "year-view.html",
+  selector: 'mat-datetimepicker-year-view',
+  templateUrl: 'year-view.html',
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +33,7 @@ import { MatDatetimepickerType } from "./datetimepicker-type";
 export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
   @Output() _userSelection = new EventEmitter<void>();
 
-  @Input() type: MatDatetimepickerType = "date";
+  @Input() type: MatDatetimepickerType = 'date';
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
   /** Emits when a new month is selected. */
@@ -58,11 +58,11 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
     private _dateFormats: MatDatetimeFormats
   ) {
     if (!this._adapter) {
-      throw createMissingDateImplError("DatetimeAdapter");
+      throw createMissingDateImplError('DatetimeAdapter');
     }
 
     if (!this._dateFormats) {
-      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
+      throw createMissingDateImplError('MAT_DATETIME_FORMATS');
     }
 
     this._activeDate = this._adapter.today();
@@ -132,13 +132,13 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
         this._adapter.getMinute(this.activeDate)
       )
     );
-    if (this.type === "month") {
+    if (this.type === 'month') {
       this._userSelection.emit();
     }
   }
 
   _calendarStateDone() {
-    this._calendarState = "";
+    this._calendarState = '';
   }
 
   /** Initializes this month view. */
@@ -147,7 +147,7 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
     this._todayMonth = this._getMonthInCurrentYear(this._adapter.today());
     this._yearLabel = this._adapter.getYearName(this.activeDate);
 
-    let monthNames = this._adapter.getMonthNames("short");
+    let monthNames = this._adapter.getMonthNames('short');
     // First row of months only contains 5 elements so we can fit the year label on the same row.
     this._months = [
       [0, 1, 2, 3, 4],

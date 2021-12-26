@@ -1,13 +1,9 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
         "project": [
           "projects/core/tsconfig.lib.json",
@@ -32,15 +28,11 @@
             "style": "kebab-case"
           }
         ],
-        "@angular-eslint/no-host-metadata-property": [
-          "off"
-        ]
+        "@angular-eslint/no-host-metadata-property": ["off"]
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "rules": {}
     }
   ]

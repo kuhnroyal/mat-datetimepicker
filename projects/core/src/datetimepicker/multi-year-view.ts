@@ -8,16 +8,16 @@ import {
   Optional,
   Output,
   ViewEncapsulation,
-} from "@angular/core";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerCalendarCell } from "./calendar-body";
-import { slideCalendar } from "./datetimepicker-animations";
+} from '@angular/core';
+import { createMissingDateImplError } from './datetimepicker-errors';
+import { MatDatetimepickerCalendarCell } from './calendar-body';
+import { slideCalendar } from './datetimepicker-animations';
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats,
-} from "../adapter/datetime-formats";
-import { DatetimeAdapter } from "../adapter/datetime-adapter";
-import { MatDatetimepickerType } from "./datetimepicker-type";
+} from '../adapter/datetime-formats';
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
+import { MatDatetimepickerType } from './datetimepicker-type';
 
 export const yearsPerPage = 24;
 
@@ -28,16 +28,18 @@ export const yearsPerRow = 4;
  * @docs-private
  */
 @Component({
-  selector: "mat-datetimepicker-multi-year-view",
-  templateUrl: "multi-year-view.html",
+  selector: 'mat-datetimepicker-multi-year-view',
+  templateUrl: 'multi-year-view.html',
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatDatetimepickerMultiYearViewComponent<D> implements AfterContentInit {
+export class MatDatetimepickerMultiYearViewComponent<D>
+  implements AfterContentInit
+{
   @Output() _userSelection = new EventEmitter<void>();
 
-  @Input() type: MatDatetimepickerType = "date";
+  @Input() type: MatDatetimepickerType = 'date';
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
   /** Emits when a new month is selected. */
@@ -62,11 +64,11 @@ export class MatDatetimepickerMultiYearViewComponent<D> implements AfterContentI
     private _dateFormats: MatDatetimeFormats
   ) {
     if (!this._adapter) {
-      throw createMissingDateImplError("DatetimeAdapter");
+      throw createMissingDateImplError('DatetimeAdapter');
     }
 
     if (!this._dateFormats) {
-      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
+      throw createMissingDateImplError('MAT_DATETIME_FORMATS');
     }
 
     this._activeDate = this._adapter.today();
@@ -158,7 +160,7 @@ export class MatDatetimepickerMultiYearViewComponent<D> implements AfterContentI
       )
     );
 
-    if (this.type === "year") {
+    if (this.type === 'year') {
       this._userSelection.emit();
     }
   }
@@ -173,7 +175,7 @@ export class MatDatetimepickerMultiYearViewComponent<D> implements AfterContentI
   }
 
   _calendarStateDone() {
-    this._calendarState = "";
+    this._calendarState = '';
   }
 
   /** Initializes this year view. */

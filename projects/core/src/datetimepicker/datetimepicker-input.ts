@@ -1,6 +1,17 @@
-import {coerceBooleanProperty} from "@angular/cdk/coercion";
-import {DOWN_ARROW} from "@angular/cdk/keycodes";
-import {AfterContentInit, Directive, ElementRef, EventEmitter, forwardRef, Inject, Input, OnDestroy, Optional, Output} from "@angular/core";
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { DOWN_ARROW } from '@angular/cdk/keycodes';
+import {
+  AfterContentInit,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Inject,
+  Input,
+  OnDestroy,
+  Optional,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -9,29 +20,32 @@ import {
   ValidationErrors,
   Validator,
   ValidatorFn,
-  Validators
-} from "@angular/forms";
-import {MAT_INPUT_VALUE_ACCESSOR} from "@angular/material/input";
-import {MatFormField} from "@angular/material/form-field";
-import {Subscription} from "rxjs";
-import {DatetimeAdapter} from "../adapter/datetime-adapter";
-import {MAT_DATETIME_FORMATS, MatDatetimeFormats} from "../adapter/datetime-formats";
-import {MatDatetimepickerComponent} from "./datetimepicker";
-import {createMissingDateImplError} from "./datetimepicker-errors";
-import {MatDatetimepickerFilterType} from "./datetimepicker-filtertype";
+  Validators,
+} from '@angular/forms';
+import { MAT_INPUT_VALUE_ACCESSOR } from '@angular/material/input';
+import { MatFormField } from '@angular/material/form-field';
+import { Subscription } from 'rxjs';
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
+import {
+  MAT_DATETIME_FORMATS,
+  MatDatetimeFormats,
+} from '../adapter/datetime-formats';
+import { MatDatetimepickerComponent } from './datetimepicker';
+import { createMissingDateImplError } from './datetimepicker-errors';
+import { MatDatetimepickerFilterType } from './datetimepicker-filtertype';
 
 // eslint-disable  @typescript-eslint/no-use-before-define
 
 export const MAT_DATETIMEPICKER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => MatDatetimepickerInputDirective),
-  multi: true
+  multi: true,
 };
 
 export const MAT_DATETIMEPICKER_VALIDATORS: any = {
   provide: NG_VALIDATORS,
   useExisting: forwardRef(() => MatDatetimepickerInputDirective),
-  multi: true
+  multi: true,
 };
 
 /**
@@ -43,35 +57,42 @@ export class MatDatetimepickerInputEvent<D> {
   /** The new value for the target datepicker input. */
   value: D | null;
 
-  constructor(public target: MatDatetimepickerInputDirective<D>, public targetElement: HTMLElement) {
+  constructor(
+    public target: MatDatetimepickerInputDirective<D>,
+    public targetElement: HTMLElement
+  ) {
     this.value = this.target.value;
   }
 }
 
 /** Directive used to connect an input to a MatDatepicker. */
 @Directive({
-  selector: "input[matDatetimepicker]",
+  selector: 'input[matDatetimepicker]',
   providers: [
     MAT_DATETIMEPICKER_VALUE_ACCESSOR,
     MAT_DATETIMEPICKER_VALIDATORS,
-    {provide: MAT_INPUT_VALUE_ACCESSOR, useExisting: MatDatetimepickerInputDirective},
+    {
+      provide: MAT_INPUT_VALUE_ACCESSOR,
+      useExisting: MatDatetimepickerInputDirective,
+    },
   ],
   host: {
-    "[attr.aria-haspopup]": "true",
-    "[attr.aria-owns]": "(_datepicker?.opened && _datepicker.id) || null",
-    "[attr.min]": "min ? _dateAdapter.toIso8601(min) : null",
-    "[attr.max]": "max ? _dateAdapter.toIso8601(max) : null",
-    "[disabled]": "disabled",
-    "(focus)": "_datepicker._handleFocus()",
-    "(input)": "_onInput($event.target.value)",
-    "(change)": "_onChange()",
-    "(blur)": "_onBlur()",
-    "(keydown)": "_onKeydown($event)"
+    '[attr.aria-haspopup]': 'true',
+    '[attr.aria-owns]': '(_datepicker?.opened && _datepicker.id) || null',
+    '[attr.min]': 'min ? _dateAdapter.toIso8601(min) : null',
+    '[attr.max]': 'max ? _dateAdapter.toIso8601(max) : null',
+    '[disabled]': 'disabled',
+    '(focus)': '_datepicker._handleFocus()',
+    '(input)': '_onInput($event.target.value)',
+    '(change)': '_onChange()',
+    '(blur)': '_onBlur()',
+    '(keydown)': '_onKeydown($event)',
   },
-  exportAs: "matDatepickerInput"
+  exportAs: 'matDatepickerInput',
 })
-export class MatDatetimepickerInputDirective<D> implements AfterContentInit, ControlValueAccessor, OnDestroy,
-  Validator {
+export class MatDatetimepickerInputDirective<D>
+  implements AfterContentInit, ControlValueAccessor, OnDestroy, Validator
+{
   _datepicker: MatDatetimepickerComponent<D>;
   _dateFilter: (date: D | null, type: MatDatetimepickerFilterType) => boolean;
   /** Emits when a `change` event is fired on this `<input>`. */
@@ -87,15 +108,19 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
   /** Whether the last value set on the input was valid. */
   private _lastValueValid = false;
 
-  constructor(private _elementRef: ElementRef,
-              @Optional() public _dateAdapter: DatetimeAdapter<D>,
-              @Optional() @Inject(MAT_DATETIME_FORMATS) private _dateFormats: MatDatetimeFormats,
-              @Optional() private _formField: MatFormField) {
+  constructor(
+    private _elementRef: ElementRef,
+    @Optional() public _dateAdapter: DatetimeAdapter<D>,
+    @Optional()
+    @Inject(MAT_DATETIME_FORMATS)
+    private _dateFormats: MatDatetimeFormats,
+    @Optional() private _formField: MatFormField
+  ) {
     if (!this._dateAdapter) {
-      throw createMissingDateImplError("DatetimeAdapter");
+      throw createMissingDateImplError('DatetimeAdapter');
     }
     if (!this._dateFormats) {
-      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
+      throw createMissingDateImplError('MAT_DATETIME_FORMATS');
     }
 
     // Update the displayed date when the locale changes.
@@ -110,7 +135,9 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
     this.registerDatepicker(value);
   }
 
-  @Input() set matDatepickerFilter(filter: (date: D | null, type: MatDatetimepickerFilterType) => boolean) {
+  @Input() set matDatepickerFilter(
+    filter: (date: D | null, type: MatDatetimepickerFilterType) => boolean
+  ) {
     this._dateFilter = filter;
     this._validatorOnChange();
   }
@@ -148,7 +175,9 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
   }
 
   set min(value: D | null) {
-    this._min = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._min = this._dateAdapter.getValidDateOrNull(
+      this._dateAdapter.deserialize(value)
+    );
     this._validatorOnChange();
   }
 
@@ -161,7 +190,9 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
   }
 
   set max(value: D | null) {
-    this._max = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._max = this._dateAdapter.getValidDateOrNull(
+      this._dateAdapter.deserialize(value)
+    );
     this._validatorOnChange();
   }
 
@@ -182,18 +213,29 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
     }
   }
 
-  _onTouched = () => {
-  }
+  _onTouched = () => {};
 
   ngAfterContentInit() {
     if (this._datepicker) {
-      this._datepickerSubscription = this._datepicker.selectedChanged.subscribe((selected: D) => {
-        this.value = selected;
-        this._cvaOnChange(selected);
-        this._onTouched();
-        this.dateInput.emit(new MatDatetimepickerInputEvent(this, this._elementRef.nativeElement));
-        this.dateChange.emit(new MatDatetimepickerInputEvent(this, this._elementRef.nativeElement));
-      });
+      this._datepickerSubscription = this._datepicker.selectedChanged.subscribe(
+        (selected: D) => {
+          this.value = selected;
+          this._cvaOnChange(selected);
+          this._onTouched();
+          this.dateInput.emit(
+            new MatDatetimepickerInputEvent(
+              this,
+              this._elementRef.nativeElement
+            )
+          );
+          this.dateChange.emit(
+            new MatDatetimepickerInputEvent(
+              this,
+              this._elementRef.nativeElement
+            )
+          );
+        }
+      );
     }
   }
 
@@ -217,7 +259,9 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
    * @return The element to connect the popup to.
    */
   getConnectedOverlayOrigin(): ElementRef {
-    return this._formField ? this._formField.getConnectedOverlayOrigin() : this._elementRef;
+    return this._formField
+      ? this._formField.getConnectedOverlayOrigin()
+      : this._elementRef;
   }
 
   // Implemented as part of ControlValueAccessor
@@ -254,11 +298,15 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
     this._value = date;
     this._cvaOnChange(date);
     this._valueChange.emit(date);
-    this.dateInput.emit(new MatDatetimepickerInputEvent(this, this._elementRef.nativeElement));
+    this.dateInput.emit(
+      new MatDatetimepickerInputEvent(this, this._elementRef.nativeElement)
+    );
   }
 
   _onChange() {
-    this.dateChange.emit(new MatDatetimepickerInputEvent(this, this._elementRef.nativeElement));
+    this.dateChange.emit(
+      new MatDatetimepickerInputEvent(this, this._elementRef.nativeElement)
+    );
   }
 
   /** Handles blur events on the input. */
@@ -280,13 +328,13 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
 
   private getDisplayFormat() {
     switch (this._datepicker.type) {
-      case "date":
+      case 'date':
         return this._dateFormats.display.dateInput;
-      case "datetime":
+      case 'datetime':
         return this._dateFormats.display.datetimeInput;
-      case "time":
+      case 'time':
         return this._dateFormats.display.timeInput;
-      case "month":
+      case 'month':
         return this._dateFormats.display.monthInput;
     }
   }
@@ -295,16 +343,16 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
     let parseFormat;
 
     switch (this._datepicker.type) {
-      case "date":
+      case 'date':
         parseFormat = this._dateFormats.parse.dateInput;
         break;
-      case "datetime":
+      case 'datetime':
         parseFormat = this._dateFormats.parse.datetimeInput;
         break;
-      case "time":
+      case 'time':
         parseFormat = this._dateFormats.parse.timeInput;
         break;
-      case "month":
+      case 'month':
         parseFormat = this._dateFormats.parse.monthInput;
         break;
     }
@@ -315,49 +363,71 @@ export class MatDatetimepickerInputDirective<D> implements AfterContentInit, Con
     return parseFormat;
   }
 
-  private _cvaOnChange: (value: any) => void = () => {
-  }
+  private _cvaOnChange: (value: any) => void = () => {};
 
-  private _validatorOnChange = () => {
-  }
+  private _validatorOnChange = () => {};
 
   /** The form control validator for whether the input parses. */
   private _parseValidator: ValidatorFn = (): ValidationErrors | null => {
-    return this._lastValueValid ?
-      null : {"matDatepickerParse": {"text": this._elementRef.nativeElement.value}};
-  }
+    return this._lastValueValid
+      ? null
+      : { matDatepickerParse: { text: this._elementRef.nativeElement.value } };
+  };
 
   /** The form control validator for the min date. */
-  private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
-    return (!this.min || !controlValue ||
-      this._dateAdapter.compareDatetime(this.min, controlValue) <= 0) ?
-      null : {"matDatepickerMin": {"min": this.min, "actual": controlValue}};
-  }
+  private _minValidator: ValidatorFn = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
+    const controlValue = this._dateAdapter.getValidDateOrNull(
+      this._dateAdapter.deserialize(control.value)
+    );
+    return !this.min ||
+      !controlValue ||
+      this._dateAdapter.compareDatetime(this.min, controlValue) <= 0
+      ? null
+      : { matDatepickerMin: { min: this.min, actual: controlValue } };
+  };
 
   /** The form control validator for the max date. */
-  private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
-    return (!this.max || !controlValue ||
-      this._dateAdapter.compareDatetime(this.max, controlValue) >= 0) ?
-      null : {"matDatepickerMax": {"max": this.max, "actual": controlValue}};
-  }
+  private _maxValidator: ValidatorFn = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
+    const controlValue = this._dateAdapter.getValidDateOrNull(
+      this._dateAdapter.deserialize(control.value)
+    );
+    return !this.max ||
+      !controlValue ||
+      this._dateAdapter.compareDatetime(this.max, controlValue) >= 0
+      ? null
+      : { matDatepickerMax: { max: this.max, actual: controlValue } };
+  };
 
   /** The form control validator for the date filter. */
-  private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(control.value));
-    return !this._dateFilter || !controlValue || this._dateFilter(controlValue, MatDatetimepickerFilterType.DATE) ?
-      null : {"matDatepickerFilter": true};
-  }
+  private _filterValidator: ValidatorFn = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
+    const controlValue = this._dateAdapter.getValidDateOrNull(
+      this._dateAdapter.deserialize(control.value)
+    );
+    return !this._dateFilter ||
+      !controlValue ||
+      this._dateFilter(controlValue, MatDatetimepickerFilterType.DATE)
+      ? null
+      : { matDatepickerFilter: true };
+  };
 
   /** The combined form control validator for this input. */
-  private _validator: ValidatorFn | null =
-    Validators.compose(
-      [this._parseValidator, this._minValidator, this._maxValidator, this._filterValidator]);
+  private _validator: ValidatorFn | null = Validators.compose([
+    this._parseValidator,
+    this._minValidator,
+    this._maxValidator,
+    this._filterValidator,
+  ]);
 
   /** Formats a value and sets it on the input element. */
   private _formatValue(value: D | null) {
-    this._elementRef.nativeElement.value =
-      value ? this._dateAdapter.format(value, this.getDisplayFormat()) : "";
+    this._elementRef.nativeElement.value = value
+      ? this._dateAdapter.format(value, this.getDisplayFormat())
+      : '';
   }
 }

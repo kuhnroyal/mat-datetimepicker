@@ -1,12 +1,11 @@
-Developer Instructions
-===
+# Developer Instructions
 
-* [Getting started](#getting-started)
-* [Development](#development)
-  * [Local build](#performing-a-local-build)
-  * [Runing the sample](#running-the-sample-app-locally)
-  * [External testing](#using-the-local-build-in-another-project)
-* [Before committing](#committing)
+- [Getting started](#getting-started)
+- [Development](#development)
+  - [Local build](#performing-a-local-build)
+  - [Runing the sample](#running-the-sample-app-locally)
+  - [External testing](#using-the-local-build-in-another-project)
+- [Before committing](#committing)
 
 ## Getting started
 

@@ -1,3 +1,3 @@
-export * from "./adapter/index";
-export * from "./adapter/moment-datetime-adapter";
-export * from "./adapter/moment-datetime-formats";
+export * from './adapter/index';
+export * from './adapter/moment-datetime-adapter';
+export * from './adapter/moment-datetime-formats';
