@@ -1,13 +1,4 @@
-# Material Datetimepicker for @angular/material 12.x
-
-This is the main branch for @angular/material 12.x
-
-You can find the Angular 5 version on the `1.x` branch. \
-You can find the Angular 6 version on the `2.x` branch. \
-You can find the Angular 8 version on the `3.x` branch. \
-You can find the Angular 9 version on the `4.x` branch. \
-You can find the Angular 10 version on the `5.x` branch. \
-You can find the Angular 11 version on the `6.x` branch.
+# Material Datetimepicker for @angular/material 13.x
 
 ## Description
 
@@ -223,8 +214,8 @@ Add the dependencies to your `package.json`:
 
 ```json
 "dependencies": {
-    "@mat-datetimepicker/core": "4.0.0",
-    "@mat-datetimepicker/moment": "4.0.0",
+    "@mat-datetimepicker/core": "8.0.0",
+    "@mat-datetimepicker/moment": "8.0.0",
 }
 ```
 
