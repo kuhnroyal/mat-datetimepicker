@@ -1,15 +1,23 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 
 /**
  * An internal class that represents the data corresponding to a single calendar cell.
  * @docs-private
  */
 export class MatDatetimepickerCalendarCell {
-  constructor(public value: number,
-              public displayValue: string,
-              public ariaLabel: string,
-              public enabled: boolean) {
-  }
+  constructor(
+    public value: number,
+    public displayValue: string,
+    public ariaLabel: string,
+    public enabled: boolean
+  ) {}
 }
 
 /**
@@ -18,14 +26,14 @@ export class MatDatetimepickerCalendarCell {
  */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: "tbody[matDatetimepickerCalendarBody]",
-  templateUrl: "calendar-body.html",
-  styleUrls: ["calendar-body.scss"],
+  selector: 'tbody[matDatetimepickerCalendarBody]',
+  templateUrl: 'calendar-body.html',
+  styleUrls: ['calendar-body.scss'],
   host: {
-    "class": "mat-datetimepicker-calendar-body"
+    class: 'mat-datetimepicker-calendar-body',
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatDatetimepickerCalendarBodyComponent {
   /** The label for the table. (e.g. "Jan 2017"). */
@@ -57,8 +65,9 @@ export class MatDatetimepickerCalendarBodyComponent {
 
   /** The number of blank cells to put at the beginning for the first row. */
   get _firstRowOffset(): number {
-    return this.rows && this.rows.length && this.rows[0].length ?
-      this.numCols - this.rows[0].length : 0;
+    return this.rows && this.rows.length && this.rows[0].length
+      ? this.numCols - this.rows[0].length
+      : 0;
   }
 
   _cellClicked(cell: MatDatetimepickerCalendarCell): void {

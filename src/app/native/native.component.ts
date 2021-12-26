@@ -1,37 +1,36 @@
-import {Component} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DateAdapter, NativeDateAdapter} from "@angular/material/core";
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 import {
   DatetimeAdapter,
   MAT_DATETIME_FORMATS,
   MAT_NATIVE_DATETIME_FORMATS,
   MatDatetimepickerFilterType,
-  NativeDatetimeAdapter
-} from "@mat-datetimepicker/core";
+  NativeDatetimeAdapter,
+} from '@mat-datetimepicker/core';
 
 @Component({
-  selector: "app-native-datetime",
-  templateUrl: "../date.component.html",
-  styleUrls: ["../date.component.scss"],
+  selector: 'app-native-datetime',
+  templateUrl: '../date.component.html',
+  styleUrls: ['../date.component.scss'],
   providers: [
     {
       provide: DateAdapter,
-      useClass: NativeDateAdapter
+      useClass: NativeDateAdapter,
     },
     {
       provide: DatetimeAdapter,
-      useClass: NativeDatetimeAdapter
+      useClass: NativeDatetimeAdapter,
     },
     {
       provide: MAT_DATETIME_FORMATS,
-      useValue: MAT_NATIVE_DATETIME_FORMATS
-    }
-  ]
+      useValue: MAT_NATIVE_DATETIME_FORMATS,
+    },
+  ],
 })
 export class NativeDatetimeComponent {
-
-  name = "@mat-datetimepicker/core";
-  link = "https://www.npmjs.com/package/@mat-datetimepicker/core";
+  name = '@mat-datetimepicker/core';
+  link = 'https://www.npmjs.com/package/@mat-datetimepicker/core';
 
   group: FormGroup;
   today = new Date();
@@ -54,9 +53,11 @@ export class NativeDatetimeComponent {
     this.filter = (date: Date, type: MatDatetimepickerFilterType) => {
       switch (type) {
         case MatDatetimepickerFilterType.DATE:
-          return date.getUTCFullYear() % 2 === 0 &&
+          return (
+            date.getUTCFullYear() % 2 === 0 &&
             date.getMonth() % 2 === 0 &&
-            date.getDate() % 2 === 0;
+            date.getDate() % 2 === 0
+          );
         case MatDatetimepickerFilterType.HOUR:
           return date.getHours() % 2 === 0;
         case MatDatetimepickerFilterType.MINUTE:
@@ -65,8 +66,8 @@ export class NativeDatetimeComponent {
     };
 
     this.group = fb.group({
-      dateTime: [new Date("2017-11-09T12:10:00.000Z"), Validators.required],
-      dateTimeYear: [new Date("2017-11-09T12:10:00.000Z"), Validators.required],
+      dateTime: [new Date('2017-11-09T12:10:00.000Z'), Validators.required],
+      dateTimeYear: [new Date('2017-11-09T12:10:00.000Z'), Validators.required],
       date: [null, Validators.required],
       time: [null, Validators.required],
       timeAMPM: [null, Validators.required],
@@ -75,7 +76,7 @@ export class NativeDatetimeComponent {
       mintest: [this.today, Validators.required],
       filtertest: [this.today, Validators.required],
       touch: [null, Validators.required],
-      preventsame: [new Date("2020-11-19T17:00:00.000Z"), Validators.required]
+      preventsame: [new Date('2020-11-19T17:00:00.000Z'), Validators.required],
     });
   }
 }

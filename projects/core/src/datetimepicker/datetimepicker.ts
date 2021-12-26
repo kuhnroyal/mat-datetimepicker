@@ -1,14 +1,14 @@
-import { Directionality } from "@angular/cdk/bidi";
-import { coerceBooleanProperty } from "@angular/cdk/coercion";
-import { ESCAPE } from "@angular/cdk/keycodes";
+import { Directionality } from '@angular/cdk/bidi';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ESCAPE } from '@angular/cdk/keycodes';
 import {
   Overlay,
   OverlayConfig,
   OverlayRef,
   PositionStrategy,
-} from "@angular/cdk/overlay";
-import { ComponentPortal } from "@angular/cdk/portal";
-import { DOCUMENT } from "@angular/common";
+} from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -24,19 +24,22 @@ import {
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
-} from "@angular/core";
-import { MAT_DATEPICKER_SCROLL_STRATEGY } from "@angular/material/datepicker";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { Subject, Subscription } from "rxjs";
-import { first } from "rxjs/operators";
-import { DatetimeAdapter } from "../adapter/datetime-adapter";
-import { MatCalendarView, MatDatetimepickerCalendarComponent } from "./calendar";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
-import { MatDatetimepickerInputDirective } from "./datetimepicker-input";
-import { MatDatetimepickerType } from "./datetimepicker-type";
+} from '@angular/core';
+import { MAT_DATEPICKER_SCROLL_STRATEGY } from '@angular/material/datepicker';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Subject, Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
+import {
+  MatCalendarView,
+  MatDatetimepickerCalendarComponent,
+} from './calendar';
+import { createMissingDateImplError } from './datetimepicker-errors';
+import { MatDatetimepickerFilterType } from './datetimepicker-filtertype';
+import { MatDatetimepickerInputDirective } from './datetimepicker-input';
+import { MatDatetimepickerType } from './datetimepicker-type';
 
-export type MatDatetimepickerMode = "auto" | "portrait" | "landscape";
+export type MatDatetimepickerMode = 'auto' | 'portrait' | 'landscape';
 
 /** Used to generate a unique ID for each datepicker instance. */
 let datetimepickerUid = 0;
@@ -49,13 +52,13 @@ let datetimepickerUid = 0;
  * @docs-private
  */
 @Component({
-  selector: "mat-datetimepicker-content",
-  templateUrl: "datetimepicker-content.html",
-  styleUrls: ["datetimepicker-content.scss"],
+  selector: 'mat-datetimepicker-content',
+  templateUrl: 'datetimepicker-content.html',
+  styleUrls: ['datetimepicker-content.scss'],
   host: {
-    class: "mat-datetimepicker-content",
-    "[class.mat-datetimepicker-content-touch]": "datetimepicker?.touchUi",
-    "(keydown)": "_handleKeydown($event)",
+    class: 'mat-datetimepicker-content',
+    '[class.mat-datetimepicker-content-touch]': 'datetimepicker?.touchUi',
+    '(keydown)': '_handleKeydown($event)',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -89,9 +92,9 @@ export class MatDatetimepickerContentComponent<D> implements AfterContentInit {
 }
 
 @Component({
-  selector: "mat-datetimepicker",
-  exportAs: "matDatetimepicker",
-  template: "",
+  selector: 'mat-datetimepicker',
+  exportAs: 'matDatetimepicker',
+  template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
@@ -102,13 +105,13 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   /** if true change the clock to 12 hour format. */
   @Input() twelvehour: boolean = false;
   /** The view that the calendar should start in. */
-  @Input() startView: MatCalendarView = "month";
-  @Input() mode: MatDatetimepickerMode = "auto";
+  @Input() startView: MatCalendarView = 'month';
+  @Input() mode: MatDatetimepickerMode = 'auto';
   @Input() timeInterval: number = 1;
-  @Input() ariaNextMonthLabel = "Next month";
-  @Input() ariaPrevMonthLabel = "Previous month";
-  @Input() ariaNextYearLabel = "Next year";
-  @Input() ariaPrevYearLabel = "Previous year";
+  @Input() ariaNextMonthLabel = 'Next month';
+  @Input() ariaPrevMonthLabel = 'Previous month';
+  @Input() ariaNextYearLabel = 'Next year';
+  @Input() ariaPrevYearLabel = 'Previous year';
   /** Prevent user to select same date time */
   @Input() preventSameDateTimeSelection = false;
   /**
@@ -120,10 +123,10 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   @Input() panelClass: string | string[];
   /** Emits when the datepicker has been opened. */
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output("opened") openedStream: EventEmitter<void> = new EventEmitter<void>();
+  @Output('opened') openedStream: EventEmitter<void> = new EventEmitter<void>();
   /** Emits when the datepicker has been closed. */
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output("closed") closedStream: EventEmitter<void> = new EventEmitter<void>();
+  @Output('closed') closedStream: EventEmitter<void> = new EventEmitter<void>();
   /** Emits when the view has been changed. **/
   @Output() viewChanged: EventEmitter<MatCalendarView> =
     new EventEmitter<MatCalendarView>();
@@ -141,7 +144,9 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   /** A reference to the dialog when the calendar is opened as a dialog. */
   private _dialogRef: MatDialogRef<any> | null;
   /** A portal containing the calendar for this datepicker. */
-  private _calendarPortal: ComponentPortal<MatDatetimepickerContentComponent<D>>;
+  private _calendarPortal: ComponentPortal<
+    MatDatetimepickerContentComponent<D>
+  >;
   /** The element that was focused before the datepicker was opened. */
   private _focusedElementBeforeOpen: HTMLElement | null = null;
   private _inputSubscription = Subscription.EMPTY;
@@ -157,7 +162,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     @Optional() @Inject(DOCUMENT) private _document: any
   ) {
     if (!this._dateAdapter) {
-      throw createMissingDateImplError("DateAdapter");
+      throw createMissingDateImplError('DateAdapter');
     }
   }
 
@@ -189,7 +194,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     this._openOnFocus = coerceBooleanProperty(value);
   }
 
-  private _type: MatDatetimepickerType = "date";
+  private _type: MatDatetimepickerType = 'date';
 
   @Input()
   get type() {
@@ -197,7 +202,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   }
 
   set type(value: MatDatetimepickerType) {
-    this._type = value || "date";
+    this._type = value || 'date';
   }
 
   private _touchUi = false;
@@ -296,7 +301,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   _registerInput(input: MatDatetimepickerInputDirective<D>): void {
     if (this._datepickerInput) {
       throw Error(
-        "A MatDatepicker can only be associated with a single input."
+        'A MatDatepicker can only be associated with a single input.'
       );
     }
     this._datepickerInput = input;
@@ -312,7 +317,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     }
     if (!this._datepickerInput) {
       throw Error(
-        "Attempted to open an MatDatepicker with no associated input."
+        'Attempted to open an MatDatepicker with no associated input.'
       );
     }
     if (this._document) {
@@ -352,7 +357,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
 
     if (
       this._focusedElementBeforeOpen &&
-      typeof this._focusedElementBeforeOpen.focus === "function"
+      typeof this._focusedElementBeforeOpen.focus === 'function'
     ) {
       // Because IE moves focus asynchronously, we can't count on it being restored before we've
       // marked the datepicker as closed. If the event fires out of sequence and the element that
@@ -369,9 +374,9 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   /** Open the calendar as a dialog. */
   private _openAsDialog(): void {
     this._dialogRef = this._dialog.open(MatDatetimepickerContentComponent, {
-      direction: this._dir ? this._dir.value : "ltr",
+      direction: this._dir ? this._dir.value : 'ltr',
       viewContainerRef: this._viewContainerRef,
-      panelClass: "mat-datetimepicker-dialog",
+      panelClass: 'mat-datetimepicker-dialog',
     });
     this._dialogRef.afterClosed().subscribe(() => this.close());
     this._dialogRef.componentInstance.datetimepicker = this;
@@ -380,10 +385,9 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   /** Open the calendar as a popup. */
   private _openAsPopup(): void {
     if (!this._calendarPortal) {
-      this._calendarPortal = new ComponentPortal<MatDatetimepickerContentComponent<D>>(
-        MatDatetimepickerContentComponent,
-        this._viewContainerRef
-      );
+      this._calendarPortal = new ComponentPortal<
+        MatDatetimepickerContentComponent<D>
+      >(MatDatetimepickerContentComponent, this._viewContainerRef);
     }
 
     if (!this._popupRef) {
@@ -412,10 +416,10 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     const overlayConfig = new OverlayConfig({
       positionStrategy: this._createPopupPositionStrategy(),
       hasBackdrop: true,
-      backdropClass: "mat-overlay-transparent-backdrop",
-      direction: this._dir ? this._dir.value : "ltr",
+      backdropClass: 'mat-overlay-transparent-backdrop',
+      direction: this._dir ? this._dir.value : 'ltr',
       scrollStrategy: this._scrollStrategy(),
-      panelClass: "mat-datetimepicker-popup",
+      panelClass: 'mat-datetimepicker-popup',
     });
 
     this._popupRef = this._overlay.create(overlayConfig);
@@ -426,34 +430,34 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     return this._overlay
       .position()
       .flexibleConnectedTo(this._datepickerInput.getConnectedOverlayOrigin())
-      .withTransformOriginOn(".mat-datetimepicker-content")
+      .withTransformOriginOn('.mat-datetimepicker-content')
       .withFlexibleDimensions(false)
       .withViewportMargin(8)
       .withLockedPosition()
       .withPositions([
         {
-          originX: "start",
-          originY: "bottom",
-          overlayX: "start",
-          overlayY: "top",
+          originX: 'start',
+          originY: 'bottom',
+          overlayX: 'start',
+          overlayY: 'top',
         },
         {
-          originX: "start",
-          originY: "top",
-          overlayX: "start",
-          overlayY: "bottom",
+          originX: 'start',
+          originY: 'top',
+          overlayX: 'start',
+          overlayY: 'bottom',
         },
         {
-          originX: "end",
-          originY: "bottom",
-          overlayX: "end",
-          overlayY: "top",
+          originX: 'end',
+          originY: 'bottom',
+          overlayX: 'end',
+          overlayY: 'top',
         },
         {
-          originX: "end",
-          originY: "top",
-          overlayX: "end",
-          overlayY: "bottom",
+          originX: 'end',
+          originY: 'top',
+          overlayX: 'end',
+          overlayY: 'bottom',
         },
       ]);
   }

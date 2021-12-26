@@ -1,7 +1,6 @@
-import {DateAdapter} from "@angular/material/core";
+import { DateAdapter } from '@angular/material/core';
 
 export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
-
   constructor(protected _delegate: DateAdapter<D>) {
     super();
   }
@@ -22,16 +21,28 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
 
   abstract addCalendarMinutes(date: D, months: number): D;
 
-  abstract createDatetime(year: number, month: number, date: number, hour: number, minute: number): D;
+  abstract createDatetime(
+    year: number,
+    month: number,
+    date: number,
+    hour: number,
+    minute: number
+  ): D;
 
   getValidDateOrNull(obj: any): D | null {
-    return (this.isDateInstance(obj) && this.isValid(obj)) ? obj : null;
+    return this.isDateInstance(obj) && this.isValid(obj) ? obj : null;
   }
 
-  compareDatetime(first: D, second: D, respectMinutePart: boolean = true): number {
-    return this.compareDate(first, second) ||
+  compareDatetime(
+    first: D,
+    second: D,
+    respectMinutePart: boolean = true
+  ): number {
+    return (
+      this.compareDate(first, second) ||
       this.getHour(first) - this.getHour(second) ||
-      (respectMinutePart && this.getMinute(first) - this.getMinute(second));
+      (respectMinutePart && this.getMinute(first) - this.getMinute(second))
+    );
   }
 
   sameDatetime(first: D | null, second: D | null): boolean {
@@ -51,15 +62,30 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
   }
 
   sameDay(first: D, second: D) {
-    return first && second && this.getDate(first) === this.getDate(second) && this.sameMonthAndYear(first, second);
+    return (
+      first &&
+      second &&
+      this.getDate(first) === this.getDate(second) &&
+      this.sameMonthAndYear(first, second)
+    );
   }
 
   sameHour(first: D, second: D) {
-    return first && second && this.getHour(first) === this.getHour(second) && this.sameDay(first, second);
+    return (
+      first &&
+      second &&
+      this.getHour(first) === this.getHour(second) &&
+      this.sameDay(first, second)
+    );
   }
 
   sameMinute(first: D, second: D) {
-    return first && second && this.getMinute(first) === this.getMinute(second) && this.sameHour(first, second);
+    return (
+      first &&
+      second &&
+      this.getMinute(first) === this.getMinute(second) &&
+      this.sameHour(first, second)
+    );
   }
 
   sameMonthAndYear(first: D | null, second: D | null): boolean {
@@ -67,8 +93,10 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
       const firstValid = this.isValid(first);
       const secondValid = this.isValid(second);
       if (firstValid && secondValid) {
-        return !(this.getYear(first) - this.getYear(second) ||
-          this.getMonth(first) - this.getMonth(second));
+        return !(
+          this.getYear(first) - this.getYear(second) ||
+          this.getMonth(first) - this.getMonth(second)
+        );
       }
       return firstValid === secondValid;
     }

@@ -12,26 +12,13 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@mat-datetimepicker/core": [
-        "dist/core"
-      ],
-      "@mat-datetimepicker/core/*": [
-        "dist/core/*"
-      ],
-      "@mat-datetimepicker/moment": [
-        "dist/moment"
-      ],
-      "@mat-datetimepicker/moment/*": [
-        "dist/moment/*"
-      ]
+      "@mat-datetimepicker/core": ["dist/core"],
+      "@mat-datetimepicker/core/*": ["dist/core/*"],
+      "@mat-datetimepicker/moment": ["dist/moment"],
+      "@mat-datetimepicker/moment/*": ["dist/moment/*"]
     }
   }
 }

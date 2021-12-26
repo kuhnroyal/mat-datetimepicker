@@ -1,5 +1,4 @@
-Material Datetimepicker for @angular/material
-===
+# Material Datetimepicker for @angular/material
 
 > **The example application is on [GitHub Pages](https://kuhnroyal.github.io/mat-datetimepicker/)!**
 
@@ -18,8 +17,8 @@ Like the `@angular/material` `datepicker` it contains a `native-datetime-adapter
 
 # Contents
 
-* [Usage](#usage)
-* [Development](#development)
+- [Usage](#usage)
+- [Development](#development)
 
 # Usage
 
@@ -43,13 +42,12 @@ Basically the same way the `@angular/material` datepicker is configured and impo
 
 ```ts
 imports: [
-  ...
-    MatDatepickerModule,
+  ...MatDatepickerModule,
   // use this if you want to use native javascript dates and INTL API if available
   // MatNativeDatetimeModule,
   MatMomentDatetimeModule,
-  MatDatetimepickerModule
-]
+  MatDatetimepickerModule,
+];
 ```
 
 @see [`src/app/app.module.ts`](src/app/app.module.ts)
@@ -57,23 +55,27 @@ imports: [
 ## Using the component
 
 ```html
-
 <form [formGroup]="group">
   <mat-form-field>
     <mat-placeholder>Start DateTime</mat-placeholder>
-    <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker-toggle
+      [for]="datetimePicker"
+      matSuffix
+    ></mat-datetimepicker-toggle>
     <mat-datetimepicker
       #datetimePicker
       type="datetime"
       openOnFocus="true"
-      timeInterval="5">
+      timeInterval="5"
+    >
     </mat-datetimepicker>
     <input
       matInput
       formControlName="start"
       [matDatetimepicker]="datetimePicker"
       required
-      autocomplete="false">
+      autocomplete="false"
+    />
   </mat-form-field>
 </form>
 ```
@@ -90,12 +92,12 @@ Input/output formats can be changed separately for the existing datetime picker 
 
 You can use the following properties to provide values for ARIA- attributes:
 
-| Property | Description | Default |
-| --- | --- | --- |
-| ariaNextMonthLabel | `aria-label` for the `Next` button in the `month` mode | "Next month" |
+| Property           | Description                                                | Default          |
+| ------------------ | ---------------------------------------------------------- | ---------------- |
+| ariaNextMonthLabel | `aria-label` for the `Next` button in the `month` mode     | "Next month"     |
 | ariaPrevMonthLabel | `aria-label` for the `Previous` button in the `month` mode | "Previous month" |
-| ariaNextYearLabel | `aria-label` for the `Next` button in the `year` mode | "Next year" |
-| ariaPrevYearLabel | `aria-label` for the `Previous` button in the `year` mode | "Previous year" |
+| ariaNextYearLabel  | `aria-label` for the `Next` button in the `year` mode      | "Next year"      |
+| ariaPrevYearLabel  | `aria-label` for the `Previous` button in the `year` mode  | "Previous year"  |
 
 The component supports property bindings or pipes with the aria- values.
 
@@ -104,53 +106,53 @@ The component supports property bindings or pipes with the aria- values.
 Parsing does not work with the native adapter because the Intl.DateTimeFormat API does not provide that feature.
 
 ```ts
-  providers: [
+providers: [
   {
     provide: MAT_DATETIME_FORMATS,
     useValue: {
       parse: {},
       display: {
         dateInput: {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit"
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
         },
         monthInput: {
-          month: "long"
+          month: 'long',
         },
         datetimeInput: {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit"
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
         },
         timeInput: {
-          hour: "2-digit",
-          minute: "2-digit"
+          hour: '2-digit',
+          minute: '2-digit',
         },
         monthYearLabel: {
-          year: "numeric",
-          month: "short"
+          year: 'numeric',
+          month: 'short',
         },
         dateA11yLabel: {
-          year: "numeric",
-          month: "long",
-          day: "numeric"
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
         },
         monthYearA11yLabel: {
-          year: "numeric",
-          month: "long"
+          year: 'numeric',
+          month: 'long',
         },
         popupHeaderDateLabel: {
-          weekday: "short",
-          month: "short",
-          day: "2-digit"
-        }
-      }
-    }
-  }
-]
+          weekday: 'short',
+          month: 'short',
+          day: '2-digit',
+        },
+      },
+    },
+  },
+];
 ```
 
 @see defaults in [`native-datetime-formats.ts`](projects/core/src/adapter/native-datetime-formats.ts) \
@@ -160,29 +162,29 @@ API [documentation](https://developer.mozilla.org/de/docs/Web/JavaScript/Referen
 ### Moment
 
 ```ts
-  providers: [
+providers: [
   {
     provide: MAT_DATETIME_FORMATS,
     useValue: {
       parse: {
-        dateInput: "L",
-        monthInput: "MMMM",
-        timeInput: "LT",
-        datetimeInput: "L LT"
+        dateInput: 'L',
+        monthInput: 'MMMM',
+        timeInput: 'LT',
+        datetimeInput: 'L LT',
       },
       display: {
-        dateInput: "L",
-        monthInput: "MMMM",
-        datetimeInput: "L LT",
-        timeInput: "LT",
-        monthYearLabel: "MMM YYYY",
-        dateA11yLabel: "LL",
-        monthYearA11yLabel: "MMMM YYYY",
-        popupHeaderDateLabel: "ddd, DD MMM"
-      }
-    }
-  }
-]
+        dateInput: 'L',
+        monthInput: 'MMMM',
+        datetimeInput: 'L LT',
+        timeInput: 'LT',
+        monthYearLabel: 'MMM YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY',
+        popupHeaderDateLabel: 'ddd, DD MMM',
+      },
+    },
+  },
+];
 ```
 
 @see defaults in [`moment-datetime-formats.ts`](projects/moment/src/adapter/moment-datetime-formats.ts) \

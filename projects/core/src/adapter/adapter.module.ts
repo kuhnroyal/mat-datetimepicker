@@ -1,9 +1,9 @@
-import {NgModule} from "@angular/core";
-import {MatNativeDateModule, NativeDateModule} from "@angular/material/core";
-import {DatetimeAdapter} from "./datetime-adapter";
-import {MAT_DATETIME_FORMATS} from "./datetime-formats";
-import {NativeDatetimeAdapter} from "./native-datetime-adapter";
-import {MAT_NATIVE_DATETIME_FORMATS} from "./native-datetime-formats";
+import { NgModule } from '@angular/core';
+import { MatNativeDateModule, NativeDateModule } from '@angular/material/core';
+import { DatetimeAdapter } from './datetime-adapter';
+import { MAT_DATETIME_FORMATS } from './datetime-formats';
+import { NativeDatetimeAdapter } from './native-datetime-adapter';
+import { MAT_NATIVE_DATETIME_FORMATS } from './native-datetime-formats';
 
 // eslint-disable  max-classes-per-file
 @NgModule({
@@ -11,19 +11,16 @@ import {MAT_NATIVE_DATETIME_FORMATS} from "./native-datetime-formats";
   providers: [
     {
       provide: DatetimeAdapter,
-      useClass: NativeDatetimeAdapter
-    }
-  ]
+      useClass: NativeDatetimeAdapter,
+    },
+  ],
 })
-export class NativeDatetimeModule {
-}
+export class NativeDatetimeModule {}
 
 @NgModule({
-  imports: [
-    NativeDatetimeModule,
-    MatNativeDateModule
+  imports: [NativeDatetimeModule, MatNativeDateModule],
+  providers: [
+    { provide: MAT_DATETIME_FORMATS, useValue: MAT_NATIVE_DATETIME_FORMATS },
   ],
-  providers: [{provide: MAT_DATETIME_FORMATS, useValue: MAT_NATIVE_DATETIME_FORMATS}]
 })
-export class MatNativeDatetimeModule {
-}
+export class MatNativeDatetimeModule {}

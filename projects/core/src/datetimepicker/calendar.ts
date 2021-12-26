@@ -8,7 +8,7 @@ import {
   PAGE_UP,
   RIGHT_ARROW,
   UP_ARROW,
-} from "@angular/cdk/keycodes";
+} from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -23,43 +23,43 @@ import {
   Optional,
   Output,
   ViewEncapsulation,
-} from "@angular/core";
-import { MatDatepickerIntl } from "@angular/material/datepicker";
-import { Subscription } from "rxjs";
-import { first } from "rxjs/operators";
-import { DatetimeAdapter } from "../adapter/datetime-adapter";
+} from '@angular/core';
+import { MatDatepickerIntl } from '@angular/material/datepicker';
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats,
-} from "../adapter/datetime-formats";
-import { MatClockView } from "./clock";
-import { slideCalendar } from "./datetimepicker-animations";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerFilterType } from "./datetimepicker-filtertype";
-import { MatDatetimepickerType } from "./datetimepicker-type";
+} from '../adapter/datetime-formats';
+import { MatClockView } from './clock';
+import { slideCalendar } from './datetimepicker-animations';
+import { createMissingDateImplError } from './datetimepicker-errors';
+import { MatDatetimepickerFilterType } from './datetimepicker-filtertype';
+import { MatDatetimepickerType } from './datetimepicker-type';
 import {
   getActiveOffset,
   isSameMultiYearView,
   yearsPerPage,
   yearsPerRow,
-} from "./multi-year-view";
+} from './multi-year-view';
 
-export type MatCalendarView = "clock" | "month" | "year" | "multi-year";
+export type MatCalendarView = 'clock' | 'month' | 'year' | 'multi-year';
 
 /**
  * A calendar that is used as part of the datepicker.
  * @docs-private
  */
 @Component({
-  selector: "mat-datetimepicker-calendar",
-  templateUrl: "calendar.html",
-  styleUrls: ["calendar.scss"],
+  selector: 'mat-datetimepicker-calendar',
+  templateUrl: 'calendar.html',
+  styleUrls: ['calendar.scss'],
   host: {
-    "[class.mat-datetimepicker-calendar]": "true",
-    "[attr.aria-label]": "ariaLabel",
-    role: "dialog",
-    tabindex: "0",
-    "(keydown)": "_handleCalendarBodyKeydown($event)",
+    '[class.mat-datetimepicker-calendar]': 'true',
+    '[attr.aria-label]': 'ariaLabel',
+    role: 'dialog',
+    tabindex: '0',
+    '(keydown)': '_handleCalendarBodyKeydown($event)',
   },
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
@@ -72,18 +72,18 @@ export class MatDatetimepickerCalendarComponent<D>
   /** Active multi year view when click on year. */
   @Input() multiYearSelector: boolean = false;
   /** Whether the calendar should be started in month or year view. */
-  @Input() startView: MatCalendarView = "month";
+  @Input() startView: MatCalendarView = 'month';
   @Input() twelvehour: boolean = false;
   @Input() timeInterval: number = 1;
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
-  @Input() ariaLabel = "Use arrow keys to navigate";
-  @Input() ariaNextMonthLabel = "Next month";
-  @Input() ariaPrevMonthLabel = "Previous month";
-  @Input() ariaNextYearLabel = "Next year";
-  @Input() ariaPrevYearLabel = "Previous year";
-  @Input() ariaNextMultiYearLabel = "Next year range";
-  @Input() ariaPrevMultiYearLabel = "Previous year range";
+  @Input() ariaLabel = 'Use arrow keys to navigate';
+  @Input() ariaNextMonthLabel = 'Next month';
+  @Input() ariaPrevMonthLabel = 'Previous month';
+  @Input() ariaNextYearLabel = 'Next year';
+  @Input() ariaPrevYearLabel = 'Previous year';
+  @Input() ariaNextMultiYearLabel = 'Next year range';
+  @Input() ariaPrevMultiYearLabel = 'Previous year range';
   /** Prevent user to select same date time */
   @Input() preventSameDateTimeSelection = false;
   /** Emits when the currently selected date changes. */
@@ -92,7 +92,7 @@ export class MatDatetimepickerCalendarComponent<D>
   @Output() viewChanged: EventEmitter<MatCalendarView> =
     new EventEmitter<MatCalendarView>();
   _AMPM: string;
-  _clockView: MatClockView = "hour";
+  _clockView: MatClockView = 'hour';
   _calendarState: string;
   private _intlChanges: Subscription;
   private _clampedActiveDate: D;
@@ -108,11 +108,11 @@ export class MatDatetimepickerCalendarComponent<D>
     changeDetectorRef: ChangeDetectorRef
   ) {
     if (!this._adapter) {
-      throw createMissingDateImplError("DatetimeAdapter");
+      throw createMissingDateImplError('DatetimeAdapter');
     }
 
     if (!this._dateFormats) {
-      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
+      throw createMissingDateImplError('MAT_DATETIME_FORMATS');
     }
 
     this._intlChanges = _intl.changes.subscribe(() =>
@@ -120,7 +120,7 @@ export class MatDatetimepickerCalendarComponent<D>
     );
   }
 
-  private _type: MatDatetimepickerType = "date";
+  private _type: MatDatetimepickerType = 'date';
 
   @Input()
   get type(): MatDatetimepickerType {
@@ -128,8 +128,8 @@ export class MatDatetimepickerCalendarComponent<D>
   }
 
   set type(value: MatDatetimepickerType) {
-    this._type = value || "date";
-    if (this.type === "year") {
+    this._type = value || 'date';
+    if (this.type === 'year') {
       this.multiYearSelector = true;
     }
   }
@@ -200,13 +200,13 @@ export class MatDatetimepickerCalendarComponent<D>
     if (
       oldActiveDate &&
       this._clampedActiveDate &&
-      this.currentView === "month" &&
+      this.currentView === 'month' &&
       !this._adapter.sameMonthAndYear(oldActiveDate, this._clampedActiveDate)
     ) {
       if (this._adapter.isInNextMonth(oldActiveDate, this._clampedActiveDate)) {
-        this.calendarState("right");
+        this.calendarState('right');
       } else {
-        this.calendarState("left");
+        this.calendarState('left');
       }
     }
   }
@@ -229,7 +229,7 @@ export class MatDatetimepickerCalendarComponent<D>
   }
 
   get _monthYearLabel(): string {
-    if (this.currentView === "multi-year") {
+    if (this.currentView === 'multi-year') {
       // The offset from the active year to the "slot" for the starting year is the
       // *actual* first rendered year in the multi-year view, and the last year is
       // just yearsPerPage - 1 away.
@@ -252,8 +252,8 @@ export class MatDatetimepickerCalendarComponent<D>
       return this._intl.formatYearRange(minYearName, maxYearName);
     }
 
-    return this.currentView === "month"
-      ? this._adapter.getMonthNames("long")[
+    return this.currentView === 'month'
+      ? this._adapter.getMonthNames('long')[
           this._adapter.getMonth(this._activeDate)
         ]
       : this._adapter.getYearName(this._activeDate);
@@ -261,8 +261,8 @@ export class MatDatetimepickerCalendarComponent<D>
 
   get _dateLabel(): string {
     switch (this.type) {
-      case "month":
-        return this._adapter.getMonthNames("long")[
+      case 'month':
+        return this._adapter.getMonthNames('long')[
           this._adapter.getMonth(this._activeDate)
         ];
       default:
@@ -290,27 +290,27 @@ export class MatDatetimepickerCalendarComponent<D>
 
   get _ariaLabelNext(): string {
     switch (this._currentView) {
-      case "month":
+      case 'month':
         return this.ariaNextMonthLabel;
-      case "year":
+      case 'year':
         return this.ariaNextYearLabel;
-      case "multi-year":
+      case 'multi-year':
         return this.ariaNextMultiYearLabel;
       default:
-        return "";
+        return '';
     }
   }
 
   get _ariaLabelPrev(): string {
     switch (this._currentView) {
-      case "month":
+      case 'month':
         return this.ariaPrevMonthLabel;
-      case "year":
+      case 'year':
         return this.ariaPrevYearLabel;
-      case "multi-year":
+      case 'multi-year':
         return this.ariaPrevMultiYearLabel;
       default:
-        return "";
+        return '';
     }
   }
 
@@ -333,14 +333,14 @@ export class MatDatetimepickerCalendarComponent<D>
     this._activeDate = this.startAt || this._adapter.today();
     this._selectAMPM(this._activeDate);
     this._focusActiveCell();
-    if (this.type === "year") {
-      this.currentView = "multi-year";
-    } else if (this.type === "month") {
-      this.currentView = "year";
-    } else if (this.type === "time") {
-      this.currentView = "clock";
+    if (this.type === 'year') {
+      this.currentView = 'multi-year';
+    } else if (this.type === 'month') {
+      this.currentView = 'year';
+    } else if (this.type === 'time') {
+      this.currentView = 'clock';
     } else {
-      this.currentView = this.startView || "month";
+      this.currentView = this.startView || 'month';
     }
   }
 
@@ -350,7 +350,7 @@ export class MatDatetimepickerCalendarComponent<D>
 
   /** Handles date selection in the month view. */
   _dateSelected(date: D): void {
-    if (this.type === "date") {
+    if (this.type === 'date') {
       if (
         !this._adapter.sameDate(date, this.selected) ||
         !this.preventSameDateTimeSelection
@@ -359,13 +359,13 @@ export class MatDatetimepickerCalendarComponent<D>
       }
     } else {
       this._activeDate = date;
-      this.currentView = "clock";
+      this.currentView = 'clock';
     }
   }
 
   /** Handles month selection in the year view. */
   _monthSelected(month: D): void {
-    if (this.type === "month") {
+    if (this.type === 'month') {
       if (
         !this._adapter.sameMonthAndYear(month, this.selected) ||
         !this.preventSameDateTimeSelection
@@ -374,14 +374,14 @@ export class MatDatetimepickerCalendarComponent<D>
       }
     } else {
       this._activeDate = month;
-      this.currentView = "month";
-      this._clockView = "hour";
+      this.currentView = 'month';
+      this._clockView = 'hour';
     }
   }
 
   /** Handles year selection in the multi year view. */
   _yearSelected(year: D): void {
-    if (this.type === "year") {
+    if (this.type === 'year') {
       if (
         !this._adapter.sameYear(year, this.selected) ||
         !this.preventSameDateTimeSelection
@@ -397,14 +397,14 @@ export class MatDatetimepickerCalendarComponent<D>
       }
     } else {
       this._activeDate = year;
-      this.currentView = "year";
+      this.currentView = 'year';
     }
   }
 
   _timeSelected(date: D): void {
-    if (this._clockView !== "minute") {
+    if (this._clockView !== 'minute') {
       this._activeDate = this._updateDate(date);
-      this._clockView = "minute";
+      this._clockView = 'minute';
     } else {
       if (
         !this._adapter.sameDatetime(date, this.selected) ||
@@ -423,10 +423,10 @@ export class MatDatetimepickerCalendarComponent<D>
     if (!!this.twelvehour) {
       const HOUR = this._adapter.getHour(date);
       if (HOUR === 12) {
-        if (this._AMPM === "AM") {
+        if (this._AMPM === 'AM') {
           return this._adapter.addCalendarHours(date, -12);
         }
-      } else if (this._AMPM === "PM") {
+      } else if (this._AMPM === 'PM') {
         return this._adapter.addCalendarHours(date, 12);
       }
     }
@@ -435,9 +435,9 @@ export class MatDatetimepickerCalendarComponent<D>
 
   _selectAMPM(date: D) {
     if (this._adapter.getHour(date) > 11) {
-      this._AMPM = "PM";
+      this._AMPM = 'PM';
     } else {
-      this._AMPM = "AM";
+      this._AMPM = 'AM';
     }
   }
 
@@ -446,7 +446,7 @@ export class MatDatetimepickerCalendarComponent<D>
       return;
     }
     this._AMPM = source;
-    if (this._AMPM === "AM") {
+    if (this._AMPM === 'AM') {
       this._activeDate = this._adapter.addCalendarHours(this._activeDate, -12);
     } else {
       this._activeDate = this._adapter.addCalendarHours(this._activeDate, 12);
@@ -454,48 +454,48 @@ export class MatDatetimepickerCalendarComponent<D>
   }
 
   _yearClicked(): void {
-    if (this.type === "year" || this.multiYearSelector) {
-      this.currentView = "multi-year";
+    if (this.type === 'year' || this.multiYearSelector) {
+      this.currentView = 'multi-year';
       return;
     }
-    this.currentView = "year";
+    this.currentView = 'year';
   }
 
   _dateClicked(): void {
-    if (this.type !== "month") {
-      this.currentView = "month";
+    if (this.type !== 'month') {
+      this.currentView = 'month';
     }
   }
 
   _hoursClicked(): void {
-    this.currentView = "clock";
-    this._clockView = "hour";
+    this.currentView = 'clock';
+    this._clockView = 'hour';
   }
 
   _minutesClicked(): void {
-    this.currentView = "clock";
-    this._clockView = "minute";
+    this.currentView = 'clock';
+    this._clockView = 'minute';
   }
 
   /** Handles user clicks on the previous button. */
   _previousClicked(): void {
     this._activeDate =
-      this.currentView === "month"
+      this.currentView === 'month'
         ? this._adapter.addCalendarMonths(this._activeDate, -1)
         : this._adapter.addCalendarYears(
             this._activeDate,
-            this.currentView === "year" ? -1 : -yearsPerPage
+            this.currentView === 'year' ? -1 : -yearsPerPage
           );
   }
 
   /** Handles user clicks on the next button. */
   _nextClicked(): void {
     this._activeDate =
-      this.currentView === "month"
+      this.currentView === 'month'
         ? this._adapter.addCalendarMonths(this._activeDate, 1)
         : this._adapter.addCalendarYears(
             this._activeDate,
-            this.currentView === "year" ? 1 : yearsPerPage
+            this.currentView === 'year' ? 1 : yearsPerPage
           );
   }
 
@@ -517,11 +517,11 @@ export class MatDatetimepickerCalendarComponent<D>
     // TODO(mmalerba): We currently allow keyboard navigation to disabled dates, but just prevent
     // disabled ones from being selected. This may not be ideal, we should look into whether
     // navigation should skip over disabled dates, and if so, how to implement that efficiently.
-    if (this.currentView === "month") {
+    if (this.currentView === 'month') {
       this._handleCalendarBodyKeydownInMonthView(event);
-    } else if (this.currentView === "year") {
+    } else if (this.currentView === 'year') {
       this._handleCalendarBodyKeydownInYearView(event);
-    } else if (this.currentView === "multi-year") {
+    } else if (this.currentView === 'multi-year') {
       this._handleCalendarBodyKeydownInMultiYearView(event);
     } else {
       this._handleCalendarBodyKeydownInClockView(event);
@@ -540,18 +540,18 @@ export class MatDatetimepickerCalendarComponent<D>
   }
 
   _calendarStateDone() {
-    this._calendarState = "";
+    this._calendarState = '';
   }
 
   /** Whether the two dates represent the same view in the current view mode (month or year). */
   private _isSameView(date1: D, date2: D): boolean {
-    if (this.currentView === "month") {
+    if (this.currentView === 'month') {
       return (
         this._adapter.getYear(date1) === this._adapter.getYear(date2) &&
         this._adapter.getMonth(date1) === this._adapter.getMonth(date2)
       );
     }
-    if (this.currentView === "year") {
+    if (this.currentView === 'year') {
       return this._adapter.getYear(date1) === this._adapter.getYear(date2);
     }
     // Otherwise we are in 'multi-year' view.
@@ -745,13 +745,13 @@ export class MatDatetimepickerCalendarComponent<D>
     switch (event.keyCode) {
       case UP_ARROW:
         this._activeDate =
-          this._clockView === "hour"
+          this._clockView === 'hour'
             ? this._adapter.addCalendarHours(this._activeDate, 1)
             : this._adapter.addCalendarMinutes(this._activeDate, 1);
         break;
       case DOWN_ARROW:
         this._activeDate =
-          this._clockView === "hour"
+          this._clockView === 'hour'
             ? this._adapter.addCalendarHours(this._activeDate, -1)
             : this._adapter.addCalendarMinutes(this._activeDate, -1);
         break;
@@ -804,6 +804,6 @@ export class MatDatetimepickerCalendarComponent<D>
   }
 
   private _2digit(n: number) {
-    return ("00" + n).slice(-2);
+    return ('00' + n).slice(-2);
   }
 }

@@ -1,16 +1,20 @@
 <table class="mat-datetimepicker-calendar-table">
   <thead class="mat-datetimepicker-calendar-table-header">
-  <tr>
-    <th *ngFor="let day of _weekdays" [attr.aria-label]="day.long">{{day.narrow}}</th>
-  </tr>
+    <tr>
+      <th *ngFor="let day of _weekdays" [attr.aria-label]="day.long">
+        {{day.narrow}}
+      </th>
+    </tr>
   </thead>
-  <tbody (@slideCalendar.done)="_calendarStateDone()"
-         (selectedValueChange)="_dateSelected($event)"
-         [@slideCalendar]="_calendarState"
-         [activeCell]="_adapter.getDate(activeDate) - 1"
-         [rows]="_weeks"
-         [selectedValue]="_selectedDate"
-         [todayValue]="_todayDate"
-         matDatetimepickerCalendarBody
-         role="grid"></tbody>
+  <tbody
+    (@slideCalendar.done)="_calendarStateDone()"
+    (selectedValueChange)="_dateSelected($event)"
+    [@slideCalendar]="_calendarState"
+    [activeCell]="_adapter.getDate(activeDate) - 1"
+    [rows]="_weeks"
+    [selectedValue]="_selectedDate"
+    [todayValue]="_todayDate"
+    matDatetimepickerCalendarBody
+    role="grid"
+  ></tbody>
 </table>

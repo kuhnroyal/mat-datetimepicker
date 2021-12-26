@@ -8,16 +8,16 @@ import {
   Optional,
   Output,
   ViewEncapsulation,
-} from "@angular/core";
+} from '@angular/core';
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats,
-} from "../adapter/datetime-formats";
-import { DatetimeAdapter } from "../adapter/datetime-adapter";
-import { MatDatetimepickerCalendarCell } from "./calendar-body";
-import { slideCalendar } from "./datetimepicker-animations";
-import { createMissingDateImplError } from "./datetimepicker-errors";
-import { MatDatetimepickerType } from "./datetimepicker-type";
+} from '../adapter/datetime-formats';
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
+import { MatDatetimepickerCalendarCell } from './calendar-body';
+import { slideCalendar } from './datetimepicker-animations';
+import { createMissingDateImplError } from './datetimepicker-errors';
+import { MatDatetimepickerType } from './datetimepicker-type';
 
 const DAYS_PER_WEEK = 7;
 
@@ -26,14 +26,16 @@ const DAYS_PER_WEEK = 7;
  * @docs-private
  */
 @Component({
-  selector: "mat-datetimepicker-month-view",
-  templateUrl: "month-view.html",
+  selector: 'mat-datetimepicker-month-view',
+  templateUrl: 'month-view.html',
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatDatetimepickerMonthViewComponent<D> implements AfterContentInit {
-  @Input() type: MatDatetimepickerType = "date";
+export class MatDatetimepickerMonthViewComponent<D>
+  implements AfterContentInit
+{
+  @Input() type: MatDatetimepickerType = 'date';
 
   @Output() _userSelection = new EventEmitter<void>();
   /** A function used to filter which dates are selectable. */
@@ -62,16 +64,16 @@ export class MatDatetimepickerMonthViewComponent<D> implements AfterContentInit 
     private _dateFormats: MatDatetimeFormats
   ) {
     if (!this._adapter) {
-      throw createMissingDateImplError("DatetimeAdapter");
+      throw createMissingDateImplError('DatetimeAdapter');
     }
 
     if (!this._dateFormats) {
-      throw createMissingDateImplError("MAT_DATETIME_FORMATS");
+      throw createMissingDateImplError('MAT_DATETIME_FORMATS');
     }
 
     const firstDayOfWeek = this._adapter.getFirstDayOfWeek();
-    const narrowWeekdays = this._adapter.getDayOfWeekNames("narrow");
-    const longWeekdays = this._adapter.getDayOfWeekNames("long");
+    const narrowWeekdays = this._adapter.getDayOfWeekNames('narrow');
+    const longWeekdays = this._adapter.getDayOfWeekNames('long');
 
     // Rotate the labels for days of the week based on the configured first day of the week.
     let weekdays = longWeekdays.map((long, i) => {
@@ -104,9 +106,9 @@ export class MatDatetimepickerMonthViewComponent<D> implements AfterContentInit 
     ) {
       this._init();
       if (this._adapter.isInNextMonth(oldActiveDate, this._activeDate)) {
-        this.calendarState("right");
+        this.calendarState('right');
       } else {
-        this.calendarState("left");
+        this.calendarState('left');
       }
     }
   }
@@ -139,13 +141,13 @@ export class MatDatetimepickerMonthViewComponent<D> implements AfterContentInit 
         this._adapter.getMinute(this.activeDate)
       )
     );
-    if (this.type === "date") {
+    if (this.type === 'date') {
       this._userSelection.emit();
     }
   }
 
   _calendarStateDone() {
-    this._calendarState = "";
+    this._calendarState = '';
   }
 
   /** Initializes this month view. */
