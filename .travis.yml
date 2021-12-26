@@ -9,4 +9,4 @@ notifications:
   email: false
 
 script:
-  - yarn build
+  - npm run build

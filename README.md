@@ -27,14 +27,13 @@ Like the @angular/material datepicker it contains a native-datetime-adapter as w
 Install:
 
 ```sh
-yarn add @mat-datetimepicker/core
+npm install --save @mat-datetimepicker/core
 ```
 
 And for the moment adapter:
 
 ```sh
-yarn add @angular/material-moment-adapter
-yarn add @mat-datetimepicker/moment
+npm install --save @angular/material-moment-adapter mat-datetimepicker/moment
 ```
 
 ## Setup
@@ -202,16 +201,16 @@ Parsing does not work with the native adapter because the Intl.DateTimeFormat AP
 ## Performing a local build
 
 ```sh
-yarn install
-yarn build
+npm install
+npm run build
 ```
 
 ## Running the sample app locally
 
 ```sh
-yarn install
-yarn build
-yarn start
+npm install
+npm run build
+npm run start
 ```
 
 ## Using the local build in some project
@@ -232,6 +231,6 @@ Add the dependencies to your `package.json`:
 Link the local built modules:
 
 ```sh
-yarn link "@mat-datetimepicker/core"
-yarn link "@mat-datetimepicker/moment"
+npm link "@mat-datetimepicker/core"
+npm link "@mat-datetimepicker/moment"
 ```
