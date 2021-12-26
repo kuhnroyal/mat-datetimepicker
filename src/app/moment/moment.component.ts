@@ -9,6 +9,7 @@ import {Moment, utc} from "moment/moment";
 @Component({
   selector: "app-moment-datetime",
   templateUrl: "../date.component.html",
+  styleUrls: ["../date.component.scss"],
   providers: [
     {
       provide: DateAdapter,
@@ -48,7 +49,9 @@ import {Moment, utc} from "moment/moment";
   ]
 })
 export class MomentDatetimeComponent {
-  type = "moment";
+
+  name = "@mat-datetimepicker/moment";
+  link = "https://www.npmjs.com/package/@mat-datetimepicker/moment";
 
   group: FormGroup;
   today: Moment;
