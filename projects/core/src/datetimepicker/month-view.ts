@@ -1,4 +1,3 @@
-/* tslint:disable */
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -33,7 +32,7 @@ const DAYS_PER_WEEK = 7;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatDatetimepickerMonthView<D> implements AfterContentInit {
+export class MatDatetimepickerMonthViewComponent<D> implements AfterContentInit {
   @Input() type: MatDatetimepickerType = "date";
 
   @Output() _userSelection = new EventEmitter<void>();

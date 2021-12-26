@@ -1,4 +1,3 @@
-/* tslint:disable */
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -31,7 +30,7 @@ import { MatDatetimepickerType } from "./datetimepicker-type";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatDatetimepickerYearView<D> implements AfterContentInit {
+export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
   @Output() _userSelection = new EventEmitter<void>();
 
   @Input() type: MatDatetimepickerType = "date";

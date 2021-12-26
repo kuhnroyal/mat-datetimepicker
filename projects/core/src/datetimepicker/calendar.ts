@@ -65,7 +65,7 @@ export type MatCalendarView = "clock" | "month" | "year" | "multi-year";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatDatetimepickerCalendar<D>
+export class MatDatetimepickerCalendarComponent<D>
   implements AfterContentInit, OnDestroy
 {
   @Output() _userSelection = new EventEmitter<void>();
@@ -566,7 +566,6 @@ export class MatDatetimepickerCalendar<D>
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
   private _handleCalendarBodyKeydownInMonthView(event: KeyboardEvent): void {
-    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       case LEFT_ARROW:
         this._activeDate = this._adapter.addCalendarDays(this._activeDate, -1);
@@ -621,7 +620,6 @@ export class MatDatetimepickerCalendar<D>
 
   /** Handles keydown events on the calendar body when calendar is in year view. */
   private _handleCalendarBodyKeydownInYearView(event: KeyboardEvent): void {
-    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       case LEFT_ARROW:
         this._activeDate = this._adapter.addCalendarMonths(
@@ -678,7 +676,6 @@ export class MatDatetimepickerCalendar<D>
   private _handleCalendarBodyKeydownInMultiYearView(
     event: KeyboardEvent
   ): void {
-    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       case LEFT_ARROW:
         this._activeDate = this._adapter.addCalendarYears(this._activeDate, -1);
@@ -745,7 +742,6 @@ export class MatDatetimepickerCalendar<D>
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
   private _handleCalendarBodyKeydownInClockView(event: KeyboardEvent): void {
-    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       case UP_ARROW:
         this._activeDate =
