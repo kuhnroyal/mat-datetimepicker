@@ -1,0 +1,30 @@
+name: Version
+on:
+  push:
+    branches:
+      - release
+    tags-ignore:
+      - *
+    paths-ignore:
+      - CHANGELOG.md
+      - package.json
+      - projects/core/package.json
+      - projects/moment/package.json
+jobs:
+  version:
+    name: Bump Standard-Version
+    runs-on: ubuntu-20.04
+    environment: release
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACTION_TOKEN }}
+      - run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '16'
+      - run: npx standard-version
+      - run: git push --follow-tags origin ${{ github.ref }}
