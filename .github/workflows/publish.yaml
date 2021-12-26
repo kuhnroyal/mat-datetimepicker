@@ -1,24 +1,21 @@
-name: Version
+name: Publish
 on:
   push:
     branches:
       - release
-    tags-ignore:
-      - *
-    paths-ignore:
-      - CHANGELOG.md
+    tags:
+      - v*
+    paths:
       - package.json
       - projects/core/package.json
       - projects/moment/package.json
 jobs:
-  version:
-    name: Bump Standard-Version
+  publish:
+    name: Publish to npmjs.org
     runs-on: ubuntu-20.04
     environment: NPM
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.ACTION_TOKEN }}
       - run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
@@ -26,5 +23,11 @@ jobs:
         with:
           cache: 'npm'
           node-version: '16'
-      - run: npx standard-version
-      - run: git push --follow-tags origin ${{ github.ref }}
+      - run: npm ci
+      - run: npm run build:lib
+      - run: npm publish dist/core
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish dist/moment
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
