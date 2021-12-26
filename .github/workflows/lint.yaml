@@ -4,7 +4,7 @@ on:
     branches:
       - '*'
 jobs:
-  build:
+  lint:
     name: Lint Codebase
     runs-on: ubuntu-20.04
     steps:
@@ -15,3 +15,14 @@ jobs:
           node-version: '16'
       - run: npm ci
       - run: npm run lint
+  prettier:
+    name: Prettier Check Codebase
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '16'
+      - run: npm ci
+      - run: npm run prettier:check
