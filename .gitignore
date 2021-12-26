@@ -7,6 +7,7 @@
 
 # dependencies
 /node_modules
+yarn.lock
 
 # IDEs and editors
 /.idea
@@ -33,6 +34,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+/.angular
 
 # System Files
 .DS_Store

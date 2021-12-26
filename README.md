@@ -1,13 +1,4 @@
-# Material Datetimepicker for @angular/material 12.x
-
-This is the main branch for @angular/material 12.x
-
-You can find the Angular 5 version on the `1.x` branch. \
-You can find the Angular 6 version on the `2.x` branch. \
-You can find the Angular 8 version on the `3.x` branch. \
-You can find the Angular 9 version on the `4.x` branch. \
-You can find the Angular 10 version on the `5.x` branch. \
-You can find the Angular 11 version on the `6.x` branch.
+# Material Datetimepicker for @angular/material 13.x
 
 ## Description
 
@@ -27,14 +18,13 @@ Like the @angular/material datepicker it contains a native-datetime-adapter as w
 Install:
 
 ```sh
-yarn add @mat-datetimepicker/core
+npm install --save @mat-datetimepicker/core
 ```
 
 And for the moment adapter:
 
 ```sh
-yarn add @angular/material-moment-adapter
-yarn add @mat-datetimepicker/moment
+npm install --save @angular/material-moment-adapter mat-datetimepicker/moment
 ```
 
 ## Setup
@@ -202,16 +192,16 @@ Parsing does not work with the native adapter because the Intl.DateTimeFormat AP
 ## Performing a local build
 
 ```sh
-yarn install
-yarn build
+npm install
+npm run build
 ```
 
 ## Running the sample app locally
 
 ```sh
-yarn install
-yarn build
-yarn start
+npm install
+npm run build
+npm run start
 ```
 
 ## Using the local build in some project
@@ -224,14 +214,14 @@ Add the dependencies to your `package.json`:
 
 ```json
 "dependencies": {
-    "@mat-datetimepicker/core": "4.0.0",
-    "@mat-datetimepicker/moment": "4.0.0",
+    "@mat-datetimepicker/core": "8.0.0",
+    "@mat-datetimepicker/moment": "8.0.0",
 }
 ```
 
 Link the local built modules:
 
 ```sh
-yarn link "@mat-datetimepicker/core"
-yarn link "@mat-datetimepicker/moment"
+npm link "@mat-datetimepicker/core"
+npm link "@mat-datetimepicker/moment"
 ```
