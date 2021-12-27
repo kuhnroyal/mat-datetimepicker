@@ -12,6 +12,7 @@
     "bundle-report": "webpack-bundle-analyzer dist/app/stats.json",
     "e2e": "ng e2e",
     "lint": "ng lint",
+    "publish:pages": "ng deploy",
     "prepare": "husky install",
     "prettier": "prettier \"{,e2e/**/,projects/**/,src/**/}*.{md,java,json,y(a)?ml,html,js,ts,tsx,css,scss}\"",
     "prettier:check": "npm run prettier -- --check",

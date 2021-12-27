@@ -20,10 +20,10 @@ jobs:
           node-version: '16'
       - run: npm ci
       - run: npm run build:lib
-      - run: npm publish dist/core
+      - run: npm publish ./dist/core
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npm publish dist/moment
+      - run: npm publish ./dist/moment
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   publish:
