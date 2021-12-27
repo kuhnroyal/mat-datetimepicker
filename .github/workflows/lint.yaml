@@ -1,8 +1,6 @@
 name: Lint
 on:
   pull_request:
-    branches:
-      - '*'
 jobs:
   prettier:
     name: Prettier Check Codebase

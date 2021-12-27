@@ -4,26 +4,10 @@ on:
     branches:
       - release
     tags-ignore:
-      - '*'
+      - 'v*'
     paths:
       - .github/version.json
 jobs:
-  publish:
-    name: Publish to GitHub Pages
-    runs-on: ubuntu-20.04
-    environment: NPM
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          cache: 'npm'
-          node-version: '16'
-      - run: npm ci
-      - run: npm run build:lib
-      - run: npm run build:pages
-      - run: npm run publish:pages
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   deploy:
     name: Deploy to npmjs.org
     runs-on: ubuntu-20.04
@@ -42,3 +26,19 @@ jobs:
       - run: npm publish dist/moment
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  publish:
+    name: Publish to GitHub Pages
+    runs-on: ubuntu-20.04
+    environment: NPM
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACTION_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '16'
+      - run: npm ci
+      - run: npm run build:lib
+      - run: npm run build:pages
+      - run: npm run publish:pages
