@@ -27,5 +27,6 @@ jobs:
         with:
           cache: 'npm'
           node-version: '16'
-      - run: npx standard-version
+      - run: npm ci
+      - run: npx --no-install standard-version
       - run: git push --follow-tags origin ${{ github.ref }}
