@@ -204,8 +204,8 @@ providers: [
 # Development
 
 Run `npm install` in order to install all required dependencies and initialize the Git hooks. Further instructions are
-available in the [`DEVELOPMENT.md`](https://github.com/kuhnroyal/mat-datetimepicker/blob/canary/DEVELOPMENT.md).
+available in the [`DEVELOPMENT.md`](https://github.com/kuhnroyal/mat-datetimepicker/blob/release/DEVELOPMENT.md).
 
 **Make sure you read at
-least [the "Committing" section](https://github.com/kuhnroyal/mat-datetimepicker/blob/canary/DEVELOPMENT.md#committing)
+least [the "Committing" section](https://github.com/kuhnroyal/mat-datetimepicker/blob/release/DEVELOPMENT.md#committing)
 before committing anything.**
