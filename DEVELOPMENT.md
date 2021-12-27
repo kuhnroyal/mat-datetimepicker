@@ -73,7 +73,7 @@ footer?
 ```
 
 All available types are documented
-in [`.versionrc.json`](https://github.com/kuhnroyal/mat-datetimepicker/blob/canary/.versionrc.json). A brief summary of
+in [`.versionrc.json`](https://github.com/kuhnroyal/mat-datetimepicker/blob/release/.versionrc.json). A brief summary of
 conventional commits is available [at their website](https://www.conventionalcommits.org/en/v1.0.0/#summary).
 
 ### Git hooks
