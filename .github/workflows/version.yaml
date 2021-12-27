@@ -6,8 +6,8 @@ on:
     tags-ignore:
       - '*'
     paths-ignore:
+      - .github/version.json
       - CHANGELOG.md
-      - package.json
       - projects/core/package.json
       - projects/moment/package.json
 jobs:
