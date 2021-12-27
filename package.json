@@ -1,6 +1,6 @@
 {
   "name": "mat-datetimepicker",
-  "version": "8.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "build": "npm run build:lib && ng build",

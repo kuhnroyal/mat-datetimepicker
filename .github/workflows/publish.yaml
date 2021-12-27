@@ -6,9 +6,7 @@ on:
     tags-ignore:
       - '*'
     paths:
-      - package.json
-      - projects/core/package.json
-      - projects/moment/package.json
+      - .github/version.json
 jobs:
   publish:
     name: Publish to GitHub Pages
