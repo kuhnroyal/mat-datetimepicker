@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.8](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.7...v9.0.8) (2021-12-28)
+
+### Other
+
+- **deps:** bump rxjs from 7.4.0 to 7.5.1 ([8d63d26](https://github.com/kuhnroyal/mat-datetimepicker/commit/8d63d2610ab78fcd1348e339e9e4d9b00e53ea6b))
+
 ### [9.0.7](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.6...v9.0.7) (2021-12-28)
 
 ### Other
