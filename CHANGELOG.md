@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.10](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.9...v9.0.10) (2021-12-28)
+
+### Other
+
+- **deps-dev:** bump @commitlint/cli from 16.0.0 to 16.0.1 ([308814b](https://github.com/kuhnroyal/mat-datetimepicker/commit/308814b4ce3fbc877952e095b1314f4d0cd0c709))
+
+### [9.0.9](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.8...v9.0.9) (2021-12-28)
+
+### Other
+
+- **deps-dev:** bump typescript from 4.4.4 to 4.5.4 ([c419a38](https://github.com/kuhnroyal/mat-datetimepicker/commit/c419a385776acb5591f7be5dab1a51fe08acf45c))
+
+### [9.0.8](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.7...v9.0.8) (2021-12-28)
+
+### Other
+
+- **deps:** bump rxjs from 7.4.0 to 7.5.1 ([8d63d26](https://github.com/kuhnroyal/mat-datetimepicker/commit/8d63d2610ab78fcd1348e339e9e4d9b00e53ea6b))
+
+### [9.0.7](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.6...v9.0.7) (2021-12-28)
+
+### Other
+
+- **deps-dev:** bump @typescript-eslint/eslint-plugin ([c5a9d61](https://github.com/kuhnroyal/mat-datetimepicker/commit/c5a9d61d3dcc1e9ad09211b573e362caafdd839b))
+
+### [9.0.6](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.5...v9.0.6) (2021-12-28)
+
+### Other
+
+- **deps-dev:** bump jasmine-core from 3.8.0 to 3.10.1 ([9847ccf](https://github.com/kuhnroyal/mat-datetimepicker/commit/9847ccf35f29489f1c4fb0b2a672f990d9656525))
+
+### [9.0.5](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.4...v9.0.5) (2021-12-28)
+
+### Other
+
+- **deps-dev:** bump ts-node from 10.1.0 to 10.4.0 ([0fd27b5](https://github.com/kuhnroyal/mat-datetimepicker/commit/0fd27b5a18107ad0c5f0c473cf30ffabdb2f5bad))
+
+### [9.0.4](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.3...v9.0.4) (2021-12-28)
+
+### Other
+
+- **deps-dev:** bump @types/node from 17.0.4 to 17.0.5 ([4a89d02](https://github.com/kuhnroyal/mat-datetimepicker/commit/4a89d02404376726ccd4911b6fb397485a85529e))
+
+### [9.0.3](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.2...v9.0.3) (2021-12-28)
+
+### Other
+
+- **deps:** bump copy-files-from-to from 3.2.0 to 3.2.2 ([ea0cf1b](https://github.com/kuhnroyal/mat-datetimepicker/commit/ea0cf1bfc03d64d793bb9ff79721af32958b9f64))
+
 ### [9.0.2](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.1...v9.0.2) (2021-12-28)
 
 ### CI / CD
