@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.10](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.9...v9.0.10) (2021-12-28)
+
+### Other
+
+- **deps-dev:** bump @commitlint/cli from 16.0.0 to 16.0.1 ([308814b](https://github.com/kuhnroyal/mat-datetimepicker/commit/308814b4ce3fbc877952e095b1314f4d0cd0c709))
+
 ### [9.0.9](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.8...v9.0.9) (2021-12-28)
 
 ### Other
