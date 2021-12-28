@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.6](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.5...v9.0.6) (2021-12-28)
+
+### Other
+
+- **deps-dev:** bump jasmine-core from 3.8.0 to 3.10.1 ([9847ccf](https://github.com/kuhnroyal/mat-datetimepicker/commit/9847ccf35f29489f1c4fb0b2a672f990d9656525))
+
 ### [9.0.5](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.4...v9.0.5) (2021-12-28)
 
 ### Other
