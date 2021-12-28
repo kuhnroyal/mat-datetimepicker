@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.3](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.2...v9.0.3) (2021-12-28)
+
+### Other
+
+- **deps:** bump copy-files-from-to from 3.2.0 to 3.2.2 ([ea0cf1b](https://github.com/kuhnroyal/mat-datetimepicker/commit/ea0cf1bfc03d64d793bb9ff79721af32958b9f64))
+
 ### [9.0.2](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.1...v9.0.2) (2021-12-28)
 
 ### CI / CD
