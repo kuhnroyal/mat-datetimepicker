@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.2](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.1...v9.0.2) (2021-12-28)
+
+### CI / CD
+
+- add registry URL to setup-node action ([0075057](https://github.com/kuhnroyal/mat-datetimepicker/commit/0075057b64df11e9399621c5a248dae490ac8414))
+
 ### [9.0.1](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.0...v9.0.1) (2021-12-27)
 
 ### Bug Fixes
