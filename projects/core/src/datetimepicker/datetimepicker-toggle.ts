@@ -11,7 +11,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { MatDatepickerIntl } from '@angular/material/datepicker';
-import { merge, of as observableOf, Subscription } from 'rxjs';
+import { asyncScheduler, merge, scheduled, Subscription } from 'rxjs';
 import { MatDatetimepickerComponent } from './datetimepicker';
 
 @Component({
@@ -76,17 +76,17 @@ export class MatDatetimepickerToggleComponent<D>
   private _watchStateChanges() {
     const datepickerDisabled = this.datetimepicker
       ? this.datetimepicker._disabledChange
-      : observableOf();
+      : scheduled([], asyncScheduler);
     const inputDisabled =
       this.datetimepicker && this.datetimepicker._datepickerInput
         ? this.datetimepicker._datepickerInput._disabledChange
-        : observableOf();
+        : scheduled([], asyncScheduler);
 
     this._stateChanges.unsubscribe();
-    this._stateChanges = merge([
+    this._stateChanges = merge(
       this._intl.changes,
       datepickerDisabled,
-      inputDisabled,
-    ]).subscribe(() => this._changeDetectorRef.markForCheck());
+      inputDisabled
+    ).subscribe(() => this._changeDetectorRef.markForCheck());
   }
 }
