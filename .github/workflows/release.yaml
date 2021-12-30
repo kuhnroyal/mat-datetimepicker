@@ -1,0 +1,19 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  deploy:
+    name: Create GitHub Release
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            CHANGELOG.md
+            LICENSE
+            README.md
+          name: Release ${{ github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
