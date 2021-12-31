@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.17](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.16...v9.0.17) (2021-12-31)
+
+### Bug Fixes
+
+- **#161:** invalid usage of rxjs merge ([bbf79b5](https://github.com/kuhnroyal/mat-datetimepicker/commit/bbf79b5abae74243044fa6a91d439df73a615186)), closes [#161](https://github.com/kuhnroyal/mat-datetimepicker/issues/161)
+
 ### [9.0.16](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.15...v9.0.16) (2021-12-31)
 
 ### CI / CD
