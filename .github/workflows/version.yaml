@@ -29,4 +29,4 @@ jobs:
           node-version: '16'
       - run: npm ci
       - run: npx --no-install standard-version
-      - run: git push --follow-tags origin ${{ github.ref }}
+      - run: git push --follow-tags origin $GITHUB_REF
