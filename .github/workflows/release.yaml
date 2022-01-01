@@ -15,5 +15,5 @@ jobs:
             CHANGELOG.md
             LICENSE
             README.md
-          name: Release $GITHUB_REF_NAME
+          name: Release ${{ github.ref.name }}
           token: ${{ secrets.GITHUB_TOKEN }}
