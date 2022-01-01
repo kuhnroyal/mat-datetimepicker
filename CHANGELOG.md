@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.18](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.17...v9.0.18) (2022-01-01)
+
+### Bug Fixes
+
+- use ref name for github release ([06fe837](https://github.com/kuhnroyal/mat-datetimepicker/commit/06fe837497d638a67827c94072cfe5c993b221be))
+
 ### [9.0.17](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.16...v9.0.17) (2021-12-31)
 
 ### Bug Fixes
