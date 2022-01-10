@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.22](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.21...v9.0.22) (2022-01-10)
+
+### Bug Fixes
+
+- **#216:** add sass/scss mixins export ([4257924](https://github.com/kuhnroyal/mat-datetimepicker/commit/4257924a437f1fc103574b01bd6e5436a3749bb1)), closes [#216](https://github.com/kuhnroyal/mat-datetimepicker/issues/216)
+
+### Other
+
+- update dev deps ([74968bb](https://github.com/kuhnroyal/mat-datetimepicker/commit/74968bba2c7174b291c9e5a4b7e9e014cba24282))
+
 ### [9.0.21](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.20...v9.0.21) (2022-01-03)
 
 ### Bug Fixes
