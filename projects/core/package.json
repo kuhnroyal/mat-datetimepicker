@@ -4,6 +4,11 @@
   "repository": "https://github.com/kuhnroyal/mat-datetimepicker.git",
   "author": "PL <kuhnroyal@gmail.com>",
   "license": "MIT",
+  "exports": {
+    "./datetimepicker/datetimepicker-theme": {
+      "sass": "datetimepicker/datetimepicker-theme.scss"
+    }
+  },
   "peerDependencies": {
     "@angular/cdk": "^13.1.1",
     "@angular/common": "^13.1.1",
