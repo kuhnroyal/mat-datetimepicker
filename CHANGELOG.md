@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.25](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.24...v9.0.25) (2022-01-17)
+
+### Other
+
+- **deps-dev:** bump ng-packagr from 13.1.2 to 13.1.3 ([0807f4b](https://github.com/kuhnroyal/mat-datetimepicker/commit/0807f4b096d273345ea1a0f746dd4c63e72c571b))
+
 ### [9.0.24](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.23...v9.0.24) (2022-01-17)
 
 ### Other
