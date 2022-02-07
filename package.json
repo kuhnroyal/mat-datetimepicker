@@ -34,7 +34,7 @@
     "@angular/material-moment-adapter": "^13.2.0",
     "@angular/platform-browser": "^13.2.0",
     "@angular/platform-browser-dynamic": "^13.2.0",
-    "@angular/router": "^13.2.0",
+    "@angular/router": "^13.2.1",
     "copy-files-from-to": "3.2.2",
     "moment": "2.29.1",
     "rxjs": "^7.5.2",
