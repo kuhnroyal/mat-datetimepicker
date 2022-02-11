@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.28](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.27...v9.0.28) (2022-02-11)
+
+### Other
+
+- **deps-dev:** bump karma from 6.3.13 to 6.3.14 ([f3f6969](https://github.com/kuhnroyal/mat-datetimepicker/commit/f3f69693c5da7054474ab899a34958a641f8ff2c))
+
 ### [9.0.27](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.26...v9.0.27) (2022-02-01)
 
 ### Other
