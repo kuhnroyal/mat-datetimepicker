@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.29](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.28...v9.0.29) (2022-02-11)
+
+### Other
+
+- **deps:** bump @angular/platform-browser-dynamic ([02458e2](https://github.com/kuhnroyal/mat-datetimepicker/commit/02458e2d5f1a79241510ab22696848aceea7d383))
+
 ### [9.0.28](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.27...v9.0.28) (2022-02-11)
 
 ### Other
