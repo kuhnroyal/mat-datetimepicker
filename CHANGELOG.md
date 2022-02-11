@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.32](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.31...v9.0.32) (2022-02-11)
+
+### Other
+
+- **deps:** bump @angular/router from 13.2.0 to 13.2.2 ([5c7e5f5](https://github.com/kuhnroyal/mat-datetimepicker/commit/5c7e5f56b944ba892d3824bdd0a9acd9a3ed3bc1))
+
 ### [9.0.31](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.30...v9.0.31) (2022-02-11)
 
 ### Other
