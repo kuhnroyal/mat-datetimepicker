@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.34](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.33...v9.0.34) (2022-03-14)
+
+### Other
+
+- **deps:** bump actions/setup-node from 2 to 3 ([7be1c83](https://github.com/kuhnroyal/mat-datetimepicker/commit/7be1c835e09aa2fbc00ecaec779453a31e5d557c))
+
 ### [9.0.33](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.32...v9.0.33) (2022-02-21)
 
 ### Other
