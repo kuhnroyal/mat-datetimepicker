@@ -6,7 +6,7 @@ jobs:
     name: Prettier Check Codebase
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           cache: 'npm'
@@ -17,7 +17,7 @@ jobs:
     name: Lint Codebase
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           cache: 'npm'
