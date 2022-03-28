@@ -104,6 +104,10 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
   }
 
   // delegate
+  deserialize(value: any): D | null {
+    return this._delegate.deserialize(value);
+  }
+
   clone(date: D): D {
     return this._delegate.clone(date);
   }
