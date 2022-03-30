@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.38](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.37...v9.0.38) (2022-03-30)
+
+### Other
+
+- **deps:** bump @angular/forms from 13.2.3 to 13.3.0 ([bc99722](https://github.com/kuhnroyal/mat-datetimepicker/commit/bc99722ea573506fce7da19334ed0a7bbc9c76f4))
+
 ### [9.0.37](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.36...v9.0.37) (2022-03-30)
 
 ### Other
