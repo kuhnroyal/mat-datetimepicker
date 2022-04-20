@@ -19,6 +19,10 @@ import { MatDatetimepickerComponent } from './datetimepicker';
   templateUrl: 'datetimepicker-toggle.html',
   host: {
     class: 'mat-datetimepicker-toggle',
+    // Bind the `click` on the host, rather than the inner `button`, so that we can call `stopPropagation`
+    // on it without affecting the user's `click` handlers. We need to stop it so that the input doesn't
+    // get focused automatically by the form field (See https://github.com/angular/components/pull/21856).
+    '(click)': '_open($event)',
   },
   exportAs: 'matDatetimepickerToggle',
   encapsulation: ViewEncapsulation.None,
