@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.45](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.44...v9.0.45) (2022-04-21)
+
+### Bug Fixes
+
+- **toggle:** avoid interfering with external click listener ([befc986](https://github.com/kuhnroyal/mat-datetimepicker/commit/befc9862d42b68d4ecb31c4cdb898fefb40b10a5))
+
 ### [9.0.44](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.43...v9.0.44) (2022-04-13)
 
 ### Other
