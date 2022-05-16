@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.50](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.49...v9.0.50) (2022-05-16)
+
+### Other
+
+- **deps-dev:** bump eslint-config-prettier from 8.4.0 to 8.5.0 ([9716083](https://github.com/kuhnroyal/mat-datetimepicker/commit/971608393889a49f366f95c7e6542b7d62d90b78))
+
 ### [9.0.49](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.48...v9.0.49) (2022-05-16)
 
 ### Other
