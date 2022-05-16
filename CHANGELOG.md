@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.49](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.48...v9.0.49) (2022-05-16)
+
+### Other
+
+- **deps-dev:** bump karma-chrome-launcher from 3.1.0 to 3.1.1 ([f9a1ae0](https://github.com/kuhnroyal/mat-datetimepicker/commit/f9a1ae04c9ea2f73f077d2db85fedc2053e590e3))
+
 ### [9.0.48](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.47...v9.0.48) (2022-05-16)
 
 ### Other
