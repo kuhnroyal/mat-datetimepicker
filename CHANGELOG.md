@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.52](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.51...v9.0.52) (2022-05-17)
+
+### Other
+
+- **deps:** bump zone.js from 0.11.4 to 0.11.5 ([bba5bbe](https://github.com/kuhnroyal/mat-datetimepicker/commit/bba5bbe91d053370c669b00a4f7ba87725703960))
+
 ### [9.0.51](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.50...v9.0.51) (2022-05-17)
 
 ### Other
