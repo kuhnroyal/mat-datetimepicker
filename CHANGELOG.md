@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.51](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.50...v9.0.51) (2022-05-17)
+
+### Other
+
+- **deps:** bump ejs from 3.1.6 to 3.1.8 ([2db9a0f](https://github.com/kuhnroyal/mat-datetimepicker/commit/2db9a0fa74aec207242197441d2299432dfafa1f))
+
 ### [9.0.50](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.49...v9.0.50) (2022-05-16)
 
 ### Other
