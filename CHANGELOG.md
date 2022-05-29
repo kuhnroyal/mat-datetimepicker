@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.57](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.56...v9.0.57) (2022-05-29)
+
+### Other
+
+- **deps-dev:** bump @typescript-eslint/parser from 5.17.0 to 5.25.0 ([5cf46a5](https://github.com/kuhnroyal/mat-datetimepicker/commit/5cf46a5ce24c9c848c0c7140f48cbb2006178bb6))
+
 ### [9.0.56](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.55...v9.0.56) (2022-05-23)
 
 ### Other
