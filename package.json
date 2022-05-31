@@ -33,7 +33,7 @@
     "@angular/material": "^13.2.3",
     "@angular/material-moment-adapter": "^13.2.3",
     "@angular/platform-browser": "^13.2.3",
-    "@angular/platform-browser-dynamic": "^13.2.3",
+    "@angular/platform-browser-dynamic": "^13.3.10",
     "@angular/router": "^13.2.3",
     "copy-files-from-to": "3.2.2",
     "moment": "2.29.3",
