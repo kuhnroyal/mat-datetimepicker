@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.61](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.60...v9.0.61) (2022-06-01)
+
+### Other
+
+- **deps-dev:** bump typescript from 4.5.5 to 4.6.4 ([f85e2d5](https://github.com/kuhnroyal/mat-datetimepicker/commit/f85e2d5f0abdeba9666b48183f3c81abfa9a3db6))
+
 ### [9.0.60](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.59...v9.0.60) (2022-06-01)
 
 ### Other
