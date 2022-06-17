@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.65](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.64...v9.0.65) (2022-06-17)
+
+### Other
+
+- **deps-dev:** bump prettier from 2.6.2 to 2.7.1 ([1889fb8](https://github.com/kuhnroyal/mat-datetimepicker/commit/1889fb8ebad1a13bbaee020d3aebbe8ee0befa51))
+
 ### [9.0.64](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.63...v9.0.64) (2022-06-17)
 
 ### Other
