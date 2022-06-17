@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.62](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.61...v9.0.62) (2022-06-17)
+
+### Other
+
+- **deps-dev:** bump @angular/language-service from 13.3.10 to 14.0.1 ([bdd70ba](https://github.com/kuhnroyal/mat-datetimepicker/commit/bdd70ba4bff9364bd73fe3017eef50c9d43ca79e))
+
 ### [9.0.61](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.60...v9.0.61) (2022-06-01)
 
 ### Other
