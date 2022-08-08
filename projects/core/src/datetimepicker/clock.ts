@@ -338,6 +338,12 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
           ? 0
           : value + 12;
       }
+
+      // Don't close the hours view if an invalid hour is clicked.
+      if (!this._hours.find((h) => h?.['value'] === value)?.['enabled']) {
+        return;
+      }
+
       date = this._adapter.createDatetime(
         this._adapter.getYear(this.activeDate),
         this._adapter.getMonth(this.activeDate),
@@ -352,6 +358,12 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
       if (value === 60) {
         value = 0;
       }
+
+      // Don't close the minutes view if an invalid minute is clicked.
+      if (!this._minutes.find((m) => m?.['value'] === value)?.['enabled']) {
+        return;
+      }
+
       date = this._adapter.createDatetime(
         this._adapter.getYear(this.activeDate),
         this._adapter.getMonth(this.activeDate),
