@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.0.1](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.0...v10.0.1) (2022-08-20)
+
+### Bug Fixes
+
+- **#158:** prevent closing the active view when clicking on a disabled hour/minute ([1066cf6](https://github.com/kuhnroyal/mat-datetimepicker/commit/1066cf66682488937e6c95d1cbf9aa3d29378254)), closes [#158](https://github.com/kuhnroyal/mat-datetimepicker/issues/158)
+
 ## [10.0.0](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.68...v10.0.0) (2022-07-11)
 
 ### ⚠ BREAKING CHANGES
