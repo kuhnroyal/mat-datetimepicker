@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.0.2](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.1...v10.0.2) (2022-09-04)
+
+### Other
+
+- **deps:** update to angular v14.2.0 ([1fd94f9](https://github.com/kuhnroyal/mat-datetimepicker/commit/1fd94f93df54cabc3341d63420ca7891fd77090f))
+
 ### [10.0.1](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.0...v10.0.1) (2022-08-20)
 
 ### Bug Fixes
