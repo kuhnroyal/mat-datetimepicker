@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.0.3](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.2...v10.0.3) (2022-10-04)
+
+### Other
+
+- **deps-dev:** bump @angular-eslint/template-parser ([ca1d163](https://github.com/kuhnroyal/mat-datetimepicker/commit/ca1d16324100239851666092c49787b569db0525))
+
 ### [10.0.2](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.1...v10.0.2) (2022-09-04)
 
 ### Other
