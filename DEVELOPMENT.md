@@ -59,7 +59,7 @@ npm link "@mat-datetimepicker/moment"
 ## Committing
 
 This project uses a mix of [`@commitlint`](https://www.npmjs.com/package/@commitlint/cli)
-and [`standard-version`](https://www.npmjs.com/package/standard-version) for automated versioning and deployment.
+and [`semantic-release`](https://www.npmjs.com/package/semantic-release) for automated versioning and deployment.
 
 Developers have to follow so-called conventional commit messages, or we will not accept changes!
 In short: The commit message has to follow this pattern (the `?` marks an optional part):

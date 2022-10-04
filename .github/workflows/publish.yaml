@@ -1,33 +1,9 @@
 name: Publish
 on:
-  push:
-    branches:
-      - release
-    tags-ignore:
-      - 'v*'
-    paths:
-      - .github/version.json
+  release:
+    types: [published]
 jobs:
-  deploy:
-    name: Deploy to npmjs.org
-    runs-on: ubuntu-20.04
-    environment: NPM
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          cache: 'npm'
-          node-version: '16'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm run build:lib
-      - run: npm publish ./dist/core
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npm publish ./dist/moment
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  publish:
+  pages:
     name: Publish to GitHub Pages
     runs-on: ubuntu-20.04
     steps:

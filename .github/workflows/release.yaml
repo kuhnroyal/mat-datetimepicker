@@ -1,16 +1,23 @@
 name: Release
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - release
 jobs:
-  deploy:
-    name: Create GitHub Release
+  release:
+    name: Release NPM Packages
     runs-on: ubuntu-20.04
+    environment: NPM
     steps:
       - uses: actions/checkout@v3
-      - uses: ncipollo/release-action@v1
+      - uses: actions/setup-node@v3
         with:
-          artifacts: 'CHANGELOG.md,LICENSE,README.md'
-          generateReleaseNotes: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          cache: 'npm'
+          node-version: 16
+      - run: npm ci
+      - run: npm run build:lib
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npx --no-install semantic-release
