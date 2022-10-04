@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.0.9](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.8...v10.0.9) (2022-10-04)
+
+### Other
+
+- **deps:** bump @angular/material-moment-adapter from 14.2.0 to 14.2.3 ([3788316](https://github.com/kuhnroyal/mat-datetimepicker/commit/3788316f329e4406b3351a23e6fa888191351241))
+
 ### [10.0.8](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.7...v10.0.8) (2022-10-04)
 
 ### Other
