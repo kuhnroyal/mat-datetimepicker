@@ -2,65 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [10.0.10](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.9...v10.0.10) (2022-10-04)
-
-### Other
-
-- **deps-dev:** bump @angular-eslint/schematics from 14.0.3 to 14.1.2 ([0703833](https://github.com/kuhnroyal/mat-datetimepicker/commit/0703833c36b8d0f18ac56110de05d0940f352e90))
-
-### [10.0.9](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.8...v10.0.9) (2022-10-04)
-
-### Other
-
-- **deps:** bump @angular/material-moment-adapter from 14.2.0 to 14.2.3 ([3788316](https://github.com/kuhnroyal/mat-datetimepicker/commit/3788316f329e4406b3351a23e6fa888191351241))
-
-### [10.0.8](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.7...v10.0.8) (2022-10-04)
-
-### Other
-
-- **deps-dev:** bump eslint from 8.23.0 to 8.24.0 ([9bb589b](https://github.com/kuhnroyal/mat-datetimepicker/commit/9bb589b235787b5014c9f3ec7e58721cf039d3bb))
-
-### [10.0.7](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.6...v10.0.7) (2022-10-04)
-
-### Other
-
-- **deps-dev:** bump @typescript-eslint/parser from 5.36.1 to 5.39.0 ([ef14455](https://github.com/kuhnroyal/mat-datetimepicker/commit/ef14455ed5f7ccd1470514f38468d97ac51d6df9))
-
-### [10.0.6](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.5...v10.0.6) (2022-10-04)
-
-### Other
-
-- **deps-dev:** bump typescript from 4.8.2 to 4.8.4 ([440cb2b](https://github.com/kuhnroyal/mat-datetimepicker/commit/440cb2b76d8da1dd24a5b235f4865ae9808bf5c8))
-
-### [10.0.5](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.4...v10.0.5) (2022-10-04)
-
-### Other
-
-- **deps:** bump rxjs from 7.5.6 to 7.5.7 ([e1031f9](https://github.com/kuhnroyal/mat-datetimepicker/commit/e1031f94a1e6d5d7f1bca21b310452c5d4dc736f))
-
-### [10.0.4](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.3...v10.0.4) (2022-10-04)
-
-### Other
-
-- **deps-dev:** bump @angular/language-service from 14.2.0 to 14.2.4 ([68c3228](https://github.com/kuhnroyal/mat-datetimepicker/commit/68c3228061c975c71f3a64fcbe06986f1c521e37))
-
-### [10.0.3](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.2...v10.0.3) (2022-10-04)
-
-### Other
-
-- **deps-dev:** bump @angular-eslint/template-parser ([ca1d163](https://github.com/kuhnroyal/mat-datetimepicker/commit/ca1d16324100239851666092c49787b569db0525))
-
-### [10.0.2](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.1...v10.0.2) (2022-09-04)
-
-### Other
-
-- **deps:** update to angular v14.2.0 ([1fd94f9](https://github.com/kuhnroyal/mat-datetimepicker/commit/1fd94f93df54cabc3341d63420ca7891fd77090f))
-
-### [10.0.1](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.0...v10.0.1) (2022-08-20)
+### [10.0.10](https://github.com/kuhnroyal/mat-datetimepicker/compare/v10.0.0...v10.0.10) (2022-10-04)
 
 ### Bug Fixes
 
 - **#158:** prevent closing the active view when clicking on a disabled hour/minute ([1066cf6](https://github.com/kuhnroyal/mat-datetimepicker/commit/1066cf66682488937e6c95d1cbf9aa3d29378254)), closes [#158](https://github.com/kuhnroyal/mat-datetimepicker/issues/158)
+
+### Other
+
+- **deps-dev:** bump @angular-eslint/schematics from 14.0.3 to 14.1.2 ([0703833](https://github.com/kuhnroyal/mat-datetimepicker/commit/0703833c36b8d0f18ac56110de05d0940f352e90))
+- **deps:** bump @angular/material-moment-adapter from 14.2.0 to 14.2.3 ([3788316](https://github.com/kuhnroyal/mat-datetimepicker/commit/3788316f329e4406b3351a23e6fa888191351241))
+- **deps-dev:** bump eslint from 8.23.0 to 8.24.0 ([9bb589b](https://github.com/kuhnroyal/mat-datetimepicker/commit/9bb589b235787b5014c9f3ec7e58721cf039d3bb))
+- **deps-dev:** bump @typescript-eslint/parser from 5.36.1 to 5.39.0 ([ef14455](https://github.com/kuhnroyal/mat-datetimepicker/commit/ef14455ed5f7ccd1470514f38468d97ac51d6df9))
+- **deps-dev:** bump typescript from 4.8.2 to 4.8.4 ([440cb2b](https://github.com/kuhnroyal/mat-datetimepicker/commit/440cb2b76d8da1dd24a5b235f4865ae9808bf5c8))
+- **deps:** bump rxjs from 7.5.6 to 7.5.7 ([e1031f9](https://github.com/kuhnroyal/mat-datetimepicker/commit/e1031f94a1e6d5d7f1bca21b310452c5d4dc736f))
+- **deps-dev:** bump @angular/language-service from 14.2.0 to 14.2.4 ([68c3228](https://github.com/kuhnroyal/mat-datetimepicker/commit/68c3228061c975c71f3a64fcbe06986f1c521e37))
+- **deps-dev:** bump @angular-eslint/template-parser ([ca1d163](https://github.com/kuhnroyal/mat-datetimepicker/commit/ca1d16324100239851666092c49787b569db0525))
+- **deps:** update to angular v14.2.0 ([1fd94f9](https://github.com/kuhnroyal/mat-datetimepicker/commit/1fd94f93df54cabc3341d63420ca7891fd77090f))
 
 ## [10.0.0](https://github.com/kuhnroyal/mat-datetimepicker/compare/v9.0.68...v10.0.0) (2022-07-11)
 
