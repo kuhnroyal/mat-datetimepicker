@@ -359,10 +359,12 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
         value = 0;
       }
 
+      // commented invalid minute checking, due to this interval not working as expected (01-11-2022)
+
       // Don't close the minutes view if an invalid minute is clicked.
-      if (!this._minutes.find((m) => m?.['value'] === value)?.['enabled']) {
-        return;
-      }
+      // if (!this._minutes.find((m) => m?.['value'] === value)?.['enabled']) {
+      //   return;
+      // }
 
       date = this._adapter.createDatetime(
         this._adapter.getYear(this.activeDate),
