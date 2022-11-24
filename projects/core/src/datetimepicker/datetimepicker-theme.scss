@@ -1,53 +1,55 @@
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
+@use 'sass:map';
 
 $mat-datetimepicker-selected-today-box-shadow-width: 1px;
 
 @mixin mat-datetimepicker-theme($theme) {
-  $primary: map-get($theme, primary);
+  $color-config: mat.get-color-config($theme);
+  $primary: map.get($color-config, primary);
 
   .mat-datetimepicker-calendar-header {
-    background-color: mat-color($primary);
+    background-color: mat.get-color-from-palette($primary);
   }
 
   .mat-datetimepicker-calendar-body-cell-content {
     &.mat-datetimepicker-calendar-body-selected {
-      background-color: mat-color($primary);
+      background-color: mat.get-color-from-palette($primary);
       color: white;
     }
 
     &.mat-datetimepicker-calendar-body-disabled
       > .mat-datetimepicker-calendar-body-selected {
-      background-color: rgba(mat-color($primary), 0.4);
+      background-color: rgba(mat.get-color-from-palette($primary), 0.4);
     }
 
     &.mat-datetimepicker-calendar-body-today {
       &:not(.mat-datetimepicker-calendar-body-selected) {
-        border-color: mat-color($primary);
+        border-color: mat.get-color-from-palette($primary);
       }
 
       &.mat-datetimepicker-calendar-body-selected {
         box-shadow: inset 0 0 0
           $mat-datetimepicker-selected-today-box-shadow-width
-          mat-color($primary, default-contrast);
+          mat.get-color-from-palette($primary, default-contrast);
       }
     }
   }
 
   .mat-datetimepicker-clock-center {
-    background-color: mat-color($primary);
+    background-color: mat.get-color-from-palette($primary);
   }
 
   .mat-datetimepicker-clock-hand {
-    background-color: mat-color($primary);
+    background-color: mat.get-color-from-palette($primary);
 
     &::before {
-      background-color: mat-color($primary);
+      background-color: mat.get-color-from-palette($primary);
     }
   }
 
   .mat-datetimepicker-clock-cell {
     &.mat-datetimepicker-clock-cell-selected {
-      background-color: lighten(mat-color($primary), 5);
+      background-color: lighten(mat.get-color-from-palette($primary), 5);
     }
   }
 }

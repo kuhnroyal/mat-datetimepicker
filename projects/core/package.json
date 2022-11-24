@@ -10,10 +10,10 @@
     }
   },
   "peerDependencies": {
-    "@angular/cdk": "^14.0.4",
-    "@angular/common": "^14.0.5",
-    "@angular/core": "^14.0.5",
-    "@angular/material": "^14.0.4"
+    "@angular/cdk": "^15.0.0",
+    "@angular/common": "^15.0.1",
+    "@angular/core": "^15.0.1",
+    "@angular/material": "^15.0.0"
   },
   "dependencies": {
     "tslib": "^2.4.0"
