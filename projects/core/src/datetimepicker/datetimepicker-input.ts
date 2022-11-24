@@ -22,8 +22,8 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { MAT_INPUT_VALUE_ACCESSOR } from '@angular/material/input';
-import { MatFormField } from '@angular/material/form-field';
+import { MAT_LEGACY_INPUT_VALUE_ACCESSOR as MAT_INPUT_VALUE_ACCESSOR } from '@angular/material/legacy-input';
+import { MatLegacyFormField as MatFormField } from '@angular/material/legacy-form-field';
 import { Subscription } from 'rxjs';
 import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import {

@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
 
 $mat-calendar-padding: 8px !default;
 $mat-calendar-weekday-table-font-size: 11px !default;
@@ -11,7 +11,7 @@ $mat-calendar-prev-icon-transform: translateX(2px) rotate(-45deg);
 $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
 
 .mat-datetimepicker-calendar {
-  @include user-select(none);
+  @include mat.private-user-select(none);
   display: block;
   outline: none;
 
