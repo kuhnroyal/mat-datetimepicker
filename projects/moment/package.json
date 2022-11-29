@@ -6,8 +6,8 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/cdk": "^15.0.0",
-    "@angular/common": "^15.0.1",
-    "@angular/core": "^15.0.1",
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
     "@angular/material": "^15.0.0",
     "@angular/material-moment-adapter": "^15.0.0",
     "@mat-datetimepicker/core": "^11.0.0"
