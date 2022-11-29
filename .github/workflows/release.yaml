@@ -10,6 +10,8 @@ jobs:
     environment: NPM
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
       - uses: actions/setup-node@v3
         with:
           cache: 'npm'
@@ -17,7 +19,7 @@ jobs:
       - run: npm ci
       - run: npm run build:lib
       - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx --no-install semantic-release
