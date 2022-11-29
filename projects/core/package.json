@@ -11,8 +11,8 @@
   },
   "peerDependencies": {
     "@angular/cdk": "^15.0.0",
-    "@angular/common": "^15.0.1",
-    "@angular/core": "^15.0.1",
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
     "@angular/material": "^15.0.0"
   },
   "dependencies": {
