@@ -5,12 +5,12 @@
   "author": "PL <kuhnroyal@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/cdk": "^14.0.4",
-    "@angular/common": "^14.0.5",
-    "@angular/core": "^14.0.5",
-    "@angular/material": "^14.0.4",
-    "@angular/material-moment-adapter": "^14.0.4",
-    "@mat-datetimepicker/core": "^10.0.0"
+    "@angular/cdk": "^15.0.0",
+    "@angular/common": "^15.0.1",
+    "@angular/core": "^15.0.1",
+    "@angular/material": "^15.0.0",
+    "@angular/material-moment-adapter": "^15.0.0",
+    "@mat-datetimepicker/core": "^11.0.0"
   },
   "dependencies": {
     "tslib": "^2.4.0"

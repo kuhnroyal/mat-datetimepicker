@@ -193,7 +193,7 @@ providers: [
 ## Theming
 
 ```scss
-@import '~@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
+@import '@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
 
 // Using the $theme variable from the pre-built theme you can call the theming function
 @include mat-datetimepicker-theme($theme);

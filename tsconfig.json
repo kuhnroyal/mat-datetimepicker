@@ -11,7 +11,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2018", "dom"],
     "paths": {
@@ -19,6 +19,7 @@
       "@mat-datetimepicker/core/*": ["dist/core/*"],
       "@mat-datetimepicker/moment": ["dist/moment"],
       "@mat-datetimepicker/moment/*": ["dist/moment/*"]
-    }
+    },
+    "useDefineForClassFields": false
   }
 }
