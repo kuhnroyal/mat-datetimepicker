@@ -43,14 +43,14 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     _delegate: DateAdapter<Moment>
   ) {
     super(_delegate);
-    this.setLocale(matDateLocale || moment.locale());
+    this.setLocale(matDateLocale || (moment as Moment).locale());
     this._useUtc = matMomentAdapterOptions.useUtc;
   }
 
   setLocale(locale: string) {
     super.setLocale(locale);
 
-    const momentLocaleData = moment.localeData(locale);
+    const momentLocaleData = (moment as Moment).localeData();
     this._localeData = {
       firstDayOfWeek: momentLocaleData.firstDayOfWeek(),
       longMonths: momentLocaleData.months(),
@@ -111,6 +111,7 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     }
 
     // const result = moment({year, month, date, hour, minute}).locale(this.locale);
+    // @ts-ignore
     let result = moment({ year, month, date, hour, minute });
     if (this._useUtc) {
       result = result.utc();
