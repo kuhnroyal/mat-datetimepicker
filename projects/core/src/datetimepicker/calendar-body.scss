@@ -71,13 +71,17 @@ $mat-calendar-body-cell-content-size: 100% -
 :not(.mat-datetimepicker-calendar-body-disabled):hover,
 .mat-datetimepicker-calendar-body-active {
   &
-    > .mat-datetimepicker-calendar-body-cell-content:not(.mat-datetimepicker-calendar-body-selected) {
+    > .mat-datetimepicker-calendar-body-cell-content:not(
+      .mat-datetimepicker-calendar-body-selected
+    ) {
     background-color: rgba(black, 0.12);
   }
 }
 
 .mat-datetimepicker-calendar-body-disabled
-  > .mat-datetimepicker-calendar-body-today:not(.mat-datetimepicker-calendar-body-selected) {
+  > .mat-datetimepicker-calendar-body-today:not(
+    .mat-datetimepicker-calendar-body-selected
+  ) {
   border-color: rgba(black, 0.18);
 }
 
