@@ -23,7 +23,6 @@ $mat-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
 .mat-datetimepicker-calendar-header {
   padding: $mat-calendar-padding * 2;
   font-size: 14px;
-  color: white;
   box-sizing: border-box;
 
   [mode='landscape'] & {
