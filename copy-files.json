@@ -1,0 +1,12 @@
+{
+  "copyFiles": [
+    {
+      "from": "README.md",
+      "to": "dist/core/README.md"
+    },
+    {
+      "from": "README.md",
+      "to": "dist/moment/README.md"
+    }
+  ]
+}
