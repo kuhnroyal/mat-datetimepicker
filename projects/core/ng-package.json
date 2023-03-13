@@ -3,5 +3,12 @@
   "dest": "../../dist/core",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "assets": [
+    {
+      "input": "./src/datetimepicker",
+      "glob": "datetimepicker-theme.scss",
+      "output": "datetimepicker"
+    }
+  ]
 }

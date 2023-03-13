@@ -5,9 +5,9 @@
   "scripts": {
     "build": "npm run build:lib && ng build",
     "build:prod": "npm run build:lib && ng build --configuration production --stats-json",
-    "build:lib": "npm run build:lib/core && npm run build:lib/moment",
-    "build:lib/core": "ng build core --configuration production && copy-files-from-to --config projects/core/copy-files.json",
-    "build:lib/moment": "ng build moment --configuration production && copy-files-from-to --config projects/moment/copy-files.json",
+    "build:lib": "npm run build:lib/core && npm run build:lib/moment && copy-files-from-to --config copy-files.json",
+    "build:lib/core": "ng build core --configuration production",
+    "build:lib/moment": "ng build moment --configuration production",
     "build:pages": "ng build --base-href=/mat-datetimepicker/ --configuration production",
     "bundle-report": "webpack-bundle-analyzer dist/app/stats.json",
     "e2e": "ng e2e",
@@ -20,7 +20,9 @@
     "start": "ng serve",
     "start:prod": "ng serve --configuration production",
     "test": "ng test",
-    "test:watch": "ng test --auto-watch --no-single-run"
+    "test:watch": "ng test --auto-watch --no-single-run",
+    "watch:lib/core": "ng build core --watch",
+    "watch:lib/moment": "ng build moment --watch"
   },
   "private": true,
   "dependencies": {
