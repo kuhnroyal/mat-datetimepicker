@@ -10,6 +10,7 @@ import {
   MatDatetimepickerComponent,
   MatDatetimepickerContentComponent,
 } from './datetimepicker';
+import { MatDatetimepickerActionsComponent } from './datetimepicker-actions.component';
 import { MatDatetimepickerInputDirective } from './datetimepicker-input';
 import { MatDatetimepickerToggleComponent } from './datetimepicker-toggle';
 import { MatDatetimepickerMonthViewComponent } from './month-view';
@@ -39,6 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDatetimepickerMonthViewComponent,
     MatDatetimepickerYearViewComponent,
     MatDatetimepickerMultiYearViewComponent,
+    MatDatetimepickerActionsComponent,
   ],
   exports: [
     MatDatetimepickerCalendarComponent,
@@ -51,6 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDatetimepickerMonthViewComponent,
     MatDatetimepickerYearViewComponent,
     MatDatetimepickerMultiYearViewComponent,
+    MatDatetimepickerActionsComponent,
   ],
 })
 export class MatDatetimepickerModule {}
