@@ -52,7 +52,7 @@
     "@angular/cli": "^15.2.2",
     "@angular/compiler-cli": "^15.2.2",
     "@angular/language-service": "^15.2.2",
-    "@commitlint/cli": "^17.4.4",
+    "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.4.4",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/git": "^10.0.1",
