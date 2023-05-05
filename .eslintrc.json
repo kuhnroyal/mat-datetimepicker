@@ -30,7 +30,10 @@
             "style": "camelCase",
             "type": "attribute"
           }
-        ]
+        ],
+        "no-unused-vars": "warn",
+        "no-undef": "warn",
+        "no-self-assign": "warn"
       }
     },
     {
