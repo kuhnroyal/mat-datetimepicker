@@ -275,7 +275,7 @@ export class MatDatetimepickerCalendarComponent<D>
 
   get _hoursLabel(): string {
     let hour = this._adapter.getHour(this._activeDate);
-    if (!!this.twelvehour) {
+    if (this.twelvehour) {
       if (hour === 0) {
         hour = 24;
       }
@@ -420,7 +420,7 @@ export class MatDatetimepickerCalendarComponent<D>
   }
 
   _updateDate(date: D): D {
-    if (!!this.twelvehour) {
+    if (this.twelvehour) {
       const HOUR = this._adapter.getHour(date);
       if (HOUR === 12) {
         if (this._AMPM === 'AM') {
