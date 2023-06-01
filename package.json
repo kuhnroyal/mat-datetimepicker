@@ -39,7 +39,7 @@
     "copy-files-from-to": "3.8.0",
     "moment": "2.29.4",
     "rxjs": "^7.8.1",
-    "tslib": "^2.5.0",
+    "tslib": "^2.5.2",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
