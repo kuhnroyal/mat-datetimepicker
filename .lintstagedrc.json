@@ -1,0 +1,9 @@
+{
+  "{,e2e/**/,projects/**/,src/**/}*.{js,ts,tsx,css}": [
+    "eslint --fix",
+    "prettier --write -u"
+  ],
+  "{,e2e/**/,projects/**/,src/**/}*.{md,json,html,css,scss}": [
+    "prettier --write -u"
+  ]
+}
