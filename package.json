@@ -50,7 +50,7 @@
     "@angular-eslint/schematics": "16.0.3",
     "@angular-eslint/template-parser": "16.0.3",
     "@angular/cli": "^16.1.8",
-    "@angular/compiler-cli": "^16.1.8",
+    "@angular/compiler-cli": "^16.2.7",
     "@angular/language-service": "^16.1.8",
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.7",
