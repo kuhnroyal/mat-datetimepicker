@@ -6,6 +6,7 @@
 /out-tsc
 
 # dependencies
+/.npm
 /node_modules
 yarn.lock
 
