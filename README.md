@@ -58,24 +58,9 @@ imports: [
 <form [formGroup]="group">
   <mat-form-field>
     <mat-placeholder>Start DateTime</mat-placeholder>
-    <mat-datetimepicker-toggle
-      [for]="datetimePicker"
-      matSuffix
-    ></mat-datetimepicker-toggle>
-    <mat-datetimepicker
-      #datetimePicker
-      type="datetime"
-      openOnFocus="true"
-      timeInterval="5"
-    >
-    </mat-datetimepicker>
-    <input
-      matInput
-      formControlName="start"
-      [matDatetimepicker]="datetimePicker"
-      required
-      autocomplete="false"
-    />
+    <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #datetimePicker type="datetime" openOnFocus="true" timeInterval="5"> </mat-datetimepicker>
+    <input matInput formControlName="start" [matDatetimepicker]="datetimePicker" required autocomplete="false" />
   </mat-form-field>
 </form>
 ```

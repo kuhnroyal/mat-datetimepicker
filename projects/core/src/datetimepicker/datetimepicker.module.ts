@@ -28,7 +28,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     OverlayModule,
     A11yModule,
   ],
-  entryComponents: [MatDatetimepickerContentComponent],
   declarations: [
     MatDatetimepickerCalendarComponent,
     MatDatetimepickerCalendarBodyComponent,
