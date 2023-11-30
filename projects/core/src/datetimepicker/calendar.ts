@@ -778,8 +778,8 @@ export class MatDatetimepickerCalendarComponent<D>
       this._adapter.getMonth(date) <= 4
         ? -5
         : this._adapter.getMonth(date) >= 7
-        ? -7
-        : -12;
+          ? -7
+          : -12;
     return this._adapter.addCalendarMonths(date, increment);
   }
 
@@ -794,8 +794,8 @@ export class MatDatetimepickerCalendarComponent<D>
       this._adapter.getMonth(date) <= 4
         ? 7
         : this._adapter.getMonth(date) >= 7
-        ? 5
-        : 12;
+          ? 5
+          : 12;
     return this._adapter.addCalendarMonths(date, increment);
   }
 
