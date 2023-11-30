@@ -335,8 +335,8 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
             ? 12
             : value
           : value === 0
-          ? 0
-          : value + 12;
+            ? 0
+            : value + 12;
       }
 
       // Don't close the hours view if an invalid hour is clicked.
