@@ -51,7 +51,7 @@
     "@angular-eslint/template-parser": "17.3.0",
     "@angular/cli": "^17.3.0",
     "@angular/compiler-cli": "^17.3.0",
-    "@angular/language-service": "^17.3.0",
+    "@angular/language-service": "^17.3.2",
     "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^19.1.0",
     "@semantic-release/commit-analyzer": "^11.1.0",
