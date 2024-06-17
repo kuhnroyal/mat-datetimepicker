@@ -11,6 +11,7 @@ import { Moment } from 'moment';
 
 const moment = 'default' in moment_ ? moment_['default'] : moment_;
 
+// eslint-disable-next-line no-unused-vars
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
   const valuesArray = Array(length);
   for (let i = 0; i < length; i++) {
@@ -43,14 +44,14 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     _delegate: DateAdapter<Moment>
   ) {
     super(_delegate);
-    this.setLocale(matDateLocale || (moment as Moment).locale());
+    this.setLocale(matDateLocale || moment.locale());
     this._useUtc = matMomentAdapterOptions.useUtc;
   }
 
   setLocale(locale: string) {
     super.setLocale(locale);
 
-    const momentLocaleData = (moment as Moment).localeData();
+    const momentLocaleData = moment.localeData();
     this._localeData = {
       firstDayOfWeek: momentLocaleData.firstDayOfWeek(),
       longMonths: momentLocaleData.months(),
