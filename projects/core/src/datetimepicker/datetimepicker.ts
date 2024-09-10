@@ -14,6 +14,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ComponentRef,
+  ContentChildren,
   EventEmitter,
   Inject,
   Input,
@@ -21,6 +22,7 @@ import {
   OnDestroy,
   Optional,
   Output,
+  QueryList,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
@@ -29,7 +31,7 @@ import { MAT_DATEPICKER_SCROLL_STRATEGY } from '@angular/material/datepicker';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { DatetimeAdapter } from '../adapter/datetime-adapter';
+import { DatetimeAdapter } from '../adapter';
 import {
   MatCalendarView,
   MatDatetimepickerCalendarComponent,
@@ -38,6 +40,7 @@ import { createMissingDateImplError } from './datetimepicker-errors';
 import { MatDatetimepickerFilterType } from './datetimepicker-filtertype';
 import { MatDatetimepickerInputDirective } from './datetimepicker-input';
 import { MatDatetimepickerType } from './datetimepicker-type';
+import { MatDatetimepickerActionsComponent } from './datetimepicker-actions.component';
 
 export type MatDatetimepickerMode = 'auto' | 'portrait' | 'landscape';
 
@@ -69,8 +72,28 @@ export class MatDatetimepickerContentComponent<D> implements AfterContentInit {
   @ViewChild(MatDatetimepickerCalendarComponent, { static: true })
   _calendar: MatDatetimepickerCalendarComponent<D>;
 
+  @ViewChild('matDatetimepickerActions', {
+    read: ViewContainerRef,
+    static: true,
+  })
+  private viewRef: ViewContainerRef;
+
   ngAfterContentInit() {
     this._calendar._focusActiveCell();
+  }
+
+  public renderActions(
+    matDatetimepickerActions: MatDatetimepickerActionsComponent<D>
+  ): void {
+    this.viewRef.clear();
+    const matDatetimepickerActionsComponent = this.viewRef.createComponent(
+      MatDatetimepickerActionsComponent
+    );
+    matDatetimepickerActionsComponent.instance.fromTemplateWithDatetimepicker(
+      matDatetimepickerActions,
+      this
+    );
+    matDatetimepickerActionsComponent.changeDetectorRef.detectChanges();
   }
 
   onSelectionChange(date: D) {
@@ -99,7 +122,12 @@ export class MatDatetimepickerContentComponent<D> implements AfterContentInit {
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
-export class MatDatetimepickerComponent<D> implements OnDestroy {
+export class MatDatetimepickerComponent<D>
+  implements AfterContentInit, OnDestroy
+{
+  @ContentChildren(MatDatetimepickerActionsComponent)
+  private actions: QueryList<MatDatetimepickerActionsComponent<D>>;
+
   /** Active multi year view when click on year. */
   @Input() multiYearSelector: boolean = false;
   /** if true change the clock to 12 hour format. */
@@ -163,6 +191,12 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
+    }
+  }
+
+  ngAfterContentInit(): void {
+    if (this.actions.length > 1) {
+      throw Error('Cannot have more than one actions children!');
     }
   }
 
@@ -315,11 +349,13 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     if (this.opened || this.disabled) {
       return;
     }
+
     if (!this._datepickerInput) {
       throw Error(
         'Attempted to open an MatDatepicker with no associated input.'
       );
     }
+
     if (this._document) {
       this._focusedElementBeforeOpen = this._document.activeElement;
     }
@@ -380,6 +416,8 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     });
     this._dialogRef.afterClosed().subscribe(() => this.close());
     this._dialogRef.componentInstance.datetimepicker = this;
+
+    this.attachActionsIfPresent(this._dialogRef.componentInstance);
   }
 
   /** Open the calendar as a popup. */
@@ -398,6 +436,8 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
       const componentRef: ComponentRef<MatDatetimepickerContentComponent<D>> =
         this._popupRef.attach(this._calendarPortal);
       componentRef.instance.datetimepicker = this;
+
+      this.attachActionsIfPresent(componentRef.instance);
 
       // Update the position once the calendar has rendered.
       this._ngZone.onStable
@@ -460,5 +500,13 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
           overlayY: 'bottom',
         },
       ]);
+  }
+
+  private attachActionsIfPresent(
+    componentInstance: MatDatetimepickerContentComponent<D>
+  ) {
+    if (this.actions.length === 1) {
+      componentInstance.renderActions(this.actions.get(0));
+    }
   }
 }

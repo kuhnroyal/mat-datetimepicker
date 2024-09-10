@@ -65,6 +65,18 @@ imports: [
 </form>
 ```
 
+You can optionally add action buttons inside the `mat-datetimepicker`.
+
+```html
+<mat-datetimepicker ...>
+  <mat-datetimepicker-actions
+    [cancelButtonLabel]="'Cancel'"
+    [confirmButtonLabel]="'Confirm'"
+  >
+  </mat-datetimepicker-actions>
+</mat-datetimepicker>
+```
+
 ## Date formatting
 
 In order to change the default input/output formats, a custom instance of `MAT_DATETIME_FORMATS` needs to be provided in
