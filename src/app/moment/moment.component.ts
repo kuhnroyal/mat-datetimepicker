@@ -1,16 +1,29 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   DatetimeAdapter,
   MAT_DATETIME_FORMATS,
   MatDatetimepickerFilterType,
+  MatDatetimepickerModule,
 } from '@mat-datetimepicker/core';
-import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
+import {
+  MAT_MOMENT_DATETIME_FORMATS,
+  MomentDatetimeAdapter,
+} from '@mat-datetimepicker/moment';
 import { Moment, utc } from 'moment/moment';
 
 @Component({
@@ -34,25 +47,16 @@ import { Moment, utc } from 'moment/moment';
     },
     {
       provide: MAT_DATETIME_FORMATS,
-      useValue: {
-        parse: {
-          dateInput: 'L',
-          monthInput: 'MMMM',
-          timeInput: 'LT',
-          datetimeInput: 'L LT',
-        },
-        display: {
-          dateInput: 'L',
-          monthInput: 'MMMM',
-          datetimeInput: 'L LT ZZ',
-          timeInput: 'LT',
-          monthYearLabel: 'MMM YYYY',
-          dateA11yLabel: 'LL',
-          monthYearA11yLabel: 'MMMM YYYY',
-          popupHeaderDateLabel: 'ddd, DD MMM',
-        },
-      },
+      useValue: MAT_MOMENT_DATETIME_FORMATS,
     },
+    provideAnimations(),
+  ],
+  imports: [
+    MatInputModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatDatetimepickerModule,
   ],
 })
 export class MomentDatetimeComponent {

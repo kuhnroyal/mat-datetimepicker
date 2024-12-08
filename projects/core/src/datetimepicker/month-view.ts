@@ -9,11 +9,12 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats,
 } from '../adapter/datetime-formats';
-import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import { MatDatetimepickerCalendarCell } from './calendar-body';
 import { slideCalendar } from './datetimepicker-animations';
 import { createMissingDateImplError } from './datetimepicker-errors';
@@ -31,6 +32,7 @@ const DAYS_PER_WEEK = 7;
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MatDatetimepickerMonthViewComponent<D>
   implements AfterContentInit
@@ -76,7 +78,7 @@ export class MatDatetimepickerMonthViewComponent<D>
     const longWeekdays = this._adapter.getDayOfWeekNames('long');
 
     // Rotate the labels for days of the week based on the configured first day of the week.
-    let weekdays = longWeekdays.map((long, i) => {
+    const weekdays = longWeekdays.map((long, i) => {
       return { long, narrow: narrowWeekdays[i] };
     });
     this._weekdays = weekdays
@@ -97,7 +99,7 @@ export class MatDatetimepickerMonthViewComponent<D>
   }
 
   set activeDate(value: D) {
-    let oldActiveDate = this._activeDate;
+    const oldActiveDate = this._activeDate;
     this._activeDate = value || this._adapter.today();
     if (
       oldActiveDate &&
@@ -155,7 +157,7 @@ export class MatDatetimepickerMonthViewComponent<D>
     this._selectedDate = this._getDateInCurrentMonth(this.selected);
     this._todayDate = this._getDateInCurrentMonth(this._adapter.today());
 
-    let firstOfMonth = this._adapter.createDatetime(
+    const firstOfMonth = this._adapter.createDatetime(
       this._adapter.getYear(this.activeDate),
       this._adapter.getMonth(this.activeDate),
       1,
@@ -173,8 +175,8 @@ export class MatDatetimepickerMonthViewComponent<D>
 
   /** Creates MdCalendarCells for the dates in this month. */
   private _createWeekCells() {
-    let daysInMonth = this._adapter.getNumDaysInMonth(this.activeDate);
-    let dateNames = this._adapter.getDateNames();
+    const daysInMonth = this._adapter.getNumDaysInMonth(this.activeDate);
+    const dateNames = this._adapter.getDateNames();
     this._weeks = [[]];
     for (
       let i = 0, cell = this._firstWeekOffset;
@@ -185,15 +187,15 @@ export class MatDatetimepickerMonthViewComponent<D>
         this._weeks.push([]);
         cell = 0;
       }
-      let date = this._adapter.createDatetime(
+      const date = this._adapter.createDatetime(
         this._adapter.getYear(this.activeDate),
         this._adapter.getMonth(this.activeDate),
         i + 1,
         this._adapter.getHour(this.activeDate),
         this._adapter.getMinute(this.activeDate)
       );
-      let enabled = !this.dateFilter || this.dateFilter(date);
-      let ariaLabel = this._adapter.format(
+      const enabled = !this.dateFilter || this.dateFilter(date);
+      const ariaLabel = this._adapter.format(
         date,
         this._dateFormats.display.dateA11yLabel
       );

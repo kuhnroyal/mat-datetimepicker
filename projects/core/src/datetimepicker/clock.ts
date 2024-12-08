@@ -6,6 +6,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
+
 import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import { MatDatetimepickerFilterType } from './datetimepicker-filtertype';
 
@@ -28,21 +29,22 @@ export type MatClockView = 'hour' | 'minute';
     role: 'clock',
     '(mousedown)': '_handleMousedown($event)',
   },
+  standalone: false,
 })
 export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
   @Output() _userSelection = new EventEmitter<void>();
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
-  @Input() interval: number = 1;
-  @Input() twelvehour: boolean = false;
+  @Input() interval = 1;
+  @Input() twelvehour = false;
   /** Emits when the currently selected date changes. */
   @Output() selectedChange = new EventEmitter<D>();
   @Output() activeDateChange = new EventEmitter<D>();
   /** Hours and Minutes representing the clock view. */
-  _hours: Array<Object> = [];
-  _minutes: Array<Object> = [];
+  _hours: object[] = [];
+  _minutes: object[] = [];
   /** Whether the clock is in hour view. */
-  _hourView: boolean = true;
+  _hourView = true;
   _selectedHour: number;
   _selectedMinute: number;
   private _timeChanged = false;
@@ -72,7 +74,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
   }
 
   set activeDate(value: D) {
-    let oldActiveDate = this._activeDate;
+    const oldActiveDate = this._activeDate;
     this._activeDate = this._adapter.clampDate(
       value,
       this.minDate,
@@ -148,7 +150,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
     let deg = 0;
     let radius = CLOCK_OUTER_RADIUS;
     if (this._hourView) {
-      let outer = this._selectedHour > 0 && this._selectedHour < 13;
+      const outer = this._selectedHour > 0 && this._selectedHour < 13;
       radius = outer ? CLOCK_OUTER_RADIUS : CLOCK_INNER_RADIUS;
       if (this.twelvehour) {
         radius = CLOCK_OUTER_RADIUS;
@@ -202,13 +204,13 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
     this._hours.length = 0;
     this._minutes.length = 0;
 
-    let hourNames = this._adapter.getHourNames();
-    let minuteNames = this._adapter.getMinuteNames();
+    const hourNames = this._adapter.getHourNames();
+    const minuteNames = this._adapter.getMinuteNames();
 
     if (this.twelvehour) {
       for (let i = 1; i < hourNames.length / 2 + 1; i++) {
-        let radian = (i / 6) * Math.PI;
-        let radius = CLOCK_OUTER_RADIUS;
+        const radian = (i / 6) * Math.PI;
+        const radius = CLOCK_OUTER_RADIUS;
         const date = this._adapter.createDatetime(
           this._adapter.getYear(this.activeDate),
           this._adapter.getMonth(this.activeDate),
@@ -216,7 +218,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
           i + 1,
           0
         );
-        let enabled =
+        const enabled =
           (!this.minDate ||
             this._adapter.compareDatetime(date, this.minDate) >= 0) &&
           (!this.maxDate ||
@@ -231,8 +233,8 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
       }
     } else {
       for (let i = 0; i < hourNames.length; i++) {
-        let radian = (i / 6) * Math.PI;
-        let outer = i > 0 && i < 13,
+        const radian = (i / 6) * Math.PI;
+        const outer = i > 0 && i < 13,
           radius = outer ? CLOCK_OUTER_RADIUS : CLOCK_INNER_RADIUS;
         const date = this._adapter.createDatetime(
           this._adapter.getYear(this.activeDate),
@@ -241,7 +243,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
           i,
           0
         );
-        let enabled =
+        const enabled =
           (!this.minDate ||
             this._adapter.compareDatetime(date, this.minDate, false) >= 0) &&
           (!this.maxDate ||
@@ -260,7 +262,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
     }
 
     for (let i = 0; i < minuteNames.length; i += 5) {
-      let radian = (i / 30) * Math.PI;
+      const radian = (i / 30) * Math.PI;
       const date = this._adapter.createDatetime(
         this._adapter.getYear(this.activeDate),
         this._adapter.getMonth(this.activeDate),
@@ -268,7 +270,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
         this._adapter.getHour(this.activeDate),
         i
       );
-      let enabled =
+      const enabled =
         (!this.minDate ||
           this._adapter.compareDatetime(date, this.minDate) >= 0) &&
         (!this.maxDate ||
@@ -296,21 +298,21 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
    * @param event
    */
   private setTime(event: any) {
-    let trigger = this._element.nativeElement;
-    let triggerRect = trigger.getBoundingClientRect();
-    let width = trigger.offsetWidth;
-    let height = trigger.offsetHeight;
-    let pageX =
+    const trigger = this._element.nativeElement;
+    const triggerRect = trigger.getBoundingClientRect();
+    const width = trigger.offsetWidth;
+    const height = trigger.offsetHeight;
+    const pageX =
       event.pageX !== undefined ? event.pageX : event.touches[0].pageX;
-    let pageY =
+    const pageY =
       event.pageY !== undefined ? event.pageY : event.touches[0].pageY;
-    let x = width / 2 - (pageX - triggerRect.left - window.pageXOffset);
-    let y = height / 2 - (pageY - triggerRect.top - window.pageYOffset);
+    const x = width / 2 - (pageX - triggerRect.left - window.pageXOffset);
+    const y = height / 2 - (pageY - triggerRect.top - window.pageYOffset);
     let radian = Math.atan2(-x, y);
-    let unit =
+    const unit =
       Math.PI / (this._hourView ? 6 : this.interval ? 30 / this.interval : 30);
-    let z = Math.sqrt(x * x + y * y);
-    let outer =
+    const z = Math.sqrt(x * x + y * y);
+    const outer =
       this._hourView &&
       z >
         (width * (CLOCK_OUTER_RADIUS / 100) +

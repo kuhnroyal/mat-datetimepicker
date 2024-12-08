@@ -1,6 +1,7 @@
 <div class="mat-datetimepicker-calendar-header">
   <div
     (click)="_yearClicked()"
+    (keydown)="_yearClicked()"
     *ngIf="type !== 'time'"
     [class.active]="currentView === 'year' || currentView === 'multi-year'"
     class="mat-datetimepicker-calendar-header-year"
@@ -14,6 +15,7 @@
   <div class="mat-datetimepicker-calendar-header-date-time">
     <span
       (click)="_dateClicked()"
+      (keydown)="_dateClicked()"
       *ngIf="type !== 'time' && type !== 'year'"
       [class.active]="currentView === 'month'"
       [class.not-clickable]="type === 'month'"
@@ -28,12 +30,14 @@
     >
       <span
         (click)="_hoursClicked()"
+        (keydown)="_hoursClicked()"
         [class.active]="_clockView === 'hour'"
         class="mat-datetimepicker-calendar-header-hours"
         role="button"
         >{{ _hoursLabel }}</span
       >:<span
         (click)="_minutesClicked()"
+        (keydown)="_minutesClicked()"
         [class.active]="_clockView === 'minute'"
         class="mat-datetimepicker-calendar-header-minutes"
         role="button"
@@ -46,11 +50,13 @@
       >
         <span
           (click)="_ampmClicked('AM')"
+          (keydown)="_ampmClicked('AM')"
           [class.active]="_AMPM === 'AM'"
           class="mat-datetimepicker-calendar-header-ampm"
           >AM</span
         >/<span
           (click)="_ampmClicked('PM')"
+          (keydown)="_ampmClicked('PM')"
           [class.active]="_AMPM === 'PM'"
           class="mat-datetimepicker-calendar-header-ampm"
           >PM</span
@@ -67,6 +73,7 @@
     <div class="mat-datetimepicker-calendar-controls">
       <div
         (click)="_previousClicked()"
+        (keydown)="_previousClicked()"
         [attr.aria-disabled]="!_previousEnabled()"
         [attr.aria-label]="_ariaLabelPrev"
         [class.disabled]="!_previousEnabled()"
@@ -86,6 +93,7 @@
       </div>
       <div
         (click)="_nextClicked()"
+        (keydown)="_nextClicked()"
         [attr.aria-disabled]="!_nextEnabled()"
         [attr.aria-label]="_ariaLabelNext"
         [class.disabled]="!_nextEnabled()"

@@ -9,14 +9,15 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { createMissingDateImplError } from './datetimepicker-errors';
-import { MatDatetimepickerCalendarCell } from './calendar-body';
-import { slideCalendar } from './datetimepicker-animations';
+
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats,
 } from '../adapter/datetime-formats';
-import { DatetimeAdapter } from '../adapter/datetime-adapter';
+import { MatDatetimepickerCalendarCell } from './calendar-body';
+import { slideCalendar } from './datetimepicker-animations';
+import { createMissingDateImplError } from './datetimepicker-errors';
 import { MatDatetimepickerType } from './datetimepicker-type';
 
 /**
@@ -29,6 +30,7 @@ import { MatDatetimepickerType } from './datetimepicker-type';
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
   @Output() _userSelection = new EventEmitter<void>();
@@ -77,7 +79,7 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
   }
 
   set activeDate(value: D) {
-    let oldActiveDate = this._activeDate;
+    const oldActiveDate = this._activeDate;
     this._activeDate = value || this._adapter.today();
     if (
       oldActiveDate &&
@@ -147,7 +149,7 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
     this._todayMonth = this._getMonthInCurrentYear(this._adapter.today());
     this._yearLabel = this._adapter.getYearName(this.activeDate);
 
-    let monthNames = this._adapter.getMonthNames('short');
+    const monthNames = this._adapter.getMonthNames('short');
     // First row of months only contains 5 elements so we can fit the year label on the same row.
     this._months = [
       [0, 1, 2, 3, 4],
@@ -169,7 +171,7 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
 
   /** Creates an MdCalendarCell for the given month. */
   private _createCellForMonth(month: number, monthName: string) {
-    let ariaLabel = this._adapter.format(
+    const ariaLabel = this._adapter.format(
       this._adapter.createDatetime(
         this._adapter.getYear(this.activeDate),
         month,
@@ -197,7 +199,7 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
       return true;
     }
 
-    let firstOfMonth = this._adapter.createDatetime(
+    const firstOfMonth = this._adapter.createDatetime(
       this._adapter.getYear(this.activeDate),
       month,
       1,

@@ -27,6 +27,7 @@ import {
 import { MatDatepickerIntl } from '@angular/material/datepicker';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+
 import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import {
   MAT_DATETIME_FORMATS,
@@ -64,17 +65,18 @@ export type MatCalendarView = 'clock' | 'month' | 'year' | 'multi-year';
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MatDatetimepickerCalendarComponent<D>
   implements AfterContentInit, OnDestroy
 {
   @Output() _userSelection = new EventEmitter<void>();
   /** Active multi year view when click on year. */
-  @Input() multiYearSelector: boolean = false;
+  @Input() multiYearSelector = false;
   /** Whether the calendar should be started in month or year view. */
   @Input() startView: MatCalendarView = 'month';
-  @Input() twelvehour: boolean = false;
-  @Input() timeInterval: number = 1;
+  @Input() twelvehour = false;
+  @Input() timeInterval = 1;
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
   @Input() ariaLabel = 'Use arrow keys to navigate';

@@ -2,6 +2,10 @@
 
 @use '@angular/material' as mat;
 
+// Use this import in a real project instead
+//@use '@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
+@use 'dist/core/datetimepicker/datetimepicker-theme.scss';
+
 @include mat.core();
 
 $app-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
@@ -22,12 +26,8 @@ $theme: mat.m2-define-light-theme(
 
 @include mat.all-component-themes($theme);
 
-// Use this import in a real project instead
-//@import '@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
-@import 'dist/core/datetimepicker/datetimepicker-theme.scss';
-
 // Using the $theme variable from the pre-built theme you can call the theming function
-@include mat-datetimepicker-theme($theme);
+@include datetimepicker-theme.mat-datetimepicker-theme($theme);
 
 html,
 body {

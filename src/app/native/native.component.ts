@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   DatetimeAdapter,
   MAT_DATETIME_FORMATS,
   MAT_NATIVE_DATETIME_FORMATS,
   MatDatetimepickerFilterType,
+  MatDatetimepickerModule,
   NativeDatetimeAdapter,
 } from '@mat-datetimepicker/core';
 
@@ -26,6 +36,14 @@ import {
       provide: MAT_DATETIME_FORMATS,
       useValue: MAT_NATIVE_DATETIME_FORMATS,
     },
+    provideAnimations(),
+  ],
+  imports: [
+    MatInputModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatDatetimepickerModule,
   ],
 })
 export class NativeDatetimeComponent {

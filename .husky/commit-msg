@@ -1,1 +1,1 @@
-npx --no-install commitlint --edit .git/COMMIT_EDITMSG
+commitlint --edit .git/COMMIT_EDITMSG
