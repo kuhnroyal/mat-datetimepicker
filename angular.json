@@ -103,7 +103,7 @@
       "root": "projects/core",
       "sourceRoot": "projects/core/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "mat-datetimepicker",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -131,7 +131,8 @@
             "lintFilePatterns": [
               "projects/core/**/*.ts",
               "projects/core/**/*.html"
-            ]
+            ],
+            "eslintConfig": "projects/core/eslint.config.js"
           }
         }
       }
@@ -140,7 +141,7 @@
       "root": "projects/moment",
       "sourceRoot": "projects/moment/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "mat-datetimepicker-moment",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -168,7 +169,8 @@
             "lintFilePatterns": [
               "projects/moment/**/*.ts",
               "projects/moment/**/*.html"
-            ]
+            ],
+            "eslintConfig": "projects/moment/eslint.config.js"
           }
         }
       }

@@ -9,14 +9,15 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { createMissingDateImplError } from './datetimepicker-errors';
-import { MatDatetimepickerCalendarCell } from './calendar-body';
-import { slideCalendar } from './datetimepicker-animations';
+
+import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import {
   MAT_DATETIME_FORMATS,
   MatDatetimeFormats,
 } from '../adapter/datetime-formats';
-import { DatetimeAdapter } from '../adapter/datetime-adapter';
+import { MatDatetimepickerCalendarCell } from './calendar-body';
+import { slideCalendar } from './datetimepicker-animations';
+import { createMissingDateImplError } from './datetimepicker-errors';
 import { MatDatetimepickerType } from './datetimepicker-type';
 
 export const yearsPerPage = 24;
@@ -33,6 +34,7 @@ export const yearsPerRow = 4;
   animations: [slideCalendar],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MatDatetimepickerMultiYearViewComponent<D>
   implements AfterContentInit
@@ -83,7 +85,7 @@ export class MatDatetimepickerMultiYearViewComponent<D>
   }
 
   set activeDate(value: D) {
-    let oldActiveDate = this._activeDate;
+    const oldActiveDate = this._activeDate;
     this._activeDate = value || this._adapter.today();
     if (
       oldActiveDate &&
@@ -206,7 +208,7 @@ export class MatDatetimepickerMultiYearViewComponent<D>
 
   /** Creates an MatDatetimepickerCalendarCell for the given year. */
   private _createCellForYear(year: number) {
-    let yearName = this._adapter.getYearName(
+    const yearName = this._adapter.getYearName(
       this._adapter.createDate(year, 0, 1)
     );
     return new MatDatetimepickerCalendarCell(
@@ -263,6 +265,7 @@ export class MatDatetimepickerMultiYearViewComponent<D>
    * Validate if the current year is in the current range
    * Returns true if is in range else returns false
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private _isInRange(year: number): boolean {
     return true;
   }

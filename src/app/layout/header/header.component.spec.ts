@@ -1,10 +1,11 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
+
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
+      imports: [HeaderComponent],
     }).compileComponents();
   }));
 

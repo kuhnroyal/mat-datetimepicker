@@ -33,11 +33,7 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
     return this.isDateInstance(obj) && this.isValid(obj) ? obj : null;
   }
 
-  compareDatetime(
-    first: D,
-    second: D,
-    respectMinutePart: boolean = true
-  ): number {
+  compareDatetime(first: D, second: D, respectMinutePart = true): number {
     return (
       this.compareDate(first, second) ||
       this.getHour(first) - this.getHour(second) ||

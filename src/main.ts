@@ -1,13 +1,23 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode, LOCALE_ID } from '@angular/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { bootstrapApplication } from '@angular/platform-browser';
 
-import { AppModule } from './app/app.module';
+import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.log(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'de-DE',
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useExisting: LOCALE_ID,
+    },
+  ],
+}).catch((e) => console.error(e));

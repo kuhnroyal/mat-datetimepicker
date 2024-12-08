@@ -25,6 +25,7 @@ import {
 import { MatFormField } from '@angular/material/form-field';
 import { MAT_INPUT_VALUE_ACCESSOR } from '@angular/material/input';
 import { Subscription } from 'rxjs';
+
 import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import {
   MAT_DATETIME_FORMATS,
@@ -89,6 +90,7 @@ export class MatDatetimepickerInputEvent<D> {
     '(keydown)': '_onKeydown($event)',
   },
   exportAs: 'matDatepickerInput',
+  standalone: false,
 })
 export class MatDatetimepickerInputDirective<D>
   implements AfterContentInit, ControlValueAccessor, OnDestroy, Validator
@@ -125,6 +127,7 @@ export class MatDatetimepickerInputDirective<D>
 
     // Update the displayed date when the locale changes.
     this._localeSubscription = _dateAdapter.localeChanges.subscribe(() => {
+      // eslint-disable-next-line no-self-assign
       this.value = this.value;
     });
   }
@@ -213,6 +216,7 @@ export class MatDatetimepickerInputDirective<D>
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   _onTouched = () => {};
 
   ngAfterContentInit() {
@@ -363,8 +367,10 @@ export class MatDatetimepickerInputDirective<D>
     return parseFormat;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private _cvaOnChange: (value: any) => void = () => {};
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private _validatorOnChange = () => {};
 
   /** The form control validator for whether the input parses. */

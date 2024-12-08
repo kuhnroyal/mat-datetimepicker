@@ -29,6 +29,7 @@ import { MAT_DATEPICKER_SCROLL_STRATEGY } from '@angular/material/datepicker';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+
 import { DatetimeAdapter } from '../adapter/datetime-adapter';
 import {
   MatCalendarView,
@@ -62,6 +63,7 @@ let datetimepickerUid = 0;
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MatDatetimepickerContentComponent<D> implements AfterContentInit {
   datetimepicker: MatDatetimepickerComponent<D>;
@@ -98,16 +100,17 @@ export class MatDatetimepickerContentComponent<D> implements AfterContentInit {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
+  standalone: false,
 })
 export class MatDatetimepickerComponent<D> implements OnDestroy {
   /** Active multi year view when click on year. */
-  @Input() multiYearSelector: boolean = false;
+  @Input() multiYearSelector = false;
   /** if true change the clock to 12 hour format. */
-  @Input() twelvehour: boolean = false;
+  @Input() twelvehour = false;
   /** The view that the calendar should start in. */
   @Input() startView: MatCalendarView = 'month';
   @Input() mode: MatDatetimepickerMode = 'auto';
-  @Input() timeInterval: number = 1;
+  @Input() timeInterval = 1;
   @Input() ariaNextMonthLabel = 'Next month';
   @Input() ariaPrevMonthLabel = 'Previous month';
   @Input() ariaNextYearLabel = 'Next year';
@@ -324,7 +327,12 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
       this._focusedElementBeforeOpen = this._document.activeElement;
     }
 
-    this.touchUi ? this._openAsDialog() : this._openAsPopup();
+    if (this.touchUi) {
+      this._openAsDialog();
+    } else {
+      this._openAsPopup();
+    }
+
     this.opened = true;
     this.openedStream.emit();
   }

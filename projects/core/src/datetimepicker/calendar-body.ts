@@ -34,6 +34,7 @@ export class MatDatetimepickerCalendarCell {
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MatDatetimepickerCalendarBodyComponent {
   /** The label for the table. (e.g. "Jan 2017"). */

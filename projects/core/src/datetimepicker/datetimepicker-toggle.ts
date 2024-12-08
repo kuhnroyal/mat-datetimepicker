@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { MatDatepickerIntl } from '@angular/material/datepicker';
 import { asyncScheduler, merge, scheduled, Subscription } from 'rxjs';
+
 import { MatDatetimepickerComponent } from './datetimepicker';
 
 @Component({
@@ -28,6 +29,7 @@ import { MatDatetimepickerComponent } from './datetimepicker';
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MatDatetimepickerToggleComponent<D>
   implements AfterContentInit, OnChanges, OnDestroy
