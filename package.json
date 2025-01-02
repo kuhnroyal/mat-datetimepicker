@@ -61,7 +61,7 @@
     "@types/jasminewd2": "2.0.13",
     "@types/node": "22.10.1",
     "angular-cli-ghpages": "2.0.3",
-    "angular-eslint": "19.0.1",
+    "angular-eslint": "19.0.2",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.1",
