@@ -32,7 +32,7 @@
     "@angular/core": "19.0.3",
     "@angular/forms": "19.0.3",
     "@angular/material": "19.0.2",
-    "@angular/material-moment-adapter": "19.0.2",
+    "@angular/material-moment-adapter": "19.1.2",
     "@angular/platform-browser": "19.0.3",
     "@angular/platform-browser-dynamic": "19.0.3",
     "@angular/router": "19.0.3",
