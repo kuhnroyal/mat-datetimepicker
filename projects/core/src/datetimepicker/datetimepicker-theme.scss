@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
-@use 'sass:map';
+@use 'sass:map' as map;
+@use 'sass:color' as color;
 
 $mat-datetimepicker-selected-today-box-shadow-width: 1px;
 
@@ -49,7 +50,10 @@ $mat-datetimepicker-selected-today-box-shadow-width: 1px;
 
   .mat-datetimepicker-clock-cell {
     &.mat-datetimepicker-clock-cell-selected {
-      background-color: lighten(mat.m2-get-color-from-palette($primary), 5);
+      background-color: color.adjust(
+        $color: mat.m2-get-color-from-palette($primary),
+        $lightness: 5%
+      );
     }
   }
 }
