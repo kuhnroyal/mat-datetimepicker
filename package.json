@@ -85,7 +85,7 @@
     "webpack-bundle-analyzer": "4.10.2"
   },
   "optionalDependencies": {
-    "npm-check-updates": "17.1.15"
+    "npm-check-updates": "17.1.16"
   },
   "engines": {
     "node": "^20.18.2 || ^22.13.1"
