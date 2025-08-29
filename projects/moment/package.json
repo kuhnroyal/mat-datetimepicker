@@ -5,11 +5,11 @@
   "author": "PL <kuhnroyal@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/cdk": "^19.0.0",
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@angular/material": "^19.0.0",
-    "@angular/material-moment-adapter": "^19.0.0",
+    "@angular/cdk": "^20.0.0",
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/material": "^20.0.0",
+    "@angular/material-moment-adapter": "^20.0.0",
     "@mat-datetimepicker/core": "^15.0.0"
   },
   "dependencies": {
