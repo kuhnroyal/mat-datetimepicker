@@ -6,7 +6,7 @@ on:
 jobs:
   release:
     name: Release NPM Packages
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment: NPM
     steps:
       - uses: actions/checkout@v5

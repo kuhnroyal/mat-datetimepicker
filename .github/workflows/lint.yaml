@@ -4,7 +4,7 @@ on:
 jobs:
   prettier:
     name: Prettier Check Codebase
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
@@ -15,7 +15,7 @@ jobs:
       - run: npm run prettier:check
   lint:
     name: Lint Codebase
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
