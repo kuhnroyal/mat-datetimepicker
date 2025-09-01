@@ -7,13 +7,13 @@ on:
 jobs:
   build:
     name: Node.js CI
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         node-version: ['18', '20', '22', '23']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
           cache: 'npm'
