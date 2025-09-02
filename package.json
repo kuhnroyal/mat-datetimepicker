@@ -34,7 +34,7 @@
     "@angular/material": "20.2.0",
     "@angular/material-moment-adapter": "20.2.0",
     "@angular/platform-browser": "20.2.1",
-    "@angular/platform-browser-dynamic": "20.2.1",
+    "@angular/platform-browser-dynamic": "20.2.3",
     "@angular/router": "20.2.1",
     "copy-files-from-to": "3.12.1",
     "mat-datetimepicker": "file:",
