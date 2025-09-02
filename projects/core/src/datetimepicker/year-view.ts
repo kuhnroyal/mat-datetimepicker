@@ -3,9 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Inject,
+  inject,
   Input,
-  Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -33,6 +32,11 @@ import { MatDatetimepickerType } from './datetimepicker-type';
   standalone: false,
 })
 export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
+  _adapter = inject<DatetimeAdapter<D>>(DatetimeAdapter, { optional: true })!;
+  private _dateFormats = inject<MatDatetimeFormats>(MAT_DATETIME_FORMATS, {
+    optional: true,
+  })!;
+
   @Output() _userSelection = new EventEmitter<void>();
 
   @Input() type: MatDatetimepickerType = 'date';
@@ -53,12 +57,7 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
   _selectedMonth: number;
   _calendarState: string;
 
-  constructor(
-    @Optional() public _adapter: DatetimeAdapter<D>,
-    @Optional()
-    @Inject(MAT_DATETIME_FORMATS)
-    private _dateFormats: MatDatetimeFormats
-  ) {
+  constructor() {
     if (!this._adapter) {
       throw createMissingDateImplError('DatetimeAdapter');
     }
