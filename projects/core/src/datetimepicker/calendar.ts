@@ -16,11 +16,10 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Inject,
+  inject,
   Input,
   NgZone,
   OnDestroy,
-  Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -70,6 +69,16 @@ export type MatCalendarView = 'clock' | 'month' | 'year' | 'multi-year';
 export class MatDatetimepickerCalendarComponent<D>
   implements AfterContentInit, OnDestroy
 {
+  private _elementRef = inject(ElementRef);
+  private _intl = inject(MatDatepickerIntl);
+  private _ngZone = inject(NgZone);
+  private _adapter = inject<DatetimeAdapter<D>>(DatetimeAdapter, {
+    optional: true,
+  })!;
+  private _dateFormats = inject<MatDatetimeFormats>(MAT_DATETIME_FORMATS, {
+    optional: true,
+  })!;
+
   @Output() _userSelection = new EventEmitter<void>();
   /** Active multi year view when click on year. */
   @Input() multiYearSelector = false;
@@ -99,16 +108,10 @@ export class MatDatetimepickerCalendarComponent<D>
   private _intlChanges: Subscription;
   private _clampedActiveDate: D;
 
-  constructor(
-    private _elementRef: ElementRef,
-    private _intl: MatDatepickerIntl,
-    private _ngZone: NgZone,
-    @Optional() private _adapter: DatetimeAdapter<D>,
-    @Optional()
-    @Inject(MAT_DATETIME_FORMATS)
-    private _dateFormats: MatDatetimeFormats,
-    changeDetectorRef: ChangeDetectorRef
-  ) {
+  constructor() {
+    const _intl = this._intl;
+    const changeDetectorRef = inject(ChangeDetectorRef);
+
     if (!this._adapter) {
       throw createMissingDateImplError('DatetimeAdapter');
     }

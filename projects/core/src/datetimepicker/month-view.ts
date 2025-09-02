@@ -3,9 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Inject,
+  inject,
   Input,
-  Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -37,6 +36,11 @@ const DAYS_PER_WEEK = 7;
 export class MatDatetimepickerMonthViewComponent<D>
   implements AfterContentInit
 {
+  _adapter = inject<DatetimeAdapter<D>>(DatetimeAdapter, { optional: true })!;
+  private _dateFormats = inject<MatDatetimeFormats>(MAT_DATETIME_FORMATS, {
+    optional: true,
+  })!;
+
   @Input() type: MatDatetimepickerType = 'date';
 
   @Output() _userSelection = new EventEmitter<void>();
@@ -59,12 +63,7 @@ export class MatDatetimepickerMonthViewComponent<D>
   _weekdays: { long: string; narrow: string }[];
   _calendarState: string;
 
-  constructor(
-    @Optional() public _adapter: DatetimeAdapter<D>,
-    @Optional()
-    @Inject(MAT_DATETIME_FORMATS)
-    private _dateFormats: MatDatetimeFormats
-  ) {
+  constructor() {
     if (!this._adapter) {
       throw createMissingDateImplError('DatetimeAdapter');
     }

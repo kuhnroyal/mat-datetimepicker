@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -71,7 +71,9 @@ export class MomentDatetimeComponent {
   start: Moment;
   filter: (date: Moment, type: MatDatetimepickerFilterType) => boolean;
 
-  constructor(fb: FormBuilder) {
+  constructor() {
+    const fb = inject(FormBuilder);
+
     this.today = utc();
     this.tomorrow = utc().date(utc().date() + 1);
     this.min = this.today

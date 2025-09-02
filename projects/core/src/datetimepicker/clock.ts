@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  inject,
   Input,
   Output,
 } from '@angular/core';
@@ -32,6 +33,9 @@ export type MatClockView = 'hour' | 'minute';
   standalone: false,
 })
 export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
+  private _element = inject(ElementRef);
+  private _adapter = inject<DatetimeAdapter<D>>(DatetimeAdapter);
+
   @Output() _userSelection = new EventEmitter<void>();
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
@@ -51,10 +55,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
   private mouseMoveListener: any;
   private mouseUpListener: any;
 
-  constructor(
-    private _element: ElementRef,
-    private _adapter: DatetimeAdapter<D>
-  ) {
+  constructor() {
     this.mouseMoveListener = (event: any) => {
       this._handleMousemove(event);
     };

@@ -15,11 +15,10 @@ import {
   Component,
   ComponentRef,
   EventEmitter,
-  Inject,
+  inject,
   Input,
   NgZone,
   OnDestroy,
-  Optional,
   Output,
   ViewChild,
   ViewContainerRef,
@@ -103,6 +102,17 @@ export class MatDatetimepickerContentComponent<D> implements AfterContentInit {
   standalone: false,
 })
 export class MatDatetimepickerComponent<D> implements OnDestroy {
+  private _dialog = inject(MatDialog);
+  private _overlay = inject(Overlay);
+  private _ngZone = inject(NgZone);
+  private _viewContainerRef = inject(ViewContainerRef);
+  private _scrollStrategy = inject(MAT_DATEPICKER_SCROLL_STRATEGY);
+  private _dateAdapter = inject<DatetimeAdapter<D>>(DatetimeAdapter, {
+    optional: true,
+  })!;
+  private _dir = inject(Directionality, { optional: true })!;
+  private _document = inject(DOCUMENT, { optional: true })!;
+
   /** Active multi year view when click on year. */
   @Input() multiYearSelector = false;
   /** if true change the clock to 12 hour format. */
@@ -154,16 +164,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   private _focusedElementBeforeOpen: HTMLElement | null = null;
   private _inputSubscription = Subscription.EMPTY;
 
-  constructor(
-    private _dialog: MatDialog,
-    private _overlay: Overlay,
-    private _ngZone: NgZone,
-    private _viewContainerRef: ViewContainerRef,
-    @Inject(MAT_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy,
-    @Optional() private _dateAdapter: DatetimeAdapter<D>,
-    @Optional() private _dir: Directionality,
-    @Optional() @Inject(DOCUMENT) private _document: any
-  ) {
+  constructor() {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }
@@ -324,6 +325,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
       );
     }
     if (this._document) {
+      // @ts-expect-error TS2740: Type Element is missing the following properties from type HTMLElement:
       this._focusedElementBeforeOpen = this._document.activeElement;
     }
 

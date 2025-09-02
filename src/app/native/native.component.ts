@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -58,7 +58,9 @@ export class NativeDatetimeComponent {
   start = new Date();
   filter: (date: Date, type: MatDatetimepickerFilterType) => boolean;
 
-  constructor(fb: FormBuilder) {
+  constructor() {
+    const fb = inject(FormBuilder);
+
     this.tomorrow.setDate(this.tomorrow.getDate() + 1);
     this.min.setFullYear(2018, 10, 3);
     this.min.setHours(11);

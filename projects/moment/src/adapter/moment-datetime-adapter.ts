@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
@@ -34,13 +34,14 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
 
   private _useUtc = false;
 
-  constructor(
-    @Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: string,
-    @Optional()
-    @Inject(MAT_MOMENT_DATE_ADAPTER_OPTIONS)
-    matMomentAdapterOptions: MatMomentDateAdapterOptions,
-    _delegate: DateAdapter<Moment>
-  ) {
+  constructor() {
+    const matDateLocale = inject<string>(MAT_DATE_LOCALE, { optional: true })!;
+    const matMomentAdapterOptions = inject<MatMomentDateAdapterOptions>(
+      MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+      { optional: true }
+    )!;
+    const _delegate = inject<DateAdapter<Moment>>(DateAdapter);
+
     super(_delegate);
     this.setLocale(matDateLocale || moment.locale());
     this._useUtc = matMomentAdapterOptions.useUtc;

@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -34,15 +35,13 @@ import { MatDatetimepickerComponent } from './datetimepicker';
 export class MatDatetimepickerToggleComponent<D>
   implements AfterContentInit, OnChanges, OnDestroy
 {
+  _intl = inject(MatDatepickerIntl);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   /** Datepicker instance that the button will toggle. */
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('for') datetimepicker: MatDatetimepickerComponent<D>;
   private _stateChanges = Subscription.EMPTY;
-
-  constructor(
-    public _intl: MatDatepickerIntl,
-    private _changeDetectorRef: ChangeDetectorRef
-  ) {}
 
   private _disabled: boolean;
 

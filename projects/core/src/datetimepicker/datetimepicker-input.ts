@@ -6,10 +6,9 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  Inject,
+  inject,
   Input,
   OnDestroy,
-  Optional,
   Output,
 } from '@angular/core';
 import {
@@ -95,6 +94,15 @@ export class MatDatetimepickerInputEvent<D> {
 export class MatDatetimepickerInputDirective<D>
   implements AfterContentInit, ControlValueAccessor, OnDestroy, Validator
 {
+  private _elementRef = inject(ElementRef);
+  _dateAdapter = inject<DatetimeAdapter<D>>(DatetimeAdapter, {
+    optional: true,
+  })!;
+  private _dateFormats = inject<MatDatetimeFormats>(MAT_DATETIME_FORMATS, {
+    optional: true,
+  })!;
+  private _formField = inject(MatFormField, { optional: true })!;
+
   _datepicker: MatDatetimepickerComponent<D>;
   _dateFilter: (date: D | null, type: MatDatetimepickerFilterType) => boolean;
   /** Emits when a `change` event is fired on this `<input>`. */
@@ -110,14 +118,9 @@ export class MatDatetimepickerInputDirective<D>
   /** Whether the last value set on the input was valid. */
   private _lastValueValid = false;
 
-  constructor(
-    private _elementRef: ElementRef,
-    @Optional() public _dateAdapter: DatetimeAdapter<D>,
-    @Optional()
-    @Inject(MAT_DATETIME_FORMATS)
-    private _dateFormats: MatDatetimeFormats,
-    @Optional() private _formField: MatFormField
-  ) {
+  constructor() {
+    const _dateAdapter = this._dateAdapter;
+
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DatetimeAdapter');
     }
