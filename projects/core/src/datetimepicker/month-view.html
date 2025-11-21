@@ -1,9 +1,9 @@
 <table class="mat-datetimepicker-calendar-table">
   <thead class="mat-datetimepicker-calendar-table-header">
     <tr>
-      <th *ngFor="let day of _weekdays" [attr.aria-label]="day.long">
-        {{day.narrow}}
-      </th>
+      @for (day of _weekdays; track day) {
+      <th [attr.aria-label]="day.long">{{day.narrow}}</th>
+      }
     </tr>
   </thead>
   <tbody
