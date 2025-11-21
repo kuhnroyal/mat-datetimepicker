@@ -1,4 +1,8 @@
-import { enableProdMode, LOCALE_ID } from '@angular/core';
+import {
+  enableProdMode,
+  LOCALE_ID,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 
@@ -11,6 +15,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideZoneChangeDetection(),
     {
       provide: LOCALE_ID,
       useValue: 'de-DE',

@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           cache: 'npm'
-          node-version: '22'
+          node-version: '24'
       - run: npm ci
       - run: npm run prettier:check
   lint:
@@ -21,6 +21,6 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           cache: 'npm'
-          node-version: '22'
+          node-version: '24'
       - run: npm ci
       - run: npm run lint

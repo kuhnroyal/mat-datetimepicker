@@ -18,6 +18,15 @@ export const CLOCK_TICK_RADIUS = 7.0833;
 
 export type MatClockView = 'hour' | 'minute';
 
+export interface FormattedTimeUnit {
+  value: number;
+  displayValue: string;
+  enabled: boolean;
+  top: number;
+  left: number;
+  fontSize?: string;
+}
+
 /**
  * A clock that is used as part of the datepicker.
  * @docs-private
@@ -45,8 +54,8 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
   @Output() selectedChange = new EventEmitter<D>();
   @Output() activeDateChange = new EventEmitter<D>();
   /** Hours and Minutes representing the clock view. */
-  _hours: object[] = [];
-  _minutes: object[] = [];
+  _hours: FormattedTimeUnit[] = [];
+  _minutes: FormattedTimeUnit[] = [];
   /** Whether the clock is in hour view. */
   _hourView = true;
   _selectedHour: number;
