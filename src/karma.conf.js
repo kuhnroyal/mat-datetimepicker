@@ -22,8 +22,8 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml'],
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: !process.argv.find((arg) => arg === '--no-watch'),
     browsers: ['ChromeHeadless'],
-    singleRun: true,
+    singleRun: process.argv.some((arg) => arg === '--no-watch'),
   });
 };
