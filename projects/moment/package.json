@@ -10,7 +10,7 @@
     "@angular/core": "^21.0.0",
     "@angular/material": "^21.0.0",
     "@angular/material-moment-adapter": "^21.0.0",
-    "@mat-datetimepicker/core": "^16.0.0"
+    "@mat-datetimepicker/core": "^17.0.0"
   },
   "dependencies": {
     "tslib": "~2.8.1"
