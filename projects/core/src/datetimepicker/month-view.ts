@@ -33,9 +33,9 @@ const DAYS_PER_WEEK = 7;
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class MatDatetimepickerMonthViewComponent<D>
-  implements AfterContentInit
-{
+export class MatDatetimepickerMonthViewComponent<
+  D,
+> implements AfterContentInit {
   _adapter = inject<DatetimeAdapter<D>>(DatetimeAdapter, { optional: true })!;
   private _dateFormats = inject<MatDatetimeFormats>(MAT_DATETIME_FORMATS, {
     optional: true,
