@@ -35,9 +35,9 @@ export const yearsPerRow = 4;
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class MatDatetimepickerMultiYearViewComponent<D>
-  implements AfterContentInit
-{
+export class MatDatetimepickerMultiYearViewComponent<
+  D,
+> implements AfterContentInit {
   _adapter = inject<DatetimeAdapter<D>>(DatetimeAdapter, { optional: true })!;
   private _dateFormats = inject<MatDatetimeFormats>(MAT_DATETIME_FORMATS, {
     optional: true,
