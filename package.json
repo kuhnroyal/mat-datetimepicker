@@ -18,8 +18,8 @@
     "prettier:fix": "npm run prettier -- --write",
     "start": "ng serve",
     "start:prod": "ng serve --configuration production",
-    "test": "ng test",
-    "test:watch": "ng test --auto-watch --no-single-run",
+    "test": "ng test --no-watch",
+    "test:watch": "ng test",
     "watch:lib/core": "ng build core --watch",
     "watch:lib/moment": "ng build moment --watch"
   },
