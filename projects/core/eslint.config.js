@@ -11,7 +11,7 @@ module.exports = tseslint.config(
         'error',
         {
           type: 'attribute',
-          prefix: 'matDatetimepicker',
+          prefix: 'mat',
           style: 'camelCase',
         },
       ],
@@ -19,7 +19,7 @@ module.exports = tseslint.config(
         'error',
         {
           type: 'element',
-          prefix: 'mat-datetimepicker',
+          prefix: 'mat',
           style: 'kebab-case',
         },
       ],
