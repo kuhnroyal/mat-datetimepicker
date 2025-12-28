@@ -1,8 +1,14 @@
 name: Release
+
 on:
   push:
     branches:
       - release
+
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
   release:
     name: Release NPM Packages
@@ -20,6 +26,5 @@ jobs:
       - run: npm run build:lib
       - env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx --no-install semantic-release
