@@ -33,7 +33,7 @@ npm install --save @mat-datetimepicker/core
 And for the moment adapter:
 
 ```sh
-npm install --save @angular/material-moment-adapter mat-datetimepicker/moment
+npm install --save @angular/material-moment-adapter @mat-datetimepicker/moment
 ```
 
 ## Setup
