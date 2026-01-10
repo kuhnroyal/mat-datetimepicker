@@ -93,7 +93,6 @@
           "options": {
             "name": "GitHub Actions Bot",
             "email": "<>",
-            "noBuild": true,
             "repo": "https://github.com/kuhnroyal/mat-datetimepicker.git"
           }
         }
