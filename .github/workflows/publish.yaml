@@ -15,7 +15,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: npm run build:lib
-      - run: npm run build:pages
       - run: npm run publish:pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
