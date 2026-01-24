@@ -59,7 +59,7 @@
     "@semantic-release/release-notes-generator": "14.1.0",
     "@types/jasmine": "5.1.14",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "25.0.5",
+    "@types/node": "25.0.10",
     "angular-cli-ghpages": "3.0.2",
     "angular-eslint": "21.1.0",
     "eslint": "9.39.2",
