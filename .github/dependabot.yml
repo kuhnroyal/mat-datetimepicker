@@ -5,9 +5,14 @@ updates:
     schedule:
       interval: 'monthly'
     groups:
+      angular:
+        patterns:
+          - '@angular/*'
       npm-dependencies:
         patterns:
           - '*'
+        exclude-patterns:
+          - '@angular/*'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
