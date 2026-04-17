@@ -157,7 +157,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
       this._selectedHour = hour;
     }
     this._selectedMinute = this._adapter.getMinute(this.activeDate);
-    let deg = 0;
+    let deg: number;
     let radius = CLOCK_OUTER_RADIUS;
     if (this._hourView) {
       const outer = this._selectedHour > 0 && this._selectedHour < 13;
