@@ -56,7 +56,7 @@ export class NativeDatetimeComponent {
   min = new Date();
   max = new Date();
   start = new Date();
-  filter: (date: Date, type: MatDatetimepickerFilterType) => boolean;
+  filter: (date: Date | null, type: MatDatetimepickerFilterType) => boolean;
 
   constructor() {
     const fb = inject(FormBuilder);
@@ -70,7 +70,11 @@ export class NativeDatetimeComponent {
     this.max.setMinutes(45);
     this.start.setFullYear(1930, 9, 28);
 
-    this.filter = (date: Date, type: MatDatetimepickerFilterType) => {
+    this.filter = (date: Date | null, type: MatDatetimepickerFilterType) => {
+      if (!date) {
+        return false;
+      }
+
       switch (type) {
         case MatDatetimepickerFilterType.DATE:
           return (

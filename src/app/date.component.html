@@ -24,13 +24,13 @@
       matInput
       required
     />
-    @if (group.get('dateTime').errors?.required) {
+    @if (group.get('dateTime')?.errors?.required) {
       <mat-error>required</mat-error>
     }
-    @if (group.get('dateTime').errors?.matDatepickerMin) {
+    @if (group.get('dateTime')?.errors?.matDatepickerMin) {
       <mat-error>min</mat-error>
     }
-    @if (group.get('dateTime').errors?.matDatepickerMax) {
+    @if (group.get('dateTime')?.errors?.matDatepickerMax) {
       <mat-error>max</mat-error>
     }
   </mat-form-field>
@@ -57,13 +57,13 @@
       required
       placeholder="DateTime Year selector"
     />
-    @if (group.get('dateTimeYear').errors?.required) {
+    @if (group.get('dateTimeYear')?.errors?.required) {
       <mat-error>required</mat-error>
     }
-    @if (group.get('dateTimeYear').errors?.matDatepickerMin) {
+    @if (group.get('dateTimeYear')?.errors?.matDatepickerMin) {
       <mat-error>min</mat-error>
     }
-    @if (group.get('dateTimeYear').errors?.matDatepickerMax) {
+    @if (group.get('dateTimeYear')?.errors?.matDatepickerMax) {
       <mat-error>max</mat-error>
     }
   </mat-form-field>
@@ -85,7 +85,7 @@
       required
       placeholder="Time"
     />
-    @if (group.get('time').errors?.required) {
+    @if (group.get('time')?.errors?.required) {
       <mat-error>required</mat-error>
     }
   </mat-form-field>
@@ -108,7 +108,7 @@
       required
       placeholder="Time AM/PM"
     />
-    @if (group.get('timeAMPM').errors?.required) {
+    @if (group.get('timeAMPM')?.errors?.required) {
       <mat-error>required</mat-error>
     }
   </mat-form-field>
@@ -129,7 +129,7 @@
       required
       placeholder="Date"
     />
-    @if (group.get('date').errors?.required) {
+    @if (group.get('date')?.errors?.required) {
       <mat-error>required</mat-error>
     }
   </mat-form-field>
@@ -151,7 +151,7 @@
       required
       placeholder="Month"
     />
-    @if (group.get('month').errors?.required) {
+    @if (group.get('month')?.errors?.required) {
       <mat-error>required</mat-error>
     }
   </mat-form-field>
@@ -172,7 +172,7 @@
       matInput
       required
     />
-    @if (group.get('year').errors?.required) {
+    @if (group.get('year')?.errors?.required) {
       <mat-error>required</mat-error>
     }
   </mat-form-field>
@@ -197,13 +197,13 @@
       [timeInterval]="5"
       type="datetime"
     ></mat-datetimepicker>
-    @if (group.get('mintest').errors?.required) {
+    @if (group.get('mintest')?.errors?.required) {
       <mat-error>required</mat-error>
     }
-    @if (group.get('mintest').errors?.matDatepickerMin) {
+    @if (group.get('mintest')?.errors?.matDatepickerMin) {
       <mat-error>min</mat-error>
     }
-    @if (group.get('mintest').errors?.matDatepickerMax) {
+    @if (group.get('mintest')?.errors?.matDatepickerMax) {
       <mat-error>max</mat-error>
     }
   </mat-form-field>
@@ -227,10 +227,10 @@
       [timeInterval]="5"
       type="datetime"
     ></mat-datetimepicker>
-    @if (group.get('filtertest').errors?.required) {
+    @if (group.get('filtertest')?.errors?.required) {
       <mat-error>required</mat-error>
     }
-    @if (group.get('filtertest').errors?.matDatepickerFilter) {
+    @if (group.get('filtertest')?.errors?.matDatepickerFilter) {
       <mat-error>filter</mat-error>
     }
   </mat-form-field>

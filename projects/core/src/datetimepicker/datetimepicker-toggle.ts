@@ -12,7 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { MatDatepickerIntl } from '@angular/material/datepicker';
-import { asyncScheduler, merge, scheduled, Subscription } from 'rxjs';
+import { EMPTY, merge, Observable, Subscription } from 'rxjs';
 
 import { MatDatetimepickerComponent } from './datetimepicker';
 
@@ -40,10 +40,10 @@ export class MatDatetimepickerToggleComponent<D>
 
   /** Datepicker instance that the button will toggle. */
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('for') datetimepicker: MatDatetimepickerComponent<D>;
+  @Input('for') datetimepicker!: MatDatetimepickerComponent<D>;
   private _stateChanges = Subscription.EMPTY;
 
-  private _disabled: boolean;
+  private _disabled!: boolean;
 
   /** Whether the toggle button is disabled. */
   @Input()
@@ -79,13 +79,13 @@ export class MatDatetimepickerToggleComponent<D>
   }
 
   private _watchStateChanges() {
-    const datepickerDisabled = this.datetimepicker
+    const datepickerDisabled: Observable<boolean> = this.datetimepicker
       ? this.datetimepicker._disabledChange
-      : scheduled([], asyncScheduler);
-    const inputDisabled =
+      : EMPTY;
+    const inputDisabled: Observable<boolean> =
       this.datetimepicker && this.datetimepicker._datepickerInput
         ? this.datetimepicker._datepickerInput._disabledChange
-        : scheduled([], asyncScheduler);
+        : EMPTY;
 
     this._stateChanges.unsubscribe();
     this._stateChanges = merge(

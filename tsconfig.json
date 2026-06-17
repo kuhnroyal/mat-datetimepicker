@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "esModuleInterop": true,
@@ -14,10 +13,10 @@
     "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
     "paths": {
-      "@mat-datetimepicker/core": ["dist/core"],
-      "@mat-datetimepicker/core/*": ["dist/core/*"],
-      "@mat-datetimepicker/moment": ["dist/moment"],
-      "@mat-datetimepicker/moment/*": ["dist/moment/*"]
+      "@mat-datetimepicker/core": ["./dist/core"],
+      "@mat-datetimepicker/core/*": ["./dist/core/*"],
+      "@mat-datetimepicker/moment": ["./dist/moment"],
+      "@mat-datetimepicker/moment/*": ["./dist/moment/*"]
     },
     "useDefineForClassFields": false
   }

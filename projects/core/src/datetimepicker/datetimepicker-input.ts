@@ -83,7 +83,7 @@ export class MatDatetimepickerInputEvent<D> {
     '[attr.max]': 'max ? _dateAdapter.toIso8601(max) : null',
     '[disabled]': 'disabled',
     '(focus)': '_datepicker._handleFocus()',
-    '(input)': '_onInput($event.target.value)',
+    '(input)': '_onInput($any($event.target).value)',
     '(change)': '_onChange()',
     '(blur)': '_onBlur()',
     '(keydown)': '_onKeydown($event)',
@@ -103,8 +103,8 @@ export class MatDatetimepickerInputDirective<D>
   })!;
   private _formField = inject(MatFormField, { optional: true })!;
 
-  _datepicker: MatDatetimepickerComponent<D>;
-  _dateFilter: (date: D | null, type: MatDatetimepickerFilterType) => boolean;
+  _datepicker!: MatDatetimepickerComponent<D>;
+  _dateFilter!: (date: D | null, type: MatDatetimepickerFilterType) => boolean;
   /** Emits when a `change` event is fired on this `<input>`. */
   @Output() dateChange = new EventEmitter<MatDatetimepickerInputEvent<D>>();
   /** Emits when an `input` event is fired on this `<input>`. */
@@ -148,7 +148,7 @@ export class MatDatetimepickerInputDirective<D>
     this._validatorOnChange();
   }
 
-  private _value: D | null;
+  private _value!: D | null;
 
   /** The value of the input. */
   @Input()
@@ -172,7 +172,7 @@ export class MatDatetimepickerInputDirective<D>
     });
   }
 
-  private _min: D | null;
+  private _min!: D | null;
 
   /** The minimum valid date. */
   @Input()
@@ -187,7 +187,7 @@ export class MatDatetimepickerInputDirective<D>
     this._validatorOnChange();
   }
 
-  private _max: D | null;
+  private _max!: D | null;
 
   /** The maximum valid date. */
   @Input()
@@ -202,7 +202,7 @@ export class MatDatetimepickerInputDirective<D>
     this._validatorOnChange();
   }
 
-  private _disabled: boolean;
+  private _disabled!: boolean;
 
   /** Whether the datepicker-input is disabled. */
   @Input()

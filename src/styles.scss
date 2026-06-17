@@ -4,7 +4,7 @@
 
 // Use this import in a real project instead
 //@use '@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
-@use 'dist/core/datetimepicker/datetimepicker-theme.scss';
+@use '../dist/core/datetimepicker/datetimepicker-theme.scss';
 
 @include mat.core();
 
