@@ -41,21 +41,21 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
 
   @Input() type: MatDatetimepickerType = 'date';
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter!: (date: D) => boolean;
   /** Emits when a new month is selected. */
   @Output() selectedChange = new EventEmitter<D>();
   /** Grid of calendar cells representing the months of the year. */
-  _months: MatDatetimepickerCalendarCell[][];
+  _months!: MatDatetimepickerCalendarCell[][];
   /** The label for this year (e.g. "2017"). */
-  _yearLabel: string;
+  _yearLabel!: string;
   /** The month in this year that today falls on. Null if today is in a different year. */
-  _todayMonth: number;
+  _todayMonth!: number | null;
   /**
    * The month in this year that the selected Date falls on.
    * Null if the selected Date is in a different year.
    */
-  _selectedMonth: number;
-  _calendarState: string;
+  _selectedMonth!: number | null;
+  _calendarState!: string;
 
   constructor() {
     if (!this._adapter) {
@@ -94,15 +94,15 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
     }
   }
 
-  private _selected: D;
+  private _selected!: D | null;
 
   /** The currently selected date. */
   @Input()
-  get selected(): D {
+  get selected(): D | null {
     return this._selected;
   }
 
-  set selected(value: D) {
+  set selected(value: D | null) {
     this._selected = value;
     this._selectedMonth = this._getMonthInCurrentYear(this.selected);
   }
@@ -162,8 +162,8 @@ export class MatDatetimepickerYearViewComponent<D> implements AfterContentInit {
    * Gets the month in this year that the given Date falls on.
    * Returns null if the given Date is in another year.
    */
-  private _getMonthInCurrentYear(date: D) {
-    return this._adapter.sameYear(date, this.activeDate)
+  private _getMonthInCurrentYear(date: D | null) {
+    return date && this._adapter.sameYear(date, this.activeDate)
       ? this._adapter.getMonth(date)
       : null;
   }

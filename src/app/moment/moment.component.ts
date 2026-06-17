@@ -69,7 +69,7 @@ export class MomentDatetimeComponent {
   min: Moment;
   max: Moment;
   start: Moment;
-  filter: (date: Moment, type: MatDatetimepickerFilterType) => boolean;
+  filter: (date: Moment | null, type: MatDatetimepickerFilterType) => boolean;
 
   constructor() {
     const fb = inject(FormBuilder);
@@ -85,7 +85,11 @@ export class MomentDatetimeComponent {
       .minute(10);
     this.max = this.min.clone().date(4).minute(45);
     this.start = this.today.clone().year(1930).month(9).date(28);
-    this.filter = (date: Moment, type: MatDatetimepickerFilterType) => {
+    this.filter = (date: Moment | null, type: MatDatetimepickerFilterType) => {
+      if (!date) {
+        return false;
+      }
+
       switch (type) {
         case MatDatetimepickerFilterType.DATE:
           return (

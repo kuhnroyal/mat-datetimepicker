@@ -65,10 +65,10 @@ let datetimepickerUid = 0;
   standalone: false,
 })
 export class MatDatetimepickerContentComponent<D> implements AfterContentInit {
-  datetimepicker: MatDatetimepickerComponent<D>;
+  datetimepicker!: MatDatetimepickerComponent<D>;
 
   @ViewChild(MatDatetimepickerCalendarComponent, { static: true })
-  _calendar: MatDatetimepickerCalendarComponent<D>;
+  _calendar!: MatDatetimepickerCalendarComponent<D>;
 
   ngAfterContentInit() {
     this._calendar._focusActiveCell();
@@ -133,7 +133,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
    */
   @Output() selectedChanged = new EventEmitter<D>();
   /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
-  @Input() panelClass: string | string[];
+  @Input() panelClass!: string | string[];
   /** Emits when the datepicker has been opened. */
   // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('opened') openedStream: EventEmitter<void> = new EventEmitter<void>();
@@ -148,16 +148,16 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
   /** The id for the datepicker calendar. */
   id = `mat-datetimepicker-${datetimepickerUid++}`;
   /** The input element this datepicker is associated with. */
-  _datepickerInput: MatDatetimepickerInputDirective<D>;
+  _datepickerInput!: MatDatetimepickerInputDirective<D>;
   /** Emits when the datepicker is disabled. */
   _disabledChange = new Subject<boolean>();
   private _validSelected: D | null = null;
   /** A reference to the overlay when the calendar is opened as a popup. */
-  private _popupRef: OverlayRef;
+  private _popupRef!: OverlayRef;
   /** A reference to the dialog when the calendar is opened as a dialog. */
-  private _dialogRef: MatDialogRef<any> | null;
+  private _dialogRef!: MatDialogRef<any> | null;
   /** A portal containing the calendar for this datepicker. */
-  private _calendarPortal: ComponentPortal<
+  private _calendarPortal!: ComponentPortal<
     MatDatetimepickerContentComponent<D>
   >;
   /** The element that was focused before the datepicker was opened. */
@@ -170,7 +170,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     }
   }
 
-  private _startAt: D | null;
+  private _startAt!: D | null;
 
   /** The date to open the calendar to initially. */
   @Input()
@@ -187,7 +187,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     this._startAt = this._dateAdapter.getValidDateOrNull(date);
   }
 
-  private _openOnFocus: boolean;
+  private _openOnFocus!: boolean;
 
   @Input()
   get openOnFocus(): boolean {
@@ -224,7 +224,7 @@ export class MatDatetimepickerComponent<D> implements OnDestroy {
     this._touchUi = coerceBooleanProperty(value);
   }
 
-  private _disabled: boolean;
+  private _disabled!: boolean;
 
   /** Whether the datepicker pop-up should be disabled. */
   @Input()

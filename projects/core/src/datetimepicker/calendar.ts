@@ -87,7 +87,7 @@ export class MatDatetimepickerCalendarComponent<D>
   @Input() twelvehour = false;
   @Input() timeInterval = 1;
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
+  @Input() dateFilter!: (date: D, type: MatDatetimepickerFilterType) => boolean;
   @Input() ariaLabel = 'Use arrow keys to navigate';
   @Input() ariaNextMonthLabel = 'Next month';
   @Input() ariaPrevMonthLabel = 'Previous month';
@@ -102,11 +102,11 @@ export class MatDatetimepickerCalendarComponent<D>
   /** Emits when the view has been changed. **/
   @Output() viewChanged: EventEmitter<MatCalendarView> =
     new EventEmitter<MatCalendarView>();
-  _AMPM: string;
+  _AMPM!: string;
   _clockView: MatClockView = 'hour';
-  _calendarState: string;
-  private _intlChanges: Subscription;
-  private _clampedActiveDate: D;
+  _calendarState!: string;
+  private _intlChanges!: Subscription;
+  private _clampedActiveDate!: D;
 
   constructor() {
     const _intl = this._intl;
@@ -139,7 +139,7 @@ export class MatDatetimepickerCalendarComponent<D>
     }
   }
 
-  private _startAt: D | null;
+  private _startAt!: D | null;
 
   /** A date representing the period (month or year) to start the calendar in. */
   @Input()
@@ -151,7 +151,7 @@ export class MatDatetimepickerCalendarComponent<D>
     this._startAt = this._adapter.getValidDateOrNull(value);
   }
 
-  private _selected: D | null;
+  private _selected!: D | null;
 
   /** The currently selected date. */
   @Input()
@@ -163,7 +163,7 @@ export class MatDatetimepickerCalendarComponent<D>
     this._selected = this._adapter.getValidDateOrNull(value);
   }
 
-  private _minDate: D | null;
+  private _minDate!: D | null;
 
   /** The minimum selectable date. */
   @Input()
@@ -175,7 +175,7 @@ export class MatDatetimepickerCalendarComponent<D>
     this._minDate = this._adapter.getValidDateOrNull(value);
   }
 
-  private _maxDate: D | null;
+  private _maxDate!: D | null;
 
   /** The maximum selectable date. */
   @Input()
@@ -217,7 +217,7 @@ export class MatDatetimepickerCalendarComponent<D>
   }
 
   /** Whether the calendar is in month view. */
-  _currentView: MatCalendarView;
+  _currentView!: MatCalendarView;
 
   get currentView(): MatCalendarView {
     return this._currentView;

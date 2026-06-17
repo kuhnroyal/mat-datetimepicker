@@ -47,7 +47,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
 
   @Output() _userSelection = new EventEmitter<void>();
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D, type: MatDatetimepickerFilterType) => boolean;
+  @Input() dateFilter!: (date: D, type: MatDatetimepickerFilterType) => boolean;
   @Input() interval = 1;
   @Input() twelvehour = false;
   /** Emits when the currently selected date changes. */
@@ -58,8 +58,8 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
   _minutes: FormattedTimeUnit[] = [];
   /** Whether the clock is in hour view. */
   _hourView = true;
-  _selectedHour: number;
-  _selectedMinute: number;
+  _selectedHour!: number;
+  _selectedMinute!: number;
   private _timeChanged = false;
   private mouseMoveListener: any;
   private mouseUpListener: any;
@@ -73,7 +73,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
     };
   }
 
-  private _activeDate: D;
+  private _activeDate!: D;
 
   /**
    * The date to display in this clock view.
@@ -95,7 +95,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
     }
   }
 
-  private _selected: D | null;
+  private _selected!: D | null;
 
   /** The currently selected date. */
   @Input()
@@ -112,7 +112,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
     }
   }
 
-  private _minDate: D | null;
+  private _minDate!: D | null;
 
   /** The minimum selectable date. */
   @Input()
@@ -126,7 +126,7 @@ export class MatDatetimepickerClockComponent<D> implements AfterContentInit {
     );
   }
 
-  private _maxDate: D | null;
+  private _maxDate!: D | null;
 
   /** The maximum selectable date. */
   @Input()

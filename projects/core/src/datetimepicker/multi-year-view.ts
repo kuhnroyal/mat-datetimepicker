@@ -47,21 +47,21 @@ export class MatDatetimepickerMultiYearViewComponent<
 
   @Input() type: MatDatetimepickerType = 'date';
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter!: (date: D) => boolean;
   /** Emits when a new month is selected. */
   @Output() selectedChange = new EventEmitter<D>();
   /** Grid of calendar cells representing the years in the range. */
-  _years: MatDatetimepickerCalendarCell[][];
+  _years!: MatDatetimepickerCalendarCell[][];
   /** The label for this year range (e.g. "2000-2020"). */
-  _yearLabel: string;
+  _yearLabel!: string;
   /** The year in this range that today falls on. Null if today is in a different range. */
-  _todayYear: number;
+  _todayYear!: number;
   /**
    * The year in this range that the selected Date falls on.
    * Null if the selected Date is in a different range.
    */
-  _selectedYear: number | null;
-  _calendarState: string;
+  _selectedYear!: number | null;
+  _calendarState!: string;
 
   constructor() {
     if (!this._adapter) {
@@ -101,21 +101,21 @@ export class MatDatetimepickerMultiYearViewComponent<
     }
   }
 
-  private _selected: D;
+  private _selected!: D | null;
 
   /** The currently selected date. */
   @Input()
-  get selected(): D {
+  get selected(): D | null {
     return this._selected;
   }
 
-  set selected(value: D) {
+  set selected(value: D | null) {
     this._selected = value;
     this._selectedYear =
       this._selected && this._adapter.getYear(this._selected);
   }
 
-  private _minDate: D | null;
+  private _minDate!: D | null;
 
   /** The minimum selectable date. */
   @Input()
@@ -127,7 +127,7 @@ export class MatDatetimepickerMultiYearViewComponent<
     this._minDate = this._getValidDateOrNull(this._adapter.deserialize(value));
   }
 
-  private _maxDate: D | null;
+  private _maxDate!: D | null;
 
   /** The maximum selectable date. */
   @Input()

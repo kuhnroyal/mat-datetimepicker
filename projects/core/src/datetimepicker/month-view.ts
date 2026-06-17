@@ -45,23 +45,23 @@ export class MatDatetimepickerMonthViewComponent<
 
   @Output() _userSelection = new EventEmitter<void>();
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter!: (date: D) => boolean;
   /** Emits when a new date is selected. */
   @Output() selectedChange = new EventEmitter<D>();
   /** Grid of calendar cells representing the dates of the month. */
-  _weeks: MatDatetimepickerCalendarCell[][];
+  _weeks!: MatDatetimepickerCalendarCell[][];
   /** The number of blank cells in the first row before the 1st of the month. */
-  _firstWeekOffset: number;
+  _firstWeekOffset!: number;
   /**
    * The date of the month that the currently selected Date falls on.
    * Null if the currently selected Date is in another month.
    */
-  _selectedDate: number;
+  _selectedDate!: number | null;
   /** The date of the month that today falls on. Null if today is in another month. */
-  _todayDate: number;
+  _todayDate!: number | null;
   /** The names of the weekdays. */
   _weekdays: { long: string; narrow: string }[];
-  _calendarState: string;
+  _calendarState!: string;
 
   constructor() {
     if (!this._adapter) {
@@ -114,15 +114,15 @@ export class MatDatetimepickerMonthViewComponent<
     }
   }
 
-  private _selected: D;
+  private _selected!: D | null;
 
   /** The currently selected date. */
   @Input()
-  get selected(): D {
+  get selected(): D | null {
     return this._selected;
   }
 
-  set selected(value: D) {
+  set selected(value: D | null) {
     this._selected = value;
     this._selectedDate = this._getDateInCurrentMonth(this.selected);
   }
@@ -213,8 +213,8 @@ export class MatDatetimepickerMonthViewComponent<
    * Gets the date in this month that the given Date falls on.
    * Returns null if the given Date is in another month.
    */
-  private _getDateInCurrentMonth(date: D): number {
-    return this._adapter.sameMonthAndYear(date, this.activeDate)
+  private _getDateInCurrentMonth(date: D | null): number | null {
+    return date && this._adapter.sameMonthAndYear(date, this.activeDate)
       ? this._adapter.getDate(date)
       : null;
   }

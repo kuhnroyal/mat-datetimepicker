@@ -37,7 +37,7 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
     return (
       this.compareDate(first, second) ||
       this.getHour(first) - this.getHour(second) ||
-      (respectMinutePart && this.getMinute(first) - this.getMinute(second))
+      (respectMinutePart ? this.getMinute(first) - this.getMinute(second) : 0)
     );
   }
 
@@ -53,7 +53,7 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
     return first === second;
   }
 
-  sameYear(first: D, second: D) {
+  sameYear(first: D | null, second: D | null) {
     return first && second && this.getYear(first) === this.getYear(second);
   }
 
@@ -136,7 +136,7 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
     return this._delegate.getDayOfWeek(date);
   }
 
-  getMonthNames(style): string[] {
+  getMonthNames(style: 'long' | 'short' | 'narrow'): string[] {
     return this._delegate.getMonthNames(style);
   }
 
@@ -144,7 +144,7 @@ export abstract class DatetimeAdapter<D> extends DateAdapter<D> {
     return this._delegate.getDateNames();
   }
 
-  getDayOfWeekNames(style): string[] {
+  getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
     return this._delegate.getDayOfWeekNames(style);
   }
 

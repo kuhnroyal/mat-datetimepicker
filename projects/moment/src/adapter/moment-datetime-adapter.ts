@@ -20,7 +20,7 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 
 @Injectable()
 export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
-  private _localeData: {
+  private _localeData!: {
     firstDayOfWeek: number;
     longMonths: string[];
     shortMonths: string[];
@@ -32,7 +32,7 @@ export class MomentDatetimeAdapter extends DatetimeAdapter<Moment> {
     narrowDaysOfWeek: string[];
   };
 
-  private _useUtc = false;
+  private _useUtc!: boolean | undefined;
 
   constructor() {
     const matDateLocale = inject<string>(MAT_DATE_LOCALE, { optional: true })!;

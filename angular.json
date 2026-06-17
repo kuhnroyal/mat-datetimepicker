@@ -21,7 +21,6 @@
               "base": "dist/app"
             },
             "index": "src/index.html",
-            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
@@ -50,6 +49,12 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "development": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           }
         },
@@ -71,15 +76,11 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.scss"],
-            "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "runner": "vitest",
+            "runnerConfig": "vite.config.ts"
           }
         },
         "lint": {
@@ -117,11 +118,11 @@
           }
         },
         "test-disabled-until-empty": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "projects/core/src/test.ts",
             "tsConfig": "projects/core/tsconfig.spec.json",
-            "karmaConfig": "projects/core/karma.conf.js"
+            "runnerConfig": "vite.config.ts",
+            "runner": "vitest"
           }
         },
         "lint": {
@@ -155,11 +156,11 @@
           }
         },
         "test-disabled-until-empty": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "projects/moment/src/test.ts",
             "tsConfig": "projects/moment/tsconfig.spec.json",
-            "karmaConfig": "projects/moment/karma.conf.js"
+            "runnerConfig": "vite.config.ts",
+            "runner": "vitest"
           }
         },
         "lint": {
