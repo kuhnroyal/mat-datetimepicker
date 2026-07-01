@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: NPM
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           token: ${{ secrets.GH_PAT }}
       - uses: actions/setup-node@v6
